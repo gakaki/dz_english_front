@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="flex">
+    <text class="title">英语乐翻天</text>
+  </view>
+  <view class="userInfo f-r-fs">
+    <view class="header">
+      <image></image>
+    </view>
+    <view class="info f-c-sa">
+      <text class="nn">乐翻天</text>
+      <view class="f-r-sb">
+        <text class="lvl">lv10</text>
+        <view class="lvl-box"></view>
+      </view>
+    </view>
+    <view>
+      <image class='share' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>
+    </view>
+  </view>
+  <view class="flex">
+<image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match-bg.png'></image>
+</view>
+<view class="flex">
+<image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
+</view>
+</view>

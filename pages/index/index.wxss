@@ -1,0 +1,68 @@
+/**index.wxss**/
+
+.container {
+  width: 750rpx;
+  height: 1334rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/index/bg.jpg') 0 0 no-repeat;
+  background-size: 750rpx 1334rpx;
+  margin-top: 0rpx;
+}
+
+.title {
+  display: block;
+  margin-top: 64rpx;
+}
+
+.userInfo {
+  position: relative;
+  margin-top: 35rpx;
+  width: 100%;
+  height: 128rpx;
+}
+
+.header {
+  width: 128rpx;
+  height: 128rpx;
+  box-sizing: border-box;
+  border: 5rpx solid #0673d7;
+  border-radius: 50%;
+  margin: 0 14rpx 0 20rpx;
+}
+
+.info {
+  height: 100%;
+  color: #fff;
+}
+
+.nn {
+  font-size: 32rpx;
+  font-weight: bold;
+  font-family: 'Microsoft YaHei';
+}
+.lvl {
+  font-size: 28rpx;
+  font-family: 'Microsoft YaHei';
+}
+.lvl-box {
+  width: 180rpx;
+  height: 30rpx;
+  background-color: #09579f;
+  margin-left: 10rpx;
+  border-radius: 15rpx;
+}
+.share {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 44rpx;
+  height: 44rpx;
+}
+.match-bg {
+  margin-top: 88rpx;
+   width: 712rpx;
+  height: 267rpx;
+}
+.duizhan-bg {
+  width: 712rpx;
+  height: 281rpx;
+}
