@@ -5,10 +5,10 @@
   </view>
   <view class="userInfo f-r-fs">
     <view class="header">
-      <image></image>
+       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
     <view class="info f-c-sa">
-      <text class="nn">乐翻天</text>
+      <text class="nn">{{userInfo.nickName}}</text>
       <view class="f-r-sb">
         <text class="lvl">lv10</text>
         <view class="lvl-box"></view>
@@ -24,4 +24,14 @@
 <view class="flex">
 <image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
 </view>
+
+<view class="tab f-r-sb">
+<image class='rank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank.png'></image>
+<image class='shop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
+<image class='zhishidian' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
+<image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/qidai.png'></image>
+<image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
+<image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
+</view>
+
 </view>
