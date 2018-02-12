@@ -49,11 +49,35 @@
   font-family: 'Microsoft YaHei';
 }
 .lvl-box {
+  position: relative;
   width: 180rpx;
   height: 30rpx;
   background-color: #09579f;
   margin-left: 10rpx;
   border-radius: 15rpx;
+}
+.lvl-box text {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.percent-box {
+   width: 176rpx;
+  height: 26rpx;
+  margin: 2rpx;
+  overflow: hidden
+}
+.percent-bg {
+ width: 140rpx;
+  height: 100%;
+  background-color: #ffa800;
+ border-radius: 13rpx;
 }
 .share {
   position: absolute;

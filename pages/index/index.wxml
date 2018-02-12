@@ -11,7 +11,11 @@
       <text class="nn">{{userInfo.nickName}}</text>
       <view class="f-r-sb">
         <text class="lvl">lv10</text>
-        <view class="lvl-box"></view>
+        <view class="lvl-box">
+        <text>5/10</text>
+        <view class="percent-box"><view class="percent-bg"></view></view>
+        
+        </view>
       </view>
     </view>
     <view>
