@@ -1,2 +1,14 @@
-<!--pages/friendPK/friendPK.wxml-->
-<text>pages/friendPK/friendPK.wxml</text>
+<view id='friend'>
+  <view class="pk flex">
+    <view class="waiting">
+      <text>等待对手加入···</text>
+    </view>
+    <view class="pk-info f-r-sb">
+      <view class="inviter bg">
+
+      </view>
+      <view class="looker"></view> 
+      <view class="invitee bg"></view>
+    </view>
+  </view>
+</view>
