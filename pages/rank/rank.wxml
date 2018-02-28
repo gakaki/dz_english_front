@@ -1,5 +1,6 @@
 <view id="rank">
- <view class="flex nv">
-    <text class="title">排行榜</text>
+ <view class="flex tab">
+    <text class="title">好友排行</text>
+    <text class="title">世界排行</text>
   </view> 
 </view>

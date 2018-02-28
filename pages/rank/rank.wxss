@@ -1,15 +1,10 @@
 #rank {
   width: 100vw;
   height: 100vh;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/rank/top-bg.png') 0 0 no-repeat;
-  background-size: 750rpx 282rpx;
 }
-.nv {
-  height: 128rpx;
-}
-.title {
-  display: block;
- align-self: flex-end;
-  color: white;
-  margin-bottom: 10rpx;
+.tab {
+   width: 750rpx;
+  height: 154rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rank/tab-bg.png') 0 0 no-repeat;
+  background-size: 750rpx 154rpx;
 }
