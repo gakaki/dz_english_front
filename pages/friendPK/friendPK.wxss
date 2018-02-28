@@ -57,3 +57,53 @@
   left: 50%;
   transform: translate(-50%,0);
 }
+
+.person{
+  width: 252rpx;
+  height: 56rpx;
+  margin-left: 18rpx;
+  margin-top: 32rpx;
+  line-height: 48rpx;
+}
+
+.icon{
+  width: 46rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  margin-left: 17rpx;
+}
+
+.person text{
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+  font-family: 'Microsoft Yahei';
+}
+
+.button{
+  width: 650rpx;
+  margin-top: 145rpx;
+}
+
+.give-up{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-red.png') 0 0 no-repeat;
+}
+
+.invite{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-green.png') 0 0 no-repeat;
+}
+
+.btn{
+  width: 316rpx;
+  height: 108rpx;
+  background-size: cover;
+  text-align: center;
+}
+
+.btn text{
+  color: #fff;
+  letter-spacing: 18rpx;
+  padding-left: 18rpx;
+  line-height: 104rpx;
+  font-family: 'Microsoft Yahei';
+}
