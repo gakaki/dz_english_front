@@ -5,9 +5,9 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "英语乐翻天",
     "navigationBarTextStyle":"white",
-    "navigationStyle": "custom"
+     "navigationBarBackgroundColor": "#fff",
+     "navigationStyle": "custom"
   }
 }

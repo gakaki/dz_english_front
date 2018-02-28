@@ -5,16 +5,21 @@
   height: 100vh;
   background: url('https://gengxin.odao.com/update/h5/yingyu/index/bg.jpg') 0 0 no-repeat;
   background-size: cover;
+  overflow: hidden
+}
+.nv {
+  height: 128rpx;
 }
 .title {
   display: block;
-  margin-top: 64rpx;
+ align-self: flex-end;
   color: white;
+  margin-bottom: 10rpx;
 }
 
 .userInfo {
   position: relative;
-  margin-top: 35rpx;
+  margin-top: 20rpx;
   width: 100%;
   height: 128rpx;
 }

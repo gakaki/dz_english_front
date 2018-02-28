@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="flex">
+   <view class="flex nv">
     <text class="title">英语乐翻天</text>
-  </view>
+  </view> 
   <view class="userInfo f-r-fs">
     <view class="header">
        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
