@@ -10,6 +10,7 @@
 .title {
   display: block;
   margin-top: 64rpx;
+  color: white;
 }
 
 .userInfo {
@@ -41,12 +42,14 @@
 
 .nn {
   font-size: 32rpx;
-  font-weight: bold;
   font-family: 'Microsoft YaHei';
 }
 .lvl {
   font-size: 28rpx;
+  font-weight: bold;
   font-family: 'Microsoft YaHei';
+  display: inline-block;
+  height: 30rpx;
 }
 .lvl-box {
   position: relative;

@@ -35,7 +35,11 @@
 <image class='zhishidian' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
 <image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/qidai.png'></image>
 <image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
+<view>
 <image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
+<button></button>
+</view>
+
 </view>
 
 </view>
