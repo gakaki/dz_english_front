@@ -40,6 +40,7 @@
 
 .invitee{
   background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/plug-red.png') 0 0 no-repeat;
+  position: relative;
 }
 
 .avatar{
@@ -48,7 +49,7 @@
   position: absolute;
   top: 62rpx;
   left: 77rpx;
-  transform: rotate(7deg);
+  transform: rotate(8deg);
 }
 
 .touxiang{
@@ -63,7 +64,7 @@
   max-height: 35rpx; 
   position: absolute;
   top: 203rpx;
-  transform: rotate(7deg);
+  transform: rotate(9deg);
   left: 36rpx;
   color: #fff;
   font-family: 'Microsoft Yahei';
@@ -71,6 +72,37 @@
   font-size: 30rpx;
   text-align: center;
   overflow: hidden;
+}
+
+.qipao{
+  width: 113rpx;
+  height: 62rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/tankuang.png') 0 0 no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 258rpx;
+  left: 57rpx;
+  text-align: center;
+}
+
+.qipao text{
+  display: inline-block;
+  color: #4b65b7;
+  font-size: 24rpx;
+  font-weight: bold;
+  font-family: 'Microsoft Yahei';
+  transform: rotate(10deg);
+  line-height: 68rpx;
+}
+
+.rotate{
+   transform: rotate(-8deg); 
+   left: 95rpx;
+}
+
+.name-invitee{
+  transform: rotate(-9deg); 
+  left: 78rpx;
 }
 
 .bg{

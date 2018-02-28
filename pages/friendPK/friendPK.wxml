@@ -11,6 +11,9 @@
         <view class="name">
           <text>{{userInfo.nickName}}</text>
         </view>
+        <view class="qipao">
+          <text>发起者</text>
+        </view>
       </view>
       <view class="looker">
         <view class="person">
@@ -18,7 +21,14 @@
           <text>围观群众100人</text>
         </view>
       </view> 
-      <view class="invitee bg"></view>
+      <view class="invitee bg">
+        <view class="avatar rotate">
+          <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="name name-invitee">
+          <text>{{userInfo.nickName}}</text>
+        </view>
+      </view>
     </view>
     <view class="button f-r-sb">
       <view class="btn give-up">
