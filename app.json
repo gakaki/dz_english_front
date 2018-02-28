@@ -1,9 +1,16 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/word/word",
     "pages/friendPK/friendPK",
     "pages/duizhan/duizhan",
     "pages/index/index",
+=======
+    "pages/index/index",
+    "pages/duizhan/duizhan",
+    "pages/friendPK/friendPK",
+   
+>>>>>>> 946c9638a749f274807a4eb5ac39bda717b5bfe5
     "pages/rank/rank"
     
   ],
