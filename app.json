@@ -1,10 +1,10 @@
 {
 
   "pages": [
-    "pages/friendPK/friendPK",
+    "pages/rank/rank",
     "pages/index/index",
+    "pages/friendPK/friendPK"
     
-    "pages/rank/rank"
   ],
   "window": {
     "backgroundTextStyle": "light",

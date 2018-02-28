@@ -8,3 +8,37 @@
   background: url('https://gengxin.odao.com/update/h5/yingyu/rank/tab-bg.png') 0 0 no-repeat;
   background-size: 750rpx 154rpx;
 }
+.tab text {
+ line-height: 72rpx;
+  width: 212rpx;
+  height: 72rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+.tab-one {
+  text-align: center;
+  border-bottom-left-radius: 36rpx;
+  border-top-left-radius: 36rpx;
+  
+}
+.tab-two {
+ text-align: center;
+  border-bottom-right-radius: 36rpx;
+  border-top-right-radius: 36rpx
+}
+.tab-act {
+background-color: rgba(165,209,253,.8);
+  text-decoration: underline;
+  color: #335bb8
+}
+.tab-def {
+ color: #fff;
+  background-color: rgba(0,0,0,.2);
+}
+.item {
+  width: 709rpx;
+  height: 145rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rank/item-bg.png') 0 0 no-repeat;
+  background-size: cover;
+}

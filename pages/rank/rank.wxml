@@ -1,6 +1,12 @@
 <view id="rank">
  <view class="flex tab">
-    <text class="title">好友排行</text>
-    <text class="title">世界排行</text>
+    <text class="tab-one {{tabAct?'tab-act':'tab-def'}}" bindtap='clickTab'>好友排行</text>
+    <text class="tab-two {{tabAct?'tab-def':'tab-act'}}" bindtap='clickTab'>世界排行</text>
   </view> 
+  <view class="flex">
+  <view class="item">
+
+</view>
+  </view>
+
 </view>
