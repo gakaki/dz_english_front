@@ -33,3 +33,23 @@
     flex-direction: column;
     justify-content: space-around;
 }
+.patl {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.patr {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.pabl {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.pabr {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

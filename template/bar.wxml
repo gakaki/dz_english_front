@@ -1,0 +1,6 @@
+<template name="bar">
+  <view >
+    <view>66666666666</view>
+    <view>{{ha}}</view>
+  </view>
+</template>

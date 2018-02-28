@@ -1,0 +1,30 @@
+<!--components/compete/compete.wxml-->
+
+<view>
+  <view class='users'>
+    <view>
+      <text>用户头像</text>
+      <view>
+        <text class='score'>9999</text>
+        <text>乐翻天</text>
+      </view>
+    </view>
+    <view id = 'countdown'>3</view>
+    <view>
+      <text>用户头像</text>
+      <view>
+        <text class='score'>9999</text>
+        <text>乐翻天</text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <slot name='word'></slot>
+  </view>
+  <view>
+    <bar score='{{100}}'></bar>
+    <slot name='select'></slot>
+
+  </view>
+  
+</view>
