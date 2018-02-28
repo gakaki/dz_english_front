@@ -97,6 +97,23 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '*******',
+      path: '/pages/friendPK/friendPk',
+      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      success: function () {
+        // doFetch('guessnum.getacceleration', {}, (res) => {
+        //   if (res.code == 0) {
+        //     that.setData({
+        //       packageTip: "恭喜获得1张加速卡",
+        //       hasPackageTip: true,
+        //     })
+        //   }
+        // })
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

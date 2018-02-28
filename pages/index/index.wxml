@@ -1,43 +1,46 @@
 <!--index.wxml-->
 <view class="container">
-   
+
   <view class="userInfo f-r-fs">
     <view class="header">
-       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
     <view class="info f-c-sa">
       <text class="nn">{{userInfo.nickName}}</text>
-      <view class="f-r-sb">
+      <view class="f-r-fs">
         <text class="lvl">lv10</text>
         <view class="lvl-box">
-        <text>5/10</text>
-        <view class="percent-box"><view class="percent-bg"></view></view>
-        
+          <text>5/10</text>
+          <view class="percent-box">
+            <view class="percent-bg"></view>
+          </view>
+
         </view>
       </view>
     </view>
-    <view>
+    <view class="share-box">
       <image class='share' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>
+      <button class='share-btn' open-type="share"></button>
     </view>
   </view>
   <view class="flex">
-<image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
-</view>
-<view class="flex">
-<image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
-</view>
+    <image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
+  </view>
+  <view class="flex">
+    <image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
+  </view>
 
-<view class="tab f-r-sb">
-<image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank.png'></image>
-<image class='shop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
-<image class='zhishidian' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
-<image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/qidai.png'></image>
-<image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
-<view class="c-box">
-<image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
-<button open-type='contact' class="contact"></button>
-</view>
+  <view class="tab f-r-sb">
+    <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank.png'></image>
+    <image class='shop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
+    <image class='zhishidian' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
+    <image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/qidai.png'></image>
+    <image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
+    <view class="c-box">
+      <image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
+      <button open-type='contact' class="contact"></button>
+    </view>
 
-</view>
+  </view>
 
 </view>

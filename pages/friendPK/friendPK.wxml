@@ -36,6 +36,7 @@
       </view>
       <view class="btn invite">
         <text>邀请</text>
+        <button class="share" open-type='share'></button>
       </view>
     </view>
   </view>
