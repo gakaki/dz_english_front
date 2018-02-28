@@ -1,0 +1,19 @@
+.shouji-lan{
+  width:345rpx;
+  height:440rpx;
+}
+
+.chatou-lan{
+  width:405rpx;
+  height:239rpx;
+}
+
+.chatou-hong{
+  width:405rpx;
+  height:239rpx;
+  float: right;
+}
+
+.chatou{
+  white-space: 
+}

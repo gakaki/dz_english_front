@@ -1,3 +1,7 @@
 <view class="duizhan">
-  <image id="duizhan-lan" src=""></image>
+  <image class="shouji-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png"></image>
+  <view class="chatou">
+    <image class="chatou-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
+    <image class="chatou-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
+  </view>
 </view>
