@@ -1,8 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-   <!-- <view class="flex nv">
-    <text class="title">英语乐翻天</text>
-  </view>  -->
+   
   <view class="userInfo f-r-fs">
     <view class="header">
        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -23,7 +21,7 @@
     </view>
   </view>
   <view class="flex">
-<image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match-bg.png'></image>
+<image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
 </view>
 <view class="flex">
 <image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
