@@ -10,4 +10,11 @@
       </view>
     </view>
   </view>
+  <view class="addition">
+    <view class="introduce flex">
+      <view class="cir-icon flex">
+        <image src='https://gengxin.odao.com/update/h5/yingyu/word/noun-big.png'></image>
+      </view>
+    </view>
+  </view>
 </view>

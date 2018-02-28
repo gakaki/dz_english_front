@@ -59,3 +59,34 @@
   top: 3rpx;
   right: 4rpx;
 }
+
+.addition{
+  width: 690rpx;
+  height: 840rpx;
+  position: absolute;
+  top: 148rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+
+.introduce{
+  width: 692rpx;
+  height: 403rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban1.png') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.cir-icon{
+  width: 229rpx;
+  height: 229rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -90rpx;
+  background-color: #19b1ff;
+}
+
+.cir-icon image{
+  width: 130rpx;
+  height: 150rpx;
+  margin-top: 35rpx;
+}
