@@ -72,6 +72,8 @@
   font-size: 30rpx;
   text-align: center;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .qipao{
@@ -155,6 +157,7 @@
 
 .invite{
   background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-green.png') 0 0 no-repeat;
+  position: relative;
 }
 
 .btn{
@@ -172,4 +175,12 @@
   font-family: 'Microsoft Yahei';
   font-size: 36rpx;
   font-weight: bold;
+}
+
+.share{
+  width: 316rpx;
+  height: 108rpx;
+  position: absolute;
+  top: 0;
+  opacity: 0;
 }
