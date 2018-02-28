@@ -1,12 +1,13 @@
 {
-  "pages":[
-    "pages/index/index"
+  "pages": [
+    "pages/index/index",
+    "pages/friendPK/friendPK"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarTitleText": "英语乐翻天",
-    "navigationBarTextStyle":"white",
-     "navigationBarBackgroundColor": "#fff",
-     "navigationStyle": "custom"
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationStyle": "custom"
   }
 }
