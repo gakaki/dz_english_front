@@ -5,7 +5,12 @@
     </view>
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
-
+        <view class="avatar">
+          <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="name">
+          <text>{{userInfo.nickName}}</text>
+        </view>
       </view>
       <view class="looker">
         <view class="person">
