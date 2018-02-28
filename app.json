@@ -1,12 +1,7 @@
 {
   "pages":[
-<<<<<<< HEAD
     "pages/index/index",
-    "pages/rank/rank",
-    "pages/logs/logs"
-=======
-    "pages/index/index"
->>>>>>> c202ba606f49267e287d8a620af7c0e5fe119740
+    "pages/rank/rank"
   ],
   "window":{
     "backgroundTextStyle":"light",
