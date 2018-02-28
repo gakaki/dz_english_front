@@ -15,7 +15,8 @@ Page({
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/prep.png', name: '介系词' },
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/conj.png', name: '连接词' },
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/int.png', name: '感叹词' }
-    ]
+    ],
+    redPoint: -1
   },
 
   /**
@@ -51,6 +52,12 @@ Page({
    */
   onUnload: function () {
   
+  },
+
+  check: function(res) {
+    this.setData({
+      redPoint: res.currentTarget.dataset.ind
+    })
   },
 
   /**

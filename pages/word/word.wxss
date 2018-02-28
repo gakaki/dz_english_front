@@ -16,6 +16,7 @@
   width: 204rpx;
   height: 244rpx;
   margin-bottom: 30rpx;
+  position: relative;
 }
 
 .top{
@@ -49,4 +50,12 @@
   line-height: 70rpx;
   letter-spacing: 11rpx;
   padding-left: 11rpx;
+}
+
+.red-point{
+  width: 36rpx;
+  height: 39rpx;
+  position: absolute;
+  top: 3rpx;
+  right: 4rpx;
 }
