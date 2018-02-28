@@ -1,0 +1,5 @@
+<view id="rank">
+ <view class="flex nv">
+    <text class="title">排行榜</text>
+  </view> 
+</view>
