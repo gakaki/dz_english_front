@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // pages/friendPK/friendPK.js
 Page({
 
@@ -62,5 +63,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+=======
+Page({
+  data: {
+    tabAct: true
+  },
+  clickTab() {
+    this.setData({
+      tabAct: !this.data.tabAct
+    })
+>>>>>>> 9365e98302c6346f65c514a3e3ca4ed2bd91aa31
   }
 })

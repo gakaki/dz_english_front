@@ -1,0 +1,20 @@
+<view id="word" class="flex">
+  <view class="wrap f-r-sb">
+    <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
+      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{redPoint==index}}"></image>
+      <view class="top flex">
+        <image class="icon" src="{{item.img}}"></image>
+      </view>
+      <view class="bottom">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="addition">
+    <view class="introduce flex">
+      <view class="cir-icon flex">
+        <image src='https://gengxin.odao.com/update/h5/yingyu/word/noun-big.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

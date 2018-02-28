@@ -1,0 +1,9 @@
+<view class="duizhan">
+  <image class="shouji-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png"></image>
+  <view class="chatou">
+    <image class="chatou-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
+    <image class="chatou-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
+    <image class="pk" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
+  </view>
+   <image class="shouji-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png"></image>
+</view>

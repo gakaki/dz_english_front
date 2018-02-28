@@ -1,0 +1,92 @@
+#word{
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.wrap{
+  width: 690rpx;
+  margin-top: 40rpx; 
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.item{
+  width: 204rpx;
+  height: 244rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.top{
+  width: 100%;
+  height: 173rpx;
+  background-color: #19b1ff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  align-items: center;
+}
+
+.icon{
+  width: 118rpx;
+  height: 136rpx;
+}
+
+.bottom{
+  width: 100%;
+  height: 72rpx;
+  background-color: #4670cd;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  text-align: center;
+}
+
+.bottom text{
+  color: #fff;
+  font-family: 'Microsoft Yahei';
+  font-weight: bold;
+  font-size: 36rpx;
+  line-height: 70rpx;
+  letter-spacing: 11rpx;
+  padding-left: 11rpx;
+}
+
+.red-point{
+  width: 36rpx;
+  height: 39rpx;
+  position: absolute;
+  top: 3rpx;
+  right: 4rpx;
+}
+
+.addition{
+  width: 690rpx;
+  height: 840rpx;
+  position: absolute;
+  top: 148rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+
+.introduce{
+  width: 692rpx;
+  height: 403rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban1.png') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.cir-icon{
+  width: 229rpx;
+  height: 229rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -90rpx;
+  background-color: #19b1ff;
+}
+
+.cir-icon image{
+  width: 130rpx;
+  height: 150rpx;
+  margin-top: 35rpx;
+}

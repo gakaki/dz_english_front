@@ -55,5 +55,18 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '大家一起来拼智力领福利',
+      path: '/pages/index/index?pid=',
+     
+      success: function (res) {
+       
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

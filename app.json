@@ -1,8 +1,12 @@
 {
   "pages": [
     "pages/competition/competition",
+    "pages/word/word",
+    "pages/friendPK/friendPK",
+    "pages/duizhan/duizhan",
     "pages/index/index",
     "pages/rank/rank"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
