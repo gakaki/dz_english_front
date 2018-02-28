@@ -1,10 +1,12 @@
 {
-  "pages":[
+
+  "pages": [
     "pages/index/index",
+    "pages/friendPK/friendPK",
     "pages/rank/rank"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarTitleText": "英语乐翻天",
     "navigationBarTextStyle":"white",
      "navigationBarBackgroundColor": "#298FF1"
