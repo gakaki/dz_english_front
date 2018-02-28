@@ -1,9 +1,9 @@
 {
 
   "pages": [
+    "pages/duizhan/duizhan",
     "pages/friendPK/friendPK",
     "pages/index/index",
-    
     "pages/rank/rank"
   ],
   "window": {
