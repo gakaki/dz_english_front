@@ -7,8 +7,21 @@
       <view class="inviter bg">
 
       </view>
-      <view class="looker"></view> 
+      <view class="looker">
+        <view class="person">
+          <image class="icon" src='https://gengxin.odao.com/update/h5/yingyu/friendPK/person.png'></image>
+          <text>围观群众100人</text>
+        </view>
+      </view> 
       <view class="invitee bg"></view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="btn give-up">
+        <text>放弃</text>
+      </view>
+      <view class="btn invite">
+        <text>邀请</text>
+      </view>
     </view>
   </view>
 </view>
