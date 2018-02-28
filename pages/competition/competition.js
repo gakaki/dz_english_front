@@ -5,62 +5,89 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    words: ['a', 'b', 'b', 'a', 'b', 'b', 'a', 'b', 'b'],
+    bgColor: "#fff",
+    bgIndex:null,
+    word:{
+      type:0,
+      name:"苹果,苹果公司，苹果树",
+      english:"apple",
+      yinbiao:"['æpl]"
+    },
+    time:10,
+    showIndex:0,
+    letters:[{  //0代表没点击，1代表正确，2代表错误
+      type:0,
+      color:null,
+      bgColor: null
+    },{
+      type: 0,
+      color: null,
+      bgColor: null
+    },{
+      type: 0,
+      color: null,
+      bgColor: null
+    }, {
+      type: 0,
+      color: null,
+      bgColor: null
+    }, {
+      type: 0,
+      color: null,
+      bgColor: null
+    }, {
+      type: 0,
+      color: null,
+      bgColor: null
+    }, {
+      type: 1,
+      color: "#fff",
+      bgColor: "#19b1ff"
+    }, {
+      type: 2,
+      color: "#fff",
+      bgColor: "#ff4263"
+    }, {
+      type: 0,
+      color: null,
+      bgColor: null
+    }]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onShow: function (e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    // this.audioCtx = wx.createAudioContext('myAudio')
+    // setTimeout(() => {
+    //   this.audioCtx.play()
+    //   var timer = 0;
+    //     timer = setInterval(() => {
+    //       if (this.data.time > 0) {
+    //         this.setData({
+    //           time: this.data.time - 1
+    //         })
+    //       } else {
+    //         clearInterval(timer)
+    //         this.setData({
+    //           showIndex:1
+    //         })
+    //       }
+    //     }, 1000)
+    // },500)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  changeBgColor(v){
+    console.log(v.currentTarget.dataset.index)
+    this.setData({
+      bgIndex: v.currentTarget.dataset.index
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  audioPlay(){
+    // this.audioCtx.play()
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

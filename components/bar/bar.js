@@ -1,5 +1,5 @@
 // components/scoreBar/bar.js
-const totalScore = 300;
+const totalScore = 1200;
 Component({
   /**
    * 组件的属性列表

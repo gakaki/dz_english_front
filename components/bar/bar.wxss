@@ -19,5 +19,6 @@
   bottom: 0;
   width: 28rpx;
   border-radius: 50rpx;
+  transition: 0.5s;
   background: linear-gradient(#dbff37, #93e700)
 }

@@ -1,2 +1,60 @@
 <!--pages/competition/competition.wxml-->
-<wrap></wrap>
+<wrap time='{{time}}'>
+  <view class='now-word' slot="word">
+    <view hidden='{{showIndex != 0}}' class='round-title'>第一题</view>  
+    <view wx:if='{{showIndex==1 && word.type == 0}}'>
+      <view class='zhongwen'>n. 苹果</view>
+      <view class='yinbiao'>
+        <text>['aepl]</text>
+        <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
+      </view>
+      <view class='quelou'>
+        <text class='letter'>a</text>
+        <text class='letter hide-word'>p</text>
+        <text class='letter hide-word'>p</text>
+        <text class='letter hide-word'>l</text>
+        <text class='letter hide-word'>e</text>
+      </view>
+    </view>  
+  </view>
+  <view class='multi-words' slot='select'>
+    <view class='nine-letters'>
+      <view class='one-word {{bgIndex === 0 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{0}}" style='color:{{letters[0].color}};background:{{letters[0].bgColor}}'>{{words[0]}}
+        <image wx:if='{{letters[0].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[0].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 1 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{1}}" style='color:{{letters[1].color}};background:{{letters[1].bgColor}}'>{{words[1]}}
+        <image wx:if='{{letters[1].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[2].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 2 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{2}}" style='color:{{letters[2].color}};background:{{letters[2].bgColor}}'>{{words[2]}}
+        <image wx:if='{{letters[2].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[2].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 3 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{3}}" style='color:{{letters[3].color}};background:{{letters[3].bgColor}}'>{{words[3]}}
+        <image wx:if='{{letters[3].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[3].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 4 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{4}}" style='color:{{letters[4].color}};background:{{letters[4].bgColor}}'>{{words[4]}}
+        <image wx:if='{{letters[4].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[4].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 5 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{5}}" style='color:{{letters[5].color}};background:{{letters[5].bgColor}}'>{{words[5]}}
+        <image wx:if='{{letters[5].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[5].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 6 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{6}}" style='color:{{letters[6].color}};background:{{letters[6].bgColor}}'>{{words[6]}}
+        <image wx:if='{{letters[6].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[6].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 7 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{7}}" style='color:{{letters[7].color}};background:{{letters[7].bgColor}}'>{{words[7]}}
+        <image wx:if='{{letters[7].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[7].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+      <view class='one-word {{bgIndex === 8 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{8}}" style='color:{{letters[8].color}};background:{{letters[8].bgColor}}'>{{words[8]}}
+        <image wx:if='{{letters[8].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[8].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+      </view>
+    </view>
+  </view>
+</wrap>

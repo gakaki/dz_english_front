@@ -1,0 +1,59 @@
+#friend{
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.pk{
+  flex-wrap: wrap;
+}
+
+.waiting{
+  width: 344rpx;
+  height: 122rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/talk.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 40rpx;
+  text-align: center;
+  line-height: 87rpx;
+}
+
+.waiting text{
+  font-size: 36rpx;
+  font-family: 'Microsoft YaHei';
+  font-weight: bold;
+  color: #4b65b7;
+}
+
+.pk-info{
+  width: 690rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.inviter{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/plug-blue.png') 0 0 no-repeat;
+}
+
+.invitee{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/plug-red.png') 0 0 no-repeat;
+}
+
+.bg{
+  width: 296rpx;
+  height: 596rpx;
+  background-size: cover;
+}
+
+.looker{
+  width: 277rpx;
+  height: 149rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/socket.png') 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 502rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+}

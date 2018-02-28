@@ -1,1 +1,96 @@
 /* components/compete/compete.wxss */
+.compete {
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.users {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+}
+.user {
+  display: flex;
+  margin-top: 16rpx;
+  height: 150rpx;
+  width: 334rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-blue.png') 0 0 no-repeat;
+  background-size: 334rpx 150rpx;
+  color: #fff;
+}
+.avatar {
+  margin: 9rpx 4rpx 0 10rpx;
+  width: 94rpx;
+  height: 94rpx;
+  border: 3rpx solid #fff;
+  border-radius: 50%;
+}
+.avatar-r {
+  margin: 9rpx 10rpx 0 4rpx;
+}
+.score {
+  font: bold italic 54rpx/63rpx 'Microsoft YaHei';
+  text-shadow: 0rpx 4rpx 4rpx #007be3;
+}
+.content {
+  font: 28rpx/47rpx 'Microsoft YaHei';
+}
+.user-r {
+  flex-direction: row-reverse;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-red.png') 0 0 no-repeat;
+  background-size: 334rpx 150rpx;
+}
+.score-r {
+  text-align: right;
+  padding-right: 15rpx;
+  text-shadow: 0rpx 4rpx 4rpx #b81135;
+}
+.countdown {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 27rpx 10rpx 0;
+  transform: translate(-50%,-50%);
+  width: 131rpx;
+  height: 154rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/countdown.png') 0 0 no-repeat;
+  background-size: 151rpx 174rpx;
+}
+.circle {
+  /* clip: rect(0rpx,120rpx,120rpx,0rpx); */
+  /* background: gradient(radial, 100 100, 0, 100 100, 110, from(#000), to(#0000ff)) */
+
+}
+.circle-l {
+  clip:rect(0px,200px,200px,100px); 
+}
+.circle-r {
+  clip:rect(0px,100px,200px,0px); 
+}
+.circle-bg {
+  width: 131rpx;
+  height: 131rpx; 
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/timewrap.png') 0 0 no-repeat;
+  background-size: cover;
+}
+.gouzi {
+  display: flex;
+  justify-content: space-around;
+  margin-top: -75rpx;
+  height: 43rpx;
+}
+.gz {
+  width: 16rpx;
+  height: 43rpx;
+}
+.main-select {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+}
+.bar {
+  margin: 0 30rpx;
+}

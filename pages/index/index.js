@@ -15,6 +15,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  toRank: function() {
+    wx.navigateTo({
+      url: '../rank/rank'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -45,7 +50,6 @@ Page({
 
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
