@@ -35,10 +35,74 @@
 
 .inviter{
   background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/plug-blue.png') 0 0 no-repeat;
+  position: relative;
 }
 
 .invitee{
   background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/plug-red.png') 0 0 no-repeat;
+  position: relative;
+}
+
+.avatar{
+  width: 128rpx;
+  height: 128rpx;
+  position: absolute;
+  top: 62rpx;
+  left: 77rpx;
+  transform: rotate(8deg);
+}
+
+.touxiang{
+  width: 118rpx;
+  height: 118rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+}
+
+.name{
+  width: 184rpx;
+  max-height: 35rpx; 
+  position: absolute;
+  top: 203rpx;
+  transform: rotate(9deg);
+  left: 36rpx;
+  color: #fff;
+  font-family: 'Microsoft Yahei';
+  font-weight: bold;
+  font-size: 30rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.qipao{
+  width: 113rpx;
+  height: 62rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/tankuang.png') 0 0 no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 258rpx;
+  left: 57rpx;
+  text-align: center;
+}
+
+.qipao text{
+  display: inline-block;
+  color: #4b65b7;
+  font-size: 24rpx;
+  font-weight: bold;
+  font-family: 'Microsoft Yahei';
+  transform: rotate(10deg);
+  line-height: 68rpx;
+}
+
+.rotate{
+   transform: rotate(-8deg); 
+   left: 95rpx;
+}
+
+.name-invitee{
+  transform: rotate(-9deg); 
+  left: 78rpx;
 }
 
 .bg{
@@ -56,4 +120,56 @@
   top: 502rpx;
   left: 50%;
   transform: translate(-50%,0);
+}
+
+.person{
+  width: 252rpx;
+  height: 56rpx;
+  margin-left: 18rpx;
+  margin-top: 32rpx;
+  line-height: 48rpx;
+}
+
+.icon{
+  width: 46rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  margin-left: 17rpx;
+}
+
+.person text{
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+  font-family: 'Microsoft Yahei';
+}
+
+.button{
+  width: 650rpx;
+  margin-top: 145rpx;
+}
+
+.give-up{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-red.png') 0 0 no-repeat;
+}
+
+.invite{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-green.png') 0 0 no-repeat;
+}
+
+.btn{
+  width: 316rpx;
+  height: 108rpx;
+  background-size: cover;
+  text-align: center;
+}
+
+.btn text{
+  color: #fff;
+  letter-spacing: 18rpx;
+  padding-left: 18rpx;
+  line-height: 104rpx;
+  font-family: 'Microsoft Yahei';
+  font-size: 36rpx;
+  font-weight: bold;
 }
