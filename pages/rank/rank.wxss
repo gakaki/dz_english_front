@@ -1,6 +1,8 @@
 #rank {
   width: 100vw;
   height: 100vh;
+   background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
 }
 .tab {
    width: 750rpx;
@@ -37,8 +39,36 @@ background-color: rgba(165,209,253,.8);
   background-color: rgba(0,0,0,.2);
 }
 .item {
+  align-items: center;
+  position: relative;
   width: 709rpx;
   height: 145rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/rank/item-bg.png') 0 0 no-repeat;
   background-size: cover;
+}
+.one {
+position: absolute;
+left: 5rpx;
+top: -15rpx;
+font-weight: bold;
+font-size: 45rpx;
+color: #fee01a;
+-webkit-text-stroke-width: 4rpx;
+  -webkit-text-stroke-color: #ff1414;
+}
+.head-box {
+   background-color: #ffc024;
+   width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+   margin-left: 32rpx;
+}
+.head {
+  background-color: #335bb8;
+   width: 116rpx;
+  height: 116rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 5rpx solid #fff;
+ 
 }

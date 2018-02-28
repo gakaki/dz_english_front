@@ -4,7 +4,14 @@
     <text class="tab-two {{tabAct?'tab-def':'tab-act'}}" bindtap='clickTab'>世界排行</text>
   </view> 
   <view class="flex">
-  <view class="item">
+  <view class="item f-r-fs">
+<text class="{{1==1?'one':''}}">1</text>
+
+<view class="head-box">
+<view class="head">
+</view>
+</view>
+
 
 </view>
   </view>
