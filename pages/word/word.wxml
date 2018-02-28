@@ -1,0 +1,12 @@
+<view id="word" class="flex">
+  <view class="wrap f-r-sb">
+    <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}">
+      <view class="top flex">
+        <image class="icon" src="{{item.img}}"></image>
+      </view>
+      <view class="bottom">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
