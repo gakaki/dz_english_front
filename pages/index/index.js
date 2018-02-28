@@ -15,6 +15,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  toRank: function() {
+    wx.navigateTo({
+      url: '../rank/rank'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
