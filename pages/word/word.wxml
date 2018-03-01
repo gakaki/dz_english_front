@@ -1,0 +1,39 @@
+<view id="word" class="flex">
+  <view class="wrap f-r-sb">
+    <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
+      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{redPoint==index}}"></image>
+      <view class="top flex">
+        <image class="icon" src="{{item.img}}"></image>
+      </view>
+      <view class="bottom">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="addition">
+    <view class="introduce flex">
+      <image class="left" src="https://gengxin.odao.com/update/h5/yingyu/word/left.png"></image>
+      <view class="cir-icon flex">
+        <image src='https://gengxin.odao.com/update/h5/yingyu/word/noun-big.png'></image>
+      </view>
+      <image class="right" src="https://gengxin.odao.com/update/h5/yingyu/word/right.png"></image>
+      <view class="cixing">
+        <text class="font">名词</text>
+      </view>
+      <view class="fun">
+        <text class="font">修饰动词，形容词和副词的词</text>
+      </view>
+      <view class="fun second">
+        <text class="font">修饰动词，形容词和副词的词</text>
+      </view>
+    </view>
+    <view class="add flex">
+      <view class="tip">
+        <text class="font">答题分数加值</text>
+      </view>
+      <view class="num">
+        <text class="font">LV.0+0%→LV.1+2%</text>
+      </view>
+    </view>
+  </view>
+</view>

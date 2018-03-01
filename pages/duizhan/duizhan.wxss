@@ -1,19 +1,47 @@
+.duizhan{
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
 .shouji-lan{
+  margin-top:30px;
   width:345rpx;
   height:440rpx;
+}
+
+.chatou{
+  height: 228rpx;
+  position: relative;
 }
 
 .chatou-lan{
   width:405rpx;
   height:239rpx;
+  position: absolute;
+  bottom: 10rpx;
 }
 
 .chatou-hong{
   width:405rpx;
   height:239rpx;
+  position: absolute;
+  right: 0rpx;
+  bottom: 38rpx;
+}
+
+.shouji-hong{
+  width:345rpx;
+  height:470rpx;
+  margin-top: -30rpx;
   float: right;
 }
 
-.chatou{
-  white-space: 
+.pk{
+  width:239rpx;
+  height:150rpx;
+  position: absolute;
+  left: 262rpx
 }

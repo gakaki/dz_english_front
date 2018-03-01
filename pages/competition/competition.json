@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wrap":"../../components/compete/compete"
+  },
+  "navigationBarTitleText": "对战"
+
+}

@@ -1,33 +1,34 @@
-//index.js
-//获取应用实例
+// components/compete/compete.js
 const app = getApp()
+Component({
+  /**
+   * 组件的属性列表
+   */
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
+  properties: {
+    time:{
+      value:0,
+      type:Number
+    }
+  },
 
-Page({
+  /**
+   * 组件的初始数据
+   */
   data: {
-    time: 10,
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  toRank: function() {
-    wx.navigateTo({
-      url: '../rank/rank'
-    })
-  },
-  onLoad: function () {
+  attached(){
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -48,26 +49,11 @@ Page({
         }
       })
     }
-
   },
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  onShareAppMessage: function (res) {
-    return {
-      title: '大家一起来拼智力领福利',
-      path: '/pages/index/index',
-     
-      success: function (res) {
-       
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    
   }
 })
