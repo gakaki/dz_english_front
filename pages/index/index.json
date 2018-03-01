@@ -1,5 +1,5 @@
 {
-  // "usingComponents": {
-  //   "pro": "../../components/progress/progress"
-  // }
+  "usingComponents": {
+    "pro": "../../components/progress/progress"
+  }
 }
