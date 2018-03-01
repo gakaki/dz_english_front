@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    time: 10,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -59,7 +60,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '大家一起来拼智力领福利',
-      path: '/pages/index/index?pid=',
+      path: '/pages/index/index',
      
       success: function (res) {
        
