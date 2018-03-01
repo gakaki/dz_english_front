@@ -3,8 +3,8 @@
     "pages/competition/competition",
     "pages/friendPK/friendPK",
     "pages/word/word",
-    "pages/index/index",
     "pages/duizhan/duizhan",
+    "pages/index/index",
     "pages/rank/rank"
   ],
   "window": {
