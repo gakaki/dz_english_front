@@ -1,20 +1,11 @@
 {
   "pages": [
-<<<<<<< HEAD
-    
-=======
-    "pages/duizhan/duizhan",
->>>>>>> 0e7d75b5552648cbcad0e46c2bbdbece05f66e0f
     "pages/word/word",
+    "pages/duizhan/duizhan",
+    
     "pages/friendPK/friendPK",
     "pages/competition/competition",
     "pages/index/index",
-<<<<<<< HEAD
-    "pages/duizhan/duizhan",
-    "pages/friendPK/friendPK",
-=======
-    
->>>>>>> 0e7d75b5552648cbcad0e46c2bbdbece05f66e0f
     "pages/rank/rank"
     
   ],

@@ -74,9 +74,9 @@
 }
 
 .introduce{
-  width: 692rpx;
-  height: 403rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban1.png') 0 0 no-repeat;
+  width: 690rpx;
+  height: 402rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban.png') 0 0 no-repeat;
   background-size: cover;
   flex-direction: column;
   align-items: center;
@@ -153,10 +153,12 @@
 .tip{
   width: 285rpx;
   height: 66rpx;
-  background-color: #1dc705;
+  background-color: #526ec6;
   border-radius: 33rpx;
   margin-top: 19rpx;
   text-align: center;
+  letter-spacing: 5rpx;
+  padding-left: 5rpx;
 }
 
 .tip text{
@@ -170,7 +172,7 @@
 
 .num text{
   font-size: 36rpx;
-  -webkit-text-stroke: 3rpx #4b65b7; 
+  color: #19b1ff; 
 }
 
 .cut-off{
@@ -181,7 +183,7 @@
 
 .cost{
   width: 417rpx;
-  margin-top: 16rpx;
+  margin-top: 14rpx;
 }
 
 .gold-icon{
@@ -191,14 +193,13 @@
 }
 
 .star-icon{
-  width: 36rpx;
-  height: 35rpx;
+  width: 34rpx;
+  height: 40rpx;
   vertical-align: middle;
 }
 
 .cost text{
-  color: #6cadce;
-  font-weight: normal;
+  color: #19b1ff;
   font-size: 28rpx;
 }
 
@@ -212,26 +213,26 @@
 }
 
 .cancel{
-  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-red.png') 0 0 no-repeat;
-  margin-left: 22rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/button-red.png') 0 0 no-repeat;
+  margin-left: 40rpx;
 }
 
 .confirm{
-  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-green.png') 0 0 no-repeat;
-  margin-right: 22rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/button-green.png') 0 0 no-repeat;
+  margin-right: 40rpx;
 }
 
 .btn{
-  width: 316rpx;
-  height: 108rpx;
+  width: 288rpx;
+  height: 98rpx;
   background-size: cover;
   text-align: center;
-  margin-top: 23rpx;
+  margin-top: 32rpx;
 }
 
 .btn text{
   font-size: 36rpx;
-  line-height: 104rpx;
+  line-height: 94rpx;
 }
 .cancel text{
   letter-spacing: 17rpx;
