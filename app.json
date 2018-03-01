@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/duizhan/duizhan",
     "pages/word/word",
     "pages/friendPK/friendPK",
-    "pages/duizhan/duizhan",
+    
     "pages/index/index",
     "pages/rank/rank"
     

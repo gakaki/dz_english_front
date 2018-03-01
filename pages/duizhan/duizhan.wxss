@@ -12,6 +12,59 @@
   height:440rpx;
 }
 
+.pk-touxiang{
+  width: 145rpx;
+  height: 145rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 42rpx;
+  top: 152rpx;
+}
+
+.pk-nicheng{
+  color: #fff;
+  font-size: 30rpx;
+  position: absolute;
+  left: 42rpx;
+  top: 323rpx;
+}
+
+.ziliao-lan{
+  width: 345rpx;
+  height: 242rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png') 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 90rpx;
+  right: 30rpx;
+}
+
+.display-lan{
+  padding-left: 97rpx;
+  display: block;
+  color: #4b65b7;
+  font-size: 44rpx;
+  font-family: "Microsofe Yahei";
+}
+
+.liansheng-lan{
+  display:inline;
+}
+
+.wenzi-lan{
+  font-size: 40rpx;
+  color: #4b65b7;
+}
+
+.dizhi-lan{
+  margin-top: 15rpx;
+}
+
+.dengji-lan{
+  margin-top: 15rpx;
+}
+
 .chatou{
   height: 228rpx;
   position: relative;
@@ -32,6 +85,18 @@
   bottom: 38rpx;
 }
 
+.pk{
+  width:239rpx;
+  height:150rpx;
+  position: absolute;
+  left: 262rpx;
+}
+
+.shouji-R{
+  height: 455rpx;
+  position: relative;
+}
+
 .shouji-hong{
   width:345rpx;
   height:470rpx;
@@ -39,9 +104,32 @@
   float: right;
 }
 
-.pk{
-  width:239rpx;
-  height:150rpx;
+.me-xinxi{
   position: absolute;
-  left: 262rpx
+  right: 52rpx;
+  top: 80rpx;
+}
+
+.me-touxiang{
+  width: 145rpx;
+  height: 145rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+.me-nicheng{
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.tanchuang-hong{
+  width: 345rpx;
+  height: 242rpx;
+  position: absolute;
+  left: 30rpx;
+  margin-top: 104rpx;
+  transform:rotateY(180deg);
+
 }

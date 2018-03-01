@@ -1,9 +1,27 @@
 <view class="duizhan">
-  <image class="shouji-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png"></image>
+  <view class="shouji-B">
+    <image class="shouji-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png"></image>
+    <image class="pk-touxiang" src="{{userInfo.avatarUrl}}"></image>
+    <text class="pk-nicheng">Pk玩家七个字</text>
+    <view class="ziliao-lan">
+      <text class="liansheng-lan display-lan">100</text><text class="wenzi-lan">连胜</text>
+      
+      <text class="dizhi-lan display-lan">北京</text>
+      <text class="dengji-lan display-lan">LV.100</text>
+    </view>
+  </view>
   <view class="chatou">
     <image class="chatou-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
     <image class="chatou-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
     <image class="pk" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
   </view>
-   <image class="shouji-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png"></image>
+  <view class="shouji-R">
+    <image class="shouji-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png"></image>
+    <view class="me-xinxi">
+      <image class="me-touxiang" src="{{userInfo.avatarUrl}}"></image>
+      <text class="me-nicheng">取七个字的名字</text>
+    </view>
+    <image class="tanchuang-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png"></image>
+  </view>
+   
 </view>
