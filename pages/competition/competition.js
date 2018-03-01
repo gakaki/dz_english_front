@@ -9,13 +9,16 @@ Page({
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     eraseLetter:[],
     word:{ //word代表单词类型
-      type:2,
+      type:1,
       speech: 'n.',
-      name:"苹果,苹果公司，苹果树",
+      chinese:"苹果,苹果公司，苹果树",
       english:"apple",
       yinbiao:"['æpl]",
       select:["你好","啊哈哈","666","777"]
     },
+    letters: [],  //单词变成字母
+    hideLetters: [false,false,false,false,false], //要隐藏的字母
+    letterPos: [1, 3],
     englishWords: [{
       type: 2,
       speech: 'n.',
@@ -48,57 +51,24 @@ Page({
       yinbiao: "['æpl]"}],
     showIndex:0,  //显示顺序
     titleIndex: 0, //单词是第几题 
-    hideLetter:false,
-    back:false, //九宫格是否显示为背面
-    time:2000,
-    letters:[{  //0代表没点击，1代表正确，2代表错误
-      type:0,
-      hasClick: false,
-      color:null,
-      bgColor: null
-    },{
-      type: 0,
-      hasClick:false,
-      color: null,
-      bgColor: null
-    },{
-      type: 0,
-      hasClick: false,
-      color: null,
-      bgColor: null
-    }, {
-      type: 0,
-      hasClick: false,
-      color: null,
-      bgColor: null
-    }, {
-      type: 0,
-      hasClick: false,
-      color: null,
-      bgColor: null
-    }, {
-      type: 0,
-      hasClick: false,
-      color: null,
-      bgColor: null
-    }, {
-      type: 1,
-      hasClick: false,
-      color: "#fff",
-      bgColor: "#19b1ff"
-    }, {
-      type: 2,
-      hasClick: false,
-      color: "#fff",
-      bgColor: "#ff4263"
-    }, {
-      type: 0,
-      hasClick: false,
-      color: null,
-      bgColor: null
-    }]
+    backAll: true, //九宫格是否显示为背面
+    rotateList: [false, false, false, false, false, false, false, false, false], //true为正面，false为背面
+    time:100,
+    backClickLimit:3,
+    backClickCount:0
+    
   },
   onShow: function (e) {
+    let letters = this.data.word.english.split('')
+    let letterPos = this.data.letterPos;
+    let hideLetters = this.data.hideLetters;
+    letterPos.forEach((v)=>{
+      hideLetters[v] = true
+    })
+    this.setData({ 
+      letters, 
+      hideLetters,
+    })
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
     this._timer()
@@ -112,7 +82,7 @@ Page({
       switch (this.data.showIndex) {
         case 1:  //显示完整单词
           this.setData({
-            time: 3000
+            time: 100
           })
           setTimeout(() => {
             this.audioCtx.play()
@@ -131,12 +101,12 @@ Page({
           break;
         case 3:  //显示九宫格
           this.setData({
-            time: 1000
+            time: 100
           })
           break;
         case 4: //显示背面
           this.setData({
-            back: true
+            backAll: true
           })
           break;
       }
@@ -147,7 +117,29 @@ Page({
       }
     }, this.data.time);
   },
-  changeBgColor(v){
+  showFront(v){
+    if (this.data.backClickCount < this.data.backClickLimit) {
+      let i = v.currentTarget.dataset.index;
+      let inner = v.currentTarget.dataset.inner;
+      console.log(inner)
+      let letters = this.data.letters;
+      let letterPos = this.data.letterPos;
+      let hideLetters = this.data.hideLetters;
+      let index = letterPos[this.data.backClickCount];
+      hideLetters[index] = false;
+      letters[index] = inner;
+      console.log(letters,hideLetters)
+      let rotateList = this.data.rotateList;
+      rotateList[i] = true
+      this.setData({
+        rotateList,
+        backClickCount: this.data.backClickCount+1,
+        letters,
+        hideLetters
+      })
+    }
+  },
+  changeBgColor(v) {
     let bgIndex = this.data.bgIndex;
     let i = v.currentTarget.dataset.index;
     if (!bgIndex[i]) {
@@ -156,13 +148,6 @@ Page({
         bgIndex
       })
     }
-  },
-  showFront(){
-    console.log(111)
-    this.setData({
-      back: false
-    })
-    console.log(this.data.back)
   },
   audioPlay(){
     this.audioCtx.play()
