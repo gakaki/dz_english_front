@@ -19,7 +19,8 @@ Page({
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/int.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/int-big.png',name: '感叹词' }
     ],
     redPoint: -1,
-    show:false
+    show:false,
+    canUpdate: [],
   },
 
   /**
