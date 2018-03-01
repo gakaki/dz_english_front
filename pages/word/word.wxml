@@ -9,5 +9,49 @@
         <text>{{item.name}}</text>
       </view>
     </view>
+  </view> 
+  <view class="addition" wx:if="{{show}}">
+    <view class="introduce flex">
+      <image class="left" src="https://gengxin.odao.com/update/h5/yingyu/word/left.png"></image>
+      <view class="cir-icon flex">
+        <image src="{{knowledgePoint[redPoint].big}}"></image>
+      </view>
+      <image class="right" src="https://gengxin.odao.com/update/h5/yingyu/word/right.png"></image>
+      <view class="cixing">
+        <text class="font">{{knowledgePoint[redPoint].name}}</text>
+      </view>
+      <view class="fun">
+        <text class="font">修饰动词，形容词和副词的词</text>
+      </view>
+      <view class="fun second">
+        <text class="font">修饰动词，形容词和副词的词</text>
+      </view>
+    </view>
+    <view class="add flex">
+      <view class="tip">
+        <text class="font">答题分数加值</text>
+      </view>
+      <view class="num">
+        <text class="font">LV.0+0%→LV.1+2%</text>
+      </view>
+      <image class="cut-off" src="https://gengxin.odao.com/update/h5/yingyu/word/dot.png"></image>
+      <view class="cost f-r-sb">
+        <view class="gold">
+          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">+5</text>
+        </view>
+        <view class="gold">
+          <text class="font">消耗的</text><image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/star.png"></image><text class="font">+5</text>
+        </view>
+      </view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="cancel btn">
+        <text class="font" bindtap='hide'>取消</text>
+      </view>
+      <view class="confirm btn">
+        <text class="font">确定提升</text>
+      </view>
+    </view> 
   </view>
-</view>
+  <view class="mask" bindtap='hide' wx:if="{{show}}"></view>  
+</view> 

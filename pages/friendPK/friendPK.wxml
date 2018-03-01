@@ -3,6 +3,8 @@
     <view class="waiting">
       <text>等待对手加入···</text>
     </view>
+    <image class="animate animate-left" src="{{animation[index]}}"></image>
+    <image class="animate animate-right" src="{{animation[index]}}"></image>
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
         <view class="avatar">
