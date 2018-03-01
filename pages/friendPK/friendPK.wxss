@@ -31,6 +31,7 @@
   width: 690rpx;
   margin-top: 20rpx;
   position: relative;
+  z-index: 100;
 }
 
 .inviter{
@@ -136,7 +137,8 @@
   width: 46rpx;
   height: 28rpx;
   vertical-align: middle;
-  margin-left: 17rpx;
+  margin-left: 15rpx;
+  margin-right: 4rpx;
 }
 
 .person text{
@@ -183,4 +185,23 @@
   position: absolute;
   top: 0;
   opacity: 0;
+}
+
+.animate{
+  width: 200rpx;
+  height: 122rpx;
+  position: absolute;
+  z-index: 0;
+}
+
+.animate-left{
+  top: 40rpx;
+  left: 76rpx;
+  transform: scaleX(-1) rotateZ(60deg);
+}
+
+.animate-right{
+  top: 40rpx;
+  right: 76rpx;
+  transform: rotate(60deg);
 }
