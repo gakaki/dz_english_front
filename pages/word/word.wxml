@@ -9,7 +9,7 @@
         <text>{{item.name}}</text>
       </view>
     </view>
-  </view>
+  </view> 
   <view class="addition">
     <view class="introduce flex">
       <image class="left" src="https://gengxin.odao.com/update/h5/yingyu/word/left.png"></image>
@@ -34,6 +34,6 @@
       <view class="num">
         <text class="font">LV.0+0%→LV.1+2%</text>
       </view>
-    </view>
-  </view>
-</view>
+    </view> 
+  </view>  
+</view> 

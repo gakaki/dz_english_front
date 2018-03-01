@@ -3,6 +3,7 @@
   height: 100vh;
   background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .wrap{
@@ -65,6 +66,8 @@
   height: 840rpx;
   position: absolute;
   top: 148rpx;
+  left: 50%;
+  transform: translate(-50%,0);
   background-color: #fff;
   border-radius: 30rpx;
 }
