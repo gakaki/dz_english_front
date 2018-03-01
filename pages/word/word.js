@@ -7,18 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    knowledgePoint: [{img:'https://gengxin.odao.com/update/h5/yingyu/word/noun.png',name:'名词'},
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/adj.png', name: '形容词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/adv.png', name: '副词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/pron.png', name: '代名词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/num.png', name: '数词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/verb.png', name: '动词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/art.png', name: '冠词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/prep.png', name: '介系词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/conj.png', name: '连接词' },
-      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/int.png', name: '感叹词' }
+    knowledgePoint: [{ img: 'https://gengxin.odao.com/update/h5/yingyu/word/noun.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/noun-big.png',name:'名词'},
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/adj.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/adj-big.png',name: '形容词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/adv.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/adv-big.png',name: '副词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/pron.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/pron-big.png',name: '代名词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/num.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/num-big.png',name: '数词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/verb.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/verb-big.png',name: '动词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/art.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/art-big.png',name: '冠词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/prep.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/prep-big.png',name: '介系词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/conj.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/conj-big.png',name: '连接词' },
+      { img: 'https://gengxin.odao.com/update/h5/yingyu/word/int.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/int-big.png',name: '感叹词' }
     ],
-    redPoint: -1
+    redPoint: -1,
+    show:false
   },
 
   /**
@@ -72,7 +73,14 @@ Page({
 
   check: function (res) {
     this.setData({
-      redPoint: res.currentTarget.dataset.ind
+      redPoint: res.currentTarget.dataset.ind,
+      show:true
+    })
+  },
+
+  hide: function() {
+    this.setData({
+      show: false
     })
   },
 
