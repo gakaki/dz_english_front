@@ -1,6 +1,4 @@
 
-// pages/friendPK/friendPK.js
-
 Page({
   data: {
     tabAct: true
