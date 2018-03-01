@@ -53,3 +53,8 @@
   right: 0;
   bottom: 0;
 }
+.font{
+  font-family: 'Microsoft YaHei';
+  font-weight: bold;
+  color: #fff;
+}
