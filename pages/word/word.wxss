@@ -7,39 +7,35 @@
 }
 
 .wrap{
-  width: 690rpx;
+  width: 710rpx;
   margin-top: 40rpx; 
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
 .item{
-  width: 204rpx;
-  height: 244rpx;
+  width: 214rpx;
+  height: 260rpx;
   margin-bottom: 30rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/item-bg.png') 0 0 no-repeat;
+  background-size: cover;
   position: relative;
 }
 
 .top{
   width: 100%;
-  height: 173rpx;
-  background-color: #19b1ff;
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
-  align-items: center;
+  height: 180rpx;
 }
 
 .icon{
   width: 118rpx;
   height: 136rpx;
+  margin-top: 24rpx;
 }
 
 .bottom{
   width: 100%;
-  height: 72rpx;
-  background-color: #4670cd;
-  border-bottom-left-radius: 20rpx;
-  border-bottom-right-radius: 20rpx;
+  height: 80rpx;
   text-align: center;
 }
 
@@ -57,15 +53,15 @@
   width: 36rpx;
   height: 39rpx;
   position: absolute;
-  top: 3rpx;
-  right: 4rpx;
+  top: -8rpx;
+  right: -8rpx;
 }
 
 .addition{
   width: 690rpx;
   height: 840rpx;
   position: absolute;
-  top: 148rpx;
+  top: 127rpx;
   left: 50%;
   transform: translate(-50%,0);
   background-color: #fff;
@@ -74,9 +70,9 @@
 }
 
 .introduce{
-  width: 692rpx;
-  height: 403rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban1.png') 0 0 no-repeat;
+  width: 690rpx;
+  height: 402rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban.png') 0 0 no-repeat;
   background-size: cover;
   flex-direction: column;
   align-items: center;
@@ -133,7 +129,9 @@
 }
 
 .fun{
-  margin-top: 16rpx;
+  margin-top: 25rpx;
+  max-width: 535rpx;
+  text-align: center;
 }
 
 .fun text{
@@ -153,10 +151,12 @@
 .tip{
   width: 285rpx;
   height: 66rpx;
-  background-color: #1dc705;
+  background-color: #526ec6;
   border-radius: 33rpx;
   margin-top: 19rpx;
   text-align: center;
+  letter-spacing: 5rpx;
+  padding-left: 5rpx;
 }
 
 .tip text{
@@ -170,7 +170,7 @@
 
 .num text{
   font-size: 36rpx;
-  -webkit-text-stroke: 3rpx #4b65b7; 
+  color: #19b1ff; 
 }
 
 .cut-off{
@@ -181,25 +181,34 @@
 
 .cost{
   width: 417rpx;
-  margin-top: 16rpx;
+  margin-top: 14rpx;
+}
+
+.max{
+  text-align: center;
 }
 
 .gold-icon{
   width: 36rpx;
   height: 34rpx;
   vertical-align: middle;
+  margin: 0 4rpx;
 }
 
 .star-icon{
-  width: 36rpx;
-  height: 35rpx;
+  width: 34rpx;
+  height: 40rpx;
   vertical-align: middle;
+  margin: 0 4rpx;
 }
 
 .cost text{
-  color: #6cadce;
-  font-weight: normal;
+  color: #19b1ff;
   font-size: 28rpx;
+}
+
+.cost .daoju{
+  color: #f2594c;
 }
 
 .button{
@@ -212,30 +221,86 @@
 }
 
 .cancel{
-  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-red.png') 0 0 no-repeat;
-  margin-left: 22rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/button-red.png') 0 0 no-repeat;
+  margin-left: 40rpx;
 }
 
 .confirm{
-  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/button-green.png') 0 0 no-repeat;
-  margin-right: 22rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/button-green.png') 0 0 no-repeat;
+  margin-right: 40rpx;
 }
 
 .btn{
-  width: 316rpx;
-  height: 108rpx;
+  width: 288rpx;
+  height: 98rpx;
   background-size: cover;
   text-align: center;
-  margin-top: 23rpx;
+  margin-top: 32rpx;
 }
 
 .btn text{
   font-size: 36rpx;
-  line-height: 104rpx;
+  line-height: 94rpx;
 }
 .cancel text{
   letter-spacing: 17rpx;
   padding-left: 17rpx;
+}
+
+.btn-max{
+  margin-right: 0;
+}
+
+.warn{
+  width: 690rpx;
+  height: 516rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 325rpx;
+  transform: translate(-50%,0);
+  z-index: 30;
+  border-radius: 30rpx;
+}
+
+.warn-info{
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.warn-icon{
+  width: 160rpx;
+  height: 160rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -90rpx;
+  background-color: #f35a4d;
+  box-shadow: 0 4rpx #ccc;
+}
+
+.warn-icon image{
+  width: 34rpx;
+  height: 112rpx;
+  margin-top: 24rpx;
+}
+
+.main-text{
+  margin-top: 25rpx;
+}
+
+.main-text text{
+  color: #f35a4d;
+  font-size: 46rpx;
+}
+
+.buy{
+  margin-top: 38rpx;
+}
+
+.ziti text{
+  color: #474747;
+  font-size: 32rpx;
 }
 
 .mask{
@@ -246,4 +311,8 @@
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+.order{
+  z-index: 20;
 }

@@ -1,7 +1,7 @@
 <view id="word" class="flex">
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
-      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{redPoint==index}}"></image>
+      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{knowInfo[index+1].canUp}}"></image>
       <view class="top flex">
         <image class="icon" src="{{item.img}}"></image>
       </view>
@@ -14,17 +14,14 @@
     <view class="introduce flex">
       <image class="left" src="https://gengxin.odao.com/update/h5/yingyu/word/left.png"></image>
       <view class="cir-icon flex">
-        <image src="{{knowledgePoint[redPoint].big}}"></image>
+        <image src="{{knowledgePoint[point].big}}"></image>
       </view>
       <image class="right" src="https://gengxin.odao.com/update/h5/yingyu/word/right.png"></image>
       <view class="cixing">
-        <text class="font">{{knowledgePoint[redPoint].name}}</text>
+        <text class="font">{{knowledgePoint[point].name}}</text>
       </view>
       <view class="fun">
-        <text class="font">修饰动词，形容词和副词的词</text>
-      </view>
-      <view class="fun second">
-        <text class="font">修饰动词，形容词和副词的词</text>
+        <text class="font">{{descript[point]}}</text>
       </view>
     </view>
     <view class="add flex">
@@ -32,26 +29,58 @@
         <text class="font">答题分数加值</text>
       </view>
       <view class="num">
-        <text class="font">LV.0+0%→LV.1+2%</text>
+        <text class="font">LV.{{knowInfo[point+1].level}}+{{knowInfo[point+1].plus}}%<text wx:if="{{!isMax}}">→LV.{{knowInfo[point+1].level+1}}+{{knowInfo[point+1].nextPlus}}%</text></text>
       </view>
       <image class="cut-off" src="https://gengxin.odao.com/update/h5/yingyu/word/dot.png"></image>
-      <view class="cost f-r-sb">
+      <view class="cost f-r-sb" wx:if="{{!isMax}}">
         <view class="gold">
-          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">+5</text>
+          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">{{knowInfo[point+1].levelUP.needG}}</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/star.png"></image><text class="font">+5</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">{{knowInfo[point+1].levelUP.needI}}/{{knowInfo[point+1].levelUP.haveI}}</text>
         </view>
+      </view>
+      <view class="cost max" wx:if="{{isMax}}">
+        <text class="font">已提升至最高等级</text>
       </view>
     </view>
-    <view class="button f-r-sb">
-      <view class="cancel btn">
-        <text class="font" bindtap='hide'>取消</text>
+    <view class="button f-r-sb" wx:if="{{!isMax}}">
+      <view class="cancel btn" bindtap='hide' wx:if="{{!isMax}}">
+        <text class="font">取消</text>
       </view>
-      <view class="confirm btn">
+      <view class="confirm btn" bindtap='improve'>
         <text class="font">确定提升</text>
+      </view>
+    </view>
+    <view class="button flex" wx:if="{{isMax}}">
+      <view class="confirm btn btn-max" bindtap='hide'>
+        <text class="font">确定</text>
       </view>
     </view> 
   </view>
-  <view class="mask" bindtap='hide' wx:if="{{show}}"></view>  
+  <view class="warn" wx:if="{{shopping}}">
+    <view class="warn-info flex">
+      <view class="warn-icon flex">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/word/tanhao.png"></image>
+      </view>
+      <view class="main-text">
+        <text class="font">词典数量不足</text>
+      </view>
+      <view class="buy ziti">
+        <text class="font">请去商店购买</text>
+      </view>
+      <view class="pk ziti">
+        <text class="font">对战也可以获得</text>
+      </view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="cancel btn" bindtap='cancel' wx:if="{{!isMax}}">
+        <text class="font">取消</text>
+      </view>
+      <view class="confirm btn" bindtap='shop'>
+        <text class="font">去商店</text>
+      </view>
+    </view>
+  </view>
+  <view class="mask {{shopping ? 'order' : ''}}" bindtap='hideMask' wx:if="{{show}}"></view>  
 </view> 

@@ -1,59 +1,58 @@
 <!--pages/competition/competition.wxml-->
 <wrap time='{{time}}'>
   <view class='now-word' slot="word">
-    <view hidden='{{showIndex != 0}}' class='round-title'>第一题</view>  
-    <view wx:if='{{showIndex==1 && word.type == 0}}'>
-      <view class='zhongwen'>n. 苹果</view>
+    <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>第一题</view>
+    <view class='word-wrap  {{showIndex > 0 ? "show" : "none"}}'>
+      <view class='zhongwen' wx:if='{{word.type === 2}}'>{{word.english}}</view>
+      <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
       <view class='yinbiao'>
-        <text>['aepl]</text>
+        <text>{{word.yinbiao}}</text>
         <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
-      <view class='quelou'>
-        <text class='letter'>a</text>
-        <text class='letter hide-word'>p</text>
-        <text class='letter hide-word'>p</text>
-        <text class='letter hide-word'>l</text>
-        <text class='letter hide-word'>e</text>
-      </view>
-    </view>  
+      <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
+          <text class='letter {{hideLetters[index]?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
+          <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
+          <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+          <text class='letter' wx:if='{{answer === 2}}'>{{word.english}}</text>
+        </view>
+    </view> 
   </view>
+
   <view class='multi-words' slot='select'>
-    <view class='nine-letters'>
-      <view class='one-word {{bgIndex === 0 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{0}}" style='color:{{letters[0].color}};background:{{letters[0].bgColor}}'>{{words[0]}}
-        <image wx:if='{{letters[0].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[0].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+    <!-- 九宫格翻转  -->
+    <view wx:if='{{word.type === 1}}' class='selectBtn {{showIndex === 3 || showIndex === 4 ? "show" : "none"}}'>
+      <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='flip-wrap'  style='transform:rotateY({{backAll? "180deg": "0"}}); transform:rotateY({{rotateList[index]? "0": "180deg"}})'>
+          <view class='front flip poal'>
+            <text>{{nineLetters[index]}}</text>
+          </view>  
+          <view class='back flip poal' bindtap='showFront' data-index='{{index}}' data-inner='{{item}}'>
+            <image class='back-img' src='https://gengxin.odao.com/update/h5/yingyu/competition/back.png'></image>
+          </view>
+        </view>
       </view>
-      <view class='one-word {{bgIndex === 1 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{1}}" style='color:{{letters[1].color}};background:{{letters[1].bgColor}}'>{{words[1]}}
-        <image wx:if='{{letters[1].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[2].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+    </view>
+
+    <!--九宫格键盘  -->
+    <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 || showIndex === 4 ? "show" : "none"}}'>
+      <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' bindtouchstart='changeBgColor' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='flip-wrap'>
+          <view class='front flip poal'>
+            <text>{{nineLetters[index]}}</text>
+          </view>  
+          <view class='back flip poal' bindtap='showFront' data-index='{{index}}'>
+            <image class='back-img' src='https://gengxin.odao.com/update/h5/yingyu/competition/back.png'></image>
+          </view>
+        </view>
       </view>
-      <view class='one-word {{bgIndex === 2 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{2}}" style='color:{{letters[2].color}};background:{{letters[2].bgColor}}'>{{words[2]}}
-        <image wx:if='{{letters[2].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[2].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 3 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{3}}" style='color:{{letters[3].color}};background:{{letters[3].bgColor}}'>{{words[3]}}
-        <image wx:if='{{letters[3].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[3].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 4 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{4}}" style='color:{{letters[4].color}};background:{{letters[4].bgColor}}'>{{words[4]}}
-        <image wx:if='{{letters[4].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[4].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 5 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{5}}" style='color:{{letters[5].color}};background:{{letters[5].bgColor}}'>{{words[5]}}
-        <image wx:if='{{letters[5].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[5].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 6 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{6}}" style='color:{{letters[6].color}};background:{{letters[6].bgColor}}'>{{words[6]}}
-        <image wx:if='{{letters[6].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[6].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 7 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{7}}" style='color:{{letters[7].color}};background:{{letters[7].bgColor}}'>{{words[7]}}
-        <image wx:if='{{letters[7].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[7].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-      </view>
-      <view class='one-word {{bgIndex === 8 ? "one-word-active":""}}' bindtouchstart='changeBgColor' data-index="{{8}}" style='color:{{letters[8].color}};background:{{letters[8].bgColor}}'>{{words[8]}}
-        <image wx:if='{{letters[8].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
-        <image wx:if='{{letters[8].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+    </view>
+
+    <!-- 列表  -->
+    <view class='selectBtn {{showIndex > 1 ? "show" : "none"}}' wx:if='{{word.type === 2}}'>
+      <view class='one-select' wx:for='{{word.select}}' wx:key='{{index}}'>
+        <text>{{item}}</text>
+        <image wx:if='{{letters[index].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
+        <image wx:if='{{letters[index].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
       </view>
     </view>
   </view>

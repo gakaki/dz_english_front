@@ -1,17 +1,19 @@
 {
   "pages": [
-    "pages/self/self",
     "pages/index/index",
+    "pages/self/self",
     "pages/friendPK/friendPK",
     "pages/rank/rank",
     "pages/word/word",
     "pages/competition/competition",
-    "pages/duizhan/duizhan"
+    "pages/duizhan/duizhan",
+    "pages/awaitPK/awaitPK"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarTitleText": "英语乐翻天",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#2890f1"
+
   }
 }

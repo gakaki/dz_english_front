@@ -1,27 +1,53 @@
 <view class="duizhan">
-  <view class="shouji-B">
-    <image class="shouji-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png"></image>
-    <image class="pk-touxiang" src="{{userInfo.avatarUrl}}"></image>
-    <text class="pk-nicheng">Pk玩家七个字</text>
-    <view class="ziliao-lan">
-      <text class="liansheng-lan display-lan">100</text><text class="wenzi-lan">连胜</text>
-      
-      <text class="dizhi-lan display-lan">北京</text>
-      <text class="dengji-lan display-lan">LV.100</text>
+  <view class="lan">
+    <view class="lan-shouji">
+      <view class="lan-ziliao">
+        <image class="lan-touxiang" src="{{userInfo.avatarUrl}}"></image>
+        <text class="lan-nicheng font">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    <view class="lan-tankuang font">
+      <view class="lan-liansheng">
+        <text class="lan-liansheng-shuzi lan-xinxi">2</text>
+        <text class="lan-liansheng-wenzi">连胜</text>
+      </view>
+      <view class="lan-dizhi lan-xinxi">
+        <image class="lan-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
+        <text class="lan-dizhi-wenzi">北京</text>
+      </view>
+      <text class="lan-dengji lan-xinxi">LV.99</text>
     </view>
   </view>
-  <view class="chatou">
-    <image class="chatou-lan" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
-    <image class="chatou-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
-    <image class="pk" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
-  </view>
-  <view class="shouji-R">
-    <image class="shouji-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png"></image>
-    <view class="me-xinxi">
-      <image class="me-touxiang" src="{{userInfo.avatarUrl}}"></image>
-      <text class="me-nicheng">取七个字的名字</text>
+  <view class="pk">
+    <view class="pk-lan">
+      <view class="point"></view>
+      <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
     </view>
-    <image class="tanchuang-hong" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png"></image>
+    <view class="pk-hong">
+      <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
+    </view>
+    <image class="pk-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
   </view>
-   
+  <view class="hong">
+    <view class="hong-tankuang font">
+      <view class="hong-fanzhuan">
+        <view class="hong-liansheng">
+        <text class="hong-liansheng-shuzi hong-xinxi">99</text>
+        <text class="hong-liansheng-wenzi">连胜</text>
+      </view>
+      <view class="hong-dizhi hong-xinxi">
+        <image class="hong-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
+        <text class="hong-dizhi-wenzi">上海</text>
+      </view>
+      <text class="hong-dengji hong-xinxi">LV.88</text>
+    </view>
+      </view>
+    <view class="hong-shouji">
+      <view class="hong-ziliao">
+        <image class="hong-touxiang" src="{{userInfo.avatarUrl}}"></image>
+        <text class="hong-nicheng font">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    
+  </view>
 </view>

@@ -1,4 +1,5 @@
 // components/compete/compete.js
+
 const app = getApp()
 Component({
   /**

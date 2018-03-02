@@ -6,131 +6,303 @@
   overflow: hidden;
 }
 
-.shouji-lan{
-  margin-top:30px;
-  width:345rpx;
-  height:440rpx;
+.lan{
+  width: 100vw;
+  height: 500rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.pk-touxiang{
+.lan-shouji{
+  width:345rpx;
+  height:470rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 30rpx;
+}
+
+.lan-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 122rpx;
+}
+
+.lan-touxiang{
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
-  position: absolute;
-  left: 42rpx;
-  top: 152rpx;
+  margin-left: 42rpx;
 }
 
-.pk-nicheng{
-  color: #fff;
-  font-size: 30rpx;
-  position: absolute;
-  left: 42rpx;
-  top: 323rpx;
+.lan-nicheng{
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.ziliao-lan{
+.lan-tankuang{
   width: 345rpx;
   height: 242rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png') 0 0 no-repeat;
   background-size: cover;
-  position: absolute;
-  top: 90rpx;
-  right: 30rpx;
-}
-
-.display-lan{
-  padding-left: 97rpx;
-  display: block;
+  margin-top:91rpx;
+  margin-right: 35rpx;
   color: #4b65b7;
   font-size: 44rpx;
   font-family: "Microsofe Yahei";
-  
+  display: flex;
+  flex-direction: column;
 }
 
-.liansheng-lan{
-  display:inline;
+.lan-xinxi{
+  margin-left: 97rpx;
 }
 
-.wenzi-lan{
+.lan-liansheng{
+  margin-top: 18rpx;
+}
+
+.lan-liansheng-wenzi{
   font-size: 40rpx;
-  color: #4b65b7;
 }
 
-.dizhi-lan{
-  margin-top: 15rpx;
+.lan-dizhi{
+  margin-top: 8rpx;
 }
 
-.dengji-lan{
-  margin-top: 15rpx;
+.lan-dizhi-wenzi{
+  font-size: 40rpx;
 }
 
-.chatou{
-  height: 228rpx;
-  position: relative;
+.lan-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
 }
 
-.chatou-lan{
-  width:405rpx;
-  height:239rpx;
-  position: absolute;
-  bottom: 10rpx;
-}
-
-.chatou-hong{
-  width:405rpx;
-  height:239rpx;
-  position: absolute;
-  right: 0rpx;
-  bottom: 38rpx;
+.lan-dengji{
+  margin-top: 8rpx;
 }
 
 .pk{
+  width: 100vw;
+  height: 218rpx; 
+}
+
+.pk-lan{
+  width:405rpx;
+  height:239rpx;
+  left: -405rpx;
+  position: absolute;
+  top: 494rpx;
+  animation: left .3s ease-in forwards; 
+}
+
+.pk-lan image{
+  width:405rpx;
+  height:239rpx;
+}
+
+.point{
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 77rpx;
+  left: 0;
+  animation: lpoint 1s linear infinite; 
+  box-shadow: 0 0 2rpx #f00;
+}
+
+.pk-hong{
+  width:405rpx;
+  height:239rpx;
+  right: -405rpx;
+  position: absolute;
+  top: 466rpx;
+  animation: right .3s ease-in forwards;
+}
+
+.pk-hong image{
+  width:405rpx;
+  height:239rpx;
+}
+
+.pk-tu{
   width:239rpx;
-  height:150rpx;
+  height:158rpx;
   position: absolute;
   left: 262rpx;
+  top: 508rpx;
+  perspective: 1000rpx;
+  transform: scale3d(2.5,2.5,2.5);
+  transform-style: preserve-3d;
+  opacity: 0; 
+  animation: pk .5s ease-in .5s forwards; 
 }
 
-.shouji-R{
-  height: 455rpx;
-  position: relative;
+.hong{
+  display: flex;
+  justify-content: space-between;
 }
 
-.shouji-hong{
+.hong-shouji{
+  margin-top: -20rpx;
+  width:345rpx;
+  height:440rpx;
+}
+
+.hong-tankuang{
+  width: 345rpx;
+  height: 242rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top:146rpx;
+  margin-left: 35rpx;
+  transform:rotateY(180deg);
+}
+
+.hong-fanzhuan{
+  color: #4b65b7;
+  font-size: 44rpx;
+  font-family: "Microsofe Yahei";
+  display: flex;
+  flex-direction: column;
+  transform:rotateY(180deg);
+}
+
+.hong-xinxi{
+  margin-left: 29rpx;
+}
+
+.hong-liansheng{
+  margin-top: 21rpx;
+}
+
+.hong-liansheng-wenzi{
+  font-size: 40rpx;
+}
+
+.hong-dizhi{
+  margin-top: 8rpx;
+}
+
+.hong-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
+}
+
+.hong-dizhi-wenzi{
+  font-size: 40rpx;
+}
+
+.hong-dengji{
+  margin-top: 8rpx;
+}
+
+.hong-shouji{
   width:345rpx;
   height:470rpx;
-  margin-top: -30rpx;
-  float: right;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: -20rpx;
 }
 
-.me-xinxi{
+.hong-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  top: 812rpx;
+  right: 0rpx;
   position: absolute;
-  right: 52rpx;
-  top: 80rpx;
 }
 
-.me-touxiang{
+.hong-touxiang{
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
-  display: block;
-  margin: auto;
+  margin-left: 45rpx;
 }
 
-.me-nicheng{
-  color: #fff;
-  font-size: 30rpx;
+.hong-nicheng{
+  align-self: center;
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.tanchuang-hong{
-  width: 345rpx;
-  height: 242rpx;
-  position: absolute;
-  left: 30rpx;
-  margin-top: 104rpx;
-  transform:rotateY(180deg);
+/*以下部分为动画*/
+@keyframes left {
+  0%{
+    left: -405rpx;
+  }
+  100%{
+    left: 0;
+  }
+}
 
+@keyframes right {
+  0%{
+    right: -405rpx;
+  }
+  100%{
+    right: 0;
+  }
+}
+
+@keyframes pk {
+  0%{
+    opacity: 1;
+    transform: scale3d(2.5,2.5,2.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes lpoint{
+  0%{
+    left:0;
+    top: 77rpx;
+  }
+  45%{
+    left: 135rpx;
+    top: 42rpx;
+  }
+  55%{
+    left: 160rpx;
+    top: 54rpx;
+  }
+  65%{
+    left: 176rpx;
+    top: 80rpx;
+  }
+  90%{
+    left: 190rpx;
+    top:124rpx;
+  }
+  95%{
+    left: 210rpx;
+    top: 140rpx;
+  }
+  100%{
+    left: 224rpx;
+    top: 145rpx;
+  } 
 }
