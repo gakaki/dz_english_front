@@ -46,9 +46,31 @@
   padding-top: 20rpx;
 }
 .quelou {
+  justify-content: center;
   padding-top: 20rpx;
   font-size: 46rpx;
 }
+.false-word-icon {
+  margin: 0 42rpx 0 8rpx;
+  width: 34rpx;
+  height: 36rpx;
+}
+.true-word-icon {
+  margin: 0 42rpx 0 8rpx;
+  width: 51rpx;
+  height: 41rpx;
+}
+.error-letter {
+  background: #ff4263;
+}
+.letter {
+  display: inline-block;
+  text-align: center;
+  width: 24rpx;
+  height: 49rpx;
+  margin-right: 5rpx;
+}
+
 
 .multi-words {
   display: flex;
@@ -133,16 +155,7 @@
   background: #fff;
 }
 
-.error-letter {
-  background: #ff4263;
-}
-.letter {
-  display: inline-block;
-  text-align: center;
-  width: 24rpx;
-  height: 49rpx;
-  margin-right: 5rpx;
-}
+
 .hide-word {
   border-bottom: 3rpx solid #4b65b7;
   color: rgba(255, 255, 255, 0);
