@@ -21,7 +21,7 @@ Page({
     ],
     point: 0,  //选择的知识点
     show:false,  //显示知识点信息
-    canUpdate: false,  //知识点升级
+    canUpdate: false,  //知识点是否可以升级
     maxLevel: sheet.Speech.Get(1).endlevel,  //知识点最大等级
     isMax: false,  //知识点等级是否最大
     descript:[],   //知识点描述
