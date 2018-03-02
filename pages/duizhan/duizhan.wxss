@@ -100,17 +100,41 @@
 .pk-lan{
   width:405rpx;
   height:239rpx;
-  left: 0rpx;
+  left: -405rpx;
   position: absolute;
   top: 494rpx;
+  animation: left .3s ease-in forwards; 
+}
+
+.pk-lan image{
+  width:405rpx;
+  height:239rpx;
+}
+
+.point{
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 77rpx;
+  left: 0;
+  animation: lpoint 1s linear infinite; 
+  box-shadow: 0 0 2rpx #f00;
 }
 
 .pk-hong{
   width:405rpx;
   height:239rpx;
-  right: 0rpx;
+  right: -405rpx;
   position: absolute;
   top: 466rpx;
+  animation: right .3s ease-in forwards;
+}
+
+.pk-hong image{
+  width:405rpx;
+  height:239rpx;
 }
 
 .pk-tu{
@@ -119,6 +143,11 @@
   position: absolute;
   left: 262rpx;
   top: 508rpx;
+  perspective: 1000rpx;
+  transform: scale3d(2.5,2.5,2.5);
+  transform-style: preserve-3d;
+  opacity: 0; 
+  animation: pk .5s ease-in .5s forwards; 
 }
 
 .hong{
@@ -215,4 +244,65 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+/*以下部分为动画*/
+@keyframes left {
+  0%{
+    left: -405rpx;
+  }
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes right {
+  0%{
+    right: -405rpx;
+  }
+  100%{
+    right: 0;
+  }
+}
+
+@keyframes pk {
+  0%{
+    opacity: 1;
+    transform: scale3d(2.5,2.5,2.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes lpoint{
+  0%{
+    left:0;
+    top: 77rpx;
+  }
+  45%{
+    left: 135rpx;
+    top: 42rpx;
+  }
+  55%{
+    left: 160rpx;
+    top: 54rpx;
+  }
+  65%{
+    left: 176rpx;
+    top: 80rpx;
+  }
+  90%{
+    left: 190rpx;
+    top:124rpx;
+  }
+  95%{
+    left: 210rpx;
+    top: 140rpx;
+  }
+  100%{
+    left: 224rpx;
+    top: 145rpx;
+  } 
 }

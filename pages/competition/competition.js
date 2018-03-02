@@ -1,8 +1,8 @@
 // pages/competition/competition.js
 
 import {Word } from '../../sheets.js'
-import { doFetch } from '../../utils/rest.js';
-
+import { doFetch,ws } from '../../utils/rest.js';
+import { loadEnglishWords, keyboard, hideLettersArr, randomHideLetters} from './fn.js'
 
 Page({
 
@@ -10,105 +10,91 @@ Page({
    * 页面的初始数据
    */
   data: {
-    words: ['a', 'b', 'b', 'a', 'b', 'b', 'a', 'b', 'b'],
+    nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
-    eraseLetter:[],
-    word:{ //word代表单词类型
-      type:1,
-      speech: 'n.',
-      chinese:"苹果,苹果公司，苹果树",
-      english:"apple",
-      yinbiao:"['æpl]",
-      select:["你好","啊哈哈","666","777"]
-    },
+    word: {},
     letters: [],  //单词变成字母
-    hideLetters: [false,false,false,false,false], //要隐藏的字母
-    letterPos: [1, 3],
-    englishWords: [{
-      type: 2,
-      speech: 'n.',
-      name: "垂死的，临终的",
-      english: "dying",
-      yinbiao: "['æpl]"
-    }, {
-      type: 3,
-      speech: 'n.',
-      name: "染，染色",
-      english: "dye",
-      yinbiao: "['æpl]"
-    }, {
-      type: 4,
-      speech: 'n.',
-      name: "责任，义务；职责，职务；税，关税",
-      english: "duty",
-      yinbiao: "['æpl]"
-    }, {
-      type:1,
-      speech: 'n.',
-      name: "多灰尘的，灰蒙蒙的；粉末状的；灰色的",
-      english: "dusty",
-      yinbiao: "['æpl]"
-    }, {
-      type: 2,
-      speech: 'n.',
-      name: "尘土；粉末",
-      english: "dust",
-      yinbiao: "['æpl]"}],
+    hideLetters: [], //要隐藏的字母
+    englishWords: [],
     showIndex:0,  //显示顺序
     titleIndex: 0, //单词是第几题 
     backAll: true, //九宫格是否显示为背面
     rotateList: [false, false, false, false, false, false, false, false, false], //true为正面，false为背面
-    time:100,
-    backClickLimit:3,
-    backClickCount:0
-    
+    time:2000,
+    backClickCount:0,
+    answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
+    round:1,
+    roundName:null
   },
   onReady(){
-    // doFetch('', {
-      
-    // }, (res) => {
-    //   console.log(res)
-    //   let englishWords = [];
-    //   data.map((v)=>{
-    //     englishWords.push(Word.Get(v))
-    //   })
-    //   this.setData({
-    //     englishWords
-    //   })
-    // });
-    // console.log()
+    this.setData({
+      englishWords: loadEnglishWords(),
+    })
+    this.roundInit();
   },
   onShow: function (e) {
-    let letters = this.data.word.english.split('')
-    let letterPos = this.data.letterPos;
-    let hideLetters = this.data.hideLetters;
-    letterPos.forEach((v)=>{
-      hideLetters[v] = true
-    })
-    this.setData({ 
-      letters, 
-      hideLetters,
-    })
+    
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
-    this._timer()
+    this.timer()
   },
-  _timer(){
-    var timer = 0;
-    timer = setTimeout(()=>{
+  roundInit(){
+    this.setData({
+      word: this.data.englishWords[this.data.round-1]
+    })
+    let word = this.data.word;
+    let letters = word.english.split('');
+    let hideLetters = hideLettersArr(word.english.trim().length);
+    switch (word.type) { //题目类型
+       case 1:
+        let letterPos = word.eliminate;
+        let nowPos = [];
+        let length = word.english.length;
+        if (word.eliminate == -1) {
+          letterPos = randomHideLetters(length, word.eliminateNum)
+          word.eliminate = letterPos;
+        }
+        
+        this.setData({
+          letters,
+          hideLetters
+        })
+        
+    }
+    this.keyboard(); //渲染九宫格键盘
+  },
+  keyboard(){
+    let letterPos = this.data.word.eliminate;
+    let english = this.data.word.english;
+    this.setData({
+      nineLetters: keyboard(letterPos, english)
+    })
+    console.log(this.data.nineLetters)
+  },
+  timer(){
+    var timerCount = 0;
+    timerCount = setTimeout(()=>{
       this.setData({
         showIndex: this.data.showIndex + 1
       })
       switch (this.data.showIndex) {
         case 1:  //显示完整单词
           this.setData({
-            time: 100
+            time: 3000
           })
           setTimeout(() => {
             this.audioCtx.play()
           }, 500)
           break;
         case 2:  //擦去部分字母
+          let letterPos = this.data.word.eliminate;
+          let hideLetters = this.data.hideLetters;
+          letterPos.forEach((v) => {
+            hideLetters[v] = true
+          })
+          this.setData({
+            hideLetters
+          })
           if(this.data.word.type === 4) {
             this.setData({
               hideAll: true
@@ -131,32 +117,47 @@ Page({
           break;
       }
       console.log(this.data.showIndex)
-      clearInterval(timer);
+      clearInterval(timerCount);
       if (this.data.showIndex < 4) {
-        this._timer();
+        this.timer();
       }
     }, this.data.time);
   },
   showFront(v){
-    if (this.data.backClickCount < this.data.backClickLimit) {
-      let i = v.currentTarget.dataset.index;
-      let inner = v.currentTarget.dataset.inner;
-      console.log(inner)
-      let letters = this.data.letters;
-      let letterPos = this.data.letterPos;
-      let hideLetters = this.data.hideLetters;
-      let index = letterPos[this.data.backClickCount];
-      hideLetters[index] = false;
-      letters[index] = inner;
-      console.log(letters,hideLetters)
-      let rotateList = this.data.rotateList;
+    let bcCount = this.data.backClickCount;
+    let bcLimit = this.data.word.eliminateNum;
+    let letters = this.data.letters;
+
+    if (bcCount < bcLimit) {
+      let i = v.currentTarget.dataset.index; //点击的第几个牌面
+      let inner = v.currentTarget.dataset.inner;  //牌面对应的字母
+      let letterPos = this.data.word.eliminate;  //要隐藏的字母位置
+      let hideLetters = this.data.hideLetters;  //对应的字母位置是否要隐藏
+      let index = letterPos[bcCount];   //第几次点击对应的字母位置
+      hideLetters[index] = false;  //将该位子的背面转成正面
+      letters[index] = inner;   //正面的字母显示到上面
+      console.log(inner,letters,hideLetters)
+      let rotateList = this.data.rotateList;  //翻牌的列表
       rotateList[i] = true
       this.setData({
         rotateList,
-        backClickCount: this.data.backClickCount+1,
+        backClickCount: bcCount+1,
         letters,
         hideLetters
       })
+
+      if (bcCount == bcLimit - 1) {
+        let word = letters.join('');
+        if(word == this.data.word.english) {
+          this.setData({
+            answer:1
+          })
+        } else {
+          this.setData({
+            answer: 2
+          })
+        }
+      }
     }
   },
   changeBgColor(v) {

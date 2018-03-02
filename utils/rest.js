@@ -1,5 +1,9 @@
-const srv = "https://h5t.ddz2018.com/";
-const wss = "wss://h5t.ddz2018.com/english";
+
+// const srv = "https://h5t.ddz2018.com/";
+// const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com";
+
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
@@ -62,7 +66,7 @@ function userLogin(suc, err) {
           res = res.data;
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
-          wsFunction(sid);
+          // wsFunction(sid);
           suc(res)
         }
       }, err);
@@ -74,15 +78,31 @@ function userLogin(suc, err) {
   })
 }
 
-ws("123")
+// ws('')
+function ws(action, data, suc, err) {
+  data = data || {};
+  if (!sid) {
+    sid = wx.getStorageSync('_sid');
+  }
+  if (sid) {
+    data._sid = sid;
+  }
+  if (uid) {
+    data.uid = uid;
+  }
+  data.appName = APPNAME;
 
-function ws(msg) {
+  data.action = action;
   if (socketOpen) {
     wx.sendSocketMessage({
-      data: msg
+      data,
+      success: function (res) {
+        suc(res.data)
+      },
+      fail: err
     })
   } else {
-    socketMsgQueue.push(msg)
+    socketMsgQueue.push(data)
   }
 }
 

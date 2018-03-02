@@ -10,7 +10,7 @@
   width: 750rpx;
   height: 241rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/rank/t-bg.png') 0 0 no-repeat;
-  background-size: 750rpx 241rpx;
+  background-size: cover;
 }
 
 .tab {
@@ -136,7 +136,6 @@
 
 .head-box {
   z-index: 12;
-  position: relative;
   background-color: #f89200;
   width: 128rpx;
   height: 128rpx;
@@ -145,15 +144,12 @@
 }
 
 .head {
-  position: absolute;
-  left: 4rpx;
-  top: 4rpx;
   background-color: #335bb8;
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 5rpx solid #fff;
+  border: 4rpx solid #fff;
 }
 
 .info {
@@ -191,7 +187,7 @@
 }
 
 .nn {
-  margin-left: 20rpx;
+  margin-left: 22rpx;
   flex-grow: 2;
   font-size: 30rpx;
 }
