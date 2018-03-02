@@ -6,131 +6,213 @@
   overflow: hidden;
 }
 
-.shouji-lan{
-  margin-top:30px;
-  width:345rpx;
-  height:440rpx;
+.lan{
+  width: 100vw;
+  height: 500rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.pk-touxiang{
+.lan-shouji{
+  width:345rpx;
+  height:470rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 30rpx;
+}
+
+.lan-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 122rpx;
+}
+
+.lan-touxiang{
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
-  position: absolute;
-  left: 42rpx;
-  top: 152rpx;
+  margin-left: 42rpx;
 }
 
-.pk-nicheng{
-  color: #fff;
-  font-size: 30rpx;
-  position: absolute;
-  left: 42rpx;
-  top: 323rpx;
+.lan-nicheng{
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.ziliao-lan{
+.lan-tankuang{
   width: 345rpx;
   height: 242rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png') 0 0 no-repeat;
   background-size: cover;
-  position: absolute;
-  top: 90rpx;
-  right: 30rpx;
-}
-
-.display-lan{
-  padding-left: 97rpx;
-  display: block;
+  margin-top:91rpx;
+  margin-right: 35rpx;
   color: #4b65b7;
   font-size: 44rpx;
   font-family: "Microsofe Yahei";
-  
+  display: flex;
+  flex-direction: column;
 }
 
-.liansheng-lan{
-  display:inline;
+.lan-xinxi{
+  margin-left: 97rpx;
 }
 
-.wenzi-lan{
+.lan-liansheng{
+  margin-top: 18rpx;
+}
+
+.lan-liansheng-wenzi{
   font-size: 40rpx;
-  color: #4b65b7;
 }
 
-.dizhi-lan{
-  margin-top: 15rpx;
+.lan-dizhi{
+  margin-top: 8rpx;
 }
 
-.dengji-lan{
-  margin-top: 15rpx;
+.lan-dizhi-wenzi{
+  font-size: 40rpx;
 }
 
-.chatou{
-  height: 228rpx;
-  position: relative;
+.lan-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
 }
 
-.chatou-lan{
-  width:405rpx;
-  height:239rpx;
-  position: absolute;
-  bottom: 10rpx;
-}
-
-.chatou-hong{
-  width:405rpx;
-  height:239rpx;
-  position: absolute;
-  right: 0rpx;
-  bottom: 38rpx;
+.lan-dengji{
+  margin-top: 8rpx;
 }
 
 .pk{
+  width: 100vw;
+  height: 218rpx; 
+}
+
+.pk-lan{
+  width:405rpx;
+  height:239rpx;
+  left: 0rpx;
+  position: absolute;
+  top: 494rpx;
+}
+
+.pk-hong{
+  width:405rpx;
+  height:239rpx;
+  right: 0rpx;
+  position: absolute;
+  top: 466rpx;
+}
+
+.pk-tu{
   width:239rpx;
-  height:150rpx;
+  height:158rpx;
   position: absolute;
   left: 262rpx;
+  top: 508rpx;
 }
 
-.shouji-R{
-  height: 455rpx;
-  position: relative;
+.hong{
+  display: flex;
+  justify-content: space-between;
 }
 
-.shouji-hong{
+.hong-shouji{
+  margin-top: -20rpx;
+  width:345rpx;
+  height:440rpx;
+}
+
+.hong-tankuang{
+  width: 345rpx;
+  height: 242rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/tanchuang.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top:146rpx;
+  margin-left: 35rpx;
+  transform:rotateY(180deg);
+}
+
+.hong-fanzhuan{
+  color: #4b65b7;
+  font-size: 44rpx;
+  font-family: "Microsofe Yahei";
+  display: flex;
+  flex-direction: column;
+  transform:rotateY(180deg);
+}
+
+.hong-xinxi{
+  margin-left: 29rpx;
+}
+
+.hong-liansheng{
+  margin-top: 21rpx;
+}
+
+.hong-liansheng-wenzi{
+  font-size: 40rpx;
+}
+
+.hong-dizhi{
+  margin-top: 8rpx;
+}
+
+.hong-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
+}
+
+.hong-dizhi-wenzi{
+  font-size: 40rpx;
+}
+
+.hong-dengji{
+  margin-top: 8rpx;
+}
+
+.hong-shouji{
   width:345rpx;
   height:470rpx;
-  margin-top: -30rpx;
-  float: right;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: -20rpx;
 }
 
-.me-xinxi{
+.hong-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  top: 812rpx;
+  right: 0rpx;
   position: absolute;
-  right: 52rpx;
-  top: 80rpx;
 }
 
-.me-touxiang{
+.hong-touxiang{
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
-  display: block;
-  margin: auto;
+  margin-left: 45rpx;
 }
 
-.me-nicheng{
-  color: #fff;
-  font-size: 30rpx;
-}
-
-.tanchuang-hong{
-  width: 345rpx;
-  height: 242rpx;
-  position: absolute;
-  left: 30rpx;
-  margin-top: 104rpx;
-  transform:rotateY(180deg);
-
+.hong-nicheng{
+  align-self: center;
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
