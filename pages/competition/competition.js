@@ -1,4 +1,9 @@
 // pages/competition/competition.js
+
+import {Word } from '../../sheets.js'
+import { doFetch } from '../../utils/rest.js';
+
+
 Page({
 
   /**
@@ -57,6 +62,21 @@ Page({
     backClickLimit:3,
     backClickCount:0
     
+  },
+  onReady(){
+    // doFetch('', {
+      
+    // }, (res) => {
+    //   console.log(res)
+    //   let englishWords = [];
+    //   data.map((v)=>{
+    //     englishWords.push(Word.Get(v))
+    //   })
+    //   this.setData({
+    //     englishWords
+    //   })
+    // });
+    // console.log()
   },
   onShow: function (e) {
     let letters = this.data.word.english.split('')
