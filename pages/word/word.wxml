@@ -37,10 +37,10 @@
       <image class="cut-off" src="https://gengxin.odao.com/update/h5/yingyu/word/dot.png"></image>
       <view class="cost f-r-sb">
         <view class="gold">
-          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">+5</text>
+          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">500</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/star.png"></image><text class="font">+5</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[redPoint].small}}"></image><text class="font">500</text>
         </view>
       </view>
     </view>
