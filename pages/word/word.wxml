@@ -48,15 +48,39 @@
       <view class="cancel btn" bindtap='hide' wx:if="{{!isMax}}">
         <text class="font">取消</text>
       </view>
-      <view class="confirm btn">
+      <view class="confirm btn" bindtap='improve'>
         <text class="font">确定提升</text>
       </view>
     </view>
     <view class="button flex" wx:if="{{isMax}}">
-      <view class="confirm btn btn-max">
+      <view class="confirm btn btn-max" bindtap='hide'>
         <text class="font">确定</text>
       </view>
     </view> 
   </view>
-  <view class="mask" bindtap='hide' wx:if="{{show}}"></view>  
+  <view class="warn" wx:if="{{shopping}}">
+    <view class="warn-info flex">
+      <view class="warn-icon flex">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/word/tanhao.png"></image>
+      </view>
+      <view class="main-text">
+        <text class="font">词典数量不足</text>
+      </view>
+      <view class="buy ziti">
+        <text class="font">请去商店购买</text>
+      </view>
+      <view class="pk ziti">
+        <text class="font">对战也可以获得</text>
+      </view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="cancel btn" bindtap='cancel' wx:if="{{!isMax}}">
+        <text class="font">取消</text>
+      </view>
+      <view class="confirm btn" bindtap='shop'>
+        <text class="font">去商店</text>
+      </view>
+    </view>
+  </view>
+  <view class="mask {{shopping ? 'order' : ''}}" bindtap='hideMask' wx:if="{{show}}"></view>  
 </view> 

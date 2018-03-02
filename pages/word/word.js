@@ -19,12 +19,13 @@ Page({
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/conj.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/conj-big.png', small: 'https://gengxin.odao.com/update/h5/yingyu/word/conj-small.png', name: '连接词' },
       { img: 'https://gengxin.odao.com/update/h5/yingyu/word/int.png', big: 'https://gengxin.odao.com/update/h5/yingyu/word/int-big.png', small: 'https://gengxin.odao.com/update/h5/yingyu/word/int-small.png', name: '感叹词' }
     ],
-    redPoint: -1,
+    redPoint: 0,
     show:false,
     canUpdate: false,
     maxLevel: sheet.Speech.Get(1).endlevel,
     isMax: false,
-    descript:[]
+    descript:[],
+    shopping:false
   },
 
   /**
@@ -82,6 +83,7 @@ Page({
   
   },
 
+  //查看知识点具体信息
   check: function (res) {
     this.setData({
       redPoint: res.currentTarget.dataset.ind,
@@ -89,10 +91,46 @@ Page({
     })
   },
 
+  improve: function() {
+    if(this.data.canUpdate){
+
+    }
+    else{
+      this.setData({
+        shopping:true
+      })
+    }
+  },
+
+  //隐藏知识点信息弹框
   hide: function() {
     this.setData({
       show: false
     })
+  },
+
+  //隐藏提示升级物品不足的弹框
+  cancel: function() {
+    this.setData({
+      shopping: false
+    })
+  },
+
+  shop: function() {
+
+  },
+
+  hideMask: function() {
+    if(this.data.shopping){
+      this.setData({
+        shopping:false
+      })
+    }
+    else{
+      this.setData({
+        show:false
+      })
+    }
   },
 
   /**

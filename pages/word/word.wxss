@@ -65,7 +65,7 @@
   width: 690rpx;
   height: 840rpx;
   position: absolute;
-  top: 148rpx;
+  top: 127rpx;
   left: 50%;
   transform: translate(-50%,0);
   background-color: #fff;
@@ -255,6 +255,58 @@
   margin-right: 0;
 }
 
+.warn{
+  width: 690rpx;
+  height: 516rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 325rpx;
+  transform: translate(-50%,0);
+  z-index: 30;
+  border-radius: 30rpx;
+}
+
+.warn-info{
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.warn-icon{
+  width: 160rpx;
+  height: 160rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -90rpx;
+  background-color: #f35a4d;
+  box-shadow: 0 4rpx #ccc;
+}
+
+.warn-icon image{
+  width: 34rpx;
+  height: 112rpx;
+  margin-top: 24rpx;
+}
+
+.main-text{
+  margin-top: 25rpx;
+}
+
+.main-text text{
+  color: #f35a4d;
+  font-size: 46rpx;
+}
+
+.buy{
+  margin-top: 38rpx;
+}
+
+.ziti text{
+  color: #474747;
+  font-size: 32rpx;
+}
+
 .mask{
   width: 100%;
   height: 100%;
@@ -263,4 +315,8 @@
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+.order{
+  z-index: 20;
 }
