@@ -10,7 +10,7 @@
         <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
-         <text class='letter {{hideLetters[index]?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
+          <text class='letter {{hideLetters[index]?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
           <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
           <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
           <text class='letter' wx:if='{{answer === 2}}'>{{word.english}}</text>

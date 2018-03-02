@@ -20,7 +20,7 @@ Page({
     titleIndex: 0, //单词是第几题 
     backAll: true, //九宫格是否显示为背面
     rotateList: [false, false, false, false, false, false, false, false, false], //true为正面，false为背面
-    time:100,
+    time:2000,
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,
@@ -36,7 +36,7 @@ Page({
     
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
-    this._timer()
+    this.timer()
   },
   roundInit(){
     this.setData({
@@ -51,20 +51,16 @@ Page({
         let nowPos = [];
         let length = word.english.length;
         if (word.eliminate == -1) {
-          randomHideLetters(length, word.eliminateNum)
+          letterPos = randomHideLetters(length, word.eliminateNum)
+          word.eliminate = letterPos;
         }
-        letterPos.forEach((v) => {
-          hideLetters[v] = true
-        })
+        
         this.setData({
           letters,
           hideLetters
         })
         
     }
-
-
-
     this.keyboard(); //渲染九宫格键盘
   },
   keyboard(){
@@ -75,22 +71,30 @@ Page({
     })
     console.log(this.data.nineLetters)
   },
-  _timer(){
-    var timer = 0;
-    timer = setTimeout(()=>{
+  timer(){
+    var timerCount = 0;
+    timerCount = setTimeout(()=>{
       this.setData({
         showIndex: this.data.showIndex + 1
       })
       switch (this.data.showIndex) {
         case 1:  //显示完整单词
           this.setData({
-            time: 100
+            time: 3000
           })
           setTimeout(() => {
             this.audioCtx.play()
           }, 500)
           break;
         case 2:  //擦去部分字母
+          let letterPos = this.data.word.eliminate;
+          let hideLetters = this.data.hideLetters;
+          letterPos.forEach((v) => {
+            hideLetters[v] = true
+          })
+          this.setData({
+            hideLetters
+          })
           if(this.data.word.type === 4) {
             this.setData({
               hideAll: true
@@ -113,9 +117,9 @@ Page({
           break;
       }
       console.log(this.data.showIndex)
-      clearInterval(timer);
+      clearInterval(timerCount);
       if (this.data.showIndex < 4) {
-        this._timer();
+        this.timer();
       }
     }, this.data.time);
   },

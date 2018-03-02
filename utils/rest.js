@@ -1,5 +1,7 @@
-const srv = "https://h5t.ddz2018.com/";
-const wss = "wss://h5t.ddz2018.com/english";
+// const srv = "https://h5t.ddz2018.com/";
+// const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;

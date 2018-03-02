@@ -80,17 +80,18 @@ function hideLettersArr(length){  //生成指定长度全部是false的数组
 }
 
 //指定类型为-1时，随机选择隐藏的字母
+let newPos = [];
 function randomHideLetters(length, eliminateNum) {
-  console.log(length, eliminateNum)
-  let i = Math.floor(Math.random() * length);
-  let newPos = [];
+  let i = Math.floor(Math.random() * (length-2)) + 1;
   newPos.push(i);
   newPos = [...new Set(newPos)];
   if (newPos.length < eliminateNum) {
-    randomHideLetters()
+    randomHideLetters(length, eliminateNum)
   }
-  console.log(newPos)
-
+  newPos = newPos.sort((a,b)=>{
+    return a - b;
+  })
+  return newPos
 }
 
 
