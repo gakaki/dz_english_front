@@ -100,17 +100,19 @@
 .pk-lan{
   width:405rpx;
   height:239rpx;
-  left: 0rpx;
+  left: -405rpx;
   position: absolute;
   top: 494rpx;
+  animation: left .5s ease-in forwards; 
 }
 
 .pk-hong{
   width:405rpx;
   height:239rpx;
-  right: 0rpx;
+  right: -405rpx;
   position: absolute;
   top: 466rpx;
+  animation: right .5s ease-in forwards;
 }
 
 .pk-tu{
@@ -215,4 +217,23 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+/*以下部分为动画*/
+@keyframes left {
+  0%{
+    left: -405rpx;
+  }
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes right {
+  0%{
+    right: -405rpx;
+  }
+  100%{
+    right: 0;
+  }
 }
