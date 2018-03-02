@@ -1,3 +1,28 @@
 <view class="awaitPK">
-  <image clas=""></image>
+  <image class="xingqiu-zhi" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-zhi.png"></image>
+  <image class="xingqiu-huang" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-huang.png"></image>
+  <view class="konghezi-zi"></view>
+  <view class="konghezi-huang"></view>
+  <view class="konghezi-xia"></view>
+  <view class="diqiu"> 
+    <view class="xinxi">
+      <image class="feichuan" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/feichuan.png"></image>
+      <view class="ziliao">
+        <view class="touxiangkuang"></view>
+        <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+        <view class="content">
+          <view>
+            <text class="nicheng font">{{userInfo.nickName}}</text>
+          </view>
+          <view>
+            <text class="nicheng font">来自:乌鲁木齐</text>
+          </view>
+          <view class="jinbi">
+            <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/jinbi.png"></image>
+            <text class="jinbi-shuzi font">99</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
