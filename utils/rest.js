@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english";
-=======
+
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com";
->>>>>>> f654ab09145993029fafa35bc43734da504d8de6
+
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
