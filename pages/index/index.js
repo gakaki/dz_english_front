@@ -21,6 +21,11 @@ Page({
       url: '../rank/rank'
     })
   },
+  toZsd() {
+    wx.navigateTo({
+      url: '../word/word'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

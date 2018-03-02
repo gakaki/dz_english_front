@@ -5,13 +5,14 @@
   height: 100vh;
   background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
   background-size: cover;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .bg {
   position: fixed;
-  top:0;
-  left:0;
-   width: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 235rpx;
 }
 
@@ -30,24 +31,26 @@
   border-radius: 50%;
   margin: 0 14rpx 0 20rpx;
 }
+
 .userinfo-avatar {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-
   box-sizing: border-box;
   border: 3rpx solid #fff;
 }
+
 .info {
   height: 100%;
   color: #fff;
-  flex-grow: 2
+  flex-grow: 2;
 }
 
 .nn {
   font-size: 32rpx;
   font-family: 'Microsoft YaHei';
 }
+
 .lvl {
   font-size: 28rpx;
   font-weight: bold;
@@ -55,6 +58,7 @@
   display: inline-block;
   height: 30rpx;
 }
+
 .lvl-box {
   position: relative;
   width: 180rpx;
@@ -63,76 +67,89 @@
   margin-left: 10rpx;
   border-radius: 15rpx;
 }
-.lvl-box text {
+
+ .percent-box text {
   position: absolute;
   left: 50%;
-  top: 0;
+  top:0;
   transform: translateX(-50%);
-  height: 30rpx;
   line-height: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
   font-size: 24rpx;
   font-weight: bold;
   color: #fff;
-}
+} 
+
 .percent-box {
-   width: 176rpx;
+  width: 176rpx;
   height: 26rpx;
   margin: 2rpx;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .percent-bg {
- width: 140rpx;
+  width: 140rpx;
   height: 100%;
   background-color: #ffa800;
- border-radius: 13rpx;
+  border-radius: 13rpx;
 }
+
 .share-box {
   position: relative;
   width: 44rpx;
   height: 44rpx;
   margin-right: 42rpx;
 }
+
 .share {
-   width: 100%;
+  width: 100%;
   height: 100%;
 }
-.share-btn { 
+
+.share-btn {
   position: absolute;
   right: 0;
   top: 0;
   width: 44rpx;
   height: 44rpx;
   z-index: 2;
-  opacity: 0
+  opacity: 0;
 }
+
 .match-bg {
   margin-top: 88rpx;
-   width: 712rpx;
+  width: 712rpx;
   height: 267rpx;
 }
+
 .duizhan-bg {
   width: 712rpx;
   height: 281rpx;
 }
+
 .tab {
   flex-wrap: wrap;
   padding: 0 20rpx;
   margin-top: 39rpx;
 }
+
 .tab image {
   width: 220rpx;
   height: 165rpx;
   margin-bottom: 20rpx;
 }
+
 .c-box {
   position: relative;
 }
+
 .contact {
-   position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   z-index: 2;
- width: 220rpx;
+  width: 220rpx;
   height: 165rpx;
   opacity: 0;
 }
