@@ -1,5 +1,6 @@
 // pages/word/word.js
 const app = getApp()
+const sheet = require('../../sheets.js')
 
 Page({
 
@@ -20,14 +21,14 @@ Page({
     ],
     redPoint: -1,
     show:false,
-    canUpdate: [],
+    canUpdate: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(sheet.Speech.Get(0).endlevel);
   },
 
   /**
