@@ -1,7 +1,7 @@
 <view id="word" class="flex">
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
-      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{item.up}}"></image>
+      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{knowInfo[index+1].canUp}}"></image>
       <view class="top flex">
         <image class="icon" src="{{item.img}}"></image>
       </view>
@@ -29,15 +29,15 @@
         <text class="font">答题分数加值</text>
       </view>
       <view class="num">
-        <text class="font">LV.0+0%<text wx:if="{{!isMax}}">→LV.1+2%</text></text>
+        <text class="font">LV.{{knowInfo[point+1].level}}+{{knowInfo[point+1].plus}}%<text wx:if="{{!isMax}}">→LV.{{knowInfo[point+1].level+1}}+{{knowInfo[point+1].nextPlus}}%</text></text>
       </view>
       <image class="cut-off" src="https://gengxin.odao.com/update/h5/yingyu/word/dot.png"></image>
       <view class="cost f-r-sb" wx:if="{{!isMax}}">
         <view class="gold">
-          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">500</text>
+          <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">{{knowInfo[point+1].levelUP.needG}}</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">2/10</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">{{knowInfo[point+1].levelUP.needI}}/{{knowInfo[point+1].levelUP.haveI}}</text>
         </view>
       </view>
       <view class="cost max" wx:if="{{isMax}}">
