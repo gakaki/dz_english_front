@@ -21,10 +21,7 @@
         <text class="font">{{knowledgePoint[redPoint].name}}</text>
       </view>
       <view class="fun">
-        <text class="font">修饰动词，形容词和副词的词</text>
-      </view>
-      <view class="fun second">
-        <text class="font">修饰动词，形容词和副词的词</text>
+        <text class="font">{{descript[redPoint]}}</text>
       </view>
     </view>
     <view class="add flex">
@@ -32,24 +29,32 @@
         <text class="font">答题分数加值</text>
       </view>
       <view class="num">
-        <text class="font">LV.0+0%→LV.1+2%</text>
+        <text class="font">LV.0+0%<text wx:if="{{!isMax}}">→LV.1+2%</text></text>
       </view>
       <image class="cut-off" src="https://gengxin.odao.com/update/h5/yingyu/word/dot.png"></image>
-      <view class="cost f-r-sb">
+      <view class="cost f-r-sb" wx:if="{{!isMax}}">
         <view class="gold">
           <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">500</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[redPoint].small}}"></image><text class="font">500</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[redPoint].small}}"></image><text class="font daoju">2/10</text>
         </view>
       </view>
+      <view class="cost max" wx:if="{{isMax}}">
+        <text class="font">已提升至最高等级</text>
+      </view>
     </view>
-    <view class="button f-r-sb">
-      <view class="cancel btn">
-        <text class="font" bindtap='hide'>取消</text>
+    <view class="button f-r-sb" wx:if="{{!isMax}}">
+      <view class="cancel btn" bindtap='hide' wx:if="{{!isMax}}">
+        <text class="font">取消</text>
       </view>
       <view class="confirm btn">
         <text class="font">确定提升</text>
+      </view>
+    </view>
+    <view class="button flex" wx:if="{{isMax}}">
+      <view class="confirm btn btn-max">
+        <text class="font">确定</text>
       </view>
     </view> 
   </view>

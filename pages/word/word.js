@@ -23,6 +23,7 @@ Page({
     show:false,
     canUpdate: false,
     maxLevel: sheet.Speech.Get(1).endlevel,
+    isMax: false,
     descript:[]
   },
 
@@ -30,12 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.maxLevel);
-    let a;
-    a = sheet.speechs.map(o=>{
+    let dsc;
+    dsc = sheet.speechs.map(o=>{
       return new sheet.Speech(o).description;
     })
-    console.log(a)
+    this.setData({
+      descript: dsc
+    })
   },
 
   /**
