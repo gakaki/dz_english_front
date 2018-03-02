@@ -1,6 +1,4 @@
 
-
-
 Page({
   data: {
     tabAct: true
@@ -9,6 +7,5 @@ Page({
     this.setData({
       tabAct: !this.data.tabAct
     })
-
   }
 })

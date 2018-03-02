@@ -1,8 +1,11 @@
-const srv = "https://h5.ddz2018.com/";
-// const wss = "wss://hws.ddz2018.com/json";
+const srv = "https://h5t.ddz2018.com/";
+const wss = "wss://h5t.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
+let socketOpen = false;
+let socketMsgQueue = [];
+
 
 function doFetch(action, data, suc, err) {
   data = data || {};
@@ -15,10 +18,10 @@ function doFetch(action, data, suc, err) {
   if (uid) {
     data.uid = uid;
   }
-  data.appname = APPNAME;
-
+  data.appName = APPNAME;
+  
   data.action = action;
-
+  console.log(data)
   wx.request({
     url: srv,
     data: data,
@@ -30,9 +33,11 @@ function doFetch(action, data, suc, err) {
 }
 
 function sdkAuth(code, suc) {
-  doFetch("user.auth", {
-    payload: { code }
+  doFetch("weChat.auth", {
+    payload: { code},
+    appName : APPNAME
   }, res => {
+    console.log(res)
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
     userLogin(suc, showErr);
@@ -48,7 +53,7 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
-
+      
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -57,8 +62,8 @@ function userLogin(suc, err) {
           res = res.data;
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
+          wsFunction(sid);
           suc(res)
-
         }
       }, err);
     },
@@ -66,6 +71,57 @@ function userLogin(suc, err) {
       app = getApp();
       app.globalData.hasUserInfo = false;
     }
+  })
+}
+
+ws("123")
+
+function ws(msg) {
+  if (socketOpen) {
+    wx.sendSocketMessage({
+      data: msg
+    })
+  } else {
+    socketMsgQueue.push(msg)
+  }
+}
+
+function wsFunction(){
+  console.log('ws')
+  wx.connectSocket({
+    url: wss,
+    // data: {
+    //   query: {
+    //     _sid: sid,
+    //     uid,
+    //     appName: APPNAME,
+    //   },
+    //   transports: ['websocket']
+    // },
+    // header: {
+    //   'content-type': 'application/json'
+    // },
+    // protocols: ['websocket'],
+    success(res) {
+      console.log(res,'ws连接成功')
+    },
+    fail() {
+      console.log('ws连接失败')
+    }
+  })
+  wx.onSocketOpen(function (res) {
+    console.log('WebSocket连接已打开！')
+    socketOpen = true
+    for (var i = 0; i < socketMsgQueue.length; i++) {
+      ws(socketMsgQueue[i])
+    }
+    socketMsgQueue = []
+  })
+  wx.onSocketError(function (res) {
+    console.log(res,'WebSocket连接打开失败，请检查！')
+  })
+  wx.onSocketMessage(function (res) {
+    console.log('收到服务器内容：' + res.data)
   })
 }
 
@@ -131,5 +187,6 @@ module.exports = {
   showErr,
   doFetch,
   getUid,
-  fixedNum
+  fixedNum,
+  ws
 }

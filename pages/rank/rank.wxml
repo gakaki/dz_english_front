@@ -1,12 +1,20 @@
 <view id="rank">
-  <view class="flex tab">
-    <text class="tab-one {{tabAct?'tab-act':'tab-def'}}" bindtap='clickTab'>好友排行</text>
-    <text class="tab-two {{tabAct?'tab-def':'tab-act'}}" bindtap='clickTab'>世界排行</text>
-    <image class="des" src="https://gengxin.odao.com/update/h5/yingyu/rank/des.png"></image>
+  <view class=" tab-bg">
+    <view class='flex tab'>
+      <text class="tab-one {{tabAct?'tab-act':''}}" bindtap='clickTab'>好友排行</text>
+      <text class="shuxian"></text>
+      <text class="tab-two {{tabAct?'':'tab-act'}}" bindtap='clickTab'>世界排行</text>
+      <image class="des" src="https://gengxin.odao.com/update/h5/yingyu/rank/des.png"></image>
+    </view>
+    <view class="flex">
+      <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
+    </view>
+
   </view>
-  <view class="flex">
+  <scroll-view scroll-y class=" rank-box">
     <view class="item f-r-fs">
-      <text class="{{1==1?'one':''}}">1</text>
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
 
       <view class="head-box">
         <view class="head">
@@ -19,7 +27,7 @@
           <text class="adress">四川成都</text>
         </view>
         <view class='info-bot f-r-sb'>
-          <text>聪慧黄金</text>
+          <text class="ch">聪慧黄金</text>
           <view class="star-box f-r-fs">
             <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
             <text class="star-num">7777</text>
@@ -28,6 +36,155 @@
       </view>
 
     </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">1</text>
+
+      <view class="head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>乐翻天</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">四川成都</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">聪慧黄金</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">7777</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+  <view class="flex">
+    <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
+
+  <view class="bot-bg"></view>
 
 </view>
