@@ -1,7 +1,7 @@
 <view id="word" class="flex">
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
-      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{redPoint==index}}"></image>
+      <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{item.up}}"></image>
       <view class="top flex">
         <image class="icon" src="{{item.img}}"></image>
       </view>
@@ -14,14 +14,14 @@
     <view class="introduce flex">
       <image class="left" src="https://gengxin.odao.com/update/h5/yingyu/word/left.png"></image>
       <view class="cir-icon flex">
-        <image src="{{knowledgePoint[redPoint].big}}"></image>
+        <image src="{{knowledgePoint[point].big}}"></image>
       </view>
       <image class="right" src="https://gengxin.odao.com/update/h5/yingyu/word/right.png"></image>
       <view class="cixing">
-        <text class="font">{{knowledgePoint[redPoint].name}}</text>
+        <text class="font">{{knowledgePoint[point].name}}</text>
       </view>
       <view class="fun">
-        <text class="font">{{descript[redPoint]}}</text>
+        <text class="font">{{descript[point]}}</text>
       </view>
     </view>
     <view class="add flex">
@@ -37,7 +37,7 @@
           <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">500</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[redPoint].small}}"></image><text class="font daoju">2/10</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">2/10</text>
         </view>
       </view>
       <view class="cost max" wx:if="{{isMax}}">
