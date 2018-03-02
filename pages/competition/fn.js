@@ -1,21 +1,23 @@
 import { Word } from '../../sheets.js'
 const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-function loadEnglishWords() {  //加载英文单词
+
+ //加载英文单词
+function loadEnglishWords() { 
   let ids = [{
     type:1,
-    id:1
+    id:3
   }, {
-    type: 2,
+    type: 1,
     id: 2
     }, {
-      type: 3,
+      type: 1,
       id: 3
   }, {
-    type: 4,
+    type: 1,
     id: 4
     }, {
-      type: 2,
+      type: 1,
       id: 2
     }, ]
   let englishWords = [];
@@ -23,14 +25,15 @@ function loadEnglishWords() {  //加载英文单词
     let obj = Word.Get(v.id);
     let cloneObj = Object.assign({},obj.cfg);
     cloneObj.type = v.type;
+    cloneObj.english = cloneObj.english.trim();
     cloneObj.yinbiao = _getPhoneticSymbol();
     return cloneObj
   })
   return englishWords
 }
 
-
-function keyboard( letterPos, english){  //设置九宫格键盘
+//设置九宫格键盘
+function keyboard( letterPos, english){  
   let nineLetters = [];
   for (let i = 0; i < letterPos.length; i++) {
     nineLetters.push(english.charAt(letterPos[i]))
@@ -48,8 +51,8 @@ function keyboard( letterPos, english){  //设置九宫格键盘
   });
   return nineLetters
 }
-
-function getRoundName(v) {  //每回合的中文名字
+ //每回合的中文名字
+function getRoundName(v) { 
   let title = null;
   switch (v) {
     case 1: 
@@ -71,7 +74,8 @@ function getRoundName(v) {  //每回合的中文名字
   return title
 }
 
-function hideLettersArr(length){  //生成指定长度全部是false的数组
+//生成指定长度全部是false的数组
+function hideLettersArr(length){  
   let arr = [];
   for(let i = 0;i<length;i++ ) {
     arr[i] = false
@@ -94,6 +98,15 @@ function randomHideLetters(length, eliminateNum) {
   return newPos
 }
 
+//改变数组所有的值
+function changeArrAllValue(arr,v) {
+  let arr2 = [];
+  arr2 = arr.map(()=>{
+    return v
+  })
+  return arr2;
+}
+
 
 //获取对应音标
 function _getPhoneticSymbol(english) {
@@ -107,5 +120,6 @@ module.exports = {
   keyboard,
   getRoundName,
   hideLettersArr,
-  randomHideLetters
+  randomHideLetters,
+  changeArrAllValue
 }

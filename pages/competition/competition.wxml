@@ -1,7 +1,7 @@
 <!--pages/competition/competition.wxml-->
-<wrap time='{{time}}'>
+<wrap time='{{clockCount}}'>
   <view class='now-word' slot="word">
-    <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>第一题</view>
+    <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{showIndex > 0 ? "show" : "none"}}'>
       <view class='zhongwen' wx:if='{{word.type === 2}}'>{{word.english}}</view>
       <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
@@ -10,7 +10,7 @@
         <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
-          <text class='letter {{hideLetters[index]?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
+          <text class='letter {{hideLetters[index] || hideAllLetters?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
           <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
           <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
           <text class='letter' wx:if='{{answer === 2}}'>{{word.english}}</text>
@@ -22,7 +22,7 @@
     <!-- 九宫格翻转  -->
     <view wx:if='{{word.type === 1}}' class='selectBtn {{showIndex === 3 || showIndex === 4 ? "show" : "none"}}'>
       <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
-        <view class='flip-wrap'  style='transform:rotateY({{backAll? "180deg": "0"}}); transform:rotateY({{rotateList[index]? "0": "180deg"}})'>
+          <view class='flip-wrap' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
           <view class='front flip poal'>
             <text>{{nineLetters[index]}}</text>
           </view>  

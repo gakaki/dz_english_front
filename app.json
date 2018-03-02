@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/competition/competition",
+    "components/progress/progress",
     "pages/awaitPK/awaitPK",
     "pages/duizhan/duizhan",
     "pages/word/word",

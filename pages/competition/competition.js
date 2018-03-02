@@ -1,8 +1,8 @@
 // pages/competition/competition.js
 
-import {Word } from '../../sheets.js'
+import { Word } from '../../sheets.js'
 import { doFetch,ws } from '../../utils/rest.js';
-import { loadEnglishWords, keyboard, hideLettersArr, randomHideLetters} from './fn.js'
+import { loadEnglishWords, keyboard, getRoundName,hideLettersArr, randomHideLetters, changeArrAllValue} from './fn.js'
 
 Page({
 
@@ -10,17 +10,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title:null,
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
     letters: [],  //单词变成字母
     hideLetters: [], //要隐藏的字母
+    hideAllLetters: false, //隐藏所有字母
     englishWords: [],
     showIndex:0,  //显示顺序
     titleIndex: 0, //单词是第几题 
-    backAll: true, //九宫格是否显示为背面
-    rotateList: [false, false, false, false, false, false, false, false, false], //true为正面，false为背面
+    rotateList: [true, true, true, true, true, true, true, true, true], //true为正面，false为背面
     time:2000,
+    clockStart: false,
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,
@@ -33,18 +35,23 @@ Page({
     this.roundInit();
   },
   onShow: function (e) {
-    
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
-    this.timer()
+    
   },
   roundInit(){
     this.setData({
-      word: this.data.englishWords[this.data.round-1]
+      word: this.data.englishWords[this.data.round-1],
+      title: getRoundName(this.data.round),
+      showIndex: 0,
+      rotateList: changeArrAllValue(this.data.rotateList, true),
+      answer:0,
+      backClickCount:0
     })
     let word = this.data.word;
+    console.log(this.data.round,word,'roundInit')
     let letters = word.english.split('');
-    let hideLetters = hideLettersArr(word.english.trim().length);
+    let hideLetters = hideLettersArr(word.english.length);
     switch (word.type) { //题目类型
        case 1:
         let letterPos = word.eliminate;
@@ -54,29 +61,21 @@ Page({
           letterPos = randomHideLetters(length, word.eliminateNum)
           word.eliminate = letterPos;
         }
-        
         this.setData({
           letters,
           hideLetters
         })
-        
     }
-    this.keyboard(); //渲染九宫格键盘
-  },
-  keyboard(){
-    let letterPos = this.data.word.eliminate;
-    let english = this.data.word.english;
-    this.setData({
-      nineLetters: keyboard(letterPos, english)
-    })
-    console.log(this.data.nineLetters)
+    this.timer()
   },
   timer(){
+    this.keyboard(); //渲染九宫格键盘
     var timerCount = 0;
     timerCount = setTimeout(()=>{
       this.setData({
         showIndex: this.data.showIndex + 1
       })
+      let type = this.data.word.type;
       switch (this.data.showIndex) {
         case 1:  //显示完整单词
           this.setData({
@@ -84,39 +83,42 @@ Page({
           })
           setTimeout(() => {
             this.audioCtx.play()
-          }, 500)
+          }, 1000)
           break;
         case 2:  //擦去部分字母
           let letterPos = this.data.word.eliminate;
           let hideLetters = this.data.hideLetters;
-          letterPos.forEach((v) => {
-            hideLetters[v] = true
-          })
-          this.setData({
-            hideLetters
-          })
-          if(this.data.word.type === 4) {
+          if(type == 1) {
+            letterPos.forEach((v) => {
+              hideLetters[v] = true
+            })
             this.setData({
-              hideAll: true
+              hideLetters,
+              time:1000,
+              clockStart: true
             })
           }
-          this.setData({
-            hideLetter: true
-          })
-
+          if(type === 4) {
+            this.setData({
+              hideAllLetters: true,
+              time: 1000
+            })
+          }
           break;
         case 3:  //显示九宫格
           this.setData({
-            time: 100
+            time: 3000
           })
           break;
         case 4: //显示背面
           this.setData({
-            backAll: true
+            rotateList: changeArrAllValue(this.data.rotateList,false),
+            time:2000
           })
+          
+          
           break;
       }
-      console.log(this.data.showIndex)
       clearInterval(timerCount);
       if (this.data.showIndex < 4) {
         this.timer();
@@ -127,7 +129,7 @@ Page({
     let bcCount = this.data.backClickCount;
     let bcLimit = this.data.word.eliminateNum;
     let letters = this.data.letters;
-
+    console.log(bcCount, bcLimit)
     if (bcCount < bcLimit) {
       let i = v.currentTarget.dataset.index; //点击的第几个牌面
       let inner = v.currentTarget.dataset.inner;  //牌面对应的字母
@@ -140,7 +142,7 @@ Page({
       let rotateList = this.data.rotateList;  //翻牌的列表
       rotateList[i] = true
       this.setData({
-        rotateList,
+        rotateList, 
         backClickCount: bcCount+1,
         letters,
         hideLetters
@@ -148,17 +150,36 @@ Page({
 
       if (bcCount == bcLimit - 1) {
         let word = letters.join('');
+        let answer = 0;
+        console.log(letters,word,this.data.word.english)
         if(word == this.data.word.english) {
-          this.setData({
-            answer:1
-          })
+          answer = 1
         } else {
-          this.setData({
-            answer: 2
-          })
+          answer = 2
         }
+        setTimeout(() => {
+          this.setData({
+            answer,
+            round: this.data.round + 1,
+          })
+        },500)
+        setTimeout(()=>{
+          if (this.data.round < 5) {
+            this.roundInit()
+          } else {
+            console.log('结束')
+          }
+        },3000)
       }
     }
+  },
+  keyboard() {
+    let letterPos = this.data.word.eliminate;
+    let english = this.data.word.english;
+    console.log(english, letterPos)
+    this.setData({
+      nineLetters: keyboard(letterPos, english)
+    })
   },
   changeBgColor(v) {
     let bgIndex = this.data.bgIndex;

@@ -66,7 +66,7 @@
 .letter {
   display: inline-block;
   text-align: center;
-  width: 24rpx;
+  min-width: 24rpx;
   height: 49rpx;
   margin-right: 5rpx;
 }
