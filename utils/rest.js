@@ -54,8 +54,6 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
-
-          wsFunction(sid);
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -131,10 +129,6 @@ function wsFunction(){
       ws(socketMsgQueue[i])
     }
     socketMsgQueue = []
-
-    
-   
-
   })
   wx.onSocketError(function (res) {
     console.log(res,'WebSocket连接打开失败，请检查！')
@@ -194,6 +188,7 @@ const start = suc => {
     fail:res=>{
       wx.login({
         success: res => {
+          wsFunction();
           sdkAuth(res.code, suc)
         }
       })
