@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/self/self",
+    "pages/index/index",
+    
     "pages/friendPK/friendPK",
     "pages/rank/rank",
     "pages/word/word",

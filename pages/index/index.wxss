@@ -46,9 +46,10 @@
   flex-grow: 2;
 }
 
-.nn {
+.nn,.lv {
   font-size: 32rpx;
   font-family: 'Microsoft YaHei';
+  align-self: flex-start;
 }
 
 .lvl {
@@ -96,6 +97,7 @@
 }
 
 .share-box {
+  align-self: flex-start;
   position: relative;
   width: 44rpx;
   height: 44rpx;
