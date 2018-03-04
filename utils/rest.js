@@ -2,7 +2,7 @@
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english/socket.io";
+const wss = "wss://local.ddz2018.com";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
@@ -55,7 +55,7 @@ function userLogin(suc, err) {
         app.userInfoReadyCallback(info)
       }
 
-          // wsFunction(sid);
+          wsFunction(sid);
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -65,6 +65,8 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
+          console.log(res)
+          wstest();
         }
       }, err);
     },
@@ -75,7 +77,7 @@ function userLogin(suc, err) {
   })
 }
 
-// ws('')
+
 function ws(action, data, suc, err) {
   data = data || {};
   if (!sid) {
@@ -103,21 +105,18 @@ function ws(action, data, suc, err) {
   }
 }
 
+function wstest(){
+  ws('test', { a: "this is a test" }, () => {
+    console.log("发送ws-msg成功")
+  }, () => {
+    console.log("发送ws-msg失败")
+  });
+}
+
+
 function wsFunction(){
   wx.connectSocket({
     url: wss,
-    // data: {
-    //   query: {
-    //     _sid: sid,
-    //     uid,
-    //     appName: APPNAME,
-    //   },
-    //   transports: ['websocket']
-    // },
-    // header: {
-    //   'content-type': 'application/json'
-    // },
-    // protocols: ['websocket'],
     success(res) {
       console.log(res,'ws连接成功')
     },
@@ -132,6 +131,10 @@ function wsFunction(){
       ws(socketMsgQueue[i])
     }
     socketMsgQueue = []
+
+    
+   
+
   })
   wx.onSocketError(function (res) {
     console.log(res,'WebSocket连接打开失败，请检查！')
