@@ -2,8 +2,7 @@
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com";
-
+const wss = "wss://local.ddz2018.com/english/socket.io";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
@@ -23,9 +22,7 @@ function doFetch(action, data, suc, err) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-  
   data.action = action;
-  console.log(data)
   wx.request({
     url: srv,
     data: data,
@@ -57,7 +54,8 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
-      
+
+          // wsFunction(sid);
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -66,7 +64,6 @@ function userLogin(suc, err) {
           res = res.data;
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
-          // wsFunction(sid);
           suc(res)
         }
       }, err);
@@ -107,7 +104,6 @@ function ws(action, data, suc, err) {
 }
 
 function wsFunction(){
-  console.log('ws')
   wx.connectSocket({
     url: wss,
     // data: {

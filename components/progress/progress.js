@@ -4,9 +4,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    isStart: {
+    clockStart: {
       type: Boolean,
-      value: true
+      value: false
     }
   },
 
@@ -19,7 +19,6 @@ Component({
   },
   attached: function () {
     let that = this
-    
     this.setData({
       timer: setInterval(function() {
         that.setData({
