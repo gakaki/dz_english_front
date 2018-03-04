@@ -108,6 +108,7 @@ Page({
   },
 
   improve: function() {
+    console.log(this.data.knowInfo[this.data.point + 1])
     if(this.data.canUpdate){
       doFetch('english.speechlevelup',{
         spid:this.data.point+1
@@ -120,6 +121,16 @@ Page({
       })
     }
     else{
+      if (this.data.knowInfo[this.data.point + 1].levelUP.needI > this.data.knowInfo[this.data.point + 1].levelUP.haveI){
+        this.setData({
+          libScanty:true
+        })
+      }
+      else{
+        this.setData({
+          libScanty: false
+        })
+      }
       this.setData({
         shopping:true
       })
