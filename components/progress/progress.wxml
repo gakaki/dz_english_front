@@ -1,9 +1,9 @@
 <view class="circleProgress_wrapper"> 
 <text class="num">{{num}}</text> 
-        <view class="wrapper right">  
-            <view class="circleProgress rightcircle"></view>  
-        </view>  
-        <view class="wrapper left">  
-            <view class="circleProgress leftcircle"></view>  
-        </view>  
+  <view class="wrapper right">  
+      <view class="circleProgress rightcircle"></view>  
+  </view>  
+  <view class="wrapper left">  
+      <view class="circleProgress leftcircle"></view>  
+  </view>  
  </view> 

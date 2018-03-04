@@ -9,7 +9,9 @@
         <view class='content'>乐翻天</view>
       </view>
     </view>
-    <view class='countdown'> {{time}}</view> 
+    <view class='countdown'> 
+      <!-- <clock clockStart='{{false}}'></clock> -->
+    </view>
     <view class='user user-r'>
       <image class="avatar avatar-r" src="{{userInfo.avatarUrl}}"></image>
       <view>

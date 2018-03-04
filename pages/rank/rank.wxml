@@ -16,7 +16,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -40,7 +40,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -64,7 +64,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -88,7 +88,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -112,7 +112,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -136,7 +136,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
@@ -160,7 +160,7 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
-      <view class="head-box">
+      <view class="flex head-box">
         <view class="head">
         </view>
       </view>
