@@ -2,10 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/word/word",
-    "pages/self/self",
-    
-    
     "pages/competition/competition",
+    "pages/self/self",
     "pages/awaitPK/awaitPK",
     "components/progress/progress",
     "pages/duizhan/duizhan",

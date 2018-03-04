@@ -5,8 +5,8 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
  //加载英文单词
 function loadEnglishWords() { 
   let ids = [{
-    type:1,
-    id:3
+    type:2,
+    id:4
   }, {
     type: 1,
     id: 2
@@ -27,6 +27,7 @@ function loadEnglishWords() {
     cloneObj.type = v.type;
     cloneObj.english = cloneObj.english.trim();
     cloneObj.yinbiao = _getPhoneticSymbol();
+    cloneObj.options = ['苹果','橘子','梨花','花'];
     return cloneObj
   })
   return englishWords
