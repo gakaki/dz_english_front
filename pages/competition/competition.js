@@ -49,7 +49,6 @@ Page({
       backClickCount:0
     })
     let word = this.data.word;
-    console.log(this.data.round,word,'roundInit')
     let letters = word.english.split('');
     let hideLetters = hideLettersArr(word.english.length);
     switch (word.type) { //题目类型
@@ -65,11 +64,13 @@ Page({
           letters,
           hideLetters
         })
+        this.keyboard(); //渲染九宫格键盘
+        break;
+
     }
     this.timer()
   },
   timer(){
-    this.keyboard(); //渲染九宫格键盘
     var timerCount = 0;
     timerCount = setTimeout(()=>{
       this.setData({
@@ -115,8 +116,6 @@ Page({
             rotateList: changeArrAllValue(this.data.rotateList,false),
             time:2000
           })
-          
-          
           break;
       }
       clearInterval(timerCount);
@@ -176,7 +175,6 @@ Page({
   keyboard() {
     let letterPos = this.data.word.eliminate;
     let english = this.data.word.english;
-    console.log(english, letterPos)
     this.setData({
       nineLetters: keyboard(letterPos, english)
     })
