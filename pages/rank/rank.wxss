@@ -106,7 +106,7 @@
   width: 690rpx;
   height: 150rpx;
   background-color: #fffef7;
-  box-shadow: 0 2rpx 0 #f3e2c0;
+  box-shadow: 0 3rpx 0 #f3e2c0;
   border-radius: 20rpx;
   z-index: 99;
 }

@@ -63,22 +63,42 @@
       <view class="warn-icon flex">
         <image src="https://gengxin.odao.com/update/h5/yingyu/word/tanhao.png"></image>
       </view>
-      <view class="main-text">
-        <text class="font">词典数量不足</text>
+      <view class="content" wx:if="{{libScanty}}">
+        <view class="main-text">
+          <text class="font">词典数量不足</text>
+        </view>
+        <view class="buy ziti">
+          <text class="font">请去商店购买</text>
+        </view>
+        <view class="pk ziti">
+          <text class="font">对战也可以获得</text>
+        </view>
       </view>
-      <view class="buy ziti">
-        <text class="font">请去商店购买</text>
-      </view>
-      <view class="pk ziti">
-        <text class="font">对战也可以获得</text>
+      <view class="content" wx:if="{{!libScanty}}">
+        <view class="main-text">
+          <text class="font">金币不足</text>
+        </view>
+        <view class="buy ziti">
+          <text class="font">分享可获得</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font" style='color:#19b1ff'>400
+          </text>
+        </view>
+
       </view>
     </view>
-    <view class="button f-r-sb">
-      <view class="cancel btn" bindtap='cancel' wx:if="{{!isMax}}">
+    <view class="button f-r-sb" wx:if="{{libScanty}}">
+      <view class="cancel btn" bindtap='cancel'>
         <text class="font">取消</text>
       </view>
       <view class="confirm btn" bindtap='shop'>
         <text class="font">去商店</text>
+      </view>
+    </view>
+    <view class="button f-r-sb" wx:if="{{!libScanty}}">
+      <view class="confirm btn" bindtap='shop' style='margin-left:40rpx'>
+        <text class="font">去商店</text>
+      </view>
+      <view class="share btn" bindtap='shop'>
+        <text class="font">去分享</text>
       </view>
     </view>
   </view>
