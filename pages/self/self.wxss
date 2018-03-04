@@ -6,7 +6,6 @@
   overflow: hidden;
 }
 .bg-big {
-
   position: absolute;
   top: 80rpx;
   left: 0;

@@ -16,6 +16,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  toSelf() {
+    wx.navigateTo({
+      url: '../self/self'
+    })
+  },
   toRank: function () {
     wx.navigateTo({
       url: '../rank/rank'
