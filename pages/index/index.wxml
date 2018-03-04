@@ -27,7 +27,7 @@
     <image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
   </view>
   <view class="flex">
-    <image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
+    <image class='duizhan-bg' bindtap='toFriPk' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'       ></image>
   </view>
 
   <view class="tab f-r-sb">
