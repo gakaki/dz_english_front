@@ -9,7 +9,6 @@
     "pages/word/word",
     "pages/index/index",
     "pages/self/self",
-    
     "pages/rank/rank"
   ],
   "window": {

@@ -11,15 +11,26 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  toRank: function() {
+  toSelf() {
+    wx.navigateTo({
+      url: '../self/self'
+    })
+  },
+  toRank: function () {
     wx.navigateTo({
       url: '../rank/rank'
     })
+  },
+  toFriPk: function () {
+    wx.navigateTo({
+      url: '../friendPK/friendPK'
+    })
+    
   },
   toZsd() {
     wx.navigateTo({
@@ -32,7 +43,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -55,7 +66,7 @@ Page({
     }
 
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -66,9 +77,9 @@ Page({
     return {
       title: '大家一起来拼智力领福利',
       path: '/pages/index/index',
-     
+
       success: function (res) {
-       
+
       },
       fail: function (res) {
         // 转发失败

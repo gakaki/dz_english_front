@@ -48,8 +48,8 @@
     </view>
 
     <!-- 列表  -->
-    <view class='selectBtn {{showIndex > 1 ? "show" : "none"}}' wx:if='{{word.type === 2}}'>
-      <view class='one-select' wx:for='{{word.select}}' wx:key='{{index}}'>
+    <view wx:if='{{word.type === 2 || word.type === 3}}' class='selectBtn selectLists {{showIndex > 1 ? "show" : "none"}}'>
+      <view class='one-select ' wx:for='{{word.options}}' wx:key='{{index}}' bindtap='selectAnswer' data-answer='{{item}}' data-id='{{index}}'>
         <text>{{item}}</text>
         <image wx:if='{{letters[index].type === 1}}' class='true-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image>
         <image wx:if='{{letters[index].type === 2}}' class='err-icon' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>

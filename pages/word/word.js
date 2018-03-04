@@ -27,7 +27,8 @@ Page({
     maxLevel: sheet.Speech.Get(1).endlevel,  //知识点最大等级
     isMax: false,  //知识点等级是否最大
     descript:[],   //知识点描述
-    shopping:false,  //显示提醒弹框  
+    shopping:false,  //显示提醒弹框
+    libScanty:false,  //是否是词典数量不足    
   },
 
   /**
@@ -107,6 +108,7 @@ Page({
   },
 
   improve: function() {
+    console.log(this.data.knowInfo[this.data.point + 1])
     if(this.data.canUpdate){
       doFetch('english.speechlevelup',{
         spid:this.data.point+1
@@ -119,6 +121,16 @@ Page({
       })
     }
     else{
+      if (this.data.knowInfo[this.data.point + 1].levelUP.needI > this.data.knowInfo[this.data.point + 1].levelUP.haveI){
+        this.setData({
+          libScanty:true
+        })
+      }
+      else{
+        this.setData({
+          libScanty: false
+        })
+      }
       this.setData({
         shopping:true
       })

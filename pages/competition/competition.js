@@ -26,7 +26,8 @@ Page({
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,
-    roundName:null
+    roundName:null,
+    selectAnswer:[0,0,0,0]  //0为未选择，1为正确，2为错误
   },
   onReady(){
     this.setData({
@@ -49,7 +50,6 @@ Page({
       backClickCount:0
     })
     let word = this.data.word;
-    console.log(this.data.round,word,'roundInit')
     let letters = word.english.split('');
     let hideLetters = hideLettersArr(word.english.length);
     switch (word.type) { //题目类型
@@ -65,11 +65,13 @@ Page({
           letters,
           hideLetters
         })
+        this.keyboard(); //渲染九宫格键盘
+        break;
+
     }
     this.timer()
   },
   timer(){
-    this.keyboard(); //渲染九宫格键盘
     var timerCount = 0;
     timerCount = setTimeout(()=>{
       this.setData({
@@ -115,8 +117,6 @@ Page({
             rotateList: changeArrAllValue(this.data.rotateList,false),
             time:2000
           })
-          
-          
           break;
       }
       clearInterval(timerCount);
@@ -173,10 +173,24 @@ Page({
       }
     }
   },
+  selectAnswer(v){
+    let obj = v.currentTarget.dataset;
+
+    let selectAnswer = this.data.selectAnswer;
+    console.log(v)
+    if (obj.answer == this.data.word.China) {
+      selectAnswer[obj.id] = 1;
+    } else {
+      selectAnswer[obj.id] = 2;
+    }
+    this.setData({
+      selectAnswer
+    })
+    console.log(this.data.selectAnswer)
+  },
   keyboard() {
     let letterPos = this.data.word.eliminate;
     let english = this.data.word.english;
-    console.log(english, letterPos)
     this.setData({
       nineLetters: keyboard(letterPos, english)
     })

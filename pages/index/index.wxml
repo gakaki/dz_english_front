@@ -3,16 +3,15 @@
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
     <view class="header">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
     <view class="info f-c-sa">
       <text class="nn">{{userInfo.nickName}}</text>
-      <view class="f-r-fs">
+      <view class="f-r-fs lv">
         <text class="lvl">lv10</text>
         <view class="lvl-box">
-
-          <view class="percent-box"> 
-              <text>5/10</text>
+          <view class="percent-box">
+            <text>5/10</text>
             <view class="percent-bg"></view>
           </view>
 
@@ -28,7 +27,7 @@
     <image class='match-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
   </view>
   <view class="flex">
-    <image class='duizhan-bg' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
+    <image class='duizhan-bg' bindtap='toFriPk' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'       ></image>
   </view>
 
   <view class="tab f-r-sb">

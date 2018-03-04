@@ -230,6 +230,11 @@
   margin-right: 40rpx;
 }
 
+.share{
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/button-orange.png') 0 0 no-repeat;
+  margin-right: 40rpx;
+}
+
 .btn{
   width: 288rpx;
   height: 98rpx;
@@ -315,4 +320,13 @@
 
 .order{
   z-index: 20;
+}
+
+.content{
+  text-align: center;
+}
+
+.share text{
+  font-size: 44rpx;
+  text-shadow: 0 2rpx #d86100;
 }

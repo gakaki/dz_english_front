@@ -1,5 +1,6 @@
 <view class="con-bg flex">
   <view class="mid-box ">
+  <!-- <view class="bg-big"></view> -->
     <view class="top-con flex">
       <image class="head" src=''></image>
 
