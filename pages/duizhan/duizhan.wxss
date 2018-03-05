@@ -300,8 +300,13 @@
 }
 
 .animate-right{
-  bottom: 228rpx;
+  top: 871rpx;
   right: 320rpx;
+}
+
+.shandian{
+  opacity: 0;
+  animation: opa .5s linear .5s infinite forwards;
 }
 
 /*以下部分为动画*/
@@ -331,6 +336,15 @@
   100%{
     opacity: 1;
     transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes opa{
+  0%{
+    opacity: 0.1;
+  }
+  100%{
+    opacity: 1;
   }
 }
 

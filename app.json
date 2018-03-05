@@ -4,9 +4,10 @@
     "pages/duizhan/duizhan",
     "pages/awaitPK/awaitPK",
     "pages/competition/competition",
+    "pages/word/word",
     "pages/friendPK/friendPK",
     "components/progress/progress",
-    "pages/word/word",
+    
     "pages/index/index",
     "pages/self/self",
     "pages/rank/rank"

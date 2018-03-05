@@ -172,6 +172,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '*******',
+      path: '/pages/word/word',
+      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

@@ -1,6 +1,9 @@
 <!--components/scoreBar/bar.wxml-->
 <view class='wrap'>
-  <view class='progress'>
-    <view class='score'  style="height:{{percent}};"></view>
-  </view>
+  <view class='score-content'>{{score}}</view>
+  <view class='progress-wrap'>
+    <view class='progress'>
+      <view class='score'  style="height:{{percent}};"></view>
+    </view>
+  </view>  
 </view>
