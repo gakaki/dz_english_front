@@ -107,9 +107,11 @@
   width: 505rpx;
   height: 540rpx;
   position: absolute;
-  top: 50%;
+  top: 68rpx;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,0) rotate(0deg);
+  transform-origin: 252.5rpx 287rpx;
+  animation: feichuan 2.5s linear infinite; 
 }
 
 .touxiangkuang{
@@ -172,4 +174,13 @@
   text-align: center;
   left: 50%;
   transform: translate(-50%,0);
+}
+
+@keyframes feichuan {
+  0%{
+    transform: translate(-50%,0) rotate(0deg);
+  }
+  100%{
+    transform: translate(-50%,0) rotate(359deg);
+  }
 }

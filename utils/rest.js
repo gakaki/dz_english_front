@@ -118,41 +118,41 @@ function ws(action, data, suc, err) {
   }
 }
 
-function wstest(){
-  ws('test', { a: "this is a test" }, () => {
-    console.log("发送ws-msg成功")
-  }, () => {
-    console.log("发送ws-msg失败")
-  });
-}
+// function wstest(){
+//   ws('test', { a: "this is a test" }, () => {
+//     console.log("发送ws-msg成功")
+//   }, () => {
+//     console.log("发送ws-msg失败")
+//   });
+// }
 
 
-function wsFunction(){
-  socket.on('connect', () => {
+// function wsFunction(){
+//   socket.on('connect', () => {
   
-    console.log('#connect');
-    socket.emit('test', {
-      _sid: sid,
-      uid: uid,
-      appName: 'english'
-    })
+//     console.log('#connect');
+//     socket.emit('test', {
+//       _sid: sid,
+//       uid: uid,
+//       appName: 'english'
+//     })
 
-    socket.on('test', msg => {
-      console.log('#id', msg);
-    });
+//     socket.on('test', msg => {
+//       console.log('#id', msg);
+//     });
 
-    socket.on('disconnect', msg => {
-      console.log('#disconnect', msg);
-    });
+//     socket.on('disconnect', msg => {
+//       console.log('#disconnect', msg);
+//     });
 
-    socket.on('disconnecting', () => {
-      console.log('#disconnecting');
-    });
+//     socket.on('disconnecting', () => {
+//       console.log('#disconnecting');
+//     });
 
-    socket.on('error', () => {
-      console.log('#error');
-    });
-  })
+//     socket.on('error', () => {
+//       console.log('#error');
+//     });
+//   })
  
   // wx.connectSocket({
   //   url: wss,
@@ -177,7 +177,7 @@ function wsFunction(){
   // wx.onSocketMessage(function (res) {
   //   console.log('收到服务器内容：' + res.data)
   // })
-}
+// }
 
 function getUid() {
   if(uid) {
@@ -222,7 +222,7 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-  wsFunction();
+  // wsFunction();
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);
