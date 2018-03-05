@@ -38,7 +38,6 @@ function sdkAuth(code, suc) {
     payload: { code},
     appName : APPNAME
   }, res => {
-    console.log(res)
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
     userLogin(suc, showErr);
@@ -63,7 +62,6 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-          console.log(res)
           wstest();
         }
       }, err);
@@ -88,8 +86,8 @@ function ws(action, data, suc, err) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-
   data.action = action;
+  data = JSON.stringify(data)
   if (socketOpen) {
     wx.sendSocketMessage({
       data,

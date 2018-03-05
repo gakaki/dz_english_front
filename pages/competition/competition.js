@@ -27,7 +27,8 @@ Page({
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,
     roundName:null,
-    selectAnswer:[0,0,0,0]  //0为未选择，1为正确，2为错误
+    selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
+    firstClick:true
   },
   onReady(){
     this.setData({
@@ -174,19 +175,22 @@ Page({
     }
   },
   selectAnswer(v){
-    let obj = v.currentTarget.dataset;
+    if (this.data.firstClick) {
+      let obj = v.currentTarget.dataset;
+      let selectAnswer = this.data.selectAnswer;
 
-    let selectAnswer = this.data.selectAnswer;
-    console.log(v)
-    if (obj.answer == this.data.word.China) {
-      selectAnswer[obj.id] = 1;
-    } else {
-      selectAnswer[obj.id] = 2;
+      if (obj.answer == this.data.word.China) {
+        selectAnswer[obj.id] = 1;
+      } else {
+        selectAnswer[obj.id] = 2;
+      }
+      this.setData({
+        selectAnswer,
+        firstClick: false
+      })
+      console.log(this.data.selectAnswer)
     }
-    this.setData({
-      selectAnswer
-    })
-    console.log(this.data.selectAnswer)
+   
   },
   keyboard() {
     let letterPos = this.data.word.eliminate;

@@ -5,7 +5,7 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
  //加载英文单词
 function loadEnglishWords() { 
   let ids = [{
-    type:2,
+    type:1,
     id:4
   }, {
     type: 1,
