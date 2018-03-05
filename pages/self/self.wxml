@@ -1,6 +1,7 @@
 <view class="con-bg flex">
-  <view class="mid-box ">
-  <!-- <view class="bg-big"></view> -->
+<view class="bg-big">
+<view class="mid-box ">
+      
     <view class="top-con flex">
       <image class="head" src=''></image>
 
@@ -58,6 +59,8 @@
       </view>
     </view>
   </view>
+</view>
+  
 <view class="fix-bot">
 <image class="share" src="https://gengxin.odao.com/update/h5/yingyu/self/share.png"></image>
 <view class="flex bot-des">

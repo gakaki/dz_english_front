@@ -26,6 +26,11 @@ Page({
       url: '../rank/rank'
     })
   },
+  toAwaitPk() {
+    wx.navigateTo({
+      url: '../awaitPK/awaitPK'
+    })
+  },
   toFriPk: function () {
     wx.navigateTo({
       url: '../friendPK/friendPK'
