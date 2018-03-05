@@ -37,7 +37,7 @@
   height: 120rpx;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 3rpx solid #fff;
+  border: 4rpx solid #fff;
 }
 
 .info {

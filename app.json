@@ -1,11 +1,14 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/self/self",
+    
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
     "pages/awaitPK/awaitPK",
-    "pages/self/self",
+    
     "pages/rankDes/rankDes",
     "pages/rank/rank",
     "pages/result/result",
