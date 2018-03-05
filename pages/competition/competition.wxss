@@ -33,8 +33,18 @@
   margin-left: 10rpx;
   width: 32rpx;
   height: 31rpx;
-  background: url("https://gengxin.odao.com /update/h5/yingyu/competition/loudspeaker.png") no-repeat;
+  background: url("https://gengxin.odao.com/update/h5/yingyu/competition/loudspeaker.png") no-repeat;
   background-size: cover;
+}
+.question {
+  position: relative;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.question-large {
+  color: #ff4263;
+  transform: translateX(-15rpx)
 }
 .zhongwen {
   padding-top: 39rpx;
@@ -49,26 +59,40 @@
   font: bold 46rpx/1 'Arial';
 }
 .false-word-icon {
-  margin: 0 42rpx 0 8rpx;
+  position: absolute;
+  top: 10rpx;
+  right: -43rpx;
   width: 34rpx;
   height: 36rpx;
 }
 .true-word-icon {
-  margin: 0 42rpx 0 8rpx;
+  position: absolute;
+  top: 0;
+  right: -62rpx;
   width: 51rpx;
   height: 41rpx;
 }
+
 .error-letter {
   background: #ff4263;
 }
+
 .letter {
   display: inline-block;
+  margin: 0 1rpx;
   text-align: center;
   min-width: 24rpx;
   height: 49rpx;
-  margin-right: 5rpx;
+  transition: 1s;
+}
+.letters {
+  margin-left: 50rpx;
 }
 
+.hide-word {
+  color: rgba(255, 255, 255, 0);
+  border-bottom: 3rpx solid #4b65b7;
+}
 
 .multi-words {
   flex: 1;
@@ -152,11 +176,7 @@
   color: #fff;
   background: #ff4263;
 }
-.hide-word {
-  border-bottom: 3rpx solid #4b65b7;
-  color: rgba(255, 255, 255, 0);
-  transition: 1s;
-}
+
 .show {
   transition: 1s;
   opacity: 1;
