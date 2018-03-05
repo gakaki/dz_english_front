@@ -48,7 +48,6 @@ Page({
     })
   },
   onLoad: function () {
-    
     doFetch('english.showpersonal', {}, (res) => {
       console.log(res.data);
       this.setData({
@@ -103,5 +102,17 @@ Page({
         // 转发失败
       }
     }
+  },
+  onShow: function() {
+    // wsReceive('cancelSuccess', res => {
+    //   console.log(res)
+    //   wsReceive('matchSuccess',res=>{
+    //     wx.showToast({
+    //       title: '您已放弃对战',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   })
+    // })
   }
 })
