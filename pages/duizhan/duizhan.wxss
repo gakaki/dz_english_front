@@ -246,6 +246,24 @@
   overflow: hidden;
 }
 
+.animate{
+  width: 200rpx;
+  height: 122rpx;
+  position: absolute;
+  z-index: 0;
+}
+
+.animate-left{
+  top: 92rpx;
+  left: 298rpx;
+  transform: scalex(-1);
+}
+
+.animate-right{
+  bottom: 228rpx;
+  right: 320rpx;
+}
+
 /*以下部分为动画*/
 @keyframes left {
   0%{
