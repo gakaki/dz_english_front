@@ -1,5 +1,5 @@
 <view class="circleProgress_wrapper"> 
-<text class="num">{{num}}</text> 
+  <text class="num">{{num}}</text> 
   <view class="wrapper right">  
       <view class="circleProgress rightcircle"></view>  
   </view>  

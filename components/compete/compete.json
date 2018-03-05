@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "bar":"../bar/bar",
-    "clock":"../progress/progress"
+    "clock":"../clock/clock"
   }
 }

@@ -13,6 +13,7 @@ App({
     })
     start((res) => {
       // console.log('login')
+     
     })
   },
   globalData: {
