@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 Page({
   data: {
     time: 10,
@@ -22,8 +22,18 @@ Page({
     })
   },
   toAwaitPk() {
-    wx.navigateTo({
-      url: '../awaitPK/awaitPK'
+    
+    wsSend('ranking',{
+      rankType:1
+    })
+    wsReceive('needGold',res=>{
+      console.log(res)
+    })
+    wsReceive('waiting',res=>{
+      console.log(res)
+      wx.navigateTo({
+        url: '../awaitPK/awaitPK?gold='+res.data.cost
+      })
     })
   },
   toFriPk: function () {
