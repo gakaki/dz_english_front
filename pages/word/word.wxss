@@ -218,6 +218,7 @@
   background-size: cover;
   position: absolute;
   bottom: 0;
+  align-items: flex-start;
 }
 
 .cancel{

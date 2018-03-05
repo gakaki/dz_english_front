@@ -100,6 +100,11 @@ Page({
         isMax:true
       })
     }
+    else {
+      this.setData({
+        isMax: false
+      })
+    }
     this.setData({
       point: ind,
       show:true,
@@ -115,6 +120,11 @@ Page({
       },(res)=>{
         let upKnowInfo = this.data.knowInfo;
         upKnowInfo[this.data.point+1] = res.data;
+        if (upKnowInfo[this.data.point + 1].level == this.data.maxLevel){
+          this.setData({
+            isMax: true
+          })
+        }
         this.setData({
           knowInfo:upKnowInfo
         })
