@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/result/result",
     "pages/duizhan/duizhan",
     "pages/awaitPK/awaitPK",
     "pages/competition/competition",
@@ -15,6 +16,5 @@
     "navigationBarTitleText": "英语乐翻天",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#2890f1"
-
   }
 }
