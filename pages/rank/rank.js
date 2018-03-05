@@ -7,11 +7,21 @@ Page({
   },
   onLoad(){
     doFetch('english.getfriendrankinglist', {}, (res) => {
-      console.log(res.data);
-      this.setData({
-        rankData: res.data 
-      })
+      if(res.data.length>0) {
+        this.setData({
+          rankData: res.data.map(this.getSegment)
+        })
+      }
     })
+  },
+  getSegment: function(item) {
+item.rank = sheet.Stage.Get(item.rank).stage
+return item
+  },
+  toDes() {
+wx.navigateTo({
+  url: '../rankDes/rankDes'
+})
   },
   clickTab() {
     this.setData({

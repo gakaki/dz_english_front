@@ -1,11 +1,20 @@
 {
   "pages": [
-    "pages/competition/competition",
     "pages/index/index",
+    "pages/self/self",
+    
+    
+    
+    "pages/rankDes/rankDes",
+    
+    "pages/rank/rank",
+    
+    "pages/competition/competition",
+   
     "pages/awaitPK/awaitPK",
     
-    "pages/self/self",
-    "pages/rank/rank",
+    
+    
     "pages/result/result",
     "pages/duizhan/duizhan",
     "pages/word/word",

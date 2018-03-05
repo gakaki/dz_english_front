@@ -15,24 +15,25 @@
 background-color: #fff;
 z-index: 0
 } */
-
+.self {
+  overflow: hidden
+}
 .mid-box {
   align-self: flex-start;
   width: 100%;
-  transform: translateY(-66rpx); 
+  transform: translateY(-66rpx);
   position: relative;
   overflow: hidden;
 }
+
 .bg-big {
-width: 690rpx;
-   margin-top: 40rpx; 
-background-color: #fff;
-border-top-left-radius: 30rpx;
-border-top-right-radius: 30rpx;
-z-index: 0
+  width: 690rpx;
+  margin-top: 40rpx;
+  background-color: #fff;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  z-index: 0;
 }
-
-
 
 .top-con {
   width: 100%;
@@ -43,14 +44,19 @@ z-index: 0
 }
 
 .head {
-  width: 151rpx;
-  height: 151rpx;
+  width: 152rpx;
+  height: 152rpx;
+  box-sizing: border-box;
   border: 8rpx solid #fff;
   box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   position: absolute;
   top: 12rpx;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+
 
 .record-box {
   margin-top: 144rpx;
@@ -98,17 +104,20 @@ z-index: 0
 
 .jiyi-box, .pingyu-box {
   width: 100%;
- z-index: 99;
- /* position: absolute;
+  z-index: 99;
+  /* position: absolute;
   top: 400rpx;
   left: 0; */
 }
+
 .jiyi-box {
-margin-top: 20rpx;
+  margin-top: 20rpx;
 }
+
 .pingyu-box {
-margin-top: 34rpx;
+  margin-top: 34rpx;
 }
+
 .jiyi {
   font-weight: bold;
   font-size: 40rpx;
@@ -195,16 +204,16 @@ margin-top: 34rpx;
   line-height: 58rpx;
 }
 
- .item-mid {
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   transform: translate(-50%,-50%);
+.item-mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
   width: 3rpx;
   height: 44rpx;
   background-color: #9eb7ee;
-} 
+}
 
 .item-left {
   margin-left: 40rpx;
@@ -237,6 +246,7 @@ margin-top: 34rpx;
   border-radius: 50%;
   background-color: #2890f1;
 }
+
 .share {
   width: 74rpx;
   height: 75rpx;
@@ -244,18 +254,21 @@ margin-top: 34rpx;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .bot-des {
-   width: 100%;
+  width: 100%;
   height: 100%;
 }
-.share-str,.gold {
+
+.share-str, .gold {
   z-index: 9;
   align-self: flex-end;
-   font-size: 22rpx;
+  font-size: 22rpx;
   color: #a0dfff;
   font-weight: bold;
   margin-bottom: 22rpx;
 }
+
 .gold {
   width: 33rpx;
   height: 32rpx;
