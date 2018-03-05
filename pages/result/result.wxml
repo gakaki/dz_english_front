@@ -1,3 +1,62 @@
-<view>
-  <text>对战结果界面······</text>
+<view class="result">
+  <view class="defen">
+    <image class="shu-ying" src="https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png"></image>
+    <view class="fenshu-lan font">
+      <text class="shu-lan">999</text>
+      <text class="fen-lan fen">分</text>
+    </view>
+    <view class="fenshu-hong font">
+      <text class="shu-hong">699</text>
+      <text class="fen-hong fen">分</text>
+    </view>
+  </view>
+  <view class="xinxi f-r-sb">
+    <view class="xinxi-lan">
+      <view class="wanjia-lan">
+        <view class="nicheng-lan font">
+          <text class="wenzi-lan">{{userInfo.nickName}}</text>
+        </view>
+        <image class="touxiang-lan" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="liandui-lan font">
+        <text class="liandui-wenzi-lan">连对2题</text>
+      </view>
+      <view class="liansheng-lan font">
+        <text class="liansheng-wenzi-lan">9连胜</text>
+      </view>
+    </view>
+    <view class="xinxi-hong">
+      <view class="wanjia-hong">
+        <view class="nicheng-hong font">
+          <text class="wenzi-hong">{{userInfo.nickName}}</text>
+        </view>
+        <image class="touxiang-hong" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="liandui-hong font">
+        <text class="liandui-wenzi-hong">连对2题</text>
+      </view>
+    </view>
+  </view>
+  <view class="anniu f-c-fs">
+    <view class="jinbi font">
+      <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbida.png"></image>
+      <text class="jinbi-jia">+</text>
+      <text class="jinbi-shu">1</text>
+    </view>
+    <view class="jingyan font">
+      <image class="jingyan-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingyan.png"></image>
+      <text class="jingyan-jia">+</text>
+      <text class="jingyan-shu">5</text>
+    </view>
+    <view class="anniu-tiaozhan anniu-wenzi">
+      <text class="tiaozhan">继续挑战</text>
+    </view>
+    <view class="anniu-fenxiang anniu-wenzi">
+      <text class="fenxiang">分享结果</text>
+    </view>
+    <view class="fenxiang-shuoming font">
+      <text class="fenxiang-wenzi">分享可获得100</text>
+      <image class="fenxiang-jinbi" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbixiao.png"></image>
+    </view>
+  </view>
 </view>
