@@ -94,68 +94,6 @@ function wsSend(action, data) {
   socket.emit(action, data)
 }
 
-<<<<<<< HEAD
-// function wstest(){
-//   ws('test', { a: "this is a test" }, () => {
-//     console.log("发送ws-msg成功")
-//   }, () => {
-//     console.log("发送ws-msg失败")
-//   });
-// }
-
-
-// function wsFunction(){
-//   socket.on('connect', () => {
-  
-//     console.log('#connect');
-//     socket.emit('test', {
-//       _sid: sid,
-//       uid: uid,
-//       appName: 'english'
-//     })
-
-//     socket.on('test', msg => {
-//       console.log('#id', msg);
-//     });
-
-//     socket.on('disconnect', msg => {
-//       console.log('#disconnect', msg);
-//     });
-
-//     socket.on('disconnecting', () => {
-//       console.log('#disconnecting');
-//     });
-
-//     socket.on('error', () => {
-//       console.log('#error');
-//     });
-//   })
- 
-  // wx.connectSocket({
-  //   url: wss,
-  //   success(res) {
-  //     console.log(res,'ws连接成功')
-  //   },
-  //   fail() {
-  //     console.log('ws连接失败')
-  //   }
-  // })
-  // wx.onSocketOpen(function (res) {
-  //   console.log('WebSocket连接已打开！')
-  //   socketOpen = true
-  //   for (var i = 0; i < socketMsgQueue.length; i++) {
-  //     ws(socketMsgQueue[i])
-  //   }
-  //   socketMsgQueue = []
-  // })
-  // wx.onSocketError(function (res) {
-  //   console.log(res,'WebSocket连接打开失败，请检查！')
-  // })
-  // wx.onSocketMessage(function (res) {
-  //   console.log('收到服务器内容：' + res.data)
-  // })
-// }
-=======
 
 function wsInit(){
   socket.on('connect', () => {
@@ -175,7 +113,6 @@ function wsInit(){
     });
   })
 }
->>>>>>> ae834bfa636afa8199d44a49378c6f5a0c5ae4cb
 
 function getUid() {
   if(uid) {
@@ -220,11 +157,7 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-<<<<<<< HEAD
-  // wsFunction();
-=======
   wsInit();
->>>>>>> ae834bfa636afa8199d44a49378c6f5a0c5ae4cb
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/awaitPK/awaitPK",
     "pages/index/index",
+    "pages/awaitPK/awaitPK",
+    
     "pages/self/self",
     "pages/rank/rank",
     "pages/result/result",
