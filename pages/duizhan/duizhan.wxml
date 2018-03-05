@@ -6,6 +6,7 @@
         <text class="lan-nicheng font">{{userInfo.nickName}}</text>
       </view>
     </view>
+    <image class="animate animate-left" src="{{animation[index]}}"></image>
     <view class="lan-tankuang font">
       <view class="lan-liansheng">
         <text class="lan-liansheng-shuzi lan-xinxi">2</text>
@@ -46,6 +47,7 @@
       <text class="hong-dengji hong-xinxi">LV.88</text>
     </view>
       </view>
+    <image class="animate animate-right" src="{{animation[index]}}"></image>
     <view class="hong-shouji">
       <view class="hong-ziliao">
         <image class="hong-touxiang" src="{{userInfo.avatarUrl}}"></image>
