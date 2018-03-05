@@ -1,8 +1,8 @@
 // pages/competition/competition.js
 
 import { Word } from '../../sheets.js'
-import { doFetch,ws } from '../../utils/rest.js';
-import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, wsSend, wsReceive} from './fn.js'
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue } from './fn.js'
 
 Page({
 

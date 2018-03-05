@@ -1,9 +1,14 @@
 import { Word } from '../../sheets.js'
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
  //加载英文单词
 function loadEnglishWords() { 
+  wsSend('ranking')
+  wsReceive('roomInfo',res=>{
+    console.log(res)
+  })
   let ids = [{
     type:1,
     id:4

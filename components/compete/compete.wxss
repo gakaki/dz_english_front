@@ -6,6 +6,10 @@
   background-size: cover;
   overflow: hidden;
 }
+.top-content {
+  position: relative;
+  height: 474rpx;
+}
 .users {
   position: relative;
   display: flex;
@@ -42,9 +46,8 @@
 }
 .countdown {
   position: absolute;
-  left: 50%;
+  left: 300rpx;
   top: 32rpx;
-  transform: translateX(-50%);
   z-index: 9;
   width: 150rpx;
   height: 177rpx;
@@ -53,15 +56,23 @@
 }
 
 .gouzi {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 146rpx;
   z-index: 8;
   display: flex;
   justify-content: space-around;
-  margin-top: -95rpx; 
+  width: 100%;
 }
 .gz {
   width: 22rpx;
   height: 78rpx;
+}
+.blackboard {
+  position: absolute;
+  left: 0;
+  top: 198rpx;
+  width: 100%;
 }
 .main-select {
   display: flex;

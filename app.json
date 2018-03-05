@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/competition/competition",
     "pages/duizhan/duizhan",
     "pages/word/word",
     "pages/friendPK/friendPK",
     "pages/awaitPK/awaitPK",
-    "pages/competition/competition",
     "components/progress/progress",
     
     "pages/index/index",
