@@ -6,9 +6,9 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
  //加载英文单词
 function loadEnglishWords(suc) { 
   wsSend('ranking')
-  wsReceive('roomInfo',res=>{
-    console.log(res)
-    let data = res.wordList;
+  // wsReceive('roomInfo',res=>{
+    // let data = res.wordList;
+    let data = [{type:1,id:1}]
     let englishWords = [];
     englishWords = data.map((v) => {
       let obj = Word.Get(v.id);
@@ -20,7 +20,7 @@ function loadEnglishWords(suc) {
       return cloneObj
     })
     suc(englishWords)
-  })
+  // })
 }
 
   

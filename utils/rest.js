@@ -75,9 +75,9 @@ function userLogin(suc, err) {
 
 
 function wsReceive(action, suc) {
-  socket.on(action, (res)=>{
-    suc(res)
-  })
+  // socket.on(action, (res)=>{
+  //   suc(res)
+  // })
 }
 function wsSend(action, data) {
   data = data || {};
@@ -91,7 +91,7 @@ function wsSend(action, data) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-  socket.emit(action, data)
+  // socket.emit(action, data)
 }
 
 
