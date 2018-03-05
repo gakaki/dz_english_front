@@ -26,6 +26,10 @@
     <view class="pk-hong">
       <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
     </view>
+    <view class="shandian">
+      <image class="dianliu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu.png"></image>
+      <image class="dianliu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu2.png"></image>
+    </view>
     <image class="pk-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
   </view>
   <view class="hong">
