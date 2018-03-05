@@ -157,7 +157,7 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-  wsInit();
+//  wsInit();
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);
