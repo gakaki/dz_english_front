@@ -2,11 +2,12 @@
   "pages": [
     "pages/competition/competition",
     "pages/index/index",
+    "pages/awaitPK/awaitPK",
+    
     "pages/self/self",
     "pages/rank/rank",
     "pages/result/result",
     "pages/duizhan/duizhan",
-    "pages/awaitPK/awaitPK",
     "pages/word/word",
     "pages/friendPK/friendPK",
     "components/progress/progress"
