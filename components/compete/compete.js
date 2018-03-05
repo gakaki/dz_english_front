@@ -12,6 +12,10 @@ Component({
     time:{
       value:0,
       type:Number
+    },
+    clockStart:{
+      value:false,
+      type:Boolean
     }
   },
 

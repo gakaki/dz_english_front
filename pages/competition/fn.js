@@ -5,17 +5,17 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
  //加载英文单词
 function loadEnglishWords(suc) { 
-  wsSend('ranking')
+  // wsSend('ranking')
   // wsReceive('roomInfo',res=>{
     // let data = res.wordList;
-    let data = [{type:1,id:1}]
+    let data = [{type:1,id:1},{type:2,id:2}]
     let englishWords = [];
     englishWords = data.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
-      cloneObj.yinbiao = _getPhoneticSymbol();
+      cloneObj.yinbiao = "['66666']";
       cloneObj.options = ['苹果', '橘子', '梨花', '花'];
       return cloneObj
     })
@@ -104,7 +104,18 @@ function changeArrAllValue(arr,v) {
 //获取对应音标
 function _getPhoneticSymbol(english) {
   let ps = '[abc]';
-
+  wx.request({
+    url: 'http://fanyi.baidu.com/v2transapi',
+    data:{
+      query:'hello'
+    },
+    success:function(res){
+      console.log(res)
+    },
+    fail:function(res){
+      console.log(res)
+    }
+  })
   return ps;
 } 
 

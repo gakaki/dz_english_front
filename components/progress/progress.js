@@ -6,7 +6,7 @@ Component({
   properties: {
     clockStart: {
       type: Boolean,
-      value: false
+      value: true
     }
   },
 

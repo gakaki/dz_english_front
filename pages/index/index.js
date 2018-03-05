@@ -1,11 +1,11 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const sheet = require('../../sheets.js')
+import { doFetch } from '../../utils/rest.js';
 Page({
   data: {
     time: 10,
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -38,6 +38,14 @@ Page({
     })
   },
   onLoad: function () {
+    
+    doFetch('english.showpersonal', {}, (res) => {
+      console.log(res.data);
+      this.setData({
+        
+      })
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
