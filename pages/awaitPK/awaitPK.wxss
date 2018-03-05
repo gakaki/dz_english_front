@@ -102,7 +102,7 @@
   height: 145rpx;
   top: 880rpx;
   right: 35rpx;
-  animation: bottom 4s ease-in-out infinite;
+  animation: bottom 6s ease-in-out infinite;
 }
 
 
@@ -206,7 +206,7 @@
     top: 880rpx;
   }
   50%{
-    top: 910rpx;
+    top: 920rpx;
   }
   100%{
     top: 880rpx;
