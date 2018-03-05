@@ -212,6 +212,8 @@
     <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
-  <view class="bot-bg"></view>
+  <view class="bot-bg flex">
+  <text class="pre-season">上赛季排行榜</text>
+  </view>
 
 </view>

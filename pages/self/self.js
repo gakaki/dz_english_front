@@ -1,11 +1,43 @@
 const app = getApp()
+const sheet = require('../../sheets.js')
+import { doFetch } from '../../utils/rest.js';
 Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    info: {},
+    jiyilv: 0,
+    shenglv: 0,
+    segment: ''
   },
   onLoad: function () {
+
+    doFetch('english.showpersonal', {}, (res) => {
+      let rank = res.data.userInfo.character.season['1'].rank
+      let tc = res.data.remember.totalCount
+      let temp = 0
+      if(tc == 0) {
+        temp = 0
+      }
+      else {
+        temp = parseInt((res.data.remember.rightCount / res.data.remember.totalCount)*100)
+      }
+      let tempSl = 0
+      if (res.data.userInfo.character.total == 0) {
+        tempSl = 0
+      }else {
+        tempSl = parseInt((res.data.userInfo.character.wins / res.data.userInfo.character.total) * 100)
+      }
+        this.setData({
+          info: res.data,
+          jiyilv: temp,
+          shenglv: tempSl,
+          segment: sheet.Stage.Get(rank).stage
+        })
+
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
