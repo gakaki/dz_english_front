@@ -151,19 +151,43 @@
 }
 
 .dianliu{
-  width:44rpx;
-  height:64rpx;
+  width:47rpx;
+  height:66rpx;
   position: absolute;
-  top: 436rpx;
+  top: 433rpx;
   left: 306rpx;
 }
 
 .dianliu2{
-  width:24rpx;
-  height:56rpx;
+  width:27rpx;
+  height:58rpx;
   position: absolute;
-  top: 424rpx;
-  left: 366rpx;
+  top: 423rpx;
+  left: 384rpx;
+}
+
+.dianliu3{
+  width:30rpx;
+  height:55rpx;
+  position: absolute;
+  top: 718rpx;
+  left: 336rpx;
+}
+
+.dianliu4{
+  width:33rpx;
+  height:77rpx;
+  position: absolute;
+  top: 717rpx;
+  left: 382rpx;
+}
+
+.dianliu5{
+  width:32rpx;
+  height:41rpx;
+  position: absolute;
+  top: 700rpx;
+  left: 411rpx;
 }
 
 .hong{
