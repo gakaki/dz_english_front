@@ -4,10 +4,11 @@
     "pages/friendPK/friendPK",
     "pages/awaitPK/awaitPK",
     "pages/competition/competition",
+    "components/progress/progress",
+    
     "pages/word/word",
     "pages/index/index",
     "pages/self/self",
-    "components/progress/progress",
     "pages/rank/rank"
   ],
   "window": {
