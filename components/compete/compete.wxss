@@ -6,96 +6,79 @@
   background-size: cover;
   overflow: hidden;
 }
+.top-content {
+  position: relative;
+  height: 474rpx;
+}
 .users {
   position: relative;
-  z-index: 9;
   display: flex;
   justify-content: space-between;
-  padding: 30rpx;
+  padding: 32rpx;
 }
 .user {
   display: flex;
-  margin-top: 16rpx;
-  height: 150rpx;
+  margin-top: 6rpx; 
+  height: 172rpx;
   width: 334rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-blue.png') 0 0 no-repeat;
-  background-size: 334rpx 150rpx;
   color: #fff;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-blue.png') no-repeat;
+  background-size: 334rpx 172rpx;
 }
 .avatar {
-  margin: 9rpx 4rpx 0 10rpx;
-  width: 94rpx;
-  height: 94rpx;
+  margin: 9rpx 4rpx 0 10rpx; 
+  width: 108rpx;
+  height: 108rpx;
   border: 3rpx solid #fff;
   border-radius: 50%;
 }
 .avatar-r {
   margin: 9rpx 10rpx 0 4rpx;
 }
-.score {
-  font: bold 54rpx/63rpx 'Microsoft YaHei';
-  text-shadow: 0rpx 4rpx 4rpx #007be3;
-  transform: skewX(-10deg)
-}
 .content {
-  font: 28rpx/47rpx 'Microsoft YaHei';
+  padding: 0 10rpx;
+  font: bold 30rpx/130rpx 'Microsoft YaHei';
 }
 .user-r {
   flex-direction: row-reverse;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-red.png') 0 0 no-repeat;
-  background-size: 334rpx 150rpx;
-}
-.score-r {
-  text-align: right;
-  padding-right: 15rpx;
-  text-shadow: 0rpx 4rpx 4rpx #b81135;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-red.png') no-repeat;
+  background-size: 334rpx 172rpx;
 }
 .countdown {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 27rpx 10rpx 0;
-  transform: translate(-50%,-50%);
-  width: 131rpx;
-  height: 154rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/countdown.png') 0 0 no-repeat;
-  background-size: 151rpx 174rpx;
+  left: 300rpx;
+  top: 32rpx;
+  z-index: 9;
+  width: 150rpx;
+  height: 177rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/countdown.png') no-repeat;
+  background-size: 150rpx 177rpx;
 }
-.circle {
-  /* clip: rect(0rpx,120rpx,120rpx,0rpx); */
-  /* background: gradient(radial, 100 100, 0, 100 100, 110, from(#000), to(#0000ff)) */
 
-}
-.circle-l {
-  clip:rect(0px,200px,200px,100px); 
-}
-.circle-r {
-  clip:rect(0px,100px,200px,0px); 
-}
-.circle-bg {
-  width: 131rpx;
-  height: 131rpx; 
-  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/timewrap.png') 0 0 no-repeat;
-  background-size: cover;
-}
 .gouzi {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 146rpx;
   z-index: 8;
   display: flex;
   justify-content: space-around;
-  margin-top: -75rpx;
-  height: 43rpx;
+  width: 100%;
 }
 .gz {
-  width: 16rpx;
-  height: 43rpx;
+  width: 22rpx;
+  height: 78rpx;
+}
+.blackboard {
+  position: absolute;
+  left: 0;
+  top: 198rpx;
+  width: 100%;
 }
 .main-select {
   display: flex;
-  justify-content: space-around;
-  margin-top: 50rpx;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 25rpx;
+  padding: 0 15rpx;
   height: 652rpx;
-}
-.bar {
-  margin: 0 30rpx;
 }

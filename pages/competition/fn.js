@@ -1,37 +1,29 @@
 import { Word } from '../../sheets.js'
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
  //加载英文单词
-function loadEnglishWords() { 
-  let ids = [{
-    type:2,
-    id:4
-  }, {
-    type: 1,
-    id: 2
-    }, {
-      type: 1,
-      id: 3
-  }, {
-    type: 1,
-    id: 4
-    }, {
-      type: 1,
-      id: 2
-    }, ]
-  let englishWords = [];
-  englishWords = ids.map((v) => {
-    let obj = Word.Get(v.id);
-    let cloneObj = Object.assign({},obj.cfg);
-    cloneObj.type = v.type;
-    cloneObj.english = cloneObj.english.trim();
-    cloneObj.yinbiao = _getPhoneticSymbol();
-    cloneObj.options = ['苹果','橘子','梨花','花'];
-    return cloneObj
+function loadEnglishWords(suc) { 
+  wsSend('ranking')
+  wsReceive('roomInfo',res=>{
+    console.log(res)
+    let data = res.wordList;
+    let englishWords = [];
+    englishWords = data.map((v) => {
+      let obj = Word.Get(v.id);
+      let cloneObj = Object.assign({}, obj.cfg);
+      cloneObj.type = v.type;
+      cloneObj.english = cloneObj.english.trim();
+      cloneObj.yinbiao = _getPhoneticSymbol();
+      cloneObj.options = ['苹果', '橘子', '梨花', '花'];
+      return cloneObj
+    })
+    suc(englishWords)
   })
-  return englishWords
 }
+
+  
 
 //设置九宫格键盘
 function keyboard( letterPos, english){  

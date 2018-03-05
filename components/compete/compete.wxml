@@ -1,36 +1,31 @@
 <!--components/compete/compete.wxml-->
 
 <view class='compete'>
-  <view class='users'>
-    <view class='user'>
-      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view>
-        <view class='score'>9999</view>
+  <view class='top-content'>
+    <view class='users'>
+      <view class='user'>
+        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class='content'>乐翻天</view>
+      </view>
+      <view class='countdown'> 
+        <!-- <clock clockStart='{{false}}'></clock> -->
+      </view>
+      <view class='user user-r'>
+        <image class="avatar avatar-r" src="{{userInfo.avatarUrl}}"></image>
         <view class='content'>乐翻天</view>
       </view>
     </view>
-    <view class='countdown'> 
-      <!-- <clock clockStart='{{false}}'></clock> -->
-    </view>
-    <view class='user user-r'>
-      <image class="avatar avatar-r" src="{{userInfo.avatarUrl}}"></image>
-      <view>
-        <view class='score score-r'>10</view>
-        <view class='content'>乐翻天</view>
-      </view>
-    </view>
-  </view>
-  <view>
     <view class='gouzi'>
       <image class='gz' src='https://gengxin.odao.com/update/h5/yingyu/competition/gouzi.png'></image>
       <image class='gz' src='https://gengxin.odao.com/update/h5/yingyu/competition/gouzi.png'></image>
     </view>
-    <slot name='word'></slot>
+    <view class='blackboard'>
+      <slot name='word'></slot>
+    </view>
   </view>
   <view class='main-select'>
     <bar class="bar" score='{{100}}'></bar>
     <slot name='select'></slot>
     <bar class="bar" score='{{100}}'></bar>
   </view>
-  
 </view>

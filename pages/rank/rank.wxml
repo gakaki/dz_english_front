@@ -11,8 +11,33 @@
     </view>
 
   </view>
-  <scroll-view scroll-y class=" rank-box">
-    <view class="item f-r-fs">
+  <scroll-view  scroll-y class=" rank-box">
+<!-- wx:for="{{rankData}}" -->
+    <!-- <view class="item f-r-fs">
+      <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
+      <text class="one">{{index}}</text>
+
+      <view class="flex head-box">
+        <view class="head">
+        </view>
+      </view>
+      <view class="info f-c-sb">
+        <view class='info-top f-r-fs'>
+          <text class='nn'>{{item.nickname}}</text>
+          <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
+          <text class="adress">{{item.location}}</text>
+        </view>
+        <view class='info-bot f-r-sb'>
+          <text class="ch">{{item.danGrading}}</text>
+          <view class="star-box f-r-fs">
+            <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
+            <text class="star-num">{{item.starNum}}</text>
+          </view>
+        </view>
+      </view>
+    </view> -->
+
+     <view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
@@ -179,7 +204,7 @@
         </view>
       </view>
 
-    </view>
+    </view> 
   </scroll-view>
   <view class="flex">
     <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>

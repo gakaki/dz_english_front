@@ -1,18 +1,38 @@
-.mid-box {
+/* .mid-box {
   align-self: flex-start;
   width: 690rpx;
   margin-top: 30rpx;
   position: relative;
   overflow: hidden;
+   /* background-color: #fff  
 }
 .bg-big {
   position: absolute;
   top: 80rpx;
   left: 0;
-  width: 100%;
-  height: 100%;
+   width: 100%;
+  height: 100%; 
 background-color: #fff;
+z-index: 0
+} */
+
+.mid-box {
+  align-self: flex-start;
+  width: 100%;
+  transform: translateY(-66rpx); 
+  position: relative;
+  overflow: hidden;
 }
+.bg-big {
+width: 690rpx;
+   margin-top: 40rpx; 
+background-color: #fff;
+border-top-left-radius: 30rpx;
+border-top-right-radius: 30rpx;
+z-index: 0
+}
+
+
 
 .top-con {
   width: 100%;
@@ -78,10 +98,18 @@ background-color: #fff;
 
 .jiyi-box, .pingyu-box {
   width: 100%;
+ z-index: 99;
+ /* position: absolute;
+  top: 400rpx;
+  left: 0; */
 }
-
+.jiyi-box {
+margin-top: 20rpx;
+}
+.pingyu-box {
+margin-top: 34rpx;
+}
 .jiyi {
-  margin-top: 20rpx;
   font-weight: bold;
   font-size: 40rpx;
   color: #b83156;
@@ -90,7 +118,6 @@ background-color: #fff;
 
 .pingyu {
   text-align: center;
-  margin-top: 34rpx;
   font-weight: bold;
   font-size: 36rpx;
   color: #526ec6;
@@ -227,7 +254,7 @@ background-color: #fff;
    font-size: 22rpx;
   color: #a0dfff;
   font-weight: bold;
-  margin-bottom: 24rpx;
+  margin-bottom: 22rpx;
 }
 .gold {
   width: 33rpx;

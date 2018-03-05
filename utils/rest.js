@@ -8,11 +8,7 @@ const APPNAME = 'english';
 let sid, uid, app;
 let socketOpen = false;
 let socketMsgQueue = [];
-const socket = io(wss,{
-  _sid: sid,
-  uid: uid,
-  appName: 'english'
-});
+const socket = io(wss);
 
 function doFetch(action, data, suc, err) {
   data = data || {};
@@ -42,7 +38,6 @@ function sdkAuth(code, suc) {
     payload: { code},
     appName : APPNAME
   }, res => {
-    console.log(res)
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
     userLogin(suc, showErr);
@@ -68,16 +63,6 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-          console.log(res)
-         
-          socket.emit("ranking");
-
-    
-          socket.on('test', msg => {
-            console.log('#test', msg);
-          });
-         // wstest();
-        
         }
       }, err);
     },
@@ -89,7 +74,12 @@ function userLogin(suc, err) {
 }
 
 
-function ws(action, data, suc, err) {
+function wsReceive(action, suc) {
+  socket.on(action, (res)=>{
+    suc(res)
+  })
+}
+function wsSend(action, data) {
   data = data || {};
   if (!sid) {
     sid = wx.getStorageSync('_sid');
@@ -101,23 +91,10 @@ function ws(action, data, suc, err) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-
-  data.action = action;
-  if (socketOpen) {
-    console.log("haha")
-    wx.sendSocketMessage({
-      data,
-      success: function (res) {
-        suc(res)
-      },
-      fail: err
-    })
-  } else {
-
-    socketMsgQueue.push(data)
-  }
+  socket.emit(action, data)
 }
 
+<<<<<<< HEAD
 // function wstest(){
 //   ws('test', { a: "this is a test" }, () => {
 //     console.log("发送ws-msg成功")
@@ -178,6 +155,27 @@ function ws(action, data, suc, err) {
   //   console.log('收到服务器内容：' + res.data)
   // })
 // }
+=======
+
+function wsInit(){
+  socket.on('connect', () => {
+    console.log('#connect');
+    wsSend('init')
+
+    socket.on('disconnect', msg => {
+      console.log('#disconnect', msg);
+    });
+
+    socket.on('disconnecting', () => {
+      console.log('#disconnecting');
+    });
+
+    socket.on('error', () => {
+      console.log('#error');
+    });
+  })
+}
+>>>>>>> ae834bfa636afa8199d44a49378c6f5a0c5ae4cb
 
 function getUid() {
   if(uid) {
@@ -222,7 +220,11 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
+<<<<<<< HEAD
   // wsFunction();
+=======
+  wsInit();
+>>>>>>> ae834bfa636afa8199d44a49378c6f5a0c5ae4cb
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);
@@ -243,5 +245,6 @@ module.exports = {
   doFetch,
   getUid,
   fixedNum,
-  ws
+  wsSend,
+  wsReceive
 }
