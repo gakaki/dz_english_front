@@ -1,14 +1,18 @@
-
+const io = require('./index.js');
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com";
+const wss = "wss://local.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
 let socketOpen = false;
 let socketMsgQueue = [];
-
+const socket = io(wss,{
+  _sid: sid,
+  uid: uid,
+  appName: 'english'
+});
 
 function doFetch(action, data, suc, err) {
   data = data || {};
@@ -54,6 +58,7 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
+     
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -64,7 +69,15 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
           console.log(res)
-          wstest();
+         
+          socket.emit("ranking");
+
+    
+          socket.on('test', msg => {
+            console.log('#test', msg);
+          });
+         // wstest();
+        
         }
       }, err);
     },
@@ -91,14 +104,16 @@ function ws(action, data, suc, err) {
 
   data.action = action;
   if (socketOpen) {
+    console.log("haha")
     wx.sendSocketMessage({
       data,
       success: function (res) {
-        suc(res.data)
+        suc(res)
       },
       fail: err
     })
   } else {
+
     socketMsgQueue.push(data)
   }
 }
@@ -113,29 +128,55 @@ function wstest(){
 
 
 function wsFunction(){
-  wx.connectSocket({
-    url: wss,
-    success(res) {
-      console.log(res,'ws连接成功')
-    },
-    fail() {
-      console.log('ws连接失败')
-    }
+  socket.on('connect', () => {
+  
+    console.log('#connect');
+    socket.emit('test', {
+      _sid: sid,
+      uid: uid,
+      appName: 'english'
+    })
+
+    socket.on('test', msg => {
+      console.log('#id', msg);
+    });
+
+    socket.on('disconnect', msg => {
+      console.log('#disconnect', msg);
+    });
+
+    socket.on('disconnecting', () => {
+      console.log('#disconnecting');
+    });
+
+    socket.on('error', () => {
+      console.log('#error');
+    });
   })
-  wx.onSocketOpen(function (res) {
-    console.log('WebSocket连接已打开！')
-    socketOpen = true
-    for (var i = 0; i < socketMsgQueue.length; i++) {
-      ws(socketMsgQueue[i])
-    }
-    socketMsgQueue = []
-  })
-  wx.onSocketError(function (res) {
-    console.log(res,'WebSocket连接打开失败，请检查！')
-  })
-  wx.onSocketMessage(function (res) {
-    console.log('收到服务器内容：' + res.data)
-  })
+ 
+  // wx.connectSocket({
+  //   url: wss,
+  //   success(res) {
+  //     console.log(res,'ws连接成功')
+  //   },
+  //   fail() {
+  //     console.log('ws连接失败')
+  //   }
+  // })
+  // wx.onSocketOpen(function (res) {
+  //   console.log('WebSocket连接已打开！')
+  //   socketOpen = true
+  //   for (var i = 0; i < socketMsgQueue.length; i++) {
+  //     ws(socketMsgQueue[i])
+  //   }
+  //   socketMsgQueue = []
+  // })
+  // wx.onSocketError(function (res) {
+  //   console.log(res,'WebSocket连接打开失败，请检查！')
+  // })
+  // wx.onSocketMessage(function (res) {
+  //   console.log('收到服务器内容：' + res.data)
+  // })
 }
 
 function getUid() {
