@@ -2,7 +2,7 @@
 
 import { Word } from '../../sheets.js'
 import { doFetch,ws } from '../../utils/rest.js';
-import { loadEnglishWords, keyboard, getRoundName,hideLettersArr, randomHideLetters, changeArrAllValue} from './fn.js'
+import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, wsSend, wsReceive} from './fn.js'
 
 Page({
 

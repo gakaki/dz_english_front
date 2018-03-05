@@ -108,6 +108,7 @@ Page({
   },
 
   improve: function() {
+    console.log(this.data.knowInfo[this.data.point + 1])
     if(this.data.canUpdate){
       doFetch('english.speechlevelup',{
         spid:this.data.point+1
@@ -120,6 +121,16 @@ Page({
       })
     }
     else{
+      if (this.data.knowInfo[this.data.point + 1].levelUP.needI > this.data.knowInfo[this.data.point + 1].levelUP.haveI){
+        this.setData({
+          libScanty:true
+        })
+      }
+      else{
+        this.setData({
+          libScanty: false
+        })
+      }
       this.setData({
         shopping:true
       })
@@ -161,6 +172,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '*******',
+      path: '/pages/word/word',
+      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

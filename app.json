@@ -1,15 +1,13 @@
 {
   "pages": [
-    "pages/competition/competition",
     "pages/word/word",
-    "pages/index/index",
-    "pages/self/self",
+    "pages/friendPK/friendPK",
     "pages/awaitPK/awaitPK",
+    "pages/competition/competition",
     "components/progress/progress",
     "pages/duizhan/duizhan",
-    
-    
-    "pages/friendPK/friendPK",
+    "pages/index/index",
+    "pages/self/self",
     "pages/rank/rank"
   ],
   "window": {

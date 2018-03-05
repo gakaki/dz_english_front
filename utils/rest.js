@@ -1,14 +1,14 @@
-
+const io = require('./index.js');
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com";
+const wss = "wss://local.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app;
 let socketOpen = false;
 let socketMsgQueue = [];
-
+const socket = io(wss);
 
 function doFetch(action, data, suc, err) {
   data = data || {};
@@ -53,6 +53,7 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
+     
       doFetch('user.login', { info: info.userInfo }, res => {
         if (res.code != CODE_SUC) {
           err(res.code);
@@ -62,7 +63,6 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-          wstest();
         }
       }, err);
     },
@@ -74,7 +74,12 @@ function userLogin(suc, err) {
 }
 
 
-function ws(action, data, suc, err) {
+function wsReceive(action, suc) {
+  socket.on(action, (res)=>{
+    suc(res)
+  })
+}
+function wsSend(action, data) {
   data = data || {};
   if (!sid) {
     sid = wx.getStorageSync('_sid');
@@ -86,53 +91,26 @@ function ws(action, data, suc, err) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-  data.action = action;
-  data = JSON.stringify(data)
-  if (socketOpen) {
-    wx.sendSocketMessage({
-      data,
-      success: function (res) {
-        suc(res.data)
-      },
-      fail: err
-    })
-  } else {
-    socketMsgQueue.push(data)
-  }
-}
-
-function wstest(){
-  ws('test', { a: "this is a test" }, () => {
-    console.log("发送ws-msg成功")
-  }, () => {
-    console.log("发送ws-msg失败")
-  });
+  socket.emit(action, data)
 }
 
 
-function wsFunction(){
-  wx.connectSocket({
-    url: wss,
-    success(res) {
-      console.log(res,'ws连接成功')
-    },
-    fail() {
-      console.log('ws连接失败')
-    }
-  })
-  wx.onSocketOpen(function (res) {
-    console.log('WebSocket连接已打开！')
-    socketOpen = true
-    for (var i = 0; i < socketMsgQueue.length; i++) {
-      ws(socketMsgQueue[i])
-    }
-    socketMsgQueue = []
-  })
-  wx.onSocketError(function (res) {
-    console.log(res,'WebSocket连接打开失败，请检查！')
-  })
-  wx.onSocketMessage(function (res) {
-    console.log('收到服务器内容：' + res.data)
+function wsInit(){
+  socket.on('connect', () => {
+    console.log('#connect');
+    wsSend('init')
+
+    socket.on('disconnect', msg => {
+      console.log('#disconnect', msg);
+    });
+
+    socket.on('disconnecting', () => {
+      console.log('#disconnecting');
+    });
+
+    socket.on('error', () => {
+      console.log('#error');
+    });
   })
 }
 
@@ -179,7 +157,7 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-  wsFunction();
+  wsInit();
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);
@@ -200,5 +178,6 @@ module.exports = {
   doFetch,
   getUid,
   fixedNum,
-  ws
+  wsSend,
+  wsReceive
 }

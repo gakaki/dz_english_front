@@ -109,8 +109,8 @@
 }
 
 .bg{
-  width: 296rpx;
-  height: 596rpx;
+  width: 301rpx;
+  height: 599rpx;
   background-size: cover;
 }
 
@@ -123,6 +123,7 @@
   top: 502rpx;
   left: 50%;
   transform: translate(-50%,0);
+  z-index: 10;
 }
 
 .person{
@@ -163,8 +164,8 @@
 }
 
 .btn{
-  width: 316rpx;
-  height: 108rpx;
+  width: 308rpx;
+  height: 109rpx;
   background-size: cover;
   text-align: center;
 }
