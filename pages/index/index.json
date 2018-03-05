@@ -1,4 +1,5 @@
 {
+  "disableScroll": true,
   "usingComponents": {
     "pro": "../../components/progress/progress"
   }

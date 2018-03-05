@@ -91,14 +91,18 @@
   height: 114rpx;
   top: 174rpx;
   left: 48rpx;
+  animation: top 4s ease-in-out infinite;
 }
+
+
 
 .xingqiu-huang{
   position: absolute;
   width: 145rpx;
   height: 145rpx;
-  bottom: 175rpx;
+  top: 880rpx;
   right: 35rpx;
+  animation: bottom 6s ease-in-out infinite;
 }
 
 
@@ -107,9 +111,11 @@
   width: 505rpx;
   height: 540rpx;
   position: absolute;
-  top: 50%;
+  top: 68rpx;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,0) rotate(0deg);
+  transform-origin: 252.5rpx 287rpx;
+  animation: feichuan 2.5s linear infinite; 
 }
 
 .touxiangkuang{
@@ -148,10 +154,6 @@
   margin-top: 10rpx;
 }
 
-.jinbi{
-  margin-top: 12rpx;
-}
-
 .jinbi-tu{
   width: 29rpx;
   height: 28rpx;
@@ -172,4 +174,37 @@
   text-align: center;
   left: 50%;
   transform: translate(-50%,0);
+}
+
+@keyframes feichuan {
+  0%{
+    transform: translate(-50%,0) rotate(0deg);
+  }
+  100%{
+    transform: translate(-50%,0) rotate(359deg);
+  }
+}
+
+@keyframes top{
+  0%{
+    top: 174rpx;
+  }
+  50%{
+    top: 144rpx;
+  }
+  100%{
+    top: 174rpx;
+  }
+}
+
+@keyframes bottom{
+  0%{
+    top: 880rpx;
+  }
+  50%{
+    top: 920rpx;
+  }
+  100%{
+    top: 880rpx;
+  }
 }

@@ -112,7 +112,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '*******',
-      path: '/pages/friendPK/friendPk',
+      path: '/pages/friendPK/friendPK',
       // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
       success: function () {
         

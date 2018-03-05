@@ -1,0 +1,74 @@
+/* components/clock/clock.wxss */
+.circleProgress_wrapper{   
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); 
+  width: 128rpx;   
+  height: 128rpx;   
+} 
+.num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font: bold 64rpx 'Microsoft YaHei';
+  color: #f10707;
+} 
+.wrapper{   
+  width: 65rpx;   
+  height: 130rpx;   
+  position: absolute;   
+  top:0;   
+  overflow: hidden;  
+}   
+.right{   
+  right:0;   
+}   
+.left{   
+  left:0;   
+}  
+.circleProgress{    
+  position: absolute;   
+  top:0;    
+  border:12rpx solid transparent;     
+  border-radius: 50%;  
+  width: 106rpx;   
+  height: 106rpx;  
+}
+.rightcircle{    
+  border-top:12rpx solid #e40505;     
+  border-right:12rpx solid #e40505;      
+  right:0;    
+  transform: rotate(45deg);    
+}  
+.rightcircle-start {
+  animation: circleProgressLoad_right 10s linear infinite;  
+}
+.leftcircle{   
+  border-bottom:12rpx solid #e40505;   
+  border-left:12rpx solid #e40505;   
+  left:0;   
+  transform: rotate(45deg); 
+}  
+.leftcircle-start {
+  animation: circleProgressLoad_left 10s linear infinite;  
+} 
+
+
+ @keyframes circleProgressLoad_right{   
+  0%{   
+    -webkit-transform: rotate(45deg);   
+  }   
+  50%,100%{   
+    -webkit-transform: rotate(225deg);   
+  }   
+}   
+@keyframes circleProgressLoad_left{   
+  0%,50%{   
+    -webkit-transform: rotate(45deg);   
+  }   
+  100%{   
+    -webkit-transform: rotate(225deg);   
+  }   
+}    

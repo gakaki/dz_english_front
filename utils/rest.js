@@ -5,18 +5,24 @@ const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
-let sid, uid, app;
+let sid, uid, app ,isAuth = false;
 let socketOpen = false;
 let socketMsgQueue = [];
-const socket = io(wss);
+let socket;
 
 function doFetch(action, data, suc, err) {
   data = data || {};
-  if (!sid) {
-    sid = wx.getStorageSync('_sid');
+  console.log(isAuth)
+  if (isAuth) {
+    if (!sid) {
+      sid = wx.getStorageSync('_sid');
+    }
+    if (sid) {
+      data._sid = sid;
+    }
   }
-  if (sid) {
-    data._sid = sid;
+  if (!uid) {
+    uid = wx.getStorageSync('uid');
   }
   if (uid) {
     data.uid = uid;
@@ -40,7 +46,11 @@ function sdkAuth(code, suc) {
   }, res => {
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
+    isAuth = true;
     userLogin(suc, showErr);
+  },
+  res=>{
+    console.log('error',res)
   })
 }
 
@@ -63,6 +73,7 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
+          wsInit();
         }
       }, err);
     },
@@ -75,31 +86,25 @@ function userLogin(suc, err) {
 
 
 function wsReceive(action, suc) {
-  socket.on(action, (res)=>{
+  socket.on(action, res=>{
     suc(res)
   })
 }
 function wsSend(action, data) {
-  data = data || {};
-  if (!sid) {
-    sid = wx.getStorageSync('_sid');
-  }
-  if (sid) {
-    data._sid = sid;
-  }
-  if (uid) {
-    data.uid = uid;
-  }
-  data.appName = APPNAME;
   socket.emit(action, data)
 }
 
 
 function wsInit(){
+  console.log(sid,'sid')
+  let url = wss + '?_sid=' + sid + '&appName=' + APPNAME;
+  socket = io(url);
   socket.on('connect', () => {
     console.log('#connect');
-    wsSend('init')
-
+    //wsSend('ranking')
+    wsReceive('roomInfo', res => {
+      console.log(res)
+    })
     socket.on('disconnect', msg => {
       console.log('#disconnect', msg);
     });
@@ -112,6 +117,7 @@ function wsInit(){
       console.log('#error');
     });
   })
+
 }
 
 function getUid() {
@@ -157,14 +163,16 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-  wsInit();
+
   wx.checkSession({
     success: () => {
+      isAuth = true;
       userLogin(suc, showErr);
     },
     fail:res=>{
       wx.login({
         success: res => {
+          isAuth = false;
           sdkAuth(res.code, suc)
         }
       })

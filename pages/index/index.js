@@ -1,21 +1,16 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const sheet = require('../../sheets.js')
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 Page({
   data: {
     time: 10,
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   toSelf() {
     wx.navigateTo({
       url: '../self/self'
@@ -24,6 +19,21 @@ Page({
   toRank: function () {
     wx.navigateTo({
       url: '../rank/rank'
+    })
+  },
+  toAwaitPk() {
+    
+    wsSend('ranking',{
+      rankType:1
+    })
+    wsReceive('needGold',res=>{
+      console.log(res)
+    })
+    wsReceive('waiting',res=>{
+      console.log(res)
+      wx.navigateTo({
+        url: '../awaitPK/awaitPK?gold='+res.data.cost
+      })
     })
   },
   toFriPk: function () {
@@ -38,6 +48,14 @@ Page({
     })
   },
   onLoad: function () {
+    
+    doFetch('english.showpersonal', {}, (res) => {
+      console.log(res.data);
+      this.setData({
+        
+      })
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

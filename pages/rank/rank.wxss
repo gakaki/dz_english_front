@@ -5,7 +5,6 @@
   background-size: cover;
   overflow: hidden;
 }
-
 .tab-bg {
   width: 750rpx;
   height: 241rpx;
@@ -80,7 +79,7 @@
 
 .hxb {
   position: fixed;
-  top: 1120rpx;
+  top: 1100rpx;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9;
@@ -90,7 +89,7 @@
 
 .rank-box {
   z-index: 10;
-  max-height: 1000rpx;
+  max-height: 980rpx;
   width: 100%;
   position: fixed;
   left: 0;
@@ -108,7 +107,7 @@
   background-color: #fffef7;
   box-shadow: 0 3rpx 0 #f3e2c0;
   border-radius: 20rpx;
-  z-index: 99;
+  z-index: 20;
 }
 
 .item:last-child {
@@ -175,15 +174,17 @@
 }
 
 .gps-icon {
-  margin-top: 9rpx;
+   margin-top: 9rpx; 
   height: 35rpx;
   width: 27rpx;
+  
 }
 
 .adress {
-  margin-left: 5rpx;
+   margin-left: 5rpx; 
   font-size: 30rpx;
   margin-right: 39rpx;
+  
 }
 
 .nn {
@@ -236,4 +237,11 @@
   left: 0;
   bottom: 0;
   z-index: 1;
+}
+.pre-season {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: underline;
+  transform: translateY(20rpx)
 }

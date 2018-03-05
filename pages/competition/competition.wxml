@@ -1,5 +1,5 @@
 <!--pages/competition/competition.wxml-->
-<wrap time='{{clockCount}}'>
+<wrap clockStart = '{{clockStart}}'>
   <view class='now-word' slot="word">
     <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{showIndex > 0 ? "show" : "none"}}'>
@@ -10,10 +10,12 @@
         <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
-          <text class='letter {{hideLetters[index] || hideAllLetters?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}' >{{item}}</text>
-          <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
-          <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
-          <text class='letter' wx:if='{{answer === 2}}'>{{word.english}}</text>
+          <view class='question {{answer === 2 ? "question-large":""}}' >
+            <text class='letter {{hideLetters[index] || hideAllLetters?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}'>{{item}}</text>
+            <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
+            <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
+          </view>
+          <text class='letter letters' wx:if='{{answer === 2}}'>{{word.english}}</text>
         </view>
     </view> 
   </view>

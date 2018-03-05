@@ -4,6 +4,7 @@ import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue } from './fn.js'
 
+let roundLimit = 3;
 Page({
 
   /**
@@ -16,25 +17,28 @@ Page({
     word: {},
     letters: [],  //单词变成字母
     hideLetters: [], //要隐藏的字母
+    oldHideLetters:[], //开局隐藏的字母
     hideAllLetters: false, //隐藏所有字母
     englishWords: [],
     showIndex:0,  //显示顺序
     titleIndex: 0, //单词是第几题 
     rotateList: [true, true, true, true, true, true, true, true, true], //true为正面，false为背面
     time:2000,
-    clockStart: false,
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,
     roundName:null,
     selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
-    firstClick:true
+    firstClick:true,
+    clockStart: false
   },
   onReady(){
-    this.setData({
-      englishWords: loadEnglishWords(),
-    })
-    this.roundInit();
+    loadEnglishWords((englishWords)=>{
+      this.setData({
+        englishWords
+      })
+      this.roundInit()
+    });
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -97,8 +101,8 @@ Page({
             })
             this.setData({
               hideLetters,
-              time:1000,
-              clockStart: true
+              oldHideLetters:hideLetters,
+              time:1000
             })
           }
           if(type === 4) {
@@ -116,8 +120,13 @@ Page({
         case 4: //显示背面
           this.setData({
             rotateList: changeArrAllValue(this.data.rotateList,false),
-            time:2000
+            time:2000,
           })
+          setTimeout(()=>{
+            this.setData({
+              clockStart: true
+            })
+          },1000)
           break;
       }
       clearInterval(timerCount);
@@ -165,7 +174,7 @@ Page({
           })
         },500)
         setTimeout(()=>{
-          if (this.data.round < 5) {
+          if (this.data.round < roundLimit) {
             this.roundInit()
           } else {
             console.log('结束')

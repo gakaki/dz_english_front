@@ -1,17 +1,38 @@
-.mid-box {
+/* .mid-box {
   align-self: flex-start;
   width: 690rpx;
   margin-top: 30rpx;
   position: relative;
   overflow: hidden;
+   /* background-color: #fff  
 }
 .bg-big {
   position: absolute;
   top: 80rpx;
   left: 0;
-  width: 100%;
-  height: 100%;
+   width: 100%;
+  height: 100%; 
 background-color: #fff;
+z-index: 0
+} */
+.self {
+  overflow: hidden
+}
+.mid-box {
+  align-self: flex-start;
+  width: 100%;
+  transform: translateY(-76rpx);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-big {
+  width: 690rpx;
+  margin-top: 40rpx;
+  background-color: #fff;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  z-index: 0;
 }
 
 .top-con {
@@ -21,16 +42,30 @@ background-color: #fff;
   background-size: cover;
   position: relative;
 }
-
-.head {
-  width: 151rpx;
-  height: 151rpx;
+.head-box {
+  width: 136rpx;
+  height: 136rpx;
+  box-sizing: content-box;
   border: 8rpx solid #fff;
   box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   position: absolute;
   top: 12rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden
 }
+.head {
+   position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 136rpx;
+  height: 136rpx;
+  border-radius: 50%;
+}
+
+
 
 .record-box {
   margin-top: 144rpx;
@@ -78,10 +113,21 @@ background-color: #fff;
 
 .jiyi-box, .pingyu-box {
   width: 100%;
+  z-index: 99;
+  /* position: absolute;
+  top: 400rpx;
+  left: 0; */
+}
+
+.jiyi-box {
+  margin-top: 20rpx;
+}
+
+.pingyu-box {
+  margin-top: 30rpx;
 }
 
 .jiyi {
-  margin-top: 20rpx;
   font-weight: bold;
   font-size: 40rpx;
   color: #b83156;
@@ -90,7 +136,6 @@ background-color: #fff;
 
 .pingyu {
   text-align: center;
-  margin-top: 34rpx;
   font-weight: bold;
   font-size: 36rpx;
   color: #526ec6;
@@ -98,7 +143,7 @@ background-color: #fff;
 
 .tj-box {
   width: 100%;
-  margin-top: 70rpx;
+  margin-top: 60rpx;
   position: relative;
 }
 
@@ -117,23 +162,37 @@ background-color: #fff;
   height: 69rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/self/dress.png') 0 0 no-repeat;
   background-size: cover;
+  z-index: 9
 }
 
 .tuijian {
   padding-top: 20rpx;
   box-sizing: border-box;
-  width: 594rpx;
-  height: 208rpx;
+  width: 578rpx;
+  height: 240rpx;
   border-radius: 30rpx;
   border: 8rpx solid #2890f1;
+  position: relative
 }
-
+.eng {
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  font-size: 28rpx;
+  color: #474747;
+  font-weight: bold;
+  text-align: center;
+  line-height: 35rpx;
+}
 .row {
   width: 100%;
   height: 35rpx;
+  box-sizing: border-box;
   border-bottom: 2rpx solid #dae2f5;
 }
-
+.noline {
+  border: none
+}
 .en, .cn {
   color: #474747;
   font-weight: bold;
@@ -168,16 +227,16 @@ background-color: #fff;
   line-height: 58rpx;
 }
 
- .item-mid {
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   transform: translate(-50%,-50%);
+.item-mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
   width: 3rpx;
   height: 44rpx;
   background-color: #9eb7ee;
-} 
+}
 
 .item-left {
   margin-left: 40rpx;
@@ -210,25 +269,30 @@ background-color: #fff;
   border-radius: 50%;
   background-color: #2890f1;
 }
+
 .share {
   width: 74rpx;
   height: 75rpx;
   position: absolute;
   left: 50%;
+  top: -4rpx;
   transform: translateX(-50%);
 }
+
 .bot-des {
-   width: 100%;
+  width: 100%;
   height: 100%;
 }
-.share-str,.gold {
+
+.share-str, .gold {
   z-index: 9;
   align-self: flex-end;
-   font-size: 22rpx;
+  font-size: 22rpx;
   color: #a0dfff;
   font-weight: bold;
-  margin-bottom: 24rpx;
+  margin-bottom: 22rpx;
 }
+
 .gold {
   width: 33rpx;
   height: 32rpx;
