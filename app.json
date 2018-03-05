@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/competition/competition",
     "pages/index/index",
     "pages/awaitPK/awaitPK",
+    "pages/competition/competition",
     
     "pages/self/self",
     "pages/rank/rank",
