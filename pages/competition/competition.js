@@ -4,6 +4,7 @@ import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue } from './fn.js'
 
+let roundLimit = 1;
 Page({
 
   /**
@@ -167,7 +168,7 @@ Page({
           })
         },500)
         setTimeout(()=>{
-          if (this.data.round < 5) {
+          if (this.data.round < roundLimit) {
             this.roundInit()
           } else {
             console.log('结束')
