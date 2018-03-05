@@ -91,14 +91,18 @@
   height: 114rpx;
   top: 174rpx;
   left: 48rpx;
+  animation: top 4s ease-in-out infinite;
 }
+
+
 
 .xingqiu-huang{
   position: absolute;
   width: 145rpx;
   height: 145rpx;
-  bottom: 175rpx;
+  top: 880rpx;
   right: 35rpx;
+  animation: bottom 4s ease-in-out infinite;
 }
 
 
@@ -182,5 +186,29 @@
   }
   100%{
     transform: translate(-50%,0) rotate(359deg);
+  }
+}
+
+@keyframes top{
+  0%{
+    top: 174rpx;
+  }
+  50%{
+    top: 144rpx;
+  }
+  100%{
+    top: 174rpx;
+  }
+}
+
+@keyframes bottom{
+  0%{
+    top: 880rpx;
+  }
+  50%{
+    top: 910rpx;
+  }
+  100%{
+    top: 880rpx;
   }
 }
