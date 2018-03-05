@@ -31,10 +31,12 @@ Page({
     firstClick:true
   },
   onReady(){
-    this.setData({
-      englishWords: loadEnglishWords(),
-    })
-    this.roundInit();
+    loadEnglishWords((englishWords)=>{
+      this.setData({
+        englishWords
+      })
+      this.roundInit()
+    });
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context

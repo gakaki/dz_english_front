@@ -4,39 +4,26 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
 
  //加载英文单词
-function loadEnglishWords() { 
+function loadEnglishWords(suc) { 
   wsSend('ranking')
   wsReceive('roomInfo',res=>{
     console.log(res)
+    let data = res.wordList;
+    let englishWords = [];
+    englishWords = data.map((v) => {
+      let obj = Word.Get(v.id);
+      let cloneObj = Object.assign({}, obj.cfg);
+      cloneObj.type = v.type;
+      cloneObj.english = cloneObj.english.trim();
+      cloneObj.yinbiao = _getPhoneticSymbol();
+      cloneObj.options = ['苹果', '橘子', '梨花', '花'];
+      return cloneObj
+    })
+    suc(englishWords)
   })
-  let ids = [{
-    type:1,
-    id:4
-  }, {
-    type: 1,
-    id: 2
-    }, {
-      type: 1,
-      id: 3
-  }, {
-    type: 1,
-    id: 4
-    }, {
-      type: 1,
-      id: 2
-    }, ]
-  let englishWords = [];
-  englishWords = ids.map((v) => {
-    let obj = Word.Get(v.id);
-    let cloneObj = Object.assign({},obj.cfg);
-    cloneObj.type = v.type;
-    cloneObj.english = cloneObj.english.trim();
-    cloneObj.yinbiao = _getPhoneticSymbol();
-    cloneObj.options = ['苹果','橘子','梨花','花'];
-    return cloneObj
-  })
-  return englishWords
 }
+
+  
 
 //设置九宫格键盘
 function keyboard( letterPos, english){  
