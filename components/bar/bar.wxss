@@ -1,8 +1,18 @@
 /* components/scoreBar/bar.wxss */
 .wrap {
-  width: 28rpx;
-  height: 648rpx; 
-  border: 6rpx solid rgba(255, 255, 255, 0.5);
+  width: 98rpx;
+  height: 100%;
+  text-align: center;
+}
+.score-content {
+  color: #007be3;
+  font: bold 40rpx/70rpx 'Microsoft YaHei';
+}
+.progress-wrap {
+  margin: 0 30rpx;
+  width: 24rpx;
+  height: 580rpx; 
+  border: 5rpx solid rgba(255, 255, 255, 0.5);
   padding: 2rpx;
   background: #5d88b2;
   overflow: hidden;
@@ -17,7 +27,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 28rpx;
+  width: 24rpx;
   border-radius: 50rpx;
   transition: 0.5s;
   background: linear-gradient(#dbff37, #93e700)

@@ -99,6 +99,7 @@
       </view>
       <view class="share btn" bindtap='shop'>
         <text class="font">去分享</text>
+        <button class="share-btn" open-type='share'></button>
       </view>
     </view>
   </view>

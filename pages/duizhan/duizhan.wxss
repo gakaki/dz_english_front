@@ -150,6 +150,46 @@
   animation: pk .5s ease-in .5s forwards; 
 }
 
+.dianliu{
+  width:47rpx;
+  height:66rpx;
+  position: absolute;
+  top: 433rpx;
+  left: 306rpx;
+}
+
+.dianliu2{
+  width:27rpx;
+  height:58rpx;
+  position: absolute;
+  top: 423rpx;
+  left: 384rpx;
+}
+
+.dianliu3{
+  width:30rpx;
+  height:55rpx;
+  position: absolute;
+  top: 718rpx;
+  left: 336rpx;
+}
+
+.dianliu4{
+  width:33rpx;
+  height:77rpx;
+  position: absolute;
+  top: 717rpx;
+  left: 382rpx;
+}
+
+.dianliu5{
+  width:32rpx;
+  height:41rpx;
+  position: absolute;
+  top: 700rpx;
+  left: 411rpx;
+}
+
 .hong{
   display: flex;
   justify-content: space-between;
@@ -246,6 +286,29 @@
   overflow: hidden;
 }
 
+.animate{
+  width: 200rpx;
+  height: 122rpx;
+  position: absolute;
+  z-index: 0;
+}
+
+.animate-left{
+  top: 92rpx;
+  left: 298rpx;
+  transform: scalex(-1);
+}
+
+.animate-right{
+  top: 871rpx;
+  right: 320rpx;
+}
+
+.shandian{
+  opacity: 0;
+  animation: opa .5s linear .5s infinite forwards;
+}
+
 /*以下部分为动画*/
 @keyframes left {
   0%{
@@ -273,6 +336,15 @@
   100%{
     opacity: 1;
     transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes opa{
+  0%{
+    opacity: 0.1;
+  }
+  100%{
+    opacity: 1;
   }
 }
 

@@ -6,17 +6,15 @@
 }
 .now-word {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: -13rpx 60rpx 0;
+  margin: 0 60rpx 0;
   border: 10rpx solid #19b1ff;
   border-radius: 40rpx;
   width: 610rpx;
-  height: 210rpx;
+  height: 230rpx;
   font: bold 32rpx/1 'Microsoft YaHei';
   color: #4b65b7;
   text-align: center;
-  box-shadow: 2rpx 2rpx 2rpx #007be3;
+  box-shadow: 0rpx 4rpx 4rpx #007be3;
   background: #fff;
 }
 .round-title {
@@ -73,9 +71,11 @@
 
 
 .multi-words {
+  flex: 1;
   display: flex;
-  height: 652rpx;
-  width: 542rpx;
+  margin-top: 70rpx;
+  height: 580rpx;
+  width: 494rpx;
   color: #4b65b7;
 }
 
@@ -85,7 +85,7 @@
   align-items: center;
   align-content: space-around;
   flex-wrap: wrap;
-  width: 100%;
+  width: 520rpx;
   height: 100%;
 }
 .selectLists {
@@ -96,8 +96,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 167rpx;
-  height: 167rpx;
+  width: 160rpx;
+  height: 160rpx;
   font: bold 72rpx 'Microsoft YaHei';
   border-radius: 20rpx;
   perspective: 1000rpx;
@@ -126,21 +126,6 @@
   transform:rotateY(180deg);
 }
 
-.true-icon {
-  position: absolute;
-  right: 8rpx;
-  bottom: 10rpx;
-  width: 60rpx;
-  height: 44rpx;
-}
-.err-icon {
-  position: absolute;
-  right: 10rpx;
-  bottom: 12rpx;
-  width: 44rpx;
-  height: 44rpx;
-}
-
 .back-img {
   width: 168rpx;
   height: 170rpx;
@@ -159,7 +144,14 @@
   background: #fff;
 }
 
-
+.true {
+  color: #fff;
+  background: #19b1ff;
+}
+.false {
+  color: #fff;
+  background: #ff4263;
+}
 .hide-word {
   border-bottom: 3rpx solid #4b65b7;
   color: rgba(255, 255, 255, 0);
