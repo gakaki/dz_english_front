@@ -8,7 +8,7 @@ const APPNAME = 'english';
 let sid, uid, app;
 let socketOpen = false;
 let socketMsgQueue = [];
-const socket = io(wss);
+// const socket = io(wss);
 
 function doFetch(action, data, suc, err) {
   data = data || {};
@@ -75,9 +75,9 @@ function userLogin(suc, err) {
 
 
 function wsReceive(action, suc) {
-  socket.on(action, (res)=>{
-    suc(res)
-  })
+  // socket.on(action, (res)=>{
+  //   suc(res)
+  // })
 }
 function wsSend(action, data) {
   data = data || {};
@@ -91,7 +91,7 @@ function wsSend(action, data) {
     data.uid = uid;
   }
   data.appName = APPNAME;
-  socket.emit(action, data)
+  // socket.emit(action, data)
 }
 
 
@@ -157,7 +157,7 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
-  wsInit();
+  // wsInit();
   wx.checkSession({
     success: () => {
       userLogin(suc, showErr);
