@@ -85,18 +85,19 @@
   height: 176rpx;
   border: 10rpx solid #fff;
   border-radius: 50%;
-  margin-top: -90rpx;
+  margin-top: -100rpx;
   background-color: #19b1ff;
-  box-shadow: 0 4rpx #ccc;
+  box-shadow: 0 4rpx rgba(0, 0, 0, 0.2);
 }
 
 .goods-icon image{
   width: 149rpx;
   height: 116rpx;
+  margin-left: 5rpx;
 }
 
 .main-text{
-  margin-top: 25rpx;
+  margin-top: 10rpx;
 }
 
 .main-text text{
