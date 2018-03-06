@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
-    "pages/index/index",
     "pages/awaitPK/awaitPK",
     "pages/self/self",
     "pages/rank/rank",
