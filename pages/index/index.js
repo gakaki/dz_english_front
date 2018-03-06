@@ -3,12 +3,14 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import {care} from '../../utils/util.js'
 Page({
   data: {
     time: 10,
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    personalInfo: {}
   },
   //事件处理函数
   toSelf() {
@@ -22,17 +24,17 @@ Page({
     })
   },
   toAwaitPk() {
-    
-    wsSend('ranking',{
-      rankType:1
+
+    wsSend('ranking', {
+      rankType: 1
     })
-    wsReceive('needGold',res=>{
+    wsReceive('needGold', res => {
       console.log(res)
     })
-    wsReceive('waiting',res=>{
+    wsReceive('waiting', res => {
       console.log(res)
       wx.navigateTo({
-        url: '../awaitPK/awaitPK?gold='+res.data.cost
+        url: '../awaitPK/awaitPK?gold=' + res.data.cost
       })
     })
   },
@@ -40,7 +42,7 @@ Page({
     wx.navigateTo({
       url: '../friendPK/friendPK'
     })
-    
+
   },
   toZsd() {
     wx.navigateTo({
@@ -53,13 +55,6 @@ Page({
     })
   },
   onLoad: function () {
-    doFetch('english.showpersonal', {}, (res) => {
-      console.log(res.data)
-      this.setData({
-        
-      })
-    })
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -88,6 +83,18 @@ Page({
     }
 
   },
+  onReady() {
+    // console.log(app.globalData.personalInfo)
+
+
+    // care(app.globalData, 'personalInfo', info =>{
+    //   this.setData({personalInfo: info})
+    // })
+
+// this.setData({
+//   personalInfo: app.globalData.personalInfo
+// })
+  },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -108,7 +115,7 @@ Page({
       }
     }
   },
-  onShow: function() {
+  onShow: function () {
     // wsReceive('cancelSuccess', res => {
     //   console.log(res)
     //   wsReceive('matchSuccess',res=>{

@@ -74,6 +74,9 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
           wsInit();
+          doFetch('english.showpersonal', {}, (res) => {
+            app.globalData.personalInfo = res.data;
+          })
         }
       }, err);
     },

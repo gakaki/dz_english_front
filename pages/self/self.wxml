@@ -3,10 +3,10 @@
     <view class="mid-box ">
 
       <view class="top-con flex">
-      <view class="head-box">
-      <image class="head" src='{{userInfo.avatarUrl}}'></image>
-      </view>
-          
+        <view class="head-box flex">
+          <image class="head" src='{{userInfo.avatarUrl}}'></image>
+        </view>
+
         <view class="record-box flex">
           <view class="left f-c-fs">
             <text class="num">{{info.userInfo.character.cumulativeDays}}</text>
@@ -29,14 +29,14 @@
       </view>
       <view class="tj-box flex">
         <view class="tuijian f-c-fs">
-        <view class="eng">Learn from the winter trees, the way they kiss and throw away their leaves, then hold their stricken faces in their hands and turn to ice</view>
+          <view class="eng">Learn from the winter trees, the way they kiss and throw away their leaves, then hold their stricken faces in their hands and turn to ice</view>
           <view class="row flex">
             <text class="en"></text>
           </view>
           <view class="row flex">
             <text class="en"></text>
           </view>
-           <view class="row flex">
+          <view class="row flex">
             <text class="en"></text>
           </view>
           <view class="row flex">

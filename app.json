@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/self/self",
+    
     "pages/rankDes/rankDes",
     "pages/shopping/shopping",
     "pages/friendPK/friendPK",
     "pages/word/word",
     "pages/result/result",
 
-    "pages/self/self",
+    
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
