@@ -1,0 +1,37 @@
+<view id="shop" class="flex">
+  <view class="wrap f-r-sb">
+    <view class="item" wx:for="{{goods}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
+      <view class="top flex">
+        <text class="font {{item.name.length==2 ? 'gold' : 'box'}}">{{item.name}}</text>
+        <image class="icon" src="{{item.img}}"></image>
+      </view>
+      <view class="bottom">
+        <text class="font">￥28</text>
+      </view>
+    </view>
+  </view>
+  <view class="goods" wx:if="{{show}}">
+    <view class="goods-info flex">
+      <view class="goods-icon flex">
+        <image src="{{goods[point].img}}"></image>
+      </view>
+      <view class="content">
+        <view class="main-text">
+          <text class="font">{{goods[point].name}}</text>
+        </view>
+        <view class="buy ziti">
+          <text class="font">请去商店购买描述描述秒睡面积搜客付了款莱克斯顿房间哦is好久</text>
+        </view>
+      </view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="cancel btn" bindtap='hide'>
+        <text class="font">取消</text>
+      </view>
+      <view class="confirm btn" bindtap='buy'>
+        <text class="font">￥28购买</text>
+      </view>
+    </view>
+  </view>
+  <view class="mask" bindtap='hide' wx:if="{{show}}"></view>
+</view>
