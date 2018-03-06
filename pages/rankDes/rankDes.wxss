@@ -1,0 +1,44 @@
+.con {
+  padding-top: 28rpx;
+}
+.item {
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  position: relative;
+  width: 690rpx;
+  height: 150rpx;
+  background-color: #fffef7;
+  box-shadow: 0 3rpx 0 #f3e2c0;
+  border-radius: 20rpx;
+  
+}
+.head-box {
+  width: 179rpx;
+  height: 137rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rankDes/frame-green.png') 0 0 no-repeat;
+  background-size: cover;
+  margin: 0 34rpx 0 20rpx;
+}
+.head {
+  width: 179rpx;
+  height: 137rpx;
+}
+.des {
+font-weight: bold;
+font-size: 40rpx;
+color: #b07145;
+}
+.icon {
+  width: 34rpx;
+  height: 40rpx;
+}
+.jl,.num {
+font-size: 40rpx;
+color: #b07145;
+}
+.jl {
+  margin-left: 66rpx;
+}
+.num {
+   margin-left: 4rpx;
+}

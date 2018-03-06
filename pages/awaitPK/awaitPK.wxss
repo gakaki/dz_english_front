@@ -154,10 +154,6 @@
   margin-top: 10rpx;
 }
 
-.jinbi{
-  margin-top: 12rpx;
-}
-
 .jinbi-tu{
   width: 29rpx;
   height: 28rpx;

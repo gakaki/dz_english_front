@@ -1,16 +1,19 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/shopping/shopping",
+    "pages/friendPK/friendPK",
+    "pages/word/word",
+    "pages/result/result",
+    "pages/self/self",
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
     "pages/awaitPK/awaitPK",
-    "pages/self/self",
+    "pages/rankDes/rankDes",
     "pages/rank/rank",
-    "pages/result/result",
-    "pages/duizhan/duizhan",
-    "pages/word/word",
-    "pages/friendPK/friendPK"
+    "pages/duizhan/duizhan"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

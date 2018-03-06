@@ -1,71 +1,81 @@
-<view class="con-bg flex">
-<view class="bg-big">
-<view class="mid-box ">
-      
-    <view class="top-con flex">
-      <image class="head" src=''></image>
+<view class="con-bg flex self">
+  <view class="bg-big">
+    <view class="mid-box ">
 
-      <view class="record-box flex">
-        <view class="left f-c-fs">
-          <text class="num">9999</text>
-          <text class="des">累计打卡天数</text>
-        </view>
-        <view class="sx-left"></view>
-        <view class="sx-rgt"></view>
-        <view class="right f-c-fs">
-          <text class="num">666</text>
-          <text class="des">本日斩获单词</text>
-        </view>
+      <view class="top-con flex">
+      <view class="head-box">
+      <image class="head" src='{{userInfo.avatarUrl}}'></image>
       </view>
+          
+        <view class="record-box flex">
+          <view class="left f-c-fs">
+            <text class="num">{{info.userInfo.character.cumulativeDays}}</text>
+            <text class="des">累计打卡天数</text>
+          </view>
+          <view class="sx-left"></view>
+          <view class="sx-rgt"></view>
+          <view class="right f-c-fs">
+            <text class="num">{{info.newWord.newWordCount}}</text>
+            <text class="des">本日斩获单词</text>
+          </view>
+        </view>
 
-    </view>
-    <view class="jiyi-box flex">
-      <text class="jiyi">记忆率77%，其中新词汇占30%</text>
-    </view>
-    <view class="pingyu-box flex">
-      <text class="pingyu">评语：从一粒沙子看世界</text>
-    </view>
-    <view class="tj-box flex">
-      <view class="tuijian f-c-fs">
-        <view class="row flex">
-          <text class="en"></text>
-        </view>
-        <view class="row flex">
-          <text class="en">to see a world in a grain of sand</text>
-        </view>
-        <view class="row flex">
-          <text class="cn">从一粒沙子看到一个世界</text>
-        </view>
-        <view class="row flex">
-          <text class="cn"></text>
+      </view>
+      <view class="jiyi-box flex">
+        <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{info.remember.rightCount}}%</text>
+      </view>
+      <view class="pingyu-box flex">
+        <text class="pingyu">评语：从一粒沙子看世界</text>
+      </view>
+      <view class="tj-box flex">
+        <view class="tuijian f-c-fs">
+        <view class="eng">Learn from the winter trees, the way they kiss and throw away their leaves, then hold their stricken faces in their hands and turn to ice</view>
+          <view class="row flex">
+            <text class="en"></text>
+          </view>
+          <view class="row flex">
+            <text class="en"></text>
+          </view>
+           <view class="row flex">
+            <text class="en"></text>
+          </view>
+          <view class="row flex">
+            <text class="cn"></text>
+          </view>
+          <view class="row flex">
+            <text class="cn"></text>
+          </view>
+          <view class="row flex noline">
+            <text class="cn"></text>
+          </view>
         </view>
       </view>
-    </view>
-    <view class="info f-c-sb">
-      <view class="info-top">
-        <text class="item-left">用户ID:1554552</text>
-        <text class="item-mid"></text>
-        <text class="item-rgt">段位：傲气白银</text>
-      </view>
-      <view class="info-mid">
-        <text class="item-left">胜率：60%</text>
-        <text class="item-mid"></text>
-        <text class="item-rgt">总场次：40</text>
-      </view>
-      <view class="info-bot">
-        <text class="item-left">经验：25/50</text>
-        <text class="item-mid"></text>
-        <text class="item-rgt">词汇量：30</text>
+      <view class="info f-c-sb">
+        <view class="info-top">
+          <text class="item-left">用户ID:{{info.userInfo.pid}}</text>
+          <text class="item-mid"></text>
+          <text class="item-rgt">段位：{{segment}}</text>
+        </view>
+        <view class="info-mid">
+          <text class="item-left">胜率：{{shenglv}}%</text>
+          <text class="item-mid"></text>
+          <text class="item-rgt">总场次：{{info.userInfo.character.total}}</text>
+        </view>
+        <view class="info-bot">
+          <text class="item-left">经验：{{info.userInfo.character.experience.exp}}/{{info.userInfo.character.experience.needExp}}</text>
+          <text class="item-mid"></text>
+          <text class="item-rgt">词汇量：{{info.newWord.totalWordCount}}</text>
+        </view>
       </view>
     </view>
   </view>
-</view>
-  
-<view class="fix-bot">
-<image class="share" src="https://gengxin.odao.com/update/h5/yingyu/self/share.png"></image>
-<view class="flex bot-des">
-<text class="share-str">分享到微信群，可获得140</text>
-<image class="gold" src="https://gengxin.odao.com/update/h5/yingyu/self/gold.png"></image>
-</view>
-</view>
+
+  <view class="fix-bot">
+    <image class="share" src="https://gengxin.odao.com/update/h5/yingyu/self/share.png"></image>
+    <button class='share-btn' open-type="share"></button>
+    <view class="flex bot-des">
+      <text class="share-str">分享到微信群，可获得140</text>
+      <image class="gold" src="https://gengxin.odao.com/update/h5/yingyu/self/gold.png"></image>
+    </view>
+  </view>
 </view>

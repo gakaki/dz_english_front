@@ -4,11 +4,12 @@
   background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
   background-size: cover;
   overflow: hidden;
+  align-items: flex-start;
 }
 
 .wrap{
   width: 710rpx;
-  margin-top: 40rpx; 
+  margin-top: 34rpx; 
   flex-wrap: wrap;
   align-content: flex-start;
 }
@@ -25,6 +26,7 @@
 .top{
   width: 100%;
   height: 180rpx;
+  align-items: flex-start;
 }
 
 .icon{
@@ -88,6 +90,7 @@
   margin-top: -90rpx;
   background-color: #19b1ff;
   box-shadow: 0 4rpx rgba(0, 0, 0, 0.2);
+  align-items: flex-start;
 }
 
 .cir-icon image{
@@ -292,6 +295,7 @@
   margin-top: -90rpx;
   background-color: #f35a4d;
   box-shadow: 0 4rpx #ccc;
+  align-items: flex-start;
 }
 
 .warn-icon image{

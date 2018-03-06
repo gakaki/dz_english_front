@@ -4,38 +4,40 @@
       <text class="tab-one {{tabAct?'tab-act':''}}" bindtap='clickTab'>好友排行</text>
       <text class="shuxian"></text>
       <text class="tab-two {{tabAct?'':'tab-act'}}" bindtap='clickTab'>世界排行</text>
-      <image class="des" src="https://gengxin.odao.com/update/h5/yingyu/rank/des.png"></image>
+      <image bindtap='toDes' class="des" src="https://gengxin.odao.com/update/h5/yingyu/rank/des.png"></image>
     </view>
     <view class="flex">
       <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
     </view>
 
   </view>
-  <scroll-view  wx:for="{{rankData}}"  scroll-y class=" rank-box">
-
-     <view class="item f-r-fs">
+  <scroll-view scroll-y class=" rank-box">
+      <view wx:for="{{rankData}}">
+<view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
-      <text class="one">{{index}}</text>
+      <text class="one">{{index+1}}</text>
 
       <view class="flex head-box">
-        <view class="head">
-        </view>
+        <image class="head" src="{{item.avatarUrl}}">
+        </image>
       </view>
       <view class="info f-c-sb">
         <view class='info-top f-r-fs'>
-          <text class='nn'>{{item.nickname}}</text>
+          <text class='nn'>{{item.nickName}}</text>
           <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
-          <text class="adress">{{item.location}}</text>
+          <text class="adress">{{item.location?item.location:''}}</text>
         </view>
         <view class='info-bot f-r-sb'>
-          <text class="ch">{{item.danGrading}}</text>
+          <text class="ch">{{item.rank}}</text>
           <view class="star-box f-r-fs">
             <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
-            <text class="star-num">{{item.starNum}}</text>
+            <text class="star-num">{{item.star}}</text>
           </view>
         </view>
       </view>
     </view> 
+</view>  
+
 
      <!-- <view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
@@ -210,6 +212,8 @@
     <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
-  <view class="bot-bg"></view>
+  <view class="bot-bg flex">
+    <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>上赛季排行榜</text>
+  </view>
 
 </view>

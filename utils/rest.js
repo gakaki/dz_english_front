@@ -5,18 +5,21 @@ const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
-let sid, uid, app;
+let sid, uid, app ,isAuth = false;
 let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
 
 function doFetch(action, data, suc, err) {
   data = data || {};
-  if (!sid) {
-    sid = wx.getStorageSync('_sid');
-  }
-  if (sid) {
-    data._sid = sid;
+  console.log(isAuth)
+  if (isAuth) {
+    if (!sid) {
+      sid = wx.getStorageSync('_sid');
+    }
+    if (sid) {
+      data._sid = sid;
+    }
   }
   if (!uid) {
     uid = wx.getStorageSync('uid');
@@ -43,7 +46,11 @@ function sdkAuth(code, suc) {
   }, res => {
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
+    isAuth = true;
     userLogin(suc, showErr);
+  },
+  res=>{
+    console.log('error',res)
   })
 }
 
@@ -94,7 +101,7 @@ function wsInit(){
   socket = io(url);
   socket.on('connect', () => {
     console.log('#connect');
-    wsSend('ranking')
+    //wsSend('ranking')
     wsReceive('roomInfo', res => {
       console.log(res)
     })
@@ -156,13 +163,16 @@ class LsnNode {
 
 //启动（会默认走一遍登录流程）
 const start = suc => {
+
   wx.checkSession({
     success: () => {
+      isAuth = true;
       userLogin(suc, showErr);
     },
     fail:res=>{
       wx.login({
         success: res => {
+          isAuth = false;
           sdkAuth(res.code, suc)
         }
       })
