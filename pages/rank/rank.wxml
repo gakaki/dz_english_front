@@ -11,8 +11,8 @@
     </view>
 
   </view>
-  <scroll-view    scroll-y class=" rank-box">
-<!-- <view wx:for="{{rankData}}">
+  <scroll-view scroll-y class=" rank-box">
+      <view wx:for="{{rankData}}">
 <view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">{{index+1}}</text>
@@ -25,7 +25,7 @@
         <view class='info-top f-r-fs'>
           <text class='nn'>{{item.nickName}}</text>
           <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
-          <text class="adress">背景</text>
+          <text class="adress">{{item.location?item.location:''}}</text>
         </view>
         <view class='info-bot f-r-sb'>
           <text class="ch">{{item.rank}}</text>
@@ -36,10 +36,10 @@
         </view>
       </view>
     </view> 
-</view> -->
-     
+</view>  
 
-      <view class="item f-r-fs">
+
+     <!-- <view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
@@ -206,14 +206,14 @@
         </view>
       </view>
 
-    </view>  
+    </view>  -->
   </scroll-view>
   <view class="flex">
     <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
   <view class="bot-bg flex">
-  <text class="pre-season">上赛季排行榜</text>
+    <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>上赛季排行榜</text>
   </view>
 
 </view>
