@@ -11,32 +11,48 @@
   height: 175rpx;
   font-size: 80rpx;
   font-style: italic;
-  letter-spacing: 3rpx;
+  letter-spacing: 2rpx;
+  font-weight: 900;
 }
 
 .shu-ying{
-  width: 273rpx;
+  width: 274rpx;
   height: 152rpx;
   position: absolute;
   top: 28rpx;
   left: 50%;
-  transform: translate(-50%,0);
+  margin-left: -137rpx;
+  perspective: 1000rpx;
+  transform-style: preserve-3d;
+  opacity: 0;
+  animation: shuying 0.1s ease-in 1s forwards; 
 }
 
 .fenshu-lan{
+  width: 220rpx;
+  height: 77rpx;
   position: absolute;
-  left: 20rpx;
   -webkit-text-stroke: 4rpx #007be3;
   text-shadow: 0 4px #6293c4;
-  top: 80rpx;
+  top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: left 0.4s ease-in forwards;
 }
 
 .fenshu-hong{
+  width: 220rpx;
+  height: 77rpx;
   position: absolute;
-  right: 16rpx;
+  right: 22rpx;
   -webkit-text-stroke: 4rpx #c10727;
   text-shadow: 0 4px #6293c4;
-  top: 80rpx;
+  top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: right 0.4s ease-in forwards;
 }
 
 .fen{
@@ -50,11 +66,16 @@
   align-items: flex-start;
 }
 
+.xinxi-lan{
+  animation: left 0.4s ease-in forwards;
+}
+
 .wanjia-lan{
   width: 337rpx;
   height: 143rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/result/mianbanlan.png') 0 0 no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .nicheng-lan{
@@ -114,6 +135,7 @@
   align-items: flex-end;
   justify-content: flex-start;
   flex-direction: column;
+  animation: right 0.4s ease-in forwards;
 }
 
 .wanjia-hong{
@@ -121,6 +143,7 @@
   height: 143rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/result/mianbanhong.png') 0 0 no-repeat;
   background-size: cover;
+  position:relative;
 }
 
 .touxiang-hong{
@@ -155,12 +178,12 @@
   font-size: 30rpx;
   border-top-left-radius: 40rpx;
   border-bottom-left-radius: 40rpx;
+  text-align: right;
 }
 
 .liandui-wenzi-hong{
   line-height: 60rpx;
-  right: 43rpx;
-  position: absolute;
+  margin-right: 43rpx;
 }
 
 .jinbi{
@@ -237,10 +260,10 @@
 .anniu-wenzi{
   font-family: 'Microsoft YaHei';
   color: #fff;
-  font-size: 55rpx;
+  font-size: 50rpx;
   letter-spacing: 5rpx;
   text-align: center;
-  line-height: 100rpx;
+  line-height: 115rpx;
 }
 
 .fenxiang-shuoming{
@@ -259,5 +282,38 @@
   width:33rpx;
   height: 31rpx; 
   margin-left: 4rpx;
+}
+
+/*以下是动画设置····  */
+
+@keyframes left {
+  0%{
+    margin-left: -337rpx;
+  }
+
+  100%{
+    margin-left: 0;
+  }
+}
+
+@keyframes right {
+  0%{
+    margin-right: -337rpx;
+  }
+
+  100%{
+    margin-right: 0;
+  }
+}
+
+@keyframes shuying {
+  0%{
+    opacity: 1;
+    transform: scale3d(1.5,1.5,1.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
 }
 
