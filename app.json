@@ -10,12 +10,10 @@
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
-    
     "pages/rankDes/rankDes",
     "pages/rank/rank",
-    
-    "pages/word/word"
-    
+    "pages/word/word",
+    "pages/shopping/shopping"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -2,7 +2,7 @@
 const app = getApp()
 import { doFetch, wsSend, wsReceive  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
-let bmap
+let bmap,time=null
 
 Page({
   data: {
@@ -12,7 +12,8 @@ Page({
     latitude: '',
     longitude: '',
     ak:"NKGOAVSGiLWsCxmegCdyOfxtRZ2kl8jL",
-    gold:0
+    gold:0,
+    matchSuc:false
   },
   onLoad: function (option) {
     this.setData({
@@ -69,12 +70,28 @@ Page({
         icon: 'none',
         duration: 2000
       })
-      setTimeout(function(){
+      time = setTimeout(function(){
         wx.navigateBack({
           delta: 1
         })
       },2500)
-      
     })
-  }
+    wsReceive('matchSuccess',res=>{
+      console.log(res)
+      this.data.matchSuc = true
+      wx.redirectTo({
+        url: '../duizhan/duizhan',
+      })
+    })
+  },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    //如果匹配未成功离开此页面则认为取消匹配
+    if(this.data.matchSuc){
+      wsSend('cancelmatch')
+    }
+    clearTimeout(time)
+  },
 })

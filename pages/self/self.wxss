@@ -15,13 +15,15 @@
 background-color: #fff;
 z-index: 0
 } */
+
 .self {
-  overflow: hidden
+  overflow: hidden;
 }
+
 .mid-box {
   align-self: flex-start;
   width: 100%;
-  transform: translateY(-76rpx);
+  transform: translateY(-66rpx);
   position: relative;
   overflow: hidden;
 }
@@ -42,30 +44,26 @@ z-index: 0
   background-size: cover;
   position: relative;
 }
+
 .head-box {
-  width: 136rpx;
-  height: 136rpx;
+  width: 153rpx;
+  height: 153rpx;
   box-sizing: content-box;
-  border: 8rpx solid #fff;
-  box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+   box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2); 
   border-radius: 50%;
   position: absolute;
   top: 12rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden
+    left: 50%;
+  transform: translateX(-50%);  
+  overflow: hidden;
 }
+
 .head {
-   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 136rpx;
-  height: 136rpx;
+  width: 137rpx;
+  height: 137rpx;
   border-radius: 50%;
 }
-
-
 
 .record-box {
   margin-top: 144rpx;
@@ -120,11 +118,11 @@ z-index: 0
 }
 
 .jiyi-box {
-  margin-top: 20rpx;
+  margin-top: 16rpx;
 }
 
 .pingyu-box {
-  margin-top: 30rpx;
+  margin-top: 20rpx;
 }
 
 .jiyi {
@@ -162,7 +160,7 @@ z-index: 0
   height: 69rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/self/dress.png') 0 0 no-repeat;
   background-size: cover;
-  z-index: 9
+  z-index: 9;
 }
 
 .tuijian {
@@ -172,8 +170,9 @@ z-index: 0
   height: 240rpx;
   border-radius: 30rpx;
   border: 8rpx solid #2890f1;
-  position: relative
+  position: relative;
 }
+
 .eng {
   position: absolute;
   top: 20rpx;
@@ -184,15 +183,18 @@ z-index: 0
   text-align: center;
   line-height: 35rpx;
 }
+
 .row {
   width: 100%;
   height: 35rpx;
   box-sizing: border-box;
   border-bottom: 2rpx solid #dae2f5;
 }
+
 .noline {
-  border: none
+  border: none;
 }
+
 .en, .cn {
   color: #474747;
   font-weight: bold;
@@ -207,7 +209,7 @@ z-index: 0
 }
 
 .info {
-  margin-top: 28rpx;
+  margin-top: 20rpx;
   width: 100%;
   font-weight: bold;
   font-size: 24rpx;
@@ -277,6 +279,18 @@ z-index: 0
   left: 50%;
   top: -4rpx;
   transform: translateX(-50%);
+  z-index: 1;
+}
+
+.share-btn {
+  position: absolute;
+  left: 50%;
+  top: -4rpx;
+  transform: translateX(-50%);
+  width: 74rpx;
+  height: 75rpx;
+  z-index: 2;
+  opacity: 0;
 }
 
 .bot-des {

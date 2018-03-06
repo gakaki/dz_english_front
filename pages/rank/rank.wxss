@@ -35,7 +35,8 @@
 }
 
 .tab-one {
-  height: 50rpx;
+  box-sizing: border-box;
+  height: 56rpx;
   text-align: center;
   /* border-bottom-left-radius: 36rpx;
   border-top-left-radius: 36rpx; */
@@ -51,7 +52,8 @@
 }
 
 .tab-two {
-  height: 50rpx;
+  box-sizing: border-box;
+  height: 56rpx;
   margin-left: 60rpx;
   text-align: center;
   /* border-bottom-right-radius: 36rpx;
@@ -110,9 +112,9 @@
   z-index: 20;
 }
 
-.item:last-child {
+ .item:last-child {
   margin-bottom: 0;
-}
+} 
 
 .lt {
   position: absolute;
@@ -126,7 +128,7 @@
   z-index: 11;
   position: absolute;
   left: 10rpx;
-  top: 10rpx;
+  top: 5rpx;
   font-weight: bold;
   font-size: 42rpx;
   color: #fff;

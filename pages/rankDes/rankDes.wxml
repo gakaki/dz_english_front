@@ -1,11 +1,12 @@
-<view class="con-bg con">
-  <view class="item f-r-fs">
-    <view class="head-box">
-      <image class="head" src=""></image>
+<scroll-view scroll-y class="con-bg con">
+
+    <view wx:for="{{stage}}" class="item f-r-fs">
+      <view class="head-box">
+        <image class="head" src=""></image>
+      </view>
+      <text class="des">{{item.stage}}</text>
+      <text class="jl">奖励:</text>
+      <image src="https://gengxin.odao.com/update/h5/yingyu/word/noun-small.png" class="icon"></image>
+      <text class="num">X{{item.award}}</text>
     </view>
-    <text class="des">聪慧黄金</text>
-    <text class="jl">奖励:</text>
-     <image src="https://gengxin.odao.com/update/h5/yingyu/word/noun-small.png" class="icon"></image> 
-    <text class="num">X77</text>
-  </view>
-</view>
+</scroll-view>

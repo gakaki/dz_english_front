@@ -1,5 +1,7 @@
 .con {
   padding-top: 28rpx;
+  width: 100vw;
+  height: 100vh;
 }
 .item {
   margin: 0 auto;
