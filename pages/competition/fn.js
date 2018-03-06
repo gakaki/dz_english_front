@@ -8,7 +8,7 @@ function loadEnglishWords(suc) {
   // wsSend('ranking')
   // wsReceive('roomInfo',res=>{
     // let data = res.wordList;
-  let data = [{ type: 4, id: 1 }, { type: 4, id: 2 }, { type: 4, id: 3 }]
+  let data = [{ type: 1, id: 1 }, { type: 2, id: 2 }, { type: 3, id: 3 },{ type: 4, id: 4 }]
     let englishWords = [];
     englishWords = data.map((v) => {
       let obj = Word.Get(v.id);

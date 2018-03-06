@@ -4,7 +4,7 @@ import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
 
-let roundLimit = 4;
+let roundLimit = 5;
 let timer = null;
 const totalCountTime = 10;
 const roundTotalScore = 200;
@@ -26,10 +26,10 @@ Page({
     showIndex:0,  //显示顺序
     titleIndex: 0, //单词是第几题 
     rotateList: [true, true, true, true, true, true, true, true, true], //true为正面，false为背面
-    time:2000,
+    time:2000,  
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
-    round:1,
+    round:1,  //第几回合，从1开始
     roundName:null,
     selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
     firstClick:true,
@@ -76,9 +76,7 @@ Page({
           letterPos = randomHideLetters(length, word.eliminateNum)
           word.eliminate = letterPos;
         }
-        this.setData({
-          hideLetters
-        })
+        
         this.playOne();
         break;
       case 2:
@@ -259,7 +257,7 @@ Page({
      
     }, this.data.time);
   },
-  showFront(v){
+  showFront(v){  //点击翻牌
     let bcCount = this.data.backClickCount;
     let bcLimit = this.data.word.eliminateNum;
     let letters = this.data.letters;
@@ -300,7 +298,7 @@ Page({
       }
     }
   },
-  selectAnswer(v) {
+  selectAnswer(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let selectAnswer = this.data.selectAnswer;
