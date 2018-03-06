@@ -32,7 +32,7 @@
 
   <view class="tab f-r-sb">
     <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank.png'></image>
-    <image class='shop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
+    <image class='shop' bindtap='toShop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
     <image class='zhishidian' bindtap='toZsd' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
     <image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/qidai.png'></image>
     <image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>

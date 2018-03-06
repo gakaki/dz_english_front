@@ -47,6 +47,11 @@ Page({
       url: '../word/word'
     })
   },
+  toShop() {
+    wx.navigateTo({
+      url: '../shopping/shopping'
+    })
+  },
   onLoad: function () {
     doFetch('english.showpersonal', {}, (res) => {
       console.log(res.data);
