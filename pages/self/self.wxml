@@ -72,6 +72,7 @@
 
   <view class="fix-bot">
     <image class="share" src="https://gengxin.odao.com/update/h5/yingyu/self/share.png"></image>
+    <button class='share-btn' open-type="share"></button>
     <view class="flex bot-des">
       <text class="share-str">分享到微信群，可获得140</text>
       <image class="gold" src="https://gengxin.odao.com/update/h5/yingyu/self/gold.png"></image>

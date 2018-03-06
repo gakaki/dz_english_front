@@ -277,6 +277,17 @@ z-index: 0
   left: 50%;
   top: -4rpx;
   transform: translateX(-50%);
+  z-index: 1;
+}
+.share-btn {
+  position: absolute;
+  left: 50%;
+  top: -4rpx;
+  transform: translateX(-50%);
+  width: 74rpx;
+  height: 75rpx;
+  z-index: 2;
+  opacity: 0;
 }
 
 .bot-des {
