@@ -21,7 +21,7 @@
   </view>
   <view class="pk">
     <view class="pk-lan">
-      <view class="point"></view>
+      <!-- <view class="point"></view> -->
       <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
     </view>
     <view class="pk-hong">

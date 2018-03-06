@@ -2,6 +2,8 @@
   "pages": [
     "pages/competition/competition",
     "pages/index/index",
+    "pages/duizhan/duizhan",
+    
     "pages/shopping/shopping",
     "pages/friendPK/friendPK",
     "pages/word/word",
@@ -11,9 +13,7 @@
     "components/progress/progress",
     "pages/awaitPK/awaitPK",
     "pages/rankDes/rankDes",
-    "pages/rank/rank",
-    "pages/duizhan/duizhan"
-    
+    "pages/rank/rank"
   ],
   "window": {
     "backgroundTextStyle": "light",

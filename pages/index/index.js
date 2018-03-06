@@ -28,6 +28,11 @@ Page({
     })
     wsReceive('needGold',res=>{
       console.log(res)
+      wx.showToast({
+        title: '金币不足',
+        icon:'none',
+        duration:2000
+      })
     })
     wsReceive('waiting',res=>{
       console.log(res)
