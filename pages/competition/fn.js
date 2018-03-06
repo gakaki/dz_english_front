@@ -1,4 +1,4 @@
-import { Word } from '../../sheets.js'
+import { Word,words } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -8,7 +8,7 @@ function loadEnglishWords(suc) {
   // wsSend('ranking')
   // wsReceive('roomInfo',res=>{
     // let data = res.wordList;
-    let data = [{type:1,id:1},{type:2,id:2}]
+  let data = [{ type: 4, id: 1 }, { type: 4, id: 2 }, { type: 4, id: 3 }]
     let englishWords = [];
     englishWords = data.map((v) => {
       let obj = Word.Get(v.id);
@@ -23,7 +23,23 @@ function loadEnglishWords(suc) {
   // })
 }
 
-  
+function quanpinKeyboard(letters) {
+  let length = 9;
+  let newArr = letters;
+  for (let i = 0; newArr.length < length; i++) {
+    let index = Math.floor(Math.random() * ALLLETTERS.length);
+    let noDistinct = newArr.every(v => {
+      return v !== ALLLETTERS[index]
+    })
+    if (noDistinct) {
+      newArr.push(ALLLETTERS[index])
+    }
+  }
+  newArr.sort((a, b) => {
+    return Math.random() - 0.5
+  })
+  return newArr
+}  
 
 //设置九宫格键盘
 function keyboard( letterPos, english){  
@@ -44,6 +60,7 @@ function keyboard( letterPos, english){
   });
   return nineLetters
 }
+
  //每回合的中文名字
 function getRoundName(v) { 
   let title = null;
@@ -100,24 +117,35 @@ function changeArrAllValue(arr,v) {
   return arr2;
 }
 
+//设置英文选项列表
+function englishSelector(word){
+  let arr = autoSelect(words, 4, word);
+  return arr
+}
 
-//获取对应音标
-function _getPhoneticSymbol(english) {
-  let ps = '[abc]';
-  wx.request({
-    url: 'http://fanyi.baidu.com/v2transapi',
-    data:{
-      query:'hello'
-    },
-    success:function(res){
-      console.log(res)
-    },
-    fail:function(res){
-      console.log(res)
+//随机选择几个英文单词 arr：待选词的数组，length想要的数组总长度，nowWord需要放入数组里面的东西
+function autoSelect(arr, length,nowWord) {
+  let newArr = [];
+  nowWord && newArr.push(nowWord);
+  for (let i = 0; newArr.length < length; i++) {
+    let index = Math.floor(Math.random() * arr.length);
+
+    let noDistinct = newArr.every((v,i)=>{
+      return v.id !== arr[index].id
+    })
+    if (noDistinct) {
+      newArr.push(arr[index].english)
     }
+  }
+  newArr.sort((a, b) => {
+    return Math.random() - 0.5
   })
-  return ps;
-} 
+  return newArr;
+}
+
+
+
+
 
 module.exports = {
   loadEnglishWords,
@@ -125,5 +153,7 @@ module.exports = {
   getRoundName,
   hideLettersArr,
   randomHideLetters,
-  changeArrAllValue
+  changeArrAllValue,
+  englishSelector,
+  quanpinKeyboard
 }

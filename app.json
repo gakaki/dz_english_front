@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/competition/competition",
     "pages/index/index",
     "pages/duizhan/duizhan",
     
@@ -8,7 +9,6 @@
     "pages/word/word",
     "pages/result/result",
     "pages/self/self",
-    "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
     "pages/awaitPK/awaitPK",

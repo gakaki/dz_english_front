@@ -93,7 +93,10 @@
   color: rgba(255, 255, 255, 0);
   border-bottom: 3rpx solid #4b65b7;
 }
-
+.multi-wrap {
+  display: flex;
+  width: 100%;
+}
 .multi-words {
   flex: 1;
   display: flex;

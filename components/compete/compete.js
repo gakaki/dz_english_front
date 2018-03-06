@@ -9,13 +9,13 @@ Component({
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
   properties: {
-    time:{
-      value:0,
-      type:Number
-    },
     clockStart:{
       value:false,
       type:Boolean
+    },
+    clockTime: {
+      type: Number,
+      value: null
     }
   },
 
