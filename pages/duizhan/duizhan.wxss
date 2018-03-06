@@ -111,7 +111,7 @@
   height:239rpx;
 }
 
-.point{
+/* .point{
   width: 8rpx;
   height: 8rpx;
   background-color: #fff;
@@ -121,7 +121,7 @@
   left: 0;
   animation: lpoint 1s linear infinite; 
   box-shadow: 0 0 2rpx #f00;
-}
+} */
 
 .pk-hong{
   width:405rpx;
@@ -348,7 +348,7 @@
   }
 }
 
-@keyframes lpoint{
+/* @keyframes lpoint{
   0%{
     left:0;
     top: 77rpx;
@@ -377,4 +377,4 @@
     left: 224rpx;
     top: 145rpx;
   } 
-}
+} */
