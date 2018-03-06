@@ -24,8 +24,21 @@ function loadEnglishWords(suc) {
 }
 
 function quanpinKeyboard(letters) {
-  let a = _autoSelect(ALLLETTERS, 9, letters);
-  console.log(a)
+  let length = 9;
+  let newArr = letters;
+  for (let i = 0; newArr.length < length; i++) {
+    let index = Math.floor(Math.random() * ALLLETTERS.length);
+    let noDistinct = newArr.every(v => {
+      return v !== ALLLETTERS[index]
+    })
+    if (noDistinct) {
+      newArr.push(ALLLETTERS[index])
+    }
+  }
+  newArr.sort((a, b) => {
+    return Math.random() - 0.5
+  })
+  return newArr
 }  
 
 //设置九宫格键盘
@@ -106,21 +119,14 @@ function changeArrAllValue(arr,v) {
 
 //设置英文选项列表
 function englishSelector(word){
-  let arr = _autoSelect(words, 4, word);
-  arr.sort((a, b) => {
-    return Math.random() - 0.5
-  })
+  let arr = autoSelect(words, 4, word);
   return arr
 }
 
-//随机选择几个英文单词
-function _autoSelect(arr, length,nowWord) {
+//随机选择几个英文单词 arr：待选词的数组，length想要的数组总长度，nowWord需要放入数组里面的东西
+function autoSelect(arr, length,nowWord) {
   let newArr = [];
-  if (Array.isArray(nowWord)) {
-    newArr = nowWord;
-  } else {
-    nowWord && newArr.push(nowWord);
-  }
+  nowWord && newArr.push(nowWord);
   for (let i = 0; newArr.length < length; i++) {
     let index = Math.floor(Math.random() * arr.length);
 
@@ -131,6 +137,9 @@ function _autoSelect(arr, length,nowWord) {
       newArr.push(arr[index].english)
     }
   }
+  newArr.sort((a, b) => {
+    return Math.random() - 0.5
+  })
   return newArr;
 }
 

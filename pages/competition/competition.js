@@ -8,6 +8,8 @@ let roundLimit = 4;
 let timer = null;
 const totalCountTime = 10;
 const roundTotalScore = 200;
+let end = false;  //当前动画显示是否完成
+
 Page({
   /**
    * 页面的初始数据
@@ -209,7 +211,9 @@ Page({
     }, this.data.time);
   },
   playFour() { //单词拼写
-    // quanpinKeyboard(this.data.letters); //渲染全拼九宫格键盘
+    this.setData({
+      nineLetters: quanpinKeyboard(this.data.letters)  //渲染全拼九宫格键盘
+    }); 
     var timerCount = 0;
     timerCount = setTimeout(() => {
       this.setData({
@@ -222,7 +226,8 @@ Page({
             time: 2000
           })
           setTimeout(() => {
-            this.audioCtx.play()
+            this.audioCtx.play();
+            // end = true;
           }, 1000)
           break;
         case 2:
@@ -235,16 +240,23 @@ Page({
             hideLetters,
             time: 1000
           })
+          // end = true;
           break;
         case 3:
           this.countClockTime()
-          
+          this.setData({
+            time: 10000
+          })
           break;
       }
       clearInterval(timerCount);
-      if (this.data.showIndex < 3) {
-        this.playFour();
-      }
+      
+      
+        if (this.data.showIndex < 4) {
+          console.log(5555555555555)
+          this.playFour();
+        }
+     
     }, this.data.time);
   },
   showFront(v){
@@ -345,7 +357,6 @@ Page({
   keyboard() {
     let letterPos = this.data.word.eliminate;
     let english = this.data.word.english;
-    console.log(letterPos,english)
     this.setData({
       nineLetters: keyboard(letterPos, english)
     })
