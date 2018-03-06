@@ -8,7 +8,7 @@
         <view class='content'>乐翻天</view>
       </view>
       <view class='countdown'> 
-         <clock clockStart='{{clockStart}}'></clock> 
+         <clock clockStart='{{clockStart}}' clockTime='{{clockTime}}'></clock> 
       </view>
       <view class='user user-r'>
         <image class="avatar avatar-r" src="{{userInfo.avatarUrl}}"></image>
@@ -24,8 +24,6 @@
     </view>
   </view>
   <view class='main-select'>
-    <bar class="bar" score='{{100}}'></bar>
     <slot name='select'></slot>
-    <bar class="bar" score='{{100}}'></bar>
   </view>
 </view>

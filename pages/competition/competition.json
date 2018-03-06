@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "wrap":"../../components/compete/compete"
+    "wrap":"../../components/compete/compete",
+    "bar": "../../components/bar/bar"
   },
   "navigationBarTitleText": "对战",
   "disableScroll": true

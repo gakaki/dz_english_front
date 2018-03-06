@@ -44,6 +44,7 @@ function sdkAuth(code, suc) {
     payload: { code},
     appName : APPNAME
   }, res => {
+    
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
     isAuth = true;

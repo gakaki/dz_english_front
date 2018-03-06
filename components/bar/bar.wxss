@@ -5,6 +5,8 @@
   text-align: center;
 }
 .score-content {
+  display: inline-block;
+  height: 70rpx;
   color: #007be3;
   font: bold 40rpx/70rpx 'Microsoft YaHei';
 }

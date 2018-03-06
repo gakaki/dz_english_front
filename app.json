@@ -2,22 +2,17 @@
   "pages": [
     "pages/index/index",
     "pages/self/self",
-    
     "pages/rankDes/rankDes",
+    "pages/duizhan/duizhan",
     "pages/shopping/shopping",
     "pages/friendPK/friendPK",
     "pages/word/word",
     "pages/result/result",
-
-    
     "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
     "pages/awaitPK/awaitPK",
-
-    "pages/rank/rank",
-    "pages/duizhan/duizhan"
-    
+    "pages/rank/rank"
   ],
   "window": {
     "backgroundTextStyle": "light",
