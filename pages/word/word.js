@@ -1,7 +1,6 @@
 // pages/word/word.js
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch } from '../../utils/rest.js';
 
 Page({
 

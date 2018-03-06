@@ -21,7 +21,7 @@ z-index: 0
 .mid-box {
   align-self: flex-start;
   width: 100%;
-  transform: translateY(-76rpx);
+  transform: translateY(-66rpx);
   position: relative;
   overflow: hidden;
 }
@@ -120,11 +120,11 @@ z-index: 0
 }
 
 .jiyi-box {
-  margin-top: 20rpx;
+  margin-top: 16rpx;
 }
 
 .pingyu-box {
-  margin-top: 30rpx;
+  margin-top: 20rpx;
 }
 
 .jiyi {
@@ -207,7 +207,7 @@ z-index: 0
 }
 
 .info {
-  margin-top: 28rpx;
+  margin-top: 20rpx;
   width: 100%;
   font-weight: bold;
   font-size: 24rpx;

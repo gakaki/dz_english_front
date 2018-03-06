@@ -112,9 +112,9 @@
   z-index: 20;
 }
 
-/* .item:last-child {
+ .item:last-child {
   margin-bottom: 0;
-} */
+} 
 
 .lt {
   position: absolute;
