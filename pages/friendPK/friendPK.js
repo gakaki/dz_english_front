@@ -123,9 +123,15 @@ Page({
   },
 
   start: function() {
-    wsSend('startgame')
-    wsReceive('matchSuccess',res=>{
+    console.log(111)
+    wsSend('startgame',{
+      rid: this.data.rid
+    })
+    wsReceive('joinSuccess',res=>{
       console.log(res)
+      wx.redirectTo({
+        url: '../duizhan/duizhan',
+      })
     })
   },
 

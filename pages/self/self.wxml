@@ -29,7 +29,8 @@
       </view>
       <view class="tj-box flex">
         <view class="tuijian f-c-fs">
-          <view class="eng">Learn from the winter trees, the way they kiss and throw away their leaves, then hold their stricken faces in their hands and turn to ice</view>
+          <view class="eng">{{sentenceEn}}</view>
+          <view class="cns">{{sentenceCn}}</view>
           <view class="row flex">
             <text class="en"></text>
           </view>
