@@ -1,0 +1,68 @@
+.goods{
+  width: 690rpx;
+  height: 516rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 325rpx;
+  transform: translate(-50%,0);
+  z-index: 30;
+  border-radius: 30rpx;
+}
+.goods-info{
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.goods-icon{
+  width: 160rpx;
+  height: 160rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -100rpx;
+  background-color: #e087ff;
+  box-shadow: 0 4rpx #ccc;
+}
+
+.goods-icon image{
+  width: 149rpx;
+  height: 116rpx;
+  margin-left: 5rpx;
+}
+
+.main-text{
+  margin-top: 10rpx;
+}
+
+.main-text text{
+  color: #19b1ff;
+  font-size: 46rpx;
+}
+
+.buy{
+  margin-top: 28rpx;
+}
+
+.ziti text{
+  color: #474747;
+  font-size: 32rpx;
+}
+
+.content{
+  text-align: center;
+  max-width: 520rpx;
+}
+
+
+.mask{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
