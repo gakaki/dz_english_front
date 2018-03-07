@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/duizhan/duizhan",
+    "pages/index/index",
+    
     "pages/friendPK/friendPK",
     "pages/result/result",
     
