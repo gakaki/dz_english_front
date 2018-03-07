@@ -120,7 +120,7 @@
 }
 
 .match-bg {
-  margin-top: 88rpx;
+  margin-top: 84rpx;
   width: 712rpx;
   height: 267rpx;
 }
@@ -128,18 +128,19 @@
 .duizhan-bg {
   width: 712rpx;
   height: 281rpx;
+  margin-top: 6rpx;
 }
 
 .tab {
   flex-wrap: wrap;
   padding: 0 20rpx;
-  margin-top: 39rpx;
+  margin-top: 30rpx;
 }
 
 .tab image {
   width: 220rpx;
-  height: 165rpx;
-  margin-bottom: 20rpx;
+  height: 167rpx;
+  margin-bottom: 30rpx;
 }
 
 .c-box {

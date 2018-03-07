@@ -57,6 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 手机气泡序列帧动画定时器
     let i = 0;
     time = setInterval(() => {
       i++
@@ -67,11 +68,11 @@ Page({
         index: i
       })
     }, 150)
-    timer = setTimeout(()=>{
-      wx.redirectTo({
-        url: '../competition/competition',
-      })
-    },3000)
+    // timer = setTimeout(()=>{
+    //   wx.redirectTo({
+    //     url: '../competition/competition',
+    //   })
+    // },3000)
   },
   /**
    * 生命周期函数--监听页面卸载

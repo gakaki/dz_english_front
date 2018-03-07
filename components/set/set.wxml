@@ -1,0 +1,16 @@
+<view>
+  <view class="goods">
+    <view class="goods-info">
+      <image class="close" src="https://gengxin.odao.com/update/h5/yingyu/set/close.png"></image>
+      <view class="goods-icon">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/set/set.png"></image>
+      </view>
+      <view class="content">
+        <view class="main-text">
+          <text class="font">设置</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="mask" bindtap='hide'></view>
+</view>

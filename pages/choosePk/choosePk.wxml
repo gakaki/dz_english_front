@@ -1,0 +1,57 @@
+<view class="con-bg">
+  <view class="top-bg">
+    <view class="flex">
+      <text class="season-time">(赛季时间：2018年3月1日--3月31日)</text>
+    </view>
+    <view class="user-info f-r-fs">
+      <view class="flex head-box">
+        <image class="head" src="{{item.avatarUrl}}">
+        </image>
+      </view>
+      <view class="top-mid f-c-sb">
+        <text class="nn">乐翻天</text>
+        <view class="gold-box f-r-fs">
+          <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
+          <text class="gold-count">200</text>
+        </view>
+      </view>
+      <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png"></image>
+    </view>
+    <view class="flex">
+      <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
+    </view>
+  </view>
+  <scroll-view scroll-y class=" segment-box">
+    <view wx:for="{{stage}}" class="segment-list f-r-fs">
+     <view class="lock flex" hidden='{{index<1}}'>
+          <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
+      </view>
+      <view class="pai-bg  flex">
+        <image class="pai" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-1.png"></image>
+      </view>
+      <view class="item-mid f-c-sb">
+        <text class="segment">{{item.stage}}</text>
+        <text class="mid-line"></text>
+        <text class="award">奖金:{{item.jia}}</text>
+      </view>
+      <view class="item-rgt f-c-sb">
+        <view class="item-rgt-top f-r-fs">
+          <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
+          <text class="gold-num">{{item.jian}}</text>
+        </view>
+        <view >
+        <image wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        </view>
+        
+      </view>
+    </view>
+    
+<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+<image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
+  </scroll-view>
+
+
+
+</view>
