@@ -38,6 +38,7 @@ Page({
     })
     wsReceive('waiting', res => {
       console.log(res)
+      
       wx.navigateTo({
         url: '../awaitPK/awaitPK?gold=' + res.data.cost
       })

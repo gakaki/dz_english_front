@@ -3,11 +3,10 @@
     "pages/duizhan/duizhan",
     "pages/friendPK/friendPK",
     "pages/result/result",
-    
     "pages/index/index",
+    "pages/competition/competition",
     "pages/self/self",
     "pages/awaitPK/awaitPK",
-    "pages/competition/competition",
     "components/clock/clock",
     "components/progress/progress",
     "pages/rankDes/rankDes",
