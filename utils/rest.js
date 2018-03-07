@@ -74,7 +74,7 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
 
-          // wsInit();
+          wsInit();
 
 
 

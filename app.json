@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/duizhan/duizhan",
     "pages/index/index",
+    "pages/duizhan/duizhan",
     "pages/choosePk/choosePk",
     "pages/rank/rank",
     
