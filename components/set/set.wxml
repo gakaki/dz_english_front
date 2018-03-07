@@ -1,7 +1,7 @@
 <view>
   <view class="goods">
     <view class="goods-info">
-      <image class="close" src="https://gengxin.odao.com/update/h5/yingyu/set/close.png"></image>
+      <image class="close" src="https://gengxin.odao.com/update/h5/yingyu/set/close.png" bindtap='_cancelEvent'></image>
       <view class="goods-icon">
         <image src="https://gengxin.odao.com/update/h5/yingyu/set/set.png"></image>
       </view>
@@ -12,21 +12,21 @@
         <view class="set">
           <view class="set-name">推送</view>
           <view class="switch-outer" bindtap='sendOpen'>
-            <view class="switch-inner">
-              <image class="btn {{send}}" src="https://gengxin.odao.com/update/h5/yingyu/set/btn.png"></image>
+            <view class="switch-inner {{sendInner}} {{sendColor}}">
+              <image class="btn {{send}} {{sendPoa}}" src="https://gengxin.odao.com/update/h5/yingyu/set/btn.png"></image>
             </view>
           </view>
         </view>
         <view class="set yinxiao">
           <view class="set-name">音效</view>
           <view class="switch-outer" bindtap='musicOpen'>
-            <view class="switch-inner">
-              <image class="btn {{music}}" src="https://gengxin.odao.com/update/h5/yingyu/set/btn.png"></image>
+            <view class="switch-inner {{musicInner}} {{musicColor}}">
+              <image class="btn {{music}} {{musicPoa}}" src="https://gengxin.odao.com/update/h5/yingyu/set/btn.png"></image>
             </view>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <view class="mask" bindtap='hide'></view>
+  <view class="mask" bindtap='_cancelEvent'></view>
 </view>

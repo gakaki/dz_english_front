@@ -13,6 +13,36 @@ Component({
   data: {
     send:'',
     music:'',
+    sendInner:'',
+    musicInner:'',
+    sendColor:'',
+    sendPoa:'',
+    musicColor:'',
+    musicPoa:''
+  },
+
+  attached: function() {
+    if (wx.getStorageSync('send')){
+      //关闭推送的情况
+      this.setData({
+        sendColor: 'bg-color',
+        sendPoa: 'btn-poa'
+      })
+    }
+    else{
+
+    }
+
+    if (wx.getStorageSync('music')){
+      //关闭音效的情况
+      this.setData({
+        musicColor: 'bg-color',
+        musicPoa: 'btn-poa'
+      })
+    }
+    else{
+
+    }
   },
 
   /**
@@ -22,13 +52,15 @@ Component({
     sendOpen() {
       if (wx.getStorageSync('send')){
         this.setData({
-          send: 'send-open'
+          send: 'send-open',
+          sendInner: 'send-hide'
         })
         wx.setStorageSync('send', false);
       }
       else{
         this.setData({
-          send: 'send-close'
+          send: 'send-close',
+          sendInner: 'send-show'
         })
         wx.setStorageSync('send', true);
       }
@@ -37,16 +69,23 @@ Component({
     musicOpen() {
       if (wx.getStorageSync('music')) {
         this.setData({
-          music: 'send-open'
+          music: 'send-open',
+          musicInner: 'send-hide'
         })
         wx.setStorageSync('music', false);
       }
       else {
         this.setData({
-          music: 'send-close'
+          music: 'send-close',
+          musicInner: 'send-show'
         })
         wx.setStorageSync('music', true);
       }
-    }
+    },
+
+    _cancelEvent() {
+      //触发取消回调
+      this.triggerEvent("cancelEvent")
+    },
   }
 })

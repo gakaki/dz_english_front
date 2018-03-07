@@ -10,7 +10,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    personalInfo: {}
+    personalInfo: {},
+    showSet:false
   },
   //事件处理函数
   toSelf() {
@@ -60,6 +61,19 @@ Page({
       url: '../shopping/shopping'
     })
   },
+  toSet() {
+    console.log(this.set)
+    this.setData({
+      showSet:true
+    })
+  },
+
+  //带下划线的为组件抛上来的方法
+  _cancelEvent() {
+    this.setData({
+      showSet: false
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -90,6 +104,8 @@ Page({
 
   },
   onReady() {
+    this.set = this.selectComponent("#set");
+    
     // console.log(app.globalData.personalInfo)
 
 
