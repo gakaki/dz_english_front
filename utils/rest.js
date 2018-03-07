@@ -12,7 +12,7 @@ let socket;
 
 function doFetch(action, data, suc, err) {
   data = data || {};
-  console.log(isAuth)
+  console.log(isAuth,action)
   if (isAuth) {
     if (!sid) {
       sid = wx.getStorageSync('_sid');
@@ -44,10 +44,8 @@ function sdkAuth(code, suc) {
     payload: { code},
     appName : APPNAME
   }, res => {
-    
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
-    isAuth = true;
     userLogin(suc, showErr);
   },
   res=>{
@@ -66,6 +64,7 @@ function userLogin(suc, err) {
       }
      
       doFetch('user.login', { info: info.userInfo }, res => {
+        isAuth = true;
         if (res.code != CODE_SUC) {
           err(res.code);
         }
@@ -74,12 +73,19 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
+
           // wsInit();
+
+
+
           doFetch('english.showpersonal', {}, (res) => {
+            console.log(res.data)
             app.globalData.personalInfo = res.data;
-          })
+          })  
+
         }
       }, err);
+      
     },
     fail() {
       app = getApp();

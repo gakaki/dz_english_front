@@ -42,5 +42,6 @@
     </view>
 
   </view>
+  <set></set>
   <!-- <pro time="{{time}}"></pro> -->
 </view>
