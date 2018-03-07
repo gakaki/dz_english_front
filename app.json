@@ -1,15 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
-
-    "pages/choosePk/choosePk",
-  
-    "pages/rank/rank",
-
     "pages/duizhan/duizhan",
+    "pages/index/index",
+    "pages/choosePk/choosePk",
+    "pages/rank/rank",
+    
     "pages/friendPK/friendPK",
     "pages/result/result",
-    
     "pages/competition/competition",
     "pages/self/self",
     "pages/awaitPK/awaitPK",
