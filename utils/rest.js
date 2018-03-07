@@ -78,7 +78,7 @@ function userLogin(suc, err) {
           //wsInit();
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-          })
+          })  
 
         }
       }, err);
