@@ -76,7 +76,9 @@ Page({
       showSet: false
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    console.log(options)
+    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -102,6 +104,14 @@ Page({
           })
         }
       })
+    }
+
+    if (options.friendPK) {
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../friendPK/friendPK?rid=' + options.rid,
+        })
+      }, 1000)
     }
 
   },
