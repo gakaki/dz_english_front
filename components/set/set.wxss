@@ -1,10 +1,10 @@
 .goods{
-  width: 690rpx;
-  height: 516rpx;
+  width: 544rpx;
+  height: 544rpx;
   background-color: #fff;
   position: absolute;
   left: 50%;
-  top: 325rpx;
+  top: 281rpx;
   transform: translate(-50%,0);
   z-index: 30;
   border-radius: 30rpx;
