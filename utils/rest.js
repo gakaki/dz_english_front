@@ -74,16 +74,12 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-
           // wsInit();
           app.globalData.logined = true
-
-
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
             //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
           })
-
         }
       }, err);
 
@@ -113,9 +109,9 @@ function wsInit() {
   socket.on('connect', () => {
     console.log('#connect');
     //wsSend('ranking')
-    wsReceive('roomInfo', res => {
-      console.log(res)
-    })
+    // wsReceive('roomInfo', res => {
+    //   console.log(res)
+    // })
     socket.on('disconnect', msg => {
       console.log('#disconnect', msg);
     });

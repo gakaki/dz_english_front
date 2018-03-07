@@ -40,7 +40,7 @@ Page({
           shenglv: tempSl,
           segment: sheet.Stage.Get(rank).stage
         })
-        console.log(sheet.Landingessay.Get(1).Chinese)
+        console.log(sheet.Landingessay.Get(idx + 1).Chinese)
 
     })
 

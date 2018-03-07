@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const sheet = require('../../sheets.js')
+const sheet = require('../../sheets.js');
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { care } from '../../utils/util.js'
 Page({
@@ -47,10 +47,14 @@ Page({
     })
   },
   toFriPk: function () {
-    wx.navigateTo({
-      url: '../friendPK/friendPK'
+    console.log('creatroom')
+    wsSend('createroom')
+    wsReceive('createSuccess', res => {
+      console.log(res)
+      wx.navigateTo({
+        url: '../friendPK/friendPK?rid='+res.data.rid
+      })
     })
-
   },
   toZsd() {
     wx.navigateTo({

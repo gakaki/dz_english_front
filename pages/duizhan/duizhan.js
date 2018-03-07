@@ -1,6 +1,7 @@
 
 //获取应用实例
 const app = getApp()
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 let time=null,timer=null
 
 Page({
@@ -17,7 +18,15 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    wsSend('startgame',{
+      rid:options.rid
+    })
+    wsReceive('matchSuccess', res => {
+      console.log(res,11111111)
+    })
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -68,11 +77,11 @@ Page({
         index: i
       })
     }, 150)
-    timer = setTimeout(()=>{
-      wx.redirectTo({
-        url: '../competition/competition',
-      })
-    },3000)
+    // timer = setTimeout(()=>{
+    //   wx.redirectTo({
+    //     url: '../competition/competition',
+    //   })
+    // },3000)
   },
   /**
    * 生命周期函数--监听页面卸载
