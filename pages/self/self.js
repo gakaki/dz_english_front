@@ -40,8 +40,6 @@ Page({
           shenglv: tempSl,
           segment: sheet.Stage.Get(rank).stage
         })
-        console.log(sheet.Landingessay.Get(idx + 1).Chinese)
-
     })
 
     if (app.globalData.userInfo) {

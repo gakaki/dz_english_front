@@ -19,7 +19,8 @@ Page({
   //事件处理函数
   toSelf() {
     wx.navigateTo({
-      url: '../self/self'
+       url: '../self/self'
+     // url: '../choosePk/choosePk'
     })
   },
   toRank: function () {
