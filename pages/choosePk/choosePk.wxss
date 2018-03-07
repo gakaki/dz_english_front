@@ -1,0 +1,218 @@
+.top-bg {
+  width: 750rpx;
+  height: 271rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/awaitPK/t-bg.png') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.season-time {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 3rpx;
+}
+
+.user-info {
+  margin-top: 20rpx;
+  height: 105rpx;
+  width: 100%;
+}
+
+.head-box {
+  background-color: #0068c8;
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+
+.head {
+  background-color: #335bb8;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3rpx solid #fff;
+}
+
+.top-mid {
+  margin-left: 20rpx;
+  height: 100%;
+  flex-grow: 2;
+}
+
+.nn {
+  align-self: flex-start;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.gold-box {
+  align-self: flex-start;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 112rpx;
+  height: 38rpx;
+  border-radius: 19rpx;
+  border: 1rpx solid #449ff3;
+}
+.gold-big {
+  width: 43rpx;
+  height: 41rpx;
+  margin-left: -10rpx
+}
+.gold-count {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 10rpx
+}
+.wenhao {
+  width: 44rpx;
+  height: 44rpx;
+  align-self: flex-end;
+  margin-right: 30rpx;
+}
+
+.hx {
+  width: 710rpx;
+  height: 20rpx;
+  margin-top: 20rpx;
+}
+
+.segment-box {
+  z-index: 10;
+  max-height: 980rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 184rpx;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.segment-list {
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  align-items: center;
+  position: relative;
+  width: 690rpx;
+  height: 153rpx;
+  box-sizing: border-box;
+  background-color: #fffef7;
+  box-shadow: 0 3rpx 0 #f3e2c0;
+  border-radius: 20rpx;
+  z-index: 20;
+  overflow: hidden
+}
+.lock {
+  position: absolute;
+  left: 0;
+  top:0;
+background-color: rgba(0,0,0,0.5);
+width: 690rpx;
+  height: 153rpx;
+  z-index: 3
+}
+
+.segment-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 169rpx;
+  height: 153rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/awaitPK/item-left-bg.png') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.pai-bg {
+  width: 120rpx;
+  height: 120rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-bg.png') 0 0 no-repeat;
+  background-size: cover;
+  z-index: 2;
+   margin-left: 30rpx;
+}
+.pai {
+  width: 63rpx;
+  height: 98rpx;
+}
+.lock-icon {
+  width: 144rpx;
+  height: 145rpx;
+}
+
+.item-mid {
+  height: 100%;
+  margin-left: 20rpx;
+}
+
+.segment {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  -webkit-text-stroke: 2rpx #b07145;
+}
+
+.mid-line {
+  /* margin-top: 14rpx; */
+  width: 220rpx;
+  height: 3rpx;
+  background-color: #ffc311;
+}
+
+.award {
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #b07145;
+  font-weight: bold;
+}
+.item-rgt {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  margin-right: 20rpx;
+}
+.item-rgt-top {
+  align-self: flex-end;
+  width: 112rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  background-color: #ffeeaf;
+  margin-top: 12rpx;
+}
+.gold-mid {
+   width: 37rpx;
+  height: 35rpx;
+  margin-left: 10rpx;
+}
+.gold-num {
+   font-size: 28rpx;
+  color: #b07145;
+  font-weight: bold;
+  margin-left: 5rpx
+}
+.item-rgt-bot {
+  align-self: flex-end;
+  width: 39rpx;
+  height: 39rpx;
+  margin-bottom: 20rpx;
+}
+.point,.wenhao-icon {
+  margin: 0 auto;
+   display: block;
+  margin-top: 20rpx;
+}
+.point {
+  width: 39rpx;
+  height: 41rpx;
+  display: block;
+}
+.wenhao-icon {
+  width: 82rpx;
+  height: 121rpx;
+}

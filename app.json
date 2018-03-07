@@ -1,6 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+
+    "pages/choosePk/choosePk",
+  
+    "pages/rank/rank",
+
     "pages/duizhan/duizhan",
     "pages/friendPK/friendPK",
     "pages/result/result",
@@ -10,10 +15,11 @@
     "pages/awaitPK/awaitPK",
     "components/clock/clock",
     "components/progress/progress",
+
     "pages/rankDes/rankDes",
-    "pages/rank/rank",
     "pages/word/word",
     "pages/shopping/shopping"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
