@@ -78,7 +78,7 @@ function userLogin(suc, err) {
           doFetch('english.showpersonal', {}, (res) => {
             console.log(res.data)
             app.globalData.personalInfo = res.data;
-          })
+          })  
 
         }
       }, err);
