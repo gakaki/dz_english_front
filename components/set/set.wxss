@@ -22,14 +22,19 @@
   height: 160rpx;
   border: 10rpx solid #fff;
   border-radius: 50%;
-  margin-top: -100rpx;
+  margin-top: -74rpx;
   background-color: #e087ff;
   box-shadow: 0 4rpx #ccc;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .goods-icon image{
-  width: 149rpx;
-  height: 116rpx;
+  width: 113rpx;
+  height: 111rpx;
   margin-left: 5rpx;
 }
 
@@ -38,22 +43,25 @@
 }
 
 .main-text text{
+  font-weight: bold;
+  letter-spacing: 17rpx;
+  padding-left: 17rpx;
   color: #19b1ff;
   font-size: 46rpx;
-}
-
-.buy{
-  margin-top: 28rpx;
-}
-
-.ziti text{
-  color: #474747;
-  font-size: 32rpx;
+  font-family: 'Microsoft YaHei';
 }
 
 .content{
   text-align: center;
   max-width: 520rpx;
+}
+
+.close{
+  width: 46rpx;
+  height: 46rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 

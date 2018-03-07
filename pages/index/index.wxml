@@ -42,6 +42,6 @@
     </view>
 
   </view>
-  <set></set>
+  <set wx:if="{{false}}"></set>
   <!-- <pro time="{{time}}"></pro> -->
 </view>
