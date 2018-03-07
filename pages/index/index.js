@@ -25,25 +25,27 @@ Page({
     })
   },
   toAwaitPk() {
+    setTimeout(()=>{
+      wsSend('ranking', {
+        rankType: 1
+      })
+      wsReceive('needGold', res => {
+        console.log(res)
+        wx.showToast({
+          title: '金币不足',
+          icon: 'none',
+          duration: 2000
+        })
+      })
+      wsReceive('waiting', res => {
+        console.log(res)
 
-    wsSend('ranking', {
-      rankType: 1
-    })
-    wsReceive('needGold', res => {
-      console.log(res)
-      wx.showToast({
-        title: '金币不足',
-        icon:'none',
-        duration:2000
+        wx.navigateTo({
+          url: '../awaitPK/awaitPK?gold=' + res.data.cost
+        })
       })
-    })
-    wsReceive('waiting', res => {
-      console.log(res)
-      
-      wx.navigateTo({
-        url: '../awaitPK/awaitPK?gold=' + res.data.cost
-      })
-    })
+    },1000)
+    
   },
   toFriPk: function () {
     wx.navigateTo({
