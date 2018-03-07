@@ -17,7 +17,7 @@
 .head-box {
   width: 179rpx;
   height: 137rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/rankDes/frame-green.png') 0 0 no-repeat;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rankDes/frame-1.png') 0 0 no-repeat;
   background-size: cover;
   margin: 0 34rpx 0 20rpx;
 }

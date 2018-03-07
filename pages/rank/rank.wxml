@@ -4,7 +4,7 @@
       <text class="tab-one {{tabAct?'tab-act':''}}" bindtap='clickTab'>好友排行</text>
       <text class="shuxian"></text>
       <text class="tab-two {{tabAct?'':'tab-act'}}" bindtap='clickTab'>世界排行</text>
-      <image bindtap='toDes' class="des" src="https://gengxin.odao.com/update/h5/yingyu/rank/des.png"></image>
+      <image bindtap='toDes' class="des" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png"></image>
     </view>
     <view class="flex">
       <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
