@@ -2,6 +2,6 @@
   "disableScroll": true,
   "usingComponents": {
     "pro": "../../components/progress/progress",
-    "set": "../../components/set/set"
+    "set": "/components/set/set"
   }
 }

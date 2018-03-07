@@ -12,7 +12,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     lvl: 0,
     exp: 0,
-    needExp: 0
+    needExp: 0,
+    showSet: false
 
   },
   //事件处理函数
@@ -27,7 +28,6 @@ Page({
     })
   },
   toAwaitPk() {
-
     wsSend('ranking', {
       rankType: 1
     })
@@ -41,7 +41,6 @@ Page({
     })
     wsReceive('waiting', res => {
       console.log(res)
-
       wx.navigateTo({
         url: '../awaitPK/awaitPK?gold=' + res.data.cost
       })
@@ -61,6 +60,19 @@ Page({
   toShop() {
     wx.navigateTo({
       url: '../shopping/shopping'
+    })
+  },
+  toSet() {
+    console.log(this.set)
+    this.setData({
+      showSet: true
+    })
+  },
+
+  //带下划线的为组件抛上来的方法
+  _cancelEvent() {
+    this.setData({
+      showSet: false
     })
   },
   onLoad: function () {
@@ -149,7 +161,7 @@ Page({
     }
   },
   onShow: function () {
-    if(app.globalData.logined) {
+    if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
         console.log(777)

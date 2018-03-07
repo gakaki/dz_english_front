@@ -89,7 +89,7 @@ Page({
    */
   onUnload: function () {
     //如果匹配未成功离开此页面则认为取消匹配
-    if(this.data.matchSuc){
+    if(!this.data.matchSuc){
       wsSend('cancelmatch')
     }
     clearTimeout(time)

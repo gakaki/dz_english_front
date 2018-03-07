@@ -145,14 +145,19 @@
 
 .c-box {
   position: relative;
+  width: 220rpx;
+  height: 167rpx;
+  margin-bottom: 30rpx;
 }
-
+.customer {
+  margin-bottom: 0
+}
 .contact {
   position: absolute;
   left: 0;
   top: 0;
   z-index: 2;
   width: 220rpx;
-  height: 165rpx;
+  height: 167rpx;
   opacity: 0;
 }
