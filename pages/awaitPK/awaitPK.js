@@ -64,7 +64,7 @@ Page({
   },
   onReady: function() {
     wsReceive('matchFailed',res=>{
-      console.log(res)
+      console.log(res,'fail')
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
@@ -76,11 +76,11 @@ Page({
         })
       },2500)
     })
-    wsReceive('matchSuccess',res=>{
-      console.log(res)
+    wsReceive('joinSuccess',res=>{
+      console.log(res,'suc')
       this.data.matchSuc = true
       wx.redirectTo({
-        url: '../duizhan/duizhan',
+        url: '../duizhan/duizhan?rid='+res.data.rid,
       })
     })
   },

@@ -162,7 +162,9 @@ Page({
   },
 
   shop: function() {
-
+    wx.redirectTo({
+      url: '../shopping/shopping',
+    })
   },
 
   hideMask: function() {

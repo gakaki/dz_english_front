@@ -44,10 +44,14 @@ Page({
     })
   },
   toFriPk: function () {
-    wx.navigateTo({
-      url: '../friendPK/friendPK'
+    console.log('creatroom')
+    wsSend('createroom')
+    wsReceive('createSuccess', res => {
+      console.log(res)
+      wx.navigateTo({
+        url: '../friendPK/friendPK?rid='+res.data.rid
+      })
     })
-
   },
   toZsd() {
     wx.navigateTo({
