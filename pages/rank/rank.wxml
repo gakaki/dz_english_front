@@ -12,8 +12,7 @@
 
   </view>
   <scroll-view scroll-y class=" rank-box">
-      <view wx:for="{{rankData}}">
-<view class="item f-r-fs">
+    <view wx:for="{{rankData}}" class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">{{index+1}}</text>
 
@@ -35,11 +34,11 @@
           </view>
         </view>
       </view>
-    </view> 
-</view>  
+    </view>
 
 
-     <!-- <view class="item f-r-fs">
+
+    <!-- <view class="item f-r-fs">
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">1</text>
 
