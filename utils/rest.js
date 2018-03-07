@@ -1,18 +1,19 @@
 const io = require('./index.js');
+const care = require('./util.js');
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
 const CODE_SUC = 0;
 const APPNAME = 'english';
-let sid, uid, app ,isAuth = false;
+let sid, uid, app, isAuth = false;
 let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
 
 function doFetch(action, data, suc, err) {
   data = data || {};
-  console.log(isAuth,action)
+  console.log(isAuth, action)
   if (isAuth) {
     if (!sid) {
       sid = wx.getStorageSync('_sid');
@@ -41,16 +42,16 @@ function doFetch(action, data, suc, err) {
 
 function sdkAuth(code, suc) {
   doFetch("weChat.auth", {
-    payload: { code},
-    appName : APPNAME
+    payload: { code },
+    appName: APPNAME
   }, res => {
     uid = res.data.uid;
     wx.setStorageSync('uid', uid);
     userLogin(suc, showErr);
   },
-  res=>{
-    console.log('error',res)
-  })
+    res => {
+      console.log('error', res)
+    })
 }
 
 function userLogin(suc, err) {
@@ -62,7 +63,7 @@ function userLogin(suc, err) {
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
       }
-     
+
       doFetch('user.login', { info: info.userInfo }, res => {
         isAuth = true;
         if (res.code != CODE_SUC) {
@@ -75,17 +76,17 @@ function userLogin(suc, err) {
           suc(res)
 
           // wsInit();
-
+          app.globalData.logined = true
 
 
           doFetch('english.showpersonal', {}, (res) => {
-            console.log(res.data)
             app.globalData.personalInfo = res.data;
-          })  
+            //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
+          })
 
         }
       }, err);
-      
+
     },
     fail() {
       app = getApp();
@@ -96,7 +97,7 @@ function userLogin(suc, err) {
 
 
 function wsReceive(action, suc) {
-  socket.on(action, res=>{
+  socket.on(action, res => {
     suc(res)
   })
 }
@@ -105,8 +106,8 @@ function wsSend(action, data) {
 }
 
 
-function wsInit(){
-  console.log(sid,'sid')
+function wsInit() {
+  console.log(sid, 'sid')
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME;
   socket = io(url);
   socket.on('connect', () => {
@@ -131,7 +132,7 @@ function wsInit(){
 }
 
 function getUid() {
-  if(uid) {
+  if (uid) {
     return uid
   } else {
     return wx.getStorageSync('uid');
@@ -144,10 +145,10 @@ function fixedNum(num) {
   let str = Math.floor(num * 100) / 100;
   let v = str.toString().split(".");
   if (v[1] == undefined) {
-    str = v[0]+'.00'
+    str = v[0] + '.00'
   }
-  else if(v[1].length == 1){
-    str = str+'0'
+  else if (v[1].length == 1) {
+    str = str + '0'
   }
   return str
 }
@@ -179,7 +180,7 @@ const start = suc => {
       isAuth = true;
       userLogin(suc, showErr);
     },
-    fail:res=>{
+    fail: res => {
       wx.login({
         success: res => {
           isAuth = false;

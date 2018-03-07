@@ -3,14 +3,17 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import {care} from '../../utils/util.js'
+import { care } from '../../utils/util.js'
 Page({
   data: {
     time: 10,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    personalInfo: {}
+    lvl: 0,
+    exp: 0,
+    needExp: 0
+
   },
   //事件处理函数
   toSelf() {
@@ -32,13 +35,13 @@ Page({
       console.log(res)
       wx.showToast({
         title: '金币不足',
-        icon:'none',
-        duration:2000
+        icon: 'none',
+        duration: 2000
       })
     })
     wsReceive('waiting', res => {
       console.log(res)
-      
+
       wx.navigateTo({
         url: '../awaitPK/awaitPK?gold=' + res.data.cost
       })
@@ -61,6 +64,42 @@ Page({
     })
   },
   onLoad: function () {
+    care(app.globalData, 'personalInfo', v => {
+      console.log(v)
+      this.setData({
+        lvl: v.userInfo.character.level,
+        exp: v.userInfo.character.experience.exp,
+        needExp: v.userInfo.character.experience.needExp
+      })
+    })
+
+    // let aa = {bb:'bb'};
+
+    // Object.defineProperty(aa, 'cc', {
+    //   get:()=> {
+    //     return 5;
+    //   },
+    //   set:(v) => {
+    //     console.log('call old set of cc')
+    //     this.value =v;
+    //   },
+    //   configurable:true
+    // })
+
+    // care(aa, 'bb', v=> {
+    //   console.log('bb changed,now is ',v)
+    // });
+
+    // care(aa, 'cc', v => {
+    //   console.log('cc changed now is', v)
+    // })
+
+    // setTimeout(()=> {
+    //   // aa.bb = 'ccccc'
+    //   aa.cc = '222222'
+    // }, 1000)
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -89,18 +128,6 @@ Page({
     }
 
   },
-  onReady() {
-    // console.log(app.globalData.personalInfo)
-
-
-    // care(app.globalData, 'personalInfo', info =>{
-    //   this.setData({personalInfo: info})
-    // })
-
-// this.setData({
-//   personalInfo: app.globalData.personalInfo
-// })
-  },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -122,6 +149,12 @@ Page({
     }
   },
   onShow: function () {
+    if(app.globalData.logined) {
+      doFetch('english.showpersonal', {}, (res) => {
+        app.globalData.personalInfo = res.data;
+        console.log(777)
+      })
+    }
     // wsReceive('cancelSuccess', res => {
     //   console.log(res)
     //   wsReceive('matchSuccess',res=>{
