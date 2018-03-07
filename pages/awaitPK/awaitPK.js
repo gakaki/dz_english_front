@@ -80,7 +80,7 @@ Page({
       console.log(res,'suc')
       this.data.matchSuc = true
       wx.redirectTo({
-        url: '../duizhan/duizhan?rid='+res.data.rid,
+        url: '../duizhan/duizhan',
       })
     })
   },
