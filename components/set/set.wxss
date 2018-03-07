@@ -93,7 +93,7 @@
 .switch-inner{
   width: 124rpx;
   height: 52rpx;
-  background-color: #8cd8ff;
+  background-color: #19b1ff;
   border-radius: 30rpx;
   position: absolute;
   left: 50%;
@@ -127,12 +127,28 @@
   animation: close 1s linear forwards;
 }
 
+.send-show{
+  animation: show 1s linear forwards;
+}
+
+.send-hide{
+  animation: hide 1s linear forwards;
+}
+
 .music-open{
   animation: open 1s linear forwards;
 }
 
 .music-close{
   animation: close 1s linear forwards;
+}
+
+.bg-color{
+  background-color: #8cd8ff;
+}
+
+.btn-poa{
+  left: -1rpx;
 }
 
 @keyframes open{
@@ -150,5 +166,23 @@
   }
   100%{
     left: -1rpx;
+  }
+}
+
+@keyframes show{
+  0%{
+    background-color: #19b1ff;
+  }
+  100%{
+    background-color: #8cd8ff;
+  }
+}
+
+@keyframes hide{
+  0%{
+    background-color: #8cd8ff;
+  }
+  100%{
+    background-color: #19b1ff;
   }
 }
