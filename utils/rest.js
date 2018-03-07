@@ -77,6 +77,7 @@ function userLogin(suc, err) {
           wsInit();
         }
       }, err);
+      
     },
     fail() {
       app = getApp();

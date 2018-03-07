@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/competition/competition",
     "pages/index/index",
+    "pages/competition/competition",
+    
     "pages/duizhan/duizhan",
     
     "pages/shopping/shopping",
