@@ -74,7 +74,10 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
 
-          //wsInit();
+          // wsInit();
+
+
+
           doFetch('english.showpersonal', {}, (res) => {
             console.log(res.data)
             app.globalData.personalInfo = res.data;
