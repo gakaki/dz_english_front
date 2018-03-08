@@ -1,0 +1,203 @@
+.con {
+  position: relative;
+}
+
+.sv {
+  width: 690rpx;
+  height: 932rpx;
+  background-color: #fff;
+  box-shadow: 0 3rpx 0 0 #a7d4ee;
+  border-radius: 30rpx;
+  margin-top: 38rpx;
+}
+
+.bp-box {
+  width: 690rpx;
+  height: 932rpx;
+  padding: 26rpx 0 0 0;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.item {
+  align-self: flex-start;
+  width: 230rpx;
+  margin-bottom: 50rpx;
+}
+
+.desc {
+  width: 154rpx;
+  height: 48rpx;
+  background-color: #526ec6;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 48rpx;
+  border-radius: 30rpx;
+}
+
+.icon {
+  width: 151rpx;
+  height: 151rpx;
+  margin: 10rpx 0 16rpx 0;
+}
+
+.x, .count {
+  color: #526ec6;
+  font-size: 60rpx;
+  font-weight: bold;
+  height: 40rpx;
+  line-height: 34rpx;
+}
+
+.count {
+  line-height: 40rpx;
+  font-size: 40rpx;
+  margin-left: -4rpx;
+}
+
+.goods {
+  width: 690rpx;
+  height: 516rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 325rpx;
+  transform: translate(-50%, 0);
+  z-index: 30;
+  border-radius: 30rpx;
+}
+
+.goods-info {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.goods-icon {
+  width: 176rpx;
+  height: 176rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-top: -100rpx;
+  background-color: #19b1ff;
+  box-shadow: 0 4rpx rgba(0, 0, 0, 0.2);
+}
+
+.goods-icon image {
+  width: 149rpx;
+  height: 116rpx;
+  margin-left: 5rpx;
+}
+
+.main-text {
+  margin-top: 10rpx;
+}
+
+.main-text text {
+  color: #19b1ff;
+  font-size: 46rpx;
+}
+
+.buy {
+  margin-top: 28rpx;
+}
+
+.ziti text {
+  color: #474747;
+  font-size: 32rpx;
+}
+
+.content {
+  text-align: center;
+  max-width: 520rpx;
+}
+
+.button {
+  width: 692rpx;
+  height: 159rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban2.png') 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  align-items: flex-start;
+}
+
+.btn {
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/btn-green-big.png') 0 0 no-repeat;
+  width: 362rpx;
+  height: 104rpx;
+  background-size: cover;
+  text-align: center;
+  margin-top: 28rpx;
+}
+
+.cancel text {
+  letter-spacing: 17rpx;
+  padding-left: 17rpx;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.use {
+  height: 104rpx;
+  line-height: 104rpx;
+  font-size: 46rpx;
+  letter-spacing: 20rpx;
+  font-weight: normal;
+}
+
+
+
+.award-pop {
+   box-shadow: 0 3rpx 0 0 #a7d4ee;
+  border-radius: 30rpx;
+  margin-top: 38rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -56%);
+  z-index: 30;
+  background-color: #fff;
+  width: 690rpx;
+  height: 779rpx;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.pop-sv {
+  width: 690rpx;
+  height: 560rpx;
+  position: absolute;
+  left: 0;
+  top: 50rpx;
+}
+.award-pop::before {
+  position: absolute;
+  left: 50%;
+  top: -70rpx;
+  color: #fff;
+  font-size: 54rpx;
+  text-shadow: 3rpx 3rpx 0 #d86100;
+  transform: translateX(-50%);
+  content: '恭喜获得';
+  font-weight: bold;
+  text-align: center;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dress.png') 0 0 no-repeat;
+  width: 426rpx;
+  height: 117rpx;
+  background-size: cover;
+}
+.pop-box {
+  padding: 26rpx 0 0 0;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}

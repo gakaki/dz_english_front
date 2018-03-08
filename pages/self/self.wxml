@@ -25,7 +25,7 @@
         <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{info.remember.rightCount}}%</text>
       </view>
       <view class="pingyu-box flex">
-        <text class="pingyu">评语：从一粒沙子看世界</text>
+        <text class="pingyu">评语：{{comment}}</text>
       </view>
       <view class="tj-box flex">
         <view class="tuijian f-c-fs">

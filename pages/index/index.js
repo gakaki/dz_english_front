@@ -19,13 +19,18 @@ Page({
   //事件处理函数
   toSelf() {
     wx.navigateTo({
-       //url: '../self/self'
-      url: '../choosePk/choosePk'
+       url: '../self/self'
+      //url: '../choosePk/choosePk'
     })
   },
   toRank: function () {
     wx.navigateTo({
       url: '../rank/rank'
+    })
+  },
+  toBackpack() {
+    wx.navigateTo({
+      url: '../backpack/backpack'
     })
   },
   toAwaitPk() {

@@ -22,8 +22,8 @@ Page({
       stage = sheet.stages.map(o => {
         let obj = {}
         obj['stage'] = new sheet.Stage(o).stage
-        obj['jia'] = new sheet.Stage(o).goldcoins1
-        obj['jian'] = new sheet.Stage(o).goldcoins2
+        obj['jia'] = new sheet.Stage(o).goldcoins2
+        obj['jian'] = new sheet.Stage(o).goldcoins1
         obj['star'] = new sheet.Stage(o).star
         return obj
       })
