@@ -1,7 +1,7 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-let time = null,timer = null
+import { doFetch, wsSend, wsReceive , getUid } from '../../utils/rest.js';
+let time = null
 
 Page({
 
@@ -16,7 +16,9 @@ Page({
     index: 0,
     bystander:0,
     list:[],
-    rid:''
+    rid:'',
+    isOwner:false,
+    startGame:false
   },
 
   /**
@@ -26,7 +28,7 @@ Page({
     console.log('creatroom')
     wsSend('createroom')
     wsReceive('createSuccess', res => {
-      console.log(res)
+      console.log(res,'creatSuc')
       this.data.rid = res.data.rid
       wsSend('getroominfo', {
         rid: this.data.rid
@@ -36,6 +38,11 @@ Page({
         if (res.data.roomStatus == 2) {
           wx.redirectTo({
             url: '../competition/competition',
+          })
+        }
+        if(res.data.userList[0].info.uid == getUid()){
+          this.setData({
+            isOwner:true
           })
         }
         this.setData({
@@ -124,11 +131,13 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // wsSend('leaveroom', {
-    //     rid: "111111"
-    // })
+    if(this.data.isOwner && !this.data.startGame){
+      wsSend('leaveroom')
+      wsReceive('dissolve', res => {
+        console.log(res, 'dissolve')
+      })
+    }
     clearInterval(time);
-    clearTimeout(timer);
   },
 
   start: function() {
@@ -137,10 +146,23 @@ Page({
       rid: this.data.rid
     })
     wsReceive('matchSuccess',res=>{
-      console.log(res)
+      console.log(res,'startGame')
+      this.data.startGame = true
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
       })
+    })
+  },
+
+  giveUp() {
+    if(this.data.isOwner){
+      wsSend('leaveroom')
+      wsReceive('dissolve',res=>{
+        console.log(res,'dissolve')
+      })
+    }
+    wx.navigateBack({
+      delta: 1
     })
   },
 

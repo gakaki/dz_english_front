@@ -71,11 +71,11 @@ Page({
         index: i
       })
     }, 150)
-    // timer = setTimeout(()=>{
-    //   wx.redirectTo({
-    //     url: '../competition/competition?rid=' + this.data.rid,
-    //   })
-    // },3000)
+    timer = setTimeout(()=>{
+      wx.redirectTo({
+        url: '../competition/competition?rid=' + this.data.rid,
+      })
+    },3000)
   },
   /**
    * 生命周期函数--监听页面卸载

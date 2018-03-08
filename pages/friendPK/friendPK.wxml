@@ -32,8 +32,8 @@
         </view>
       </view>
     </view>
-    <view class="button f-r-sb" wx:if="{{list.length!=2}}">
-      <view class="btn give-up">
+    <view class="button f-r-sb" wx:if="{{list.length<=1}}">
+      <view class="btn give-up" bindtap='giveUp'>
         <text>放弃</text>
       </view> 
       <view class="btn invite">
@@ -41,7 +41,7 @@
         <button class="share" open-type='share'></button>
       </view>
     </view>
-    <view class="button flex" wx:if="{{list.length==2}}">
+    <view class="button flex" wx:if="{{list.length>=2 && isOwner}}">
       <view class="btn invite" bindtap='start'>
         <text>开始</text>
       </view>
