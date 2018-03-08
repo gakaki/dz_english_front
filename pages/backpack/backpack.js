@@ -4,7 +4,7 @@ Page({
   data: {
     backData: [],
     show: false,
-    awardShow: true,
+    awardShow: false,
     name: '',
     desc: '',
     src: ''

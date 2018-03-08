@@ -13,7 +13,7 @@
 
     </view>
   </scroll-view>
-  <view class="award-pop f-r-fs">
+  <view wx:if="{{awardShow}}" class="award-pop f-r-fs">
     <scroll-view scroll-y class="pop-sv">
     <view class="pop-box f-r-fs">
     <view  class="item f-c-fs">
