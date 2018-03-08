@@ -1,4 +1,5 @@
 //app.js
+require('./polyfill.js')();
 import { start } from 'utils/rest.js';
 App({
   onLaunch: function () {
@@ -15,6 +16,7 @@ App({
       // console.log('login')
      
     })
+    
   },
   globalData: {
     userInfo: null,

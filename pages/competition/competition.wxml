@@ -41,7 +41,7 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 ? "show" : "none"}}'>
-        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' bindtouchstart='changeBgColor' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' bindtouchstart='changeBgColor' data-index="{{index}}" bindtap='selectLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
           <view class='flip-wrap'>
             <view class='front flip poal'>
               <text>{{nineLetters[index]}}</text>

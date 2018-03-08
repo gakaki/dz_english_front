@@ -258,6 +258,7 @@ Page({
     }, this.data.time);
   },
   showFront(v){  //点击翻牌
+    console.log('showfront')
     let bcCount = this.data.backClickCount;
     let bcLimit = this.data.word.eliminateNum;
     let letters = this.data.letters;
@@ -298,6 +299,43 @@ Page({
       }
     }
   },
+
+  selectLetter(e) {
+    let obj = e.currentTarget.dataset;
+    let letter = this.data.nineLetters[obj.index];
+    let letters = this.data.letters;
+    if (!letters.okCnt) {
+      letters.okCnt = 0;
+    }
+
+    let answer = 0;
+    let myScore = 0;
+    //只要点了其中一个正确的字母，就把该字母放到正确的位置上
+    let idx = this.data.word.english.indexOf(letter);
+    if (idx > -1) {
+      //正确字母
+      letters[idx] = letter;
+      letters.okCnt++;
+
+      if (letters.okCnt == letters.length) {
+        //回答全部正确
+        answer = 1;
+        myScore = this.data.clockTime * 20;
+      }
+      
+    }
+    else {
+      //回答出错
+      answer = 2;
+    }
+
+    this.setData({
+      letters,
+      answer,
+      myScore
+    })
+  },
+
   selectAnswer(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
