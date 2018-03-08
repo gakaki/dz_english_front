@@ -75,6 +75,7 @@ Page({
     })
   },
   onReady: function() {
+    //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
     wsReceive('needGold',res=>{
       wx.showToast({
         title: '金币不足',

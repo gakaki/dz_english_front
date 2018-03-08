@@ -1,6 +1,7 @@
 //app.js
 require('./polyfill.js')();
 import { start } from 'utils/rest.js';
+const sheet = require('sheets.js')
 App({
   onLaunch: function () {
     wx.onNetworkStatusChange(function (res) {
@@ -21,6 +22,7 @@ App({
   globalData: {
     logined: false,
     userInfo: null,
-    personalInfo: null 
+    personalInfo: null ,
+    str1: sheet.Share.Get(1).title
   }
 })
