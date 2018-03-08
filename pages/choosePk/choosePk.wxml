@@ -1,7 +1,7 @@
 <view class="con-bg">
   <view class="top-bg">
     <view class="flex">
-      <text class="season-time">(赛季时间：2018年3月1日--3月31日)</text>
+      <text class="season-time">(赛季时间：{{season.cfg.show}})</text>
     </view>
     <view class="user-info f-r-fs">
       <view class="flex head-box">

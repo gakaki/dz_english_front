@@ -23,8 +23,11 @@ Page({
   },
   onLoad: function (options) {
     
-    console.log('send')
-    wsReceive('matchSuccess', res => {
+    console.log('send',options.rid)
+    wsSend('getroominfo',{
+      rid:options.rid
+    })
+    wsReceive('pkInfo', res => {
       console.log(res,11111111)
       let userList = res.data.userList
       this.data.rid = res.data.roomInfo.rid

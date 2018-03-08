@@ -6,9 +6,18 @@ Page({
     userInfo:{},
     stage: [],
     star: 0,
-    toView:0
+    toView:0,
+    season:{}
   },
   onLoad() {
+    doFetch('english.getseason',{},res=>{
+      this.setData({
+        season: sheet.Season.Get(res.data.season)
+      })
+      wx.setNavigationBarTitle({
+        title: this.data.season.cfg.name
+      })
+    })
     doFetch('english.showpersonal', {}, (res) => {
       console.log(res,'season')
 

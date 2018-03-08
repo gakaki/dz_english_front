@@ -13,7 +13,8 @@ Page({
     longitude: '',
     ak:"NKGOAVSGiLWsCxmegCdyOfxtRZ2kl8jL",
     gold:0,
-    matchSuc:false
+    matchSuc:false,
+    awaiting:false
   },
   onLoad: function (option) {
     this.setData({
@@ -59,7 +60,7 @@ Page({
       },
       fail: function (res) {
         console.log(res)
-        doFetch('english.updateposition', {}, (res) => {
+        doFetch('english.updateposition', { position:' '}, (res) => {
           console.log(res)
           that.setData({
             userInfo: res.data
@@ -71,23 +72,25 @@ Page({
   onReady: function() {
     wsReceive('matchFailed',res=>{
       console.log(res,'fail')
+      this.data.awaiting = true
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
         duration: 2000
       })
       time = setTimeout(function(){
+        console.log(111)
         wx.navigateBack({
           delta: 1
         })
       },2500)
     })
-    wsReceive('joinSuccess',res=>{
+    wsReceive('matchSuccess',res=>{
       console.log(res,'suc')
       
       this.data.matchSuc = true
       wx.redirectTo({
-        url: '../duizhan/duizhan',
+        url: '../duizhan/duizhan?rid='+res.data.roomInfo.rid,
       })
     })
   },
@@ -96,7 +99,8 @@ Page({
    */
   onUnload: function () {
     //如果匹配未成功离开此页面则认为取消匹配
-    if(!this.data.matchSuc){
+    if (!this.data.matchSuc && !this.data.awaiting){
+      console.log('cancel')
       wsSend('cancelmatch')
     }
     clearTimeout(time)

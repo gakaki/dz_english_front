@@ -129,6 +129,7 @@ Page({
       })
     }
     else{
+
       if (this.data.knowInfo[this.data.point + 1].levelUP.needI > this.data.knowInfo[this.data.point + 1].levelUP.haveI){
         this.setData({
           libScanty:true
@@ -147,6 +148,13 @@ Page({
 
   //隐藏知识点信息弹框
   hide: function() {
+    console.log(111)
+    doFetch('english.develop', {}, (res) => {
+      console.log(res.data);
+      this.setData({
+        knowInfo: res.data
+      })
+    })
     this.setData({
       show: false
     })
@@ -172,6 +180,12 @@ Page({
       })
     }
     else{
+      doFetch('english.develop', {}, (res) => {
+        console.log(res.data);
+        this.setData({
+          knowInfo: res.data
+        })
+      })
       this.setData({
         show:false
       })
