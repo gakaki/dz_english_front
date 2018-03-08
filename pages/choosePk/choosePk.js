@@ -4,7 +4,7 @@ import { doFetch } from '../../utils/rest.js';
 Page({
   data: {
     stage: [],
-    rank: 0
+    star: 0
   },
   onLoad() {
     doFetch('english.showpersonal', {}, (res) => {
@@ -15,6 +15,9 @@ Page({
         rank = seasonRank[key]
       }
       rank = rank.rank
+      this.setData({
+        star: rank.star
+      })
       let stage;
       stage = sheet.stages.map(o => {
         let obj = {}
