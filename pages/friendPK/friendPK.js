@@ -25,32 +25,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('creatroom')
-    wsSend('createroom')
-    wsReceive('createSuccess', res => {
-      console.log(res,'creatSuc')
-      this.data.rid = res.data.rid
-      wsSend('getroominfo', {
-        rid: this.data.rid
+    console.log(options)
+    if(options && !options.rid){
+      console.log('creatroom')
+      wsSend('createroom')
+      wsReceive('createSuccess', res => {
+        console.log(res, 'creatSuc')
+        this.getInfo(res.data.rid)
       })
-      wsReceive('roomInfo', res => {
-        console.log(res, 'frienPK')
-        if (res.data.roomStatus == 2) {
-          wx.redirectTo({
-            url: '../competition/competition',
-          })
-        }
-        if(res.data.userList[0].info.uid == getUid()){
-          this.setData({
-            isOwner:true
-          })
-        }
-        this.setData({
-          bystander: res.data.roomInfo.bystanderCount,
-          list: res.data.userList
-        })
-      })
-    })
+    }
+    else{
+      this.getInfo(options.rid)
+    }
+    
     console.log(this.data.rid,'rid')
     
     wsReceive('roomNotExist',res=>{
@@ -61,41 +48,31 @@ Page({
         duration: 2000
       })
     })
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse) {
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
+    
   },
-  // getUserInfo: function (e) {
-  //   console.log(e)
-  //   app.globalData.userInfo = e.detail.userInfo
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  // },
+  getInfo(rid){
+    this.data.rid = rid
+    wsSend('getroominfo', {
+      rid: this.data.rid
+    })
+    wsReceive('roomInfo', res => {
+      console.log(res, 'frienPK')
+      if (res.data.roomStatus == 2) {
+        wx.redirectTo({
+          url: '../competition/competition?rid=' + this.data.rid,
+        })
+      }
+      if (res.data.userList[0].info.uid == getUid()) {
+        this.setData({
+          isOwner: true
+        })
+      }
+      this.setData({
+        bystander: res.data.roomInfo.bystanderCount,
+        list: res.data.userList
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -117,7 +94,14 @@ Page({
         index:i
       })
     },150)
-    
+    //监听游戏开始，为了让两边同时跳转将监听放在页面显示的生命周期函数内
+    wsReceive('matchSuccess', res => {
+      console.log(res, 'startGame')
+      this.data.startGame = true
+      wx.redirectTo({
+        url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
+      })
+    })
   },
 
   /**
@@ -145,13 +129,6 @@ Page({
     wsSend('startgame',{
       rid: this.data.rid
     })
-    wsReceive('matchSuccess',res=>{
-      console.log(res,'startGame')
-      this.data.startGame = true
-      wx.redirectTo({
-        url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
-      })
-    })
   },
 
   giveUp() {
@@ -164,20 +141,6 @@ Page({
     wx.navigateBack({
       delta: 1
     })
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
 
   /**

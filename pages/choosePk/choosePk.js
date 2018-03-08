@@ -66,6 +66,7 @@ Page({
     console.log(res.currentTarget.dataset.rank,'match')
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
+    //通过后台和客户端一起判断来防止数据被篡改
     wsSend('canmatch', {
       rankType: type
     })

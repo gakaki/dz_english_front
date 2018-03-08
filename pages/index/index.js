@@ -61,7 +61,7 @@ Page({
       showSet: false
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
@@ -70,6 +70,25 @@ Page({
         needExp: v.userInfo.character.experience.needExp
       })
     })
+
+    if(options && options.friendPK){
+      doFetch('english.roomNotExist',{
+        rid:options.rid
+      },(res)=>{
+        if(res.code==0){
+          wx.navigateTo({
+            url: '../friendPK/friendPK',
+          })
+        }
+        else{
+          wx.showToast({
+            title: '房间不存在',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
 
     // let aa = {bb:'bb'};
 
