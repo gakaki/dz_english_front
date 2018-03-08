@@ -255,6 +255,7 @@
   background: url('https://gengxin.odao.com/update/h5/yingyu/result/anniulv.png') 0 0 no-repeat;
   background-size: cover;
   margin-top: 32rpx;
+  position: relative;
 }
 
 .anniu-wenzi{
@@ -282,6 +283,14 @@
   width:33rpx;
   height: 31rpx; 
   margin-left: 4rpx;
+}
+
+.share{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  opacity: 0;
 }
 
 /*以下是动画设置····  */

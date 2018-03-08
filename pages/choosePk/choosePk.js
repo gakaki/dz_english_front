@@ -8,7 +8,22 @@ Page({
     star: 0,
     toView:0,
     season:{},
-    canMatch:true
+    canMatch:true,
+    level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/chusan.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/gaoyi.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/gaoer.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/gaosan.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/dayi.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/daer.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/dasan.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/dasi.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/zhuansi.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/zhuanba.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/tuofu.png",
+      "https://gengxin.odao.com/update/h5/yingyu/choosePK/yasi.png"]
   },
   onLoad() {
     doFetch('english.getseason',{},res=>{
@@ -84,6 +99,11 @@ Page({
         url: '../awaitPK/awaitPK?type='+type + '&gold=' +gold ,
       })
     }
+  },
+  toDes() {
+    wx.navigateTo({
+      url: '../rankDes/rankDes',
+    })
   },
   onShareAppMessage: function (res) {
     return {

@@ -82,7 +82,7 @@ Page({
       },(res)=>{
         if(res.code==0){
           wx.navigateTo({
-            url: '../friendPK/friendPK',
+            url: '../friendPK/friendPK?rid='+options.rid,
           })
         }
         else{

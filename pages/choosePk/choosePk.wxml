@@ -15,7 +15,7 @@
           <text class="gold-count">{{userInfo.items[1]}}</text>
         </view>
       </view>
-      <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png"></image>
+      <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png" bindtap='toDes'></image>
     </view>
     <view class="flex">
       <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
@@ -29,7 +29,7 @@
 
       </view>
       <view class="pai-bg  flex">
-        <image class="pai" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-1.png"></image>
+        <image class="pai" src="{{level[index]}}"></image>
       </view>
       <view class="item-mid f-c-sb">
         <text class="segment">{{item.stage}}</text>
@@ -37,7 +37,7 @@
         <text class="award">奖金:{{item.jia}}</text>
       </view>
       <view class="item-rgt f-c-sb">
-        <view class="item-rgt-top f-r-fs">
+        <view class="item-rgt-top">
           <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
           <text class="gold-num">{{item.jian}}</text>
         </view>
