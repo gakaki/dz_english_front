@@ -29,21 +29,31 @@ Page({
     })
     wsReceive('pkInfo', res => {
       console.log(res,11111111)
-      let userList = res.data.userList
-      this.data.rid = res.data.roomInfo.rid
-      for(let i=0;i<userList.length;i++){
-        if(userList[i].info.uid==getUid()){
-          this.setData({
-            isSelf: userList[i],
-          })
-        }
-        else{
-          this.setData({
-            notSelf: userList[i],
-          })
-        }
-      }
+      this.getInfo(res)
     })
+    
+    wsReceive('roomInfo',res=>{
+      console.log(res, 2222222)
+      this.getInfo(res)
+    })
+    
+  },
+
+  getInfo(res){
+    let userList = res.data.userList
+    this.data.rid = res.data.roomInfo.rid
+    for (let i = 0; i < userList.length; i++) {
+      if (userList[i].info.uid == getUid()) {
+        this.setData({
+          isSelf: userList[i],
+        })
+      }
+      else {
+        this.setData({
+          notSelf: userList[i],
+        })
+      }
+    }
   },
 
   /**
@@ -61,11 +71,11 @@ Page({
         index: i
       })
     }, 150)
-    timer = setTimeout(()=>{
-      wx.redirectTo({
-        url: '../competition/competition?rid=' + this.data.rid,
-      })
-    },3000)
+    // timer = setTimeout(()=>{
+    //   wx.redirectTo({
+    //     url: '../competition/competition?rid=' + this.data.rid,
+    //   })
+    // },3000)
   },
   /**
    * 生命周期函数--监听页面卸载

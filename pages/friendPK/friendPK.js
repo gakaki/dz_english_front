@@ -29,14 +29,14 @@ Page({
       rid: options.rid
     })
     wsReceive('roomInfo',res=>{
-      console.log(res)
+      console.log(res,'frienPK')
       if(res.data.roomStatus==2){
         wx.redirectTo({
           url: '../competition/competition',
         })
       }
       this.setData({
-        bystander:res.data.bystanderCount,
+        bystander:res.data.roomInfo.bystanderCount,
         list:res.data.userList
       })
     })
@@ -118,6 +118,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    // wsSend('leaveroom', {
+    //     rid: "111111"
+    // })
     clearInterval(time);
     clearTimeout(timer);
   },
@@ -127,10 +130,10 @@ Page({
     wsSend('startgame',{
       rid: this.data.rid
     })
-    wsReceive('joinSuccess',res=>{
+    wsReceive('matchSuccess',res=>{
       console.log(res)
       wx.redirectTo({
-        url: '../duizhan/duizhan',
+        url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
       })
     })
   },

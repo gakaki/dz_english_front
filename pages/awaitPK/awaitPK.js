@@ -13,6 +13,7 @@ Page({
     longitude: '',
     ak:"NKGOAVSGiLWsCxmegCdyOfxtRZ2kl8jL",
     gold:0,
+    type:0,
     matchSuc:false,
     awaiting:false
   },
@@ -68,8 +69,25 @@ Page({
         })
       }
     })
+    //获取位置之后开始匹配
+    wsSend('ranking',{
+      rankType:option.type
+    })
   },
   onReady: function() {
+    wsReceive('needGold',res=>{
+      wx.showToast({
+        title: '金币不足',
+        icon: 'none',
+        duration: 2000
+      })
+      time = setTimeout(function () {
+        console.log(111)
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 2500)
+    })
     wsReceive('matchFailed',res=>{
       console.log(res,'fail')
       this.data.awaiting = true

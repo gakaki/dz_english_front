@@ -7,7 +7,8 @@ Page({
     stage: [],
     star: 0,
     toView:0,
-    season:{}
+    season:{},
+    canMatch:true
   },
   onLoad() {
     doFetch('english.getseason',{},res=>{
@@ -62,23 +63,25 @@ Page({
     })
   },
   match(res) {
-    console.log(res.currentTarget.dataset.rank)
-    wsSend('ranking', {
-      rankType: res.currentTarget.dataset.rank
+    console.log(res.currentTarget.dataset.rank,'match')
+    let type = res.currentTarget.dataset.rank
+    let gold = sheet.Stage.Get(type).goldcoins1
+    wsSend('canmatch', {
+      rankType: type
     })
     wsReceive('needGold', res => {
       console.log(res)
+      this.data.canMatch = false
       wx.showToast({
         title: '金币不足',
         icon: 'none',
         duration: 2000
       })
     })
-    wsReceive('waiting', res => {
-      console.log(res)
+    if (this.data.canMatch || this.data.userInfo.items[1] >= gold){
       wx.navigateTo({
-        url: '../awaitPK/awaitPK?gold=' + res.data.cost
+        url: '../awaitPK/awaitPK?type='+type + '&gold=' +gold ,
       })
-    })
+    }
   }
 })

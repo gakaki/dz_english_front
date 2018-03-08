@@ -113,6 +113,20 @@ function wsInit() {
     // wsReceive('roomInfo', res => {
     //   console.log(res)
     // })
+    // wsSend('joinroom', {
+    //   rid: "111111"
+    // })
+    // wsReceive('roomInfo', res => {
+    //   console.log(res)
+    // })
+    // setTimeout(function () {
+    //   wsSend('leaveroom', {
+    //     rid: "111111"
+    //   }, 2000)
+    // })
+    // wsReceive('dissolve', res => {
+    //   console.log(res)
+    // })
     socket.on('disconnect', msg => {
       console.log('#disconnect', msg);
     });
