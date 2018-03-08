@@ -1,18 +1,18 @@
 <view class="con-bg">
   <view class="top-bg">
     <view class="flex">
-      <text class="season-time">(赛季时间：2018年3月1日--3月31日)</text>
+      <text class="season-time">(赛季时间：{{season.cfg.show}})</text>
     </view>
     <view class="user-info f-r-fs">
       <view class="flex head-box">
-        <image class="head" src="{{item.avatarUrl}}">
+        <image class="head" src="{{userInfo.avatarUrl}}">
         </image>
       </view>
       <view class="top-mid f-c-sb">
-        <text class="nn">乐翻天</text>
+        <text class="nn">{{userInfo.nickName}}</text>
         <view class="gold-box f-r-fs">
           <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
-          <text class="gold-count">200</text>
+          <text class="gold-count">{{userInfo.items[1]}}</text>
         </view>
       </view>
       <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png"></image>
@@ -21,10 +21,12 @@
       <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
     </view>
   </view>
-  <scroll-view scroll-y class=" segment-box">
-    <view wx:for="{{stage}}" class="segment-list f-r-fs">
-     <view class="lock flex" hidden='{{index<1}}'>
-          <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
+  <scroll-view scroll-y class="segment-box" scroll-into-view="rank{{toView}}">
+
+    <view id="rank{{index}}" wx:for="{{stage}}" wx:key="{{index}}" class="segment-list f-r-fs" data-rank="{{index+1}}" bindtap='match'>
+      <view class="lock flex" hidden='{{index<stage.length-1}}'>
+        <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
+
       </view>
       <view class="pai-bg  flex">
         <image class="pai" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-1.png"></image>
@@ -39,17 +41,19 @@
           <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
           <text class="gold-num">{{item.jian}}</text>
         </view>
-        <view >
-        <image wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        <view class="star" wx:if="{{ index+1 < stage.length-1}}">
+          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
-        
+        <view class="star" wx:if="{{stage.length-1 == index+1}}">
+          <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        </view>
       </view>
     </view>
-    
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
+
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
   </scroll-view>
 
 

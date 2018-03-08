@@ -79,8 +79,7 @@
           <text class="font">金币不足</text>
         </view>
         <view class="buy ziti">
-          <text class="font">分享可获得</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font" style='color:#19b1ff'>400
-          </text>
+          <text class="font">分享可获得金币</text>
         </view>
 
       </view>

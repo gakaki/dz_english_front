@@ -19,6 +19,7 @@ App({
     
   },
   globalData: {
+    logined: false,
     userInfo: null,
     personalInfo: null 
   }

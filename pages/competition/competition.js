@@ -37,6 +37,15 @@ Page({
     clockTime: totalCountTime, //倒计时时间
     myScore:0
   },
+  onLoad(options) {
+    console.log(options.rid)
+    wsSend('getroominfo',{
+      rid:options.rid
+    })
+    wsReceive('pkInfo',res=>{
+      console.log(res)
+    })
+  },
   onReady() {
     loadEnglishWords((englishWords)=>{
       this.setData({
