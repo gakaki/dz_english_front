@@ -35,6 +35,10 @@ Page({
           this.setData({
             rankData: res.data.map(this.getSegment)
           })
+        } else {
+          this.setData({
+            rankData: []
+          })
         }
       })
     } else {
@@ -42,6 +46,10 @@ Page({
         if (res.data.length > 0) {
           this.setData({
             rankData: res.data.map(this.getSegment)
+          })
+        } else {
+          this.setData({
+            rankData: []
           })
         }
       })
@@ -59,7 +67,7 @@ Page({
           wx.showToast({
             title: '暂无数据',
             icon: 'success',
-            duration:500,
+            duration: 500,
             mask: true
           })
         }
