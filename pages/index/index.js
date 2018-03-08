@@ -32,23 +32,6 @@ Page({
     wx.navigateTo({
       url: '../choosePk/choosePk',
     })
-    // wsSend('ranking', {
-    //   rankType: 1
-    // })
-    // wsReceive('needGold', res => {
-    //   console.log(res)
-    //   wx.showToast({
-    //     title: '金币不足',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // })
-    // wsReceive('waiting', res => {
-    //   console.log(res)
-    //   wx.navigateTo({
-    //     url: '../awaitPK/awaitPK?gold=' + res.data.cost
-    //   })
-    // })
   },
   toFriPk: function () {
     console.log('creatroom')
@@ -175,15 +158,5 @@ Page({
         console.log(777)
       })
     }
-    // wsReceive('cancelSuccess', res => {
-    //   console.log(res)
-    //   wsReceive('matchSuccess',res=>{
-    //     wx.showToast({
-    //       title: '您已放弃对战',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //   })
-    // })
   }
 })

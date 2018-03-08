@@ -59,6 +59,12 @@ Page({
       },
       fail: function (res) {
         console.log(res)
+        doFetch('english.updateposition', {}, (res) => {
+          console.log(res)
+          that.setData({
+            userInfo: res.data
+          })
+        })
       }
     })
   },
@@ -78,6 +84,7 @@ Page({
     })
     wsReceive('joinSuccess',res=>{
       console.log(res,'suc')
+      
       this.data.matchSuc = true
       wx.redirectTo({
         url: '../duizhan/duizhan',
