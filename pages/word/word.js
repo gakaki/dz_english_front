@@ -23,7 +23,6 @@ Page({
     knowInfo: {},
     point: 0,  //选择的知识点
     show:false,  //显示知识点信息
-    canUpdate: false,  //知识点是否可以升级
     maxLevel: sheet.Speech.Get(1).endlevel,  //知识点最大等级
     isMax: false,  //知识点等级是否最大
     descript:[],   //知识点描述
@@ -108,13 +107,12 @@ Page({
     this.setData({
       point: ind,
       show:true,
-      canUpdate: this.data.knowInfo[ind + 1].canUp
     })
   },
 
   improve: function() {
     console.log(this.data.knowInfo[this.data.point + 1])
-    if(this.data.canUpdate){
+    if (this.data.knowInfo[this.data.point + 1].canUp){
       doFetch('english.speechlevelup',{
         spid:this.data.point+1
       },(res)=>{
