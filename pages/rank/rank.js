@@ -1,3 +1,4 @@
+const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
 Page({
@@ -77,5 +78,18 @@ Page({
       })
     }
 
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str3,
+      path: '/pages/rank/rank',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/rank.png',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

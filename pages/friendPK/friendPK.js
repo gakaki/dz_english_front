@@ -19,7 +19,6 @@ Page({
     rid:'',
     isOwner:false,
     startGame:false,
-    str:''
   },
 
   /**
@@ -137,11 +136,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
     return {
-      title: '*******',
+      title: app.globalData.str1,
       path: '/pages/index/index?friendPK=true&rid=' + this.data.rid,
-      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/pk.png',
       success: function () {
         
       },
