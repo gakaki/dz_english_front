@@ -32,7 +32,7 @@
         </view>
       </view>
     </view>
-    <view class="button f-r-sb" wx:if="{{list.length==1}}">
+    <view class="button f-r-sb" wx:if="{{list.length!=2}}">
       <view class="btn give-up">
         <text>放弃</text>
       </view> 

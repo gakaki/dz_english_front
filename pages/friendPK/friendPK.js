@@ -23,23 +23,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.rid,'rid')
-    this.data.rid = options.rid
-    wsSend('getroominfo', {
-      rid: options.rid
-    })
-    wsReceive('roomInfo',res=>{
-      console.log(res,'frienPK')
-      if(res.data.roomStatus==2){
-        wx.redirectTo({
-          url: '../competition/competition',
+    console.log('creatroom')
+    wsSend('createroom')
+    wsReceive('createSuccess', res => {
+      console.log(res)
+      this.data.rid = res.data.rid
+      wsSend('getroominfo', {
+        rid: this.data.rid
+      })
+      wsReceive('roomInfo', res => {
+        console.log(res, 'frienPK')
+        if (res.data.roomStatus == 2) {
+          wx.redirectTo({
+            url: '../competition/competition',
+          })
+        }
+        this.setData({
+          bystander: res.data.roomInfo.bystanderCount,
+          list: res.data.userList
         })
-      }
-      this.setData({
-        bystander:res.data.roomInfo.bystanderCount,
-        list:res.data.userList
       })
     })
+    console.log(this.data.rid,'rid')
+    
     wsReceive('roomNotExist',res=>{
       console.log(res)
       wx.showToast({
