@@ -18,7 +18,8 @@ Page({
     list:[],
     rid:'',
     isOwner:false,
-    startGame:false
+    startGame:false,
+    str:''
   },
 
   /**
@@ -36,18 +37,8 @@ Page({
     }
     else{
       this.getInfo(options.rid)
-    }
-    
+    } 
     console.log(this.data.rid,'rid')
-    
-    wsReceive('roomNotExist',res=>{
-      console.log(res)
-      wx.showToast({
-        title: '房间不存在',
-        icon: 'none',
-        duration: 2000
-      })
-    })
     
   },
   getInfo(rid){
@@ -77,7 +68,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (options) {
-    
+    console.log(app.globalData.str1)
   },
 
   /**
