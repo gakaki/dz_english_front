@@ -27,6 +27,12 @@
     <view class="pk-hong">
       <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
     </view>
+    <view class="animation-dianliu-lan {{yincang}}">
+      <image class="animation-dianliuL" src="{{animation_dianliu_left[index_dianliu]}}"></image>
+    </view>
+    <view class="animation-dianliu-hong {{yincang}}">
+      <image class="animation-dianliuR" src="{{animation_dianliu_right[index_dianliu]}}"></image>
+    </view>
     <view class="shandian">
       <image class="dianliu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu.png"></image>
       <image class="dianliu2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu2.png"></image>
@@ -34,7 +40,11 @@
       <image class="dianliu4" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu4.png"></image>
       <image class="dianliu5" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu5.png"></image>
     </view>
-    <image class="pk-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
+    <view class="pk-donghua">
+      <image class="pk-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
+      <image class="p-lizi" src="{{animation_p_lizi[index_p_lizi]}}"></image>
+      <image class="k-lizi" src="{{animation_k_lizi[index_k_lizi]}}"></image>
+    </view>
   </view>
   <view class="hong">
     <view class="hong-tankuang font">
