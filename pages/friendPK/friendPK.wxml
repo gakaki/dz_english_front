@@ -42,7 +42,7 @@
       </view>
     </view>
     <view class="button flex" wx:if="{{list.length==2}}">
-      <view class="btn invite">
+      <view class="btn invite" bindtap='start'>
         <text>开始</text>
       </view>
     </view>

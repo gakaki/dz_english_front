@@ -80,7 +80,9 @@ Page({
       showSet: false
     })
   },
-  onLoad: function () {
+  
+  onLoad: function (options) {
+    console.log(options)
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
@@ -142,6 +144,14 @@ Page({
           })
         }
       })
+    }
+
+    if (options.friendPK) {
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../friendPK/friendPK?rid=' + options.rid,
+        })
+      }, 1000)
     }
 
   },

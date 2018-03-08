@@ -74,7 +74,7 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-          // wsInit();
+          wsInit();
           app.globalData.logined = true
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
