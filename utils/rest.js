@@ -4,6 +4,7 @@ const care = require('./util.js');
  const wss = "wss://h5t.ddz2018.com/english";
 //const srv = "https://local.ddz2018.com/";
 //const wss = "wss://local.ddz2018.com/english";
+
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app, isAuth = false;
