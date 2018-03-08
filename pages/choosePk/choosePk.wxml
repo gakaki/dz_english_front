@@ -40,7 +40,8 @@
           <text class="gold-num">{{item.jian}}</text>
         </view>
         <view >
-        <image wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        <image hidden="{{stage.length == index+1}}" wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        <image hidden="{{stage.length != index+1}}" wx:for="{{star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
         
       </view>
