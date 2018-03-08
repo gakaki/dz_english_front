@@ -92,4 +92,16 @@ Page({
       hasUserInfo: true
     })
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str2,
+      path: '/pages/self/self',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
+  }
 })

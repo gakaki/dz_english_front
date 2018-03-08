@@ -195,11 +195,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
     return {
-      title: '*******',
-      path: '/pages/word/word',
-      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      title: app.globalData.str4,
+      path: '/pages/index/index',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
 
       },

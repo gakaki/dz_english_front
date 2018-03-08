@@ -159,13 +159,13 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '大家一起来拼智力领福利',
+      title: app.globalData.str4,
       path: '/pages/index/index',
-
-      success: function (res) {
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
+      success: function () {
 
       },
-      fail: function (res) {
+      fail: function () {
         // 转发失败
       }
     }
