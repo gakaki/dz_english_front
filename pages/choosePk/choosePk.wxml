@@ -22,9 +22,9 @@
     </view>
   </view>
   <scroll-view scroll-y class=" segment-box">
-    <view wx:for="{{stage}}"  class="segment-list f-r-fs">
-     <view class="lock flex" hidden='{{index<1}}'>
-          <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
+    <view wx:for="{{stage}}" class="segment-list f-r-fs">
+      <view class="lock flex" hidden='{{index<1}}'>
+        <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
       </view>
       <view class="pai-bg  flex">
         <image class="pai" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-1.png"></image>
@@ -39,18 +39,19 @@
           <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
           <text class="gold-num">{{item.jian}}</text>
         </view>
-        <view >
-        <image hidden="{{stage.length == index+1}}" wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
-        <image hidden="{{stage.length != index+1}}" wx:for="{{star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        <view>
+            <image wx:if="{{ index+1 < stage.length-1}}" wx:for="{{item.star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>  
+           <image wx:if="{{stage.length-1 == index+1}}" wx:for="{{star}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image> 
+           <image wx:if="{{stage.length == index+1}}" wx:for="{{[]}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image> 
         </view>
-        
+
       </view>
     </view>
-    
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-<image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
+
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
+    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
   </scroll-view>
 
 
