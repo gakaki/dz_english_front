@@ -51,7 +51,6 @@
 .gold-box {
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 112rpx;
   height: 38rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
@@ -59,13 +58,14 @@
 .gold-big {
   width: 43rpx;
   height: 41rpx;
-  margin-left: -10rpx
+  margin-left: -10rpx;
 }
 .gold-count {
   font-size: 28rpx;
   color: #fff;
   font-weight: bold;
-  margin-left: 10rpx
+  margin-left: 10rpx;
+  margin-right: 12rpx;
 }
 .wenhao {
   width: 44rpx;
@@ -82,7 +82,7 @@
 
 .segment-box {
   z-index: 10;
-  max-height: 980rpx;
+  max-height: 990rpx;
   width: 100%;
   position: absolute;
   left: 0;
@@ -197,10 +197,10 @@ width: 690rpx;
   margin-left: 5rpx
 }
 .item-rgt-bot {
-  align-self: flex-end;
   width: 39rpx;
   height: 39rpx;
   margin-bottom: 20rpx;
+  margin-left: 5rpx;
 }
 .point,.wenhao-icon {
   margin: 0 auto;
@@ -215,4 +215,10 @@ width: 690rpx;
 .wenhao-icon {
   width: 82rpx;
   height: 121rpx;
+}
+
+.star{
+  min-width: 112rpx;
+  display: flex;
+  justify-content: flex-end;
 }

@@ -37,32 +37,10 @@ Page({
     wx.navigateTo({
       url: '../choosePk/choosePk',
     })
-    // wsSend('ranking', {
-    //   rankType: 1
-    // })
-    // wsReceive('needGold', res => {
-    //   console.log(res)
-    //   wx.showToast({
-    //     title: '金币不足',
-    //     icon: 'none',
-    //     duration: 2000
-    //   })
-    // })
-    // wsReceive('waiting', res => {
-    //   console.log(res)
-    //   wx.navigateTo({
-    //     url: '../awaitPK/awaitPK?gold=' + res.data.cost
-    //   })
-    // })
   },
   toFriPk: function () {
-    console.log('creatroom')
-    wsSend('createroom')
-    wsReceive('createSuccess', res => {
-      console.log(res)
-      wx.navigateTo({
-        url: '../friendPK/friendPK?rid='+res.data.rid
-      })
+    wx.navigateTo({
+      url: '../friendPK/friendPK'
     })
   },
   toZsd() {
@@ -88,7 +66,7 @@ Page({
       showSet: false
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
@@ -97,6 +75,25 @@ Page({
         needExp: v.userInfo.character.experience.needExp
       })
     })
+
+    if(options && options.friendPK){
+      doFetch('english.roomNotExist',{
+        rid:options.rid
+      },(res)=>{
+        if(res.code==0){
+          wx.navigateTo({
+            url: '../friendPK/friendPK',
+          })
+        }
+        else{
+          wx.showToast({
+            title: '房间不存在',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
 
     // let aa = {bb:'bb'};
 
@@ -180,15 +177,5 @@ Page({
         console.log(777)
       })
     }
-    // wsReceive('cancelSuccess', res => {
-    //   console.log(res)
-    //   wsReceive('matchSuccess',res=>{
-    //     wx.showToast({
-    //       title: '您已放弃对战',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //   })
-    // })
   }
 })

@@ -1,9 +1,9 @@
 const io = require('./index.js');
 const care = require('./util.js');
- const srv = "https://h5t.ddz2018.com/";
- const wss = "wss://h5t.ddz2018.com/english";
-//const srv = "https://local.ddz2018.com/";
-//const wss = "wss://local.ddz2018.com/english";
+//  const srv = "https://h5t.ddz2018.com/";
+//  const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com/english";
 
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -111,6 +111,20 @@ function wsInit() {
     console.log('#connect');
     //wsSend('ranking')
     // wsReceive('roomInfo', res => {
+    //   console.log(res)
+    // })
+    // wsSend('joinroom', {
+    //   rid: "111111"
+    // })
+    // wsReceive('roomInfo', res => {
+    //   console.log(res)
+    // })
+    // setTimeout(function () {
+    //   wsSend('leaveroom', {
+    //     rid: "111111"
+    //   }, 2000)
+    // })
+    // wsReceive('dissolve', res => {
     //   console.log(res)
     // })
     socket.on('disconnect', msg => {

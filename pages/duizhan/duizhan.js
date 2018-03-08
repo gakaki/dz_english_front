@@ -23,24 +23,37 @@ Page({
   },
   onLoad: function (options) {
     
-    console.log('send')
-    wsReceive('matchSuccess', res => {
-      console.log(res,11111111)
-      let userList = res.data.userList
-      this.data.rid = res.data.roomInfo.rid
-      for(let i=0;i<userList.length;i++){
-        if(userList[i].info.uid==getUid()){
-          this.setData({
-            isSelf: userList[i],
-          })
-        }
-        else{
-          this.setData({
-            notSelf: userList[i],
-          })
-        }
-      }
+    console.log('send',options.rid)
+    wsSend('getroominfo',{
+      rid:options.rid
     })
+    wsReceive('pkInfo', res => {
+      console.log(res,11111111)
+      this.getInfo(res)
+    })
+    
+    wsReceive('roomInfo',res=>{
+      console.log(res, 2222222)
+      this.getInfo(res)
+    })
+    
+  },
+
+  getInfo(res){
+    let userList = res.data.userList
+    this.data.rid = res.data.roomInfo.rid
+    for (let i = 0; i < userList.length; i++) {
+      if (userList[i].info.uid == getUid()) {
+        this.setData({
+          isSelf: userList[i],
+        })
+      }
+      else {
+        this.setData({
+          notSelf: userList[i],
+        })
+      }
+    }
   },
 
   /**
