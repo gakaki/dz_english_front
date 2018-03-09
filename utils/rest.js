@@ -1,8 +1,10 @@
 const io = require('./index.js');
+
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
+
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -81,7 +83,9 @@ function userLogin(suc, err) {
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
             //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
+            shareTo()
           })
+
         }
       }, err);
 
@@ -91,6 +95,39 @@ function userLogin(suc, err) {
       app.globalData.hasUserInfo = false;
     }
   })
+}
+
+function shareTo(){
+  if (app.globalData.toFriend){
+    doFetch('english.roomNotExist', {
+      rid: app.globalData.friendRid
+    }, (res) => {
+      if (res.code == 0) {
+        wx.navigateTo({
+          url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
+        })
+      }
+      else {
+        wx.showToast({
+          title: '房间不存在',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  }
+  else if (app.globalData.toRank){
+    wx.navigateTo({
+      url: '../rank/rank',
+    })
+    app.globalData.toRank = false
+  }
+  else if (app.globalData.toSelf){
+    wx.navigateTo({
+      url: '../self/self',
+    })
+    app.globalData.toSelf = false
+  }
 }
 
 
