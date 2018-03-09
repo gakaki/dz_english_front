@@ -15,8 +15,6 @@ function loadEnglishWords(words) {
   //   return obj;
   // })
 
-
-  return [{ type: 4, id: 9, english: 'dull' }, { type: 4, id: 9, english: 'dull' }, { type: 4, id: 9, english: 'dull' }, { type: 4, id: 9, english: 'dull' }, { type: 4, id: 9, english: 'dull' }];
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
