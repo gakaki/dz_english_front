@@ -237,7 +237,6 @@ Page({
 
   },
   shareTo(options) {
-    console.log(111)
     if (options && options.friendPK) {
       if (app.globalData.logined) {
         doFetch('english.roomNotExist', {
