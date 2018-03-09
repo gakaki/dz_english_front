@@ -3,18 +3,28 @@ const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
 Page({
   data: {
-    stage: []
+    stage: [],
+    awardIcon: []
   },
   onLoad() {
+  
     let stage;
     stage = sheet.stages.map(o => {
-      let obj = {}
-      obj['stage'] = new sheet.Stage(o).stage
-      obj['award'] = new sheet.Stage(o).award
-      return obj
+      // let obj = {}
+      // obj['stage'] = new sheet.Stage(o).stage
+      // obj['award'] = new sheet.Stage(o).award
+      // obj['frame'] = new sheet.Stage(o).frame
+      return new sheet.Stage(o)
+    })
+    let awardItem = sheet.stages.map(o => {
+      return new sheet.Stage(o).award['k']
+    })
+    let awardIcon = awardItem.map(o => {
+      return sheet.Item.Get(o).icon
     })
     this.setData({
-      stage: stage
+      stage: stage,
+      awardIcon: awardIcon
     })
   },
   onShareAppMessage: function (res) {

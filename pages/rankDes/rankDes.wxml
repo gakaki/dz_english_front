@@ -1,12 +1,13 @@
 <scroll-view scroll-y class="con-bg con">
 
-    <view wx:for="{{stage}}" class="item f-r-fs">
+    <view wx:for="{{stage}}" wx:key="{{index}}" class="item f-r-fs">
       <view class="head-box">
-        <image class="head" src=""></image>
+        <image class="head" src="https://gengxin.odao.com/update/h5/yingyu/rankDes/{{item.cfg.frame}}.png"></image>
+       
       </view>
-      <text class="des">{{item.stage}}</text>
+      <text class="des">{{item.cfg.stage}}</text>
       <text class="jl">奖励:</text>
-      <image src="https://gengxin.odao.com/update/h5/yingyu/word/noun-small.png" class="icon"></image>
-      <text class="num">X{{item.award}}</text>
+      <image src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{awardIcon[index]}}" class="icon"></image>
+      <text class="num">X{{item.cfg.award['v']}}</text>
     </view>
 </scroll-view>
