@@ -36,7 +36,13 @@
   line-height: 48rpx;
   border-radius: 30rpx;
 }
-
+.img-box {
+  margin-top: 10rpx;
+   width: 150rpx;
+  height: 150rpx;
+  background-color: #19B1FF;
+  border-radius: 50%
+}
 .icon {
   width: 149rpx;
   height: 116rpx;
@@ -192,9 +198,10 @@
   content: '恭喜获得';
   font-weight: bold;
   text-align: center;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dress.png') 0 0 no-repeat;
-  width: 426rpx;
-  height: 117rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dres.png') 0 0 no-repeat;
+  width: 394rpx;
+  height: 115rpx;
+  line-height: 80rpx;
   background-size: cover;
 }
 .pop-box {
