@@ -6,13 +6,16 @@ Page({
     stage: []
   },
   onLoad() {
+  
     let stage;
     stage = sheet.stages.map(o => {
-      let obj = {}
-      obj['stage'] = new sheet.Stage(o).stage
-      obj['award'] = new sheet.Stage(o).award
-      return obj
+      // let obj = {}
+      // obj['stage'] = new sheet.Stage(o).stage
+      // obj['award'] = new sheet.Stage(o).award
+      // obj['frame'] = new sheet.Stage(o).frame
+      return new sheet.Stage(o)
     })
+    console.log(stage)
     this.setData({
       stage: stage
     })

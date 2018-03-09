@@ -21,7 +21,7 @@ Page({
     console.log(this.data.backData)
   },
   filter(item) {
-    return item.ifshow == -1
+    return item.ifshow == 1
   },
   showPop(e) {
     this.setData({
@@ -34,11 +34,16 @@ console.log(e)
   },
   hidePop() {
     this.setData({
-      show: false
+      show: false,
+      awardShow: false
     })
   },
   toUse() {
-    this.hidePop()
+    this.setData({
+      show: false,
+      awardShow: true
+    })
+    //this.hidePop()
   },
   onShareAppMessage: function (res) {
     return {

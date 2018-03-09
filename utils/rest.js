@@ -1,15 +1,9 @@
 const io = require('./index.js');
-<<<<<<< HEAD
 const srv = "https://h5t.ddz2018.com/";
 const wss = "wss://h5t.ddz2018.com/english";
 // const srv = "https://local.ddz2018.com/";
 // const wss = "wss://local.ddz2018.com/english";
-=======
-//const srv = "https://h5t.ddz2018.com/";
-//const wss = "wss://h5t.ddz2018.com/english";
-const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english";
->>>>>>> b2e00c80a24f9d50d06832b5d19e1405cc105d78
+
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';

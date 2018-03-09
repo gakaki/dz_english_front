@@ -13,7 +13,7 @@
 
 .bp-box {
   width: 690rpx;
-  height: 932rpx;
+  height: 906rpx;
   padding: 26rpx 0 0 0;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -38,9 +38,10 @@
 }
 
 .icon {
-  width: 151rpx;
-  height: 151rpx;
+  width: 149rpx;
+  height: 116rpx;
   margin: 10rpx 0 16rpx 0;
+  transform: scale(.8,.8)
 }
 
 .x, .count {

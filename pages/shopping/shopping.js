@@ -8,13 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods: [{ img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/copper-box.png', name: '铜宝箱' },
-    { img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/silver-box.png', name: '银宝箱' },
-    { img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/gold-box.png', name: '金宝箱' },
-    { img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/gold.png', name: '金币' },
-    { img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/golds.png', name: '金币' },
-    { img: 'https://gengxin.odao.com/update/h5/yingyu/shopping/goldss.png', name: '金币堆' }
-    ],
     point: 0,
     show: false,
     shopData: [],    //道具信息
