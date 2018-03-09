@@ -114,6 +114,7 @@ Page({
     let word = this.data.word;
     let letters = word.english.split('');
     console.log(this.data.hideLetters,'hideLetters')
+
     this.setData({ letters})
     switch (word.type) { //题目类型
       case 1:
@@ -177,6 +178,7 @@ Page({
         let resultLeft = data.userList[userLeft.uid];
         let resultRight = data.userList[userRight.uid];
 
+        console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
       }
     })
@@ -505,7 +507,7 @@ Page({
       time: this.data.round,
       score: this.data.myScore,
       totalScore: this.data.totalScore,
-      isRright: this.data.roundIsRight,
+      isRight: this.data.roundIsRight,
       answer: this.data.roundAnswer
     });
 
