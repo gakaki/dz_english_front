@@ -518,10 +518,10 @@ Page({
 
 
     setTimeout(() => {
-      if (this.data.round < roundLimit) {
+      if (this.data.round <= roundLimit) {
         this.roundInit()
       } else {
-        console.log('结束')
+        console.log('结束', this.data.round, roundLimit)
       }
     }, 3000)
   },
