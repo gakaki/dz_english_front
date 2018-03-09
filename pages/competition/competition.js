@@ -1,5 +1,5 @@
 // pages/competition/competition.js
-
+const app = getApp()
 import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
@@ -458,7 +458,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str4,
+      path: '/pages/index/index',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
+      success: function () {
 
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

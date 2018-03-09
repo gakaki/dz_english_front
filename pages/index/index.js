@@ -19,13 +19,18 @@ Page({
   //事件处理函数
   toSelf() {
     wx.navigateTo({
-       //url: '../self/self'
-      url: '../choosePk/choosePk'
+       url: '../self/self'
+      //url: '../choosePk/choosePk'
     })
   },
   toRank: function () {
     wx.navigateTo({
       url: '../rank/rank'
+    })
+  },
+  toBackpack() {
+    wx.navigateTo({
+      url: '../backpack/backpack'
     })
   },
   toAwaitPk() {
@@ -77,7 +82,7 @@ Page({
       },(res)=>{
         if(res.code==0){
           wx.navigateTo({
-            url: '../friendPK/friendPK',
+            url: '../friendPK/friendPK?rid='+options.rid,
           })
         }
         else{
@@ -154,13 +159,13 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '大家一起来拼智力领福利',
+      title: app.globalData.str4,
       path: '/pages/index/index',
-
-      success: function (res) {
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
+      success: function () {
 
       },
-      fail: function (res) {
+      fail: function () {
         // 转发失败
       }
     }

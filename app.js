@@ -23,6 +23,9 @@ App({
     logined: false,
     userInfo: null,
     personalInfo: null ,
-    str1: sheet.Share.Get(1).title
+    str1: sheet.Share.Get(1).title,
+    str2: sheet.Share.Get(2).title,
+    str3: sheet.Share.Get(3).title,
+    str4: sheet.Share.Get(4).title,
   }
 })

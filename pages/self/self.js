@@ -11,35 +11,51 @@ Page({
     shenglv: 0,
     segment: '',
     sentenceEn: '',
-    sentenceCn: ''
+    sentenceCn: '',
+    comment: ''
   },
   onLoad: function () {
 
     doFetch('english.showpersonal', {}, (res) => {
+      let tempCount = res.data.newWord.totalWordCount
+      let tempArr = sheet.Commentss.map(o => {
+        return o.newterminology
+      })
+      let tempIdx = 0
+      let id
+      for (let i = tempArr.length; i--; i >0) {
+        if (tempArr[i] >= tempCount) {
+          tempIdx = tempArr[i]
+          id = i+1
+        }
+      }
+      this.setData({
+        comment: sheet.Comments.Get(id).description
+      })
       let rank = res.data.userInfo.character.season['1'].rank
       let tc = res.data.remember.totalCount
       let temp = 0
-      if(tc == 0) {
+      if (tc == 0) {
         temp = 0
       }
       else {
-        temp = parseInt((res.data.remember.rightCount / res.data.remember.totalCount)*100)
+        temp = parseInt((res.data.remember.rightCount / res.data.remember.totalCount) * 100)
       }
       let tempSl = 0
       if (res.data.userInfo.character.total == 0) {
         tempSl = 0
-      }else {
+      } else {
         tempSl = parseInt((res.data.userInfo.character.wins / res.data.userInfo.character.total) * 100)
       }
       let idx = res.data.userInfo.character.cumulativeDays
-        this.setData({
-          info: res.data,
-          sentenceCn: sheet.Landingessay.Get(idx+1).Chinese,
-          sentenceEn: sheet.Landingessay.Get(idx + 1).English,
-          jiyilv: temp,
-          shenglv: tempSl,
-          segment: sheet.Stage.Get(rank).stage
-        })
+      this.setData({
+        info: res.data,
+        sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
+        sentenceEn: sheet.Landingessay.Get(idx + 1).English,
+        jiyilv: temp,
+        shenglv: tempSl,
+        segment: sheet.Stage.Get(rank).stage
+      })
     })
 
     if (app.globalData.userInfo) {
@@ -76,4 +92,16 @@ Page({
       hasUserInfo: true
     })
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str2,
+      path: '/pages/self/self',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
+  }
 })
