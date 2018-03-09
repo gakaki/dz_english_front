@@ -43,11 +43,15 @@
   background-color: #19B1FF;
   border-radius: 50%
 }
-.icon {
+.bp-icon {
   width: 149rpx;
   height: 116rpx;
-  margin: 10rpx 0 16rpx 0;
-  transform: scale(.8,.8)
+   transform: scale(.85,.85) 
+}
+.icon {
+  width: 117rpx;
+  height: 133rpx;
+   transform: scale(.8,.8) 
 }
 
 .x, .count {

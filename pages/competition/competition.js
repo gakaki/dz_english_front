@@ -180,6 +180,10 @@ Page({
 
         console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
+        app.globaData.pkResult = {resultLeft,resultRight};
+        wx.redirectTo({
+          url: '../result/result',
+        })
       }
     })
   },

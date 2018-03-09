@@ -1,15 +1,15 @@
 <view class="con-bg f-c-fs con">
   <scroll-view scroll-y class="sv">
     <view class="bp-box f-r-fs">
-      <view wx:for="{{backData}}" class="item f-c-fs">
+      <view wx:for="{{backData}}" wx:key="{{index}}" class="item f-c-fs" data-name="{{item.cfg.name}}" data-desc="{{item.cfg.description}}" data-id="{{item.cfg.id}}" data-src="{{item.cfg.icon}}" bindtap='showPop'>
         <text class="desc">{{item.cfg.name}}</text>
         <view class="img-box flex">
-        <image class="icon" data-name="{{item.cfg.name}}" data-desc="{{item.cfg.description}}" data-src="{{item.cfg.icon}}" bindtap='showPop' src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{item.cfg.icon}}"></image>
+          <image class="bp-icon"  src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{item.cfg.icon}}"></image>
         </view>
-        
+
         <view class="flex">
           <text class="x">×</text>
-          <text class="count">3</text>
+          <text class="count">{{item.cfg.id}}</text>
         </view>
 
       </view>
@@ -18,20 +18,21 @@
   </scroll-view>
   <view wx:if="{{awardShow}}" class="award-pop f-r-fs">
     <scroll-view scroll-y class="pop-sv">
-    <view class="pop-box f-r-fs">
-    <view  class="item f-c-fs">
-        <text class="desc">发发</text>
-        <image class="icon"  src="https://gengxin.odao.com/update/h5/yingyu/backpack/gold.png"></image>
-        <view class="flex">
-          <text class="x">×</text>
-          <text class="count">3</text>
+      <view class="pop-box f-r-fs" >
+        <view class="item f-c-fs" wx:for="{{awardData}}" wx:key="{{index}}">
+          <text class="desc">{{item.cfg.name}}</text>
+          <view class="img-box flex">
+            <image class=" {{(item.cfg.id==1||item.cfg.id >=12)?'bp-icon':'icon'}}" src="https://gengxin.odao.com/update/h5/yingyu/backpack/{{item.cfg.icon}}"></image>
+          </view>
+          <view class="flex">
+            <text class="x">×</text>
+            <text class="count">{{item.cfg.count}}</text>
+          </view>
         </view>
-
       </view>
-    </view>
     </scroll-view>
     <view class="button flex">
-      <view class=" btn" >
+      <view class=" btn" bindtap='hidePop'>
         <text class="font use">确定</text>
       </view>
     </view>

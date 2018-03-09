@@ -34,8 +34,8 @@ font-size: 40rpx;
 color: #b07145;
 }
 .icon {
-  width: 34rpx;
-  height: 40rpx;
+  width: 40rpx;
+  height: 31rpx;
 }
 .jl,.num {
 font-size: 40rpx;
