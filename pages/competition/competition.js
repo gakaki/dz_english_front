@@ -180,8 +180,8 @@ Page({
         let resultRight = data.userList[userRight.uid];
 
         console.log('全局结束')
-        //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
-        app.globalData.pkResult = {resultLeft,resultRight};
+        //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
+        app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult};
         wx.redirectTo({
           url: '../result/result',
         })

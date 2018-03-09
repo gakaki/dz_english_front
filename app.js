@@ -31,6 +31,6 @@ App({
     friendRid: '',
     toRank: false,
     toSelf: false,
-    pkResult:{}//resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
+    pkResult:{}        //{resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
   }
 })
