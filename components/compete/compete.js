@@ -16,14 +16,22 @@ Component({
     clockTime: {
       type: Number,
       value: null
-    }
+    },
+    userLeft: {
+      type:Object,
+      value:null
+    },
+    userRight: {
+      type:Object,
+      value: null
+    },
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    userInfo: {},
+    userInfo:{},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },

@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
 let timer = null;
@@ -16,6 +16,9 @@ Page({
    */
   data: {
     title:null,
+    rid:null,
+    userLeft:{},//左边玩家信息
+    userRight:{},//右边玩家信息
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
@@ -35,24 +38,60 @@ Page({
     firstClick:true,
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
-    myScore:0
+    myScore:0,
+    totalScore:0,
+    roundIsRight:false,
+    roundAnswer:{}
   },
   onLoad(options) {
-    console.log(options.rid)
-    wsSend('getroominfo',{
-      rid:options.rid
-    })
-    wsReceive('pkInfo',res=>{
-      console.log(res)
-    })
-  },
-  onReady() {
-    loadEnglishWords((englishWords)=>{
-      this.setData({
-        englishWords
-      })
-      this.roundInit()
+    this.setData({ rid: options.rid });
+
+    getRoomInfo(options.rid, res => {
+      if (res.code) {
+        wx.showToast({
+          title: '出错了',
+        })
+      }
+      else {
+        let selfUser = app.globalData.userInfo;
+        let userLeft, userRight;
+        let [u1,u2] = res.data.userList;
+        
+        //进这个页面时，自己是对战方之一
+        if (u1.uid == selfUser.uid) {
+          userLeft = u1;
+          userRight = u2;
+        }
+        else {
+          userLeft = u2;
+          userRight = u1;
+        }
+        app.globalData.userInfo = userLeft;
+        
+        let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
+        //更新数据 
+        this.setData({
+          userLeft,
+          userRight,
+          englishWords
+        })
+
+        //开始对战
+        this.roundInit()
+
+        //监听每局结束
+        this.onRoundEndInfo();
+
+        //监听全局结束
+        this.onPkEndInfo();
+
+      }
     });
+
+  },
+
+  onReady() {
+    
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -96,10 +135,53 @@ Page({
         break;  
       case 4:
         this.playFour();
-        break;  
+        break;
     }
     
   },
+
+  onRoundEndInfo() {
+    wsReceive('roundEndSettlement', res => {
+      if (res.code) {
+        wx.showToast({
+          title: '本题结算出错'
+        })
+      }
+      else {
+        let ulist = res.data.userList;
+        let userLeft = this.data.userLeft;
+        let userRight = this.data.userRight;
+        let resultLeft = ulist[userLeft.uid];
+        let resultRight = ulist[userRight.uid];
+
+        //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
+        //展示对局答案信息，然后开始下一题
+
+      }
+    })
+  },
+
+  onPkEndInfo() {
+    wsReceive('pkEndSettlement', res => {
+      if (res.code) {
+        wx.showToast({
+          title: '结算出错了'
+        })
+      }
+      else {
+        let data = res.data;
+        let isFriend = data.isFriend;
+
+        let userLeft = this.data.userLeft;
+        let userRight = this.data.userRight;
+        let resultLeft = data.userList[userLeft.uid];
+        let resultRight = data.userList[userRight.uid];
+
+        //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
+      }
+    })
+  },
+
   playOne() {   //翻牌
     this.keyboard(); //渲染九宫格键盘
     var timerCount = 0;
@@ -267,6 +349,7 @@ Page({
     }, this.data.time);
   },
   showFront(v){  //点击翻牌
+    console.log('showfront')
     let bcCount = this.data.backClickCount;
     let bcLimit = this.data.word.eliminateNum;
     let letters = this.data.letters;
@@ -284,59 +367,154 @@ Page({
         rotateList, 
         backClickCount: bcCount+1,
         letters,
-        hideLetters,
-        myScore: 0,
-        otherScore: 0
+        hideLetters
       })
       if (bcCount == bcLimit - 1) {
         let word = letters.join('');
         let answer = 0;
+        let myScore = 0;
+        let totalScore = 0;
+        let isRright = false;
         console.log(letters,word,this.data.word.english)
         if(word == this.data.word.english) {
           answer = 1;
-          this.setData({
-            myScore: this.data.clockTime * 20
-          })
-        } else {
+          isRright = true;
+          myScore = this.data.clockTime * 20 
+          totalScore = this.data.totalScore + myScore;
+          
+        } 
+        else {
           answer = 2
         }
+
+        let roundAnswer = {}
+        roundAnswer[word] = isRright;
         this.setData({
-          answer
+          myScore,
+          totalScore,
+          answer,
+          roundAnswer
         })
-        this.restart()  //暂时放在这里，对局中，如果收到对家数据，这展示答案，重新开始
+        this.roundEnd()
       }
     }
   },
+
+  selectLetter(e) {
+    let obj = e.currentTarget.dataset;
+    let letter = this.data.nineLetters[obj.index];
+    let letters = this.data.letters;
+    if (!letters.okCnt) {
+      letters.okCnt = 0;
+    }
+
+    let answer = 0;
+    let myScore = 0;
+    let totalScore = 0;
+    let isRright = false;
+    let finished = false;
+    //只要点了其中一个正确的字母，就把该字母放到正确的位置上
+    let idx = this.data.word.english.indexOf(letter);
+    if (idx > -1) {
+      //正确字母
+      letters[idx] = letter;
+      letters.okCnt++;
+
+      if (letters.okCnt == letters.length) {
+        //回答全部正确
+        answer = 1;
+        isRright = true;
+        finished = true;
+        myScore = this.data.clockTime * 20;
+        totalScore = this.data.totalScore + myScore;
+      }
+      else{
+        //让他继续点
+      }
+      
+    }
+    else {
+      //回答出错
+      answer = 2;
+      finished = true;
+    }
+
+    let roundAnswer = {};
+    if (finished) {
+      roundAnswer[letters.join()] = isRright;
+    }
+
+
+    this.setData({
+      letters,
+      answer,
+      roundAnswer,
+      myScore,
+      totalScore
+    })
+
+    if (finished) {
+      this.roundEnd();
+    }
+  },
+
   selectAnswer(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let selectAnswer = this.data.selectAnswer;
-
+      let myScore = 0;
+      let isRright = false;
       if (obj.answer == this.data.word.China || obj.answer == this.data.word.english) {
         selectAnswer[obj.id] = 1;
+        isRright = true;
+
+        myScore = this.data.clockTime * 20;
+        let totalScore = this.data.totalScore + myScore;
         this.setData({
-          myScore: this.data.clockTime * 20
+          myScore,
+          totalScore
         })
       } else {
         selectAnswer[obj.id] = 2;
       }
 
+      let roundAnswer = {};
+      roundAnswer[obj.answer] = isRright;
       this.setData({
         selectAnswer,
+        roundAnswer,
         firstClick: false
       })
-      this.restart()
+      this.roundEnd()
     }
 
   },
-  restart(){
+  roundEnd(){
     clearInterval(timer)
-    setTimeout(() => {
-      this.setData({
-        clockStart: false,
-        round: this.data.round + 1
-      })
-    }, 500)
+    // setTimeout(() => {
+    //   this.setData({
+    //     clockStart: false,
+    //     round: this.data.round + 1
+    //   })
+    // }, 500)
+    //通知后端，一题完成
+    wsSend('roundend', {
+      rid: this.data.rid,
+      wid: this.data.word.id,
+      type: this.data.word.type,
+      time: this.data.round,
+      score: this.data.myScore,
+      totalScore: this.data.totalScore,
+      isRright: this.data.roundIsRight,
+      answer: this.data.roundAnswer
+    });
+
+    this.setData({
+      clockStart: false,
+      round: this.data.round + 1
+    })
+
+
     setTimeout(() => {
       if (this.data.round < roundLimit) {
         this.roundInit()
@@ -355,8 +533,7 @@ Page({
         this.setData({
           answer: 2,
         })
-        this.restart()
-        clearInterval(timer)
+        this.roundEnd()
       }
     },1000)
     
