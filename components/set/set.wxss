@@ -53,17 +53,61 @@
 
 .content{
   text-align: center;
-  max-width: 520rpx;
 }
 
 .close{
   width: 46rpx;
   height: 46rpx;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20rpx;
+  right: 20rpx;
 }
 
+.set{
+  display: flex;
+  margin-top: 84rpx;
+}
+
+.yinxiao{
+  margin-top: 60rpx;
+}
+
+.set-name{
+  font-weight: bold;
+  color: #474747;
+  font-size: 46rpx;
+  font-family: 'Microsoft YaHei';
+  letter-spacing: 12rpx;
+  padding-left: 12rpx;
+  margin-right: 52rpx;
+}
+
+.switch-outer{
+  width: 135rpx;
+  height: 63rpx;
+  background-color: #19b1ff;
+  border-radius: 30rpx;
+  position: relative;
+}
+
+.switch-inner{
+  width: 124rpx;
+  height: 52rpx;
+  background-color: #19b1ff;
+  border-radius: 30rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.btn{
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  top: -2rpx;
+  left: 66rpx;
+}
 
 .mask{
   width: 100%;
@@ -73,4 +117,72 @@
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+.send-open{
+  animation: open 1s linear forwards;
+}
+
+.send-close{
+  animation: close 1s linear forwards;
+}
+
+.send-show{
+  animation: show 1s linear forwards;
+}
+
+.send-hide{
+  animation: hide 1s linear forwards;
+}
+
+.music-open{
+  animation: open 1s linear forwards;
+}
+
+.music-close{
+  animation: close 1s linear forwards;
+}
+
+.bg-color{
+  background-color: #8cd8ff;
+}
+
+.btn-poa{
+  left: -1rpx;
+}
+
+@keyframes open{
+  0%{
+    left:-1rpx;
+  }
+  100%{
+    left: 66rpx;
+  }
+}
+
+@keyframes close{
+  0%{
+    left:66rpx;
+  }
+  100%{
+    left: -1rpx;
+  }
+}
+
+@keyframes show{
+  0%{
+    background-color: #19b1ff;
+  }
+  100%{
+    background-color: #8cd8ff;
+  }
+}
+
+@keyframes hide{
+  0%{
+    background-color: #8cd8ff;
+  }
+  100%{
+    background-color: #19b1ff;
+  }
 }

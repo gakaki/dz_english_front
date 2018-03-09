@@ -8,10 +8,10 @@
     <view class="info f-c-sa">
       <text class="nn">{{userInfo.nickName}}</text>
       <view class="f-r-fs lv">
-        <text class="lvl">lv{{personalInfo.newWord.newWordCount}}</text>
+        <text class="lvl">lv{{lvl}}</text>
         <view class="lvl-box">
           <view class="percent-box">
-            <text>5/10</text>
+            <text>{{exp}}/{{needExp}}</text>
             <view class="percent-bg"></view>
           </view>
 
@@ -31,17 +31,17 @@
   </view>
 
   <view class="tab f-r-sb">
-    <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank.png'></image>
+    <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank1.png'></image>
     <image class='shop' bindtap='toShop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
     <image class='zhishidian' bindtap='toZsd' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
     <image class='qidai' src='https://gengxin.odao.com/update/h5/yingyu/index/pakage.png'></image>
-    <image class='setting' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
+    <image class='setting' bindtap='toSet' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
     <view class="c-box">
       <image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
       <button open-type='contact' class="contact"></button>
     </view>
 
   </view>
-  <set wx:if="{{false}}"></set>
+  <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
   <!-- <pro time="{{time}}"></pro> -->
 </view>

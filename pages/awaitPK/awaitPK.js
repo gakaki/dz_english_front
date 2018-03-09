@@ -64,7 +64,7 @@ Page({
   },
   onReady: function() {
     wsReceive('matchFailed',res=>{
-      console.log(res)
+      console.log(res,'fail')
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
@@ -76,8 +76,8 @@ Page({
         })
       },2500)
     })
-    wsReceive('matchSuccess',res=>{
-      console.log(res)
+    wsReceive('joinSuccess',res=>{
+      console.log(res,'suc')
       this.data.matchSuc = true
       wx.redirectTo({
         url: '../duizhan/duizhan',
@@ -89,7 +89,7 @@ Page({
    */
   onUnload: function () {
     //如果匹配未成功离开此页面则认为取消匹配
-    if(this.data.matchSuc){
+    if(!this.data.matchSuc){
       wsSend('cancelmatch')
     }
     clearTimeout(time)

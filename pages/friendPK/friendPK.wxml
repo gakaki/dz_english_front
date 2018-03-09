@@ -8,10 +8,10 @@
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
         <view class="avatar">
-          <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+          <image class="touxiang" src="{{list[0].info.avatarUrl}}"></image>
         </view>
         <view class="name">
-          <text>{{userInfo.nickName}}</text>
+          <text>{{list[0].info.nickName}}</text>
         </view>
         <view class="qipao">
           <text>发起者</text>
@@ -20,25 +20,30 @@
       <view class="looker">
         <view class="person">
           <image class="icon" src='https://gengxin.odao.com/update/h5/yingyu/friendPK/person.png'></image>
-          <text>围观群众100人</text>
+          <text>围观群众{{bystander}}人</text>
         </view>
       </view> 
       <view class="invitee bg">
         <view class="avatar rotate">
-          <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+          <image class="touxiang" src="{{list[1].info.avatarUrl}}"></image>
         </view>
         <view class="name name-invitee">
-          <text>{{userInfo.nickName}}</text>
+          <text>{{list[1].info.nickName}}</text>
         </view>
       </view>
     </view>
-    <view class="button f-r-sb">
+    <view class="button f-r-sb" wx:if="{{list.length==1}}">
       <view class="btn give-up">
         <text>放弃</text>
-      </view>
+      </view> 
       <view class="btn invite">
         <text>邀请</text>
         <button class="share" open-type='share'></button>
+      </view>
+    </view>
+    <view class="button flex" wx:if="{{list.length==2}}">
+      <view class="btn invite" bindtap='start'>
+        <text>开始</text>
       </view>
     </view>
   </view>

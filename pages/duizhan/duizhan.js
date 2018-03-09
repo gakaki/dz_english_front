@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi=null
+import { doFetch, wsSend, wsReceive,getUid } from '../../utils/rest.js';
 
 Page({
   data: {
@@ -71,43 +72,38 @@ Page({
         'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_13.png',
         'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_14.png',],
       index_k_lizi: 0,
+    isSelf:{},
+    notSelf:{},
+    rid:''
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  //事件处理函数
+  bindViewTap: function () {
+    wx.navigateTo({
+      url: '../logs/logs'
     })
   },
+  onLoad: function (options) {
+    
+    console.log('send')
+    wsReceive('matchSuccess', res => {
+      console.log(res,11111111)
+      let userList = res.data.userList
+      this.data.rid = res.data.roomInfo.rid
+      for(let i=0;i<userList.length;i++){
+        if(userList[i].info.uid==getUid()){
+          this.setData({
+            isSelf: userList[i],
+          })
+        }
+        else{
+          this.setData({
+            notSelf: userList[i],
+          })
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -160,6 +156,11 @@ Page({
     //     url: '../competition/competition',
     //   })
     // },3000)
+    timer = setTimeout(()=>{
+      wx.redirectTo({
+        url: '../competition/competition?rid=' + this.data.rid,
+      })
+    },3000)
   },
   /**
    * 生命周期函数--监听页面卸载
