@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, start } from '../../utils/rest.js';
 import { care } from '../../utils/util.js'
 Page({
   data: {
@@ -13,57 +13,160 @@ Page({
     lvl: 0,
     exp: 0,
     needExp: 0,
-    showSet: false
-
+    showSet: false,
+    showBtn: true
   },
   //事件处理函数
-  toSelf() {
-    wx.navigateTo({
-       url: '../self/self'
-      //url: '../choosePk/choosePk'
+  hi() {
+    this.setData({
+      hasUserInfo: true
     })
+  },
+  toGetInfo() {
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+    }
+  },
+  toSelf() {
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../self/self'
+      })
+    }
   },
   toRank: function () {
-    wx.navigateTo({
-      url: '../rank/rank'
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../rank/rank'
+      })
+    }
   },
   toBackpack() {
-    wx.navigateTo({
-      url: '../backpack/backpack'
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../backpack/backpack'
+      })
+    }
   },
   toAwaitPk() {
-    wx.navigateTo({
-      url: '../choosePk/choosePk',
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../choosePk/choosePk',
+      })
+    }
   },
   toFriPk: function () {
-    wx.navigateTo({
-      url: '../friendPK/friendPK'
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../friendPK/friendPK'
+      })
+    }
   },
   toZsd() {
-    wx.navigateTo({
-      url: '../word/word'
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../word/word'
+      })
+    }
   },
   toShop() {
-    wx.navigateTo({
-      url: '../shopping/shopping'
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      wx.navigateTo({
+        url: '../shopping/shopping'
+      })
+    }
   },
   toSet() {
-    console.log(this.set)
-    this.setData({
-      showSet: true
-    })
+    if (!app.globalData.hasUserInfo) {
+      wx.openSetting({
+        success: (res) => {
+          start((res) => {
+          })
+        }
+      })
+    } else {
+      this.hi()
+      this.setData({
+        showSet: true
+      })
+    }
+
   },
 
   //带下划线的为组件抛上来的方法
   _cancelEvent() {
     this.setData({
       showSet: false
+    })
+  },
+  getInfo() {
+    wx.openSetting({
+      success: (res) => {
+
+      }
     })
   },
   onLoad: function (options) {
@@ -76,16 +179,16 @@ Page({
       })
     })
 
-    if(options && options.friendPK){
-      doFetch('english.roomNotExist',{
-        rid:options.rid
-      },(res)=>{
-        if(res.code==0){
+    if (options && options.friendPK) {
+      doFetch('english.roomNotExist', {
+        rid: options.rid
+      }, (res) => {
+        if (res.code == 0) {
           wx.navigateTo({
             url: '../friendPK/friendPK',
           })
         }
-        else{
+        else {
           wx.showToast({
             title: '房间不存在',
             icon: 'none',
@@ -171,10 +274,10 @@ Page({
     }
   },
   onShow: function () {
+    console.log(this.data.showBtn)
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
-        console.log(777)
       })
     }
   }
