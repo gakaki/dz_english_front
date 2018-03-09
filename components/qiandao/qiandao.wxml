@@ -1,2 +1,11 @@
-<!--components/qiandao/qiandao.wxml-->
-<text>components/qiandao/qiandao.wxml</text>
+<view>
+  <view class="">
+    <image class="lingqu-1" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/lingqu.png"></image>
+    <image class="lingqu-2" src=""></image>
+    <image class="lingqu-3" src=""></image>
+    <image class="lingqu-4" src=""></image>
+    <image class="lingqu-5" src=""></image>
+    <image class="lingqu-6" src=""></image>
+    <image class="lingqu-7" src=""></image>
+  </view>
+</view>
