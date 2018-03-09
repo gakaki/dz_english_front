@@ -257,16 +257,30 @@ Page({
           }
         })
       }
+      else{
+        app.globalData.toFriend = true
+        app.globalData.friendRid = options.rid
+      }
     }
-    else if (options && options.rank && app.globalData.logined) {
-      wx.navigateTo({
-        url: '../rank/rank',
-      })
+    else if (options && options.rank) {
+      if (app.globalData.logined){
+        wx.navigateTo({
+          url: '../rank/rank',
+        })
+      }
+      else{
+        app.globalData.toRank = true
+      }
     }
-    else if (options && options.self && app.globalData.logined) {
-      wx.navigateTo({
-        url: '../self/self',
-      })
+    else if (options && options.self) {
+      if (app.globalData.logined){
+        wx.navigateTo({
+          url: '../self/self',
+        })
+      }
+      else{
+        app.globalData.toSelf = true
+      }
     }
   },
   getUserInfo: function (e) {
