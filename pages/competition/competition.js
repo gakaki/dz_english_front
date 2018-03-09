@@ -111,6 +111,7 @@ Page({
     
   },
   roundInit(){
+    console.log(this.data.round,'round')
     this.setData({
       word: this.data.englishWords[this.data.round-1],
       title: getRoundName(this.data.round),
