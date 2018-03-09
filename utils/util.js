@@ -80,8 +80,15 @@ function care (obj, key, cb) {
   
 }
 
+const delay = (time) => {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  })
+}
+
 
 module.exports = {
   formatTime: formatTime,
-  care : care
+  care : care,
+  delay,
 }
