@@ -1,8 +1,8 @@
 const io = require('./index.js');
-//const srv = "https://h5t.ddz2018.com/";
-//const wss = "wss://h5t.ddz2018.com/english";
-const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english";
+const srv = "https://h5t.ddz2018.com/";
+const wss = "wss://h5t.ddz2018.com/english";
+//const srv = "https://local.ddz2018.com/";
+//const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -21,6 +21,7 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
+
   }
   if (!uid) {
     uid = wx.getStorageSync('uid');
@@ -79,6 +80,9 @@ function userLogin(suc, err) {
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
             //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
+            wx.navigateTo({
+              url: '../friendPK/friendPK',
+            })
           })
         }
       }, err);
