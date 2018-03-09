@@ -103,9 +103,16 @@ function shareTo(){
       rid: app.globalData.friendRid
     }, (res) => {
       if (res.code == 0) {
-        wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
-        })
+        if (res.data.roomStatus == 1) {
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
+          })
+        }
+        else if (res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + app.globalData.friendRid,
+          })
+        }
       }
       else {
         wx.showToast({
