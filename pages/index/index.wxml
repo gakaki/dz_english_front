@@ -1,5 +1,8 @@
 <!--index.wxml-->
 <view class="container">
+  <view class="qiandao">
+    
+  </view>
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
     <view class="header">
