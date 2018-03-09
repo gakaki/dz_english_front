@@ -1,4 +1,5 @@
 //app.js
+require('./polyfill.js')();
 import { start } from 'utils/rest.js';
 const sheet = require('sheets.js')
 App({
@@ -16,6 +17,7 @@ App({
       // console.log('login')
      
     })
+    
   },
   globalData: {
     logined: false,

@@ -45,7 +45,13 @@
           <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
         <view class="star" wx:if="{{stage.length-1 == index+1}}">
+          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
+        </view>
+        <view class="level-star" wx:if="{{stage.length-1 == index+1}}">
           <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        </view>
+        <view class="star" wx:if="{{stage.length-1 == index}}">
+          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
         </view>
       </view>
     </view>

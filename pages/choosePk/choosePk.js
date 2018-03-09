@@ -63,7 +63,6 @@ Page({
       })
       console.log(this.data.stage)
     })
-    
   },
   onReady() {
     wsReceive('cancelSuccess', res => {
