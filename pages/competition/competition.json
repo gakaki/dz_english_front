@@ -1,4 +1,5 @@
 {
+  "component":true,
   "usingComponents": {
     "wrap":"../../components/compete/compete",
     "bar": "../../components/bar/bar"

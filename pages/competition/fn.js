@@ -4,13 +4,10 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
 
  //加载英文单词
-function loadEnglishWords(suc) { 
-  // wsSend('ranking')
-  // wsReceive('roomInfo',res=>{
-    // let data = res.wordList;
-  let data = [/**{ type: 1, id: 1 }, { type: 2, id: 2 }, { type: 3, id: 3 },**/{ type: 4, id: 4 }]
+function loadEnglishWords(words) { 
+ 
     let englishWords = [];
-    englishWords = data.map((v) => {
+    englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
@@ -19,8 +16,17 @@ function loadEnglishWords(suc) {
       cloneObj.options = ['苹果', '橘子', '梨花', '花'];
       return cloneObj
     })
-    suc(englishWords)
-  // })
+    return englishWords;
+
+}
+
+function getRoomInfo(rid, cb) {
+  wsReceive('roomInfo',cb);//好友战的房间信息
+  wsReceive('pkInfo',cb);//匹配战的房间信息
+
+  wsSend('getroominfo', {
+    rid: rid
+  });
 }
 
 function quanpinKeyboard(letters) {
@@ -149,6 +155,7 @@ function autoSelect(arr, length,nowWord) {
 
 module.exports = {
   loadEnglishWords,
+  getRoomInfo,
   keyboard,
   getRoundName,
   hideLettersArr,

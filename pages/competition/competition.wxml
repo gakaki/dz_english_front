@@ -1,5 +1,5 @@
 <!--pages/competition/competition.wxml-->
-<wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}'>
+<wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'>
   <view class='now-word' slot="word">
     <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{showIndex > 0 ? "show" : "none"}}'>

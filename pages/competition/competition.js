@@ -2,13 +2,14 @@
 
 import { Word } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import { loadEnglishWords, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
 let timer = null;
 const totalCountTime = 10;
 const roundTotalScore = 200;
 let end = false;  //当前动画显示是否完成
+let app = getApp();
 
 Page({
   /**
@@ -16,6 +17,9 @@ Page({
    */
   data: {
     title:null,
+    rid:null,
+    userLeft:{},//左边玩家信息
+    userRight:{},//右边玩家信息
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
@@ -38,21 +42,48 @@ Page({
     myScore:0
   },
   onLoad(options) {
-    console.log(options.rid)
-    wsSend('getroominfo',{
-      rid:options.rid
-    })
-    wsReceive('pkInfo',res=>{
-      console.log(res)
-    })
-  },
-  onReady() {
-    loadEnglishWords((englishWords)=>{
-      this.setData({
-        englishWords
-      })
-      this.roundInit()
+    this.setData({ rid: options.rid });
+
+    getRoomInfo(options.rid, res => {
+      if (res.code) {
+        wx.showToast({
+          title: '出错了',
+        })
+      }
+      else {
+        let selfUser = app.globalData.userInfo;
+        let userLeft, userRight;
+        let [u1,u2] = res.data.userList;
+        
+        //进这个页面时，自己是对战方之一
+        if (u1.uid == selfUser.uid) {
+          userLeft = u1;
+          userRight = u2;
+        }
+        else {
+          userLeft = u2;
+          userRight = u1;
+        }
+        app.globalData.userInfo = userLeft;
+        
+        let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
+        //更新数据 
+        this.setData({
+          userLeft,
+          userRight,
+          englishWords
+        })
+
+        //开始对战
+        this.roundInit()
+
+      }
     });
+
+  },
+
+  onReady() {
+    
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -304,7 +335,7 @@ Page({
         this.setData({
           answer
         })
-        this.restart()  //暂时放在这里，对局中，如果收到对家数据，这展示答案，重新开始
+        this.roundEnd()  //暂时放在这里，对局中，如果收到对家数据，这展示答案，重新开始
       }
     }
   },
@@ -363,18 +394,22 @@ Page({
         selectAnswer,
         firstClick: false
       })
-      this.restart()
+      this.roundEnd()
     }
 
   },
-  restart(){
+  roundEnd(){
     clearInterval(timer)
-    setTimeout(() => {
-      this.setData({
-        clockStart: false,
-        round: this.data.round + 1
-      })
-    }, 500)
+    // setTimeout(() => {
+    //   this.setData({
+    //     clockStart: false,
+    //     round: this.data.round + 1
+    //   })
+    // }, 500)
+    //通知后端，一题完成
+    
+
+
     setTimeout(() => {
       if (this.data.round < roundLimit) {
         this.roundInit()
@@ -393,7 +428,7 @@ Page({
         this.setData({
           answer: 2,
         })
-        this.restart()
+        this.roundEnd()
         clearInterval(timer)
       }
     },1000)
