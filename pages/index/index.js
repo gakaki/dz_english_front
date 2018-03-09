@@ -232,18 +232,27 @@ Page({
         }
       })
     }
+    
+    this.shareTo(options)
 
+  },
+  shareTo(options) {
     if (options && options.friendPK) {
       if (app.globalData.logined) {
-        console.log(1111)
         doFetch('english.roomNotExist', {
           rid: options.rid
         }, (res) => {
-
           if (res.code == 0) {
-            wx.navigateTo({
-              url: '../friendPK/friendPK?rid=' + options.rid,
-            })
+            if (res.data.roomStatus==1){
+              wx.navigateTo({
+                url: '../friendPK/friendPK?rid=' + options.rid,
+              })
+            }
+            else if (res.data.roomStatus == 2){
+              wx.navigateTo({
+                url: '../competition/competition?rid=' + options.rid,
+              })
+            }
           }
           else {
             wx.showToast({
@@ -254,12 +263,31 @@ Page({
           }
         })
       }
-      else {
-        console.log(2222)
-        // this.auth()
+      else{
+        app.globalData.toFriend = true
+        app.globalData.friendRid = options.rid
       }
     }
-
+    else if (options && options.rank) {
+      if (app.globalData.logined){
+        wx.navigateTo({
+          url: '../rank/rank',
+        })
+      }
+      else{
+        app.globalData.toRank = true
+      }
+    }
+    else if (options && options.self) {
+      if (app.globalData.logined){
+        wx.navigateTo({
+          url: '../self/self',
+        })
+      }
+      else{
+        app.globalData.toSelf = true
+      }
+    }
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo

@@ -5,7 +5,7 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
  //加载英文单词
 function loadEnglishWords(words) { 
- 
+  // return [{ type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }];
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);

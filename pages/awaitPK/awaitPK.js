@@ -48,6 +48,10 @@ Page({
               that.setData({
                 userInfo: res.data
               })
+              //获取位置之后开始匹配
+              wsSend('ranking', {
+                rankType: option.type
+              })
             })
           },
           fail: function (res) {
@@ -55,6 +59,16 @@ Page({
             wx.showToast({
               title: '获取位置失败，请开启位置权限服务并重试',
               duration: 2000
+            })
+            doFetch('english.updateposition', { position: ' ' }, (res) => {
+              console.log(res)
+              that.setData({
+                userInfo: res.data
+              })
+              //获取位置之后开始匹配
+              wsSend('ranking', {
+                rankType: option.type
+              })
             })
           }
         });
@@ -66,13 +80,14 @@ Page({
           that.setData({
             userInfo: res.data
           })
+          //获取位置之后开始匹配
+          wsSend('ranking', {
+            rankType: option.type
+          })
         })
       }
     })
-    //获取位置之后开始匹配
-    wsSend('ranking',{
-      rankType:option.type
-    })
+    
   },
   onReady: function() {
     //为防止客户端数据被篡改再此处再通过后台判断金币是否足够

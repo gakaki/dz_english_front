@@ -11,6 +11,7 @@ Page({
     shareGold:0
   },
   onLoad: function () {
+    console.log(app.globalData.pkResult,'pkResult')
     doFetch('english.getshareaward',{},res=>{
       if(res.code==0){
         this.setData({
@@ -19,7 +20,6 @@ Page({
       }
     })
     if (app.globalData.userInfo) {
-      console.log(111)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true

@@ -27,6 +27,10 @@ App({
     str2: sheet.Share.Get(2).title,
     str3: sheet.Share.Get(3).title,
     str4: sheet.Share.Get(4).title,
-    pkResult:{}//resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
+    toFriend: false,
+    friendRid: '',
+    toRank: false,
+    toSelf: false,
+    pkResult:{}        //{resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
   }
 })
