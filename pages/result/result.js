@@ -14,7 +14,7 @@ Page({
   },
   onLoad: function () {
     let pkResult = app.globalData.pkResult
-    console.log(app.globalData.pkResult,'pkResult')
+    console.log(pkResult,'pkResult')
     doFetch('english.getshareaward',{},res=>{
       if(res.code==0){
         this.setData({
