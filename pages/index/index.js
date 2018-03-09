@@ -179,25 +179,6 @@ Page({
       })
     })
 
-    if (options && options.friendPK) {
-      doFetch('english.roomNotExist', {
-        rid: options.rid
-      }, (res) => {
-        if (res.code == 0) {
-          wx.navigateTo({
-            url: '../friendPK/friendPK?rid='+options.rid,
-          })
-        }
-        else {
-          wx.showToast({
-            title: '房间不存在',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      })
-    }
-
     // let aa = {bb:'bb'};
 
     // Object.defineProperty(aa, 'cc', {
@@ -252,12 +233,53 @@ Page({
       })
     }
 
+    if (options && options.friendPK) {
+      if (app.globalData.logined) {
+        console.log(1111)
+        doFetch('english.roomNotExist', {
+          rid: options.rid
+        }, (res) => {
+
+          if (res.code == 0) {
+            wx.navigateTo({
+              url: '../friendPK/friendPK?rid=' + options.rid,
+            })
+          }
+          else {
+            wx.showToast({
+              title: '房间不存在',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      }
+      else {
+        console.log(2222)
+        // this.auth()
+      }
+    }
+
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  auth() {
+    console.log(3333)
+    wx.openSetting({
+      success: (res) => {
+        console.log('auth')
+        start((res) => {
+          this.hi()
+        })
+      },
+      fail: res=>{
+        console.log('fail',res)
+      }
     })
   },
   onShareAppMessage: function (res) {
@@ -274,6 +296,7 @@ Page({
     }
   },
   onShow: function () {
+    
     console.log(this.data.showBtn)
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
