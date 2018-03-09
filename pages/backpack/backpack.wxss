@@ -13,7 +13,7 @@
 
 .bp-box {
   width: 690rpx;
-  height: 932rpx;
+  height: 906rpx;
   padding: 26rpx 0 0 0;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -36,11 +36,22 @@
   line-height: 48rpx;
   border-radius: 30rpx;
 }
-
+.img-box {
+  margin-top: 10rpx;
+   width: 150rpx;
+  height: 150rpx;
+  background-color: #19B1FF;
+  border-radius: 50%
+}
+.bp-icon {
+  width: 149rpx;
+  height: 116rpx;
+   transform: scale(.85,.85) 
+}
 .icon {
-  width: 151rpx;
-  height: 151rpx;
-  margin: 10rpx 0 16rpx 0;
+  width: 117rpx;
+  height: 133rpx;
+   transform: scale(.8,.8) 
 }
 
 .x, .count {
@@ -191,9 +202,10 @@
   content: '恭喜获得';
   font-weight: bold;
   text-align: center;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dress.png') 0 0 no-repeat;
-  width: 426rpx;
-  height: 117rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dres.png') 0 0 no-repeat;
+  width: 394rpx;
+  height: 115rpx;
+  line-height: 80rpx;
   background-size: cover;
 }
 .pop-box {

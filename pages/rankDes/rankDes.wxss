@@ -17,13 +17,16 @@
 .head-box {
   width: 179rpx;
   height: 137rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/rankDes/frame-1.png') 0 0 no-repeat;
-  background-size: cover;
+  /* background: url('https://gengxin.odao.com/update/h5/yingyu/rankDes/frame-1.png') 0 0 no-repeat;
+  background-size: cover; */
   margin: 0 34rpx 0 20rpx;
+  position: relative;
 }
+
 .head {
   width: 179rpx;
   height: 137rpx;
+z-index: 10
 }
 .des {
 font-weight: bold;
@@ -31,15 +34,15 @@ font-size: 40rpx;
 color: #b07145;
 }
 .icon {
-  width: 34rpx;
-  height: 40rpx;
+  width: 40rpx;
+  height: 31rpx;
 }
 .jl,.num {
 font-size: 40rpx;
 color: #b07145;
 }
 .jl {
-  margin-left: 66rpx;
+  margin-left: 126rpx;
 }
 .num {
    margin-left: 4rpx;

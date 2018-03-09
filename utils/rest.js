@@ -1,10 +1,8 @@
 const io = require('./index.js');
-
-// const srv = "https://h5t.ddz2018.com/";
-// const wss = "wss://h5t.ddz2018.com/english";
+//const srv = "https://h5t.ddz2018.com/";
+//const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
-
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -97,8 +95,8 @@ function userLogin(suc, err) {
   })
 }
 
-function shareTo(){
-  if (app.globalData.toFriend){
+function shareTo() {
+  if (app.globalData.toFriend) {
     doFetch('english.roomNotExist', {
       rid: app.globalData.friendRid
     }, (res) => {
@@ -123,13 +121,13 @@ function shareTo(){
       }
     })
   }
-  else if (app.globalData.toRank){
+  else if (app.globalData.toRank) {
     wx.navigateTo({
       url: '../rank/rank',
     })
     app.globalData.toRank = false
   }
-  else if (app.globalData.toSelf){
+  else if (app.globalData.toSelf) {
     wx.navigateTo({
       url: '../self/self',
     })
