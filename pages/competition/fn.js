@@ -30,10 +30,10 @@ function loadEnglishWords(words) {
 }
 
 function getRoomInfo(rid, cb) {
-  wsReceive('roomInfo',cb);//好友战的房间信息
+  //wsReceive('roomInfo',cb);//好友战的房间信息
   wsReceive('pkInfo',cb);//匹配战的房间信息
 
-  wsSend('getroominfo', {
+  wsSend('getpkinfo', {
     rid: rid
   });
 }

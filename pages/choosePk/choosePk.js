@@ -78,25 +78,28 @@ Page({
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
+    
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
-    //通过后台和客户端一起判断来防止数据被篡改
-    wsSend('canmatch', {
-      rankType: type
-    })
-    wsReceive('needGold', res => {
-      console.log(res)
-      this.data.canMatch = false
-      wx.showToast({
-        title: '金币不足',
-        icon: 'none',
-        duration: 2000
+    if (this.data.stage.length > type){
+      //通过后台和客户端一起判断来防止数据被篡改
+      wsSend('canmatch', {
+        rankType: type
       })
-    })
-    if (this.data.canMatch || this.data.userInfo.items[1] >= gold){
-      wx.navigateTo({
-        url: '../awaitPK/awaitPK?type='+type + '&gold=' +gold ,
+      wsReceive('needGold', res => {
+        console.log(res)
+        this.data.canMatch = false
+        wx.showToast({
+          title: '金币不足',
+          icon: 'none',
+          duration: 2000
+        })
       })
+      if (this.data.canMatch || this.data.userInfo.items[1] >= gold) {
+        wx.navigateTo({
+          url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
+        })
+      }
     }
   },
   toDes() {

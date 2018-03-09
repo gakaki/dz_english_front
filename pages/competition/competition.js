@@ -549,6 +549,7 @@ Page({
     //     round: this.data.round + 1
     //   })
     // }, 500)
+    console.log(this.data.round,'roundTime')
     //通知后端，一题完成
     wsSend('roundend', {
       rid: this.data.rid,

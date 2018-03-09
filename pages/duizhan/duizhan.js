@@ -1,8 +1,8 @@
 
 //获取应用实例
 const app = getApp()
-let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi=null
-import { doFetch, wsSend, wsReceive,getUid } from '../../utils/rest.js';
+let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
+import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
 
 Page({
   data: {
@@ -40,7 +40,7 @@ Page({
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/dianliuR_12.png',
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/dianliuR_13.png',],
     index_dianliu: 0,
-    yincang:'',//设置隐藏最后一张帧动画
+    yincang: '',//设置隐藏最后一张帧动画
 
     animation_p_lizi: ['https://gengxin.odao.com/update/h5/yingyu/xuliezhen/p_lizi_01.png',
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/p_lizi_02.png',
@@ -55,26 +55,26 @@ Page({
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/p_lizi_11.png',
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/p_lizi_12.png',
       'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/p_lizi_13.png',],
-      index_p_lizi: 0,
+    index_p_lizi: 0,
 
-      animation_k_lizi: ['https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_01.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_02.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_03.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_04.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_05.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_06.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_07.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_08.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_09.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_10.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_11.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_12.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_13.png',
-        'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_14.png',],
-      index_k_lizi: 0,
-    isSelf:{},
-    notSelf:{},
-    rid:''
+    animation_k_lizi: ['https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_01.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_02.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_03.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_04.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_05.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_06.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_07.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_08.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_09.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_10.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_11.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_12.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_13.png',
+      'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/k_lizi_14.png',],
+    index_k_lizi: 0,
+    isSelf: {},
+    notSelf: {},
+    rid: ''
   },
   //事件处理函数
   bindViewTap: function () {
@@ -83,26 +83,23 @@ Page({
     })
   },
   onLoad: function (options) {
-    
-    console.log('send',options.rid)
-    wsSend('getroominfo',{
-      rid:options.rid
+
+    console.log('send', options.rid)
+    wsSend('getmatchinfo', {
+      rid: options.rid
     })
-    wsReceive('pkInfo', res => {
-      console.log(res,11111111)
+
+    wsReceive('matchInfo', res => {
+      console.log(res, 11111111)
       this.getInfo(res)
     })
-    
-    wsReceive('roomInfo',res=>{
-      console.log(res, 2222222)
-      this.getInfo(res)
-    })
-    
+
   },
 
-  getInfo(res){
+  getInfo(res) {
     let userList = res.data.userList
-    this.data.rid = res.data.roomInfo.rid
+    this.data.rid = res.data.rid
+    console.log(this.data.rid, res.data, 'toComRid')
     for (let i = 0; i < userList.length; i++) {
       if (userList[i].info.uid == getUid()) {
         this.setData({
@@ -122,7 +119,7 @@ Page({
    */
   onShow: function () {
     // 手机气泡序列帧动画定时器
-    let i = 0,j = 0,p = 0,k = 0;
+    let i = 0, j = 0, p = 0, k = 0;
     time = setInterval(() => {
       i++
       if (i >= 19) {
@@ -133,17 +130,17 @@ Page({
       })
     }, 150)
     //电流序列帧动画定时器
-    time_dianiu = setInterval(()=>{
-      if(j++>=13){
+    time_dianiu = setInterval(() => {
+      if (j++ >= 13) {
         this.setData({
-          yincang:'dianliu-yincang'
+          yincang: 'dianliu-yincang'
         })
         clearInterval(time_dianiu);
       }
       this.setData({
         index_dianliu: j
       })
-    },100)
+    }, 100)
     //pk-p粒子序列帧动画定时器
     time_p_lizi = setInterval(() => {
       if (p++ >= 13) {
@@ -164,15 +161,12 @@ Page({
     }, 150)
 
 
-    // timer = setTimeout(()=>{
-    //   wx.redirectTo({
-    //     url: '../competition/competition',
-    //   })
-    // },3000)
     timer = setTimeout(()=>{
+      console.log('toCompetion',this.data.rid)
       wx.redirectTo({
         url: '../competition/competition?rid=' + this.data.rid,
       })
+      console.log('toCompetion', this.data.rid,1111)
     },3000)
   },
   /**

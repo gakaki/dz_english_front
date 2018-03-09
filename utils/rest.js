@@ -138,10 +138,12 @@ function shareTo() {
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
+    console.log('wsR',action)
     suc(res)
   })
 }
 function wsSend(action, data) {
+  console.log('ws',action)
   socket.emit(action, data)
 }
 
