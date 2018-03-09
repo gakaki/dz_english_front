@@ -81,9 +81,6 @@ function userLogin(suc, err) {
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
             //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
-            wx.navigateTo({
-              url: '../friendPK/friendPK',
-            })
           })
         }
       }, err);

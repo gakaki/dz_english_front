@@ -82,7 +82,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str3,
-      path: '/pages/rank/rank',
+      path: '/pages/index/index?rank=true',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/rank.png',
       success: function () {
 

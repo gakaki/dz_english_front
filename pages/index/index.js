@@ -232,14 +232,17 @@ Page({
         }
       })
     }
+    
+    this.shareTo(options)
 
+  },
+  shareTo(options) {
+    console.log(111)
     if (options && options.friendPK) {
       if (app.globalData.logined) {
-        console.log(1111)
         doFetch('english.roomNotExist', {
           rid: options.rid
         }, (res) => {
-
           if (res.code == 0) {
             wx.navigateTo({
               url: '../friendPK/friendPK?rid=' + options.rid,
@@ -254,12 +257,17 @@ Page({
           }
         })
       }
-      else {
-        console.log(2222)
-        // this.auth()
-      }
     }
-
+    else if (options && options.rank && app.globalData.logined) {
+      wx.navigateTo({
+        url: '../rank/rank',
+      })
+    }
+    else if (options && options.self && app.globalData.logined) {
+      wx.navigateTo({
+        url: '../self/self',
+      })
+    }
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
