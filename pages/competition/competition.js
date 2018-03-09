@@ -59,12 +59,12 @@ Page({
         
         //进这个页面时，自己是对战方之一
         if (u1.uid == selfUser.uid) {
-          userLeft = u1;
-          userRight = u2;
+          userLeft = u1.info;
+          userRight = u2.info;
         }
         else {
-          userLeft = u2;
-          userRight = u1;
+          userLeft = u2.info;
+          userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
         
@@ -105,6 +105,7 @@ Page({
       showIndex: 0,
       rotateList: changeArrAllValue(this.data.rotateList, true),
       answer:0,
+      time: 2000,
       backClickCount: 0,
       clockTime: totalCountTime,
       selectAnswer: [0, 0, 0, 0],
@@ -180,7 +181,7 @@ Page({
 
         console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number}
-        app.globaData.pkResult = {resultLeft,resultRight};
+        app.globalData.pkResult = {resultLeft,resultRight};
         wx.redirectTo({
           url: '../result/result',
         })
@@ -326,6 +327,7 @@ Page({
           }, 1000)
           break;
         case 2:
+
           let hideLetters = this.data.hideLetters;
           //擦去部分字母
           hideLetters.forEach( (v,i) => {
@@ -333,6 +335,7 @@ Page({
           })
           this.setData({
             hideLetters,
+            hideAllLetters: true,
             time: 1000
           })
           // end = true;
@@ -409,6 +412,8 @@ Page({
   selectLetter(e) {
     let obj = e.currentTarget.dataset;
     let letter = this.data.nineLetters[obj.index];
+    console.log('click letter', letter);
+
     let letters = this.data.letters;
     if (!letters.okCnt) {
       letters.okCnt = 0;
