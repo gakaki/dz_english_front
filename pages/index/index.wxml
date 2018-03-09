@@ -19,8 +19,8 @@
       </view>
     </view>
     <view class="share-box">
-      <image class='share' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>
-      <button class='share-btn' open-type="share"></button>
+      <image class='share' bindtap='toGetInfo' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>
+      <button wx:if="{{hasUserInfo}}" class='share-btn' open-type="share"></button>
     </view>
   </view>
   <view class="flex">
@@ -37,8 +37,8 @@
     <image class='qidai' bindtap='toBackpack' src='https://gengxin.odao.com/update/h5/yingyu/index/pakage.png'></image>
     <image class='setting' bindtap='toSet' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
     <view class="c-box">
-      <image class='customer' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
-      <button open-type='contact' class="contact"></button>
+      <image class='customer' bindtap='toGetInfo' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
+      <button wx:if="{{hasUserInfo}}" open-type='contact' class="contact"></button>
     </view>
 
   </view>
