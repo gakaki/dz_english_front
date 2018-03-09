@@ -1,14 +1,23 @@
 //获取应用实例
 const app = getApp()
+import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 
 Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+    isVictory:'https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png',
+    shareGold:0
   },
   onLoad: function () {
+    doFetch('english.getshareaward',{},res=>{
+      if(res.code==0){
+        this.setData({
+          shareGold:res.data.num
+        })
+      }
+    })
     if (app.globalData.userInfo) {
       console.log(111)
       this.setData({
@@ -43,6 +52,11 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  toMatch() {
+    wx.redirectTo({
+      url: '../choosePk/choosePk',
     })
   },
   onShareAppMessage: function (res) {

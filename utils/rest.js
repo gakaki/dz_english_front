@@ -1,10 +1,24 @@
 const io = require('./index.js');
+const srv = "https://h5t.ddz2018.com/";
+const wss = "wss://h5t.ddz2018.com/english";
+// const srv = "https://local.ddz2018.com/";
+// const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
+<<<<<<< HEAD
   const srv = "https://h5t.ddz2018.com/";
   const wss = "wss://h5t.ddz2018.com/english";
 //const srv = "https://local.ddz2018.com/";
 //const wss = "wss://local.ddz2018.com/english";
+=======
+<<<<<<< HEAD
+=======
+//  const srv = "https://h5t.ddz2018.com/";
+//  const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com/english";
+>>>>>>> 143591bacd4702c4136903de60c3f54bf66e7cfd
 
+>>>>>>> 85a21991fac18c9c194b9ad55ea6a3504b15d9e3
 const CODE_SUC = 0;
 const APPNAME = 'english';
 let sid, uid, app, isAuth = false;

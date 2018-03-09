@@ -120,27 +120,27 @@
 }
 
 .send-open{
-  animation: open 1s linear forwards;
+  animation: open .1s linear forwards;
 }
 
 .send-close{
-  animation: close 1s linear forwards;
+  animation: close .1s linear forwards;
 }
 
 .send-show{
-  animation: show 1s linear forwards;
+  animation: show .1s linear forwards;
 }
 
 .send-hide{
-  animation: hide 1s linear forwards;
+  animation: hide .1s linear forwards;
 }
 
 .music-open{
-  animation: open 1s linear forwards;
+  animation: open .1s linear forwards;
 }
 
 .music-close{
-  animation: close 1s linear forwards;
+  animation: close .1s linear forwards;
 }
 
 .bg-color{

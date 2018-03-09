@@ -309,6 +309,50 @@
   animation: opa .5s linear .5s infinite forwards;
 }
 
+.animation-dianliu-lan{
+  position: absolute;
+  top: 520rpx;
+}
+
+.dianliu-yincang{
+  opacity: 0;
+}
+
+.animation-dianliuL{
+  width: 232rpx;
+  height: 142rpx;
+}
+
+.animation-dianliu-hong{
+  position: absolute;
+  top: 520rpx;
+  right: 0rpx;
+}
+
+.animation-dianliuR{
+  width: 232rpx;
+  height: 142rpx;
+}
+
+.p-lizi{
+  width: 44rpx;
+  height: 49rpx;
+  margin-left: 270rpx;
+  margin-top: 12rpx;
+  position: absolute;
+  animation: pk .5s ease-in .5s forwards; 
+}
+
+.k-lizi{
+  width: 94rpx;
+  height: 46rpx;
+  margin-left: 400rpx;
+  margin-top: -25rpx;
+  position: absolute;
+  animation: pk .5s ease-in .5s forwards; 
+}
+
+
 /*以下部分为动画*/
 @keyframes left {
   0%{
@@ -347,6 +391,8 @@
     opacity: 1;
   }
 }
+
+
 
 /* @keyframes lpoint{
   0%{
