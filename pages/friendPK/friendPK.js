@@ -1,7 +1,7 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-let time = null,timer = null
+import { doFetch, wsSend, wsReceive , getUid } from '../../utils/rest.js';
+let time = null
 
 Page({
 
@@ -16,78 +16,58 @@ Page({
     index: 0,
     bystander:0,
     list:[],
-    rid:''
+    rid:'',
+    isOwner:false,
+    startGame:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.rid,'rid')
-    this.data.rid = options.rid
+    console.log(options)
+    if(options && !options.rid){
+      console.log('creatroom')
+      wsSend('createroom')
+      wsReceive('createSuccess', res => {
+        console.log(res, 'creatSuc')
+        this.getInfo(res.data.rid)
+      })
+    }
+    else{
+      this.getInfo(options.rid)
+    } 
+    console.log(this.data.rid,'rid')
+    
+  },
+  getInfo(rid){
+    this.data.rid = rid
     wsSend('getroominfo', {
-      rid: options.rid
+      rid: this.data.rid
     })
-    wsReceive('roomInfo',res=>{
-      console.log(res)
-      if(res.data.roomStatus==2){
+    wsReceive('roomInfo', res => {
+      console.log(res, 'frienPK')
+      if (res.data.roomStatus == 2) {
         wx.redirectTo({
-          url: '../competition/competition',
+          url: '../competition/competition?rid=' + this.data.rid,
+        })
+      }
+      if (res.data.userList[0].info.uid == getUid()) {
+        this.setData({
+          isOwner: true
         })
       }
       this.setData({
-        bystander:res.data.bystanderCount,
-        list:res.data.userList
+        bystander: res.data.roomInfo.bystanderCount,
+        list: res.data.userList
       })
     })
-    wsReceive('roomNotExist',res=>{
-      console.log(res)
-      wx.showToast({
-        title: '房间不存在',
-        icon: 'none',
-        duration: 2000
-      })
-    })
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse) {
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
   },
-  // getUserInfo: function (e) {
-  //   console.log(e)
-  //   app.globalData.userInfo = e.detail.userInfo
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (options) {
-    
+    console.log(app.globalData.str1)
   },
 
   /**
@@ -104,7 +84,14 @@ Page({
         index:i
       })
     },150)
-    
+    //监听游戏开始，为了让两边同时跳转将监听放在页面显示的生命周期函数内
+    wsReceive('matchSuccess', res => {
+      console.log(res, 'startGame')
+      this.data.startGame = true
+      wx.redirectTo({
+        url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
+      })
+    })
   },
 
   /**
@@ -118,8 +105,13 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    if(this.data.isOwner && !this.data.startGame){
+      wsSend('leaveroom')
+      wsReceive('dissolve', res => {
+        console.log(res, 'dissolve')
+      })
+    }
     clearInterval(time);
-    clearTimeout(timer);
   },
 
   start: function() {
@@ -127,36 +119,28 @@ Page({
     wsSend('startgame',{
       rid: this.data.rid
     })
-    wsReceive('joinSuccess',res=>{
-      console.log(res)
-      wx.redirectTo({
-        url: '../duizhan/duizhan',
+  },
+
+  giveUp() {
+    if(this.data.isOwner){
+      wsSend('leaveroom')
+      wsReceive('dissolve',res=>{
+        console.log(res,'dissolve')
       })
+    }
+    wx.navigateBack({
+      delta: 1
     })
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
     return {
-      title: '*******',
+      title: app.globalData.str1,
       path: '/pages/index/index?friendPK=true&rid=' + this.data.rid,
-      // imageUrl: 'https://gengxin.odao.com/update/h5/wangcai/common/share.png',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/pk.png',
       success: function () {
         
       },

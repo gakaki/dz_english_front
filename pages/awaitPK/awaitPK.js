@@ -13,7 +13,9 @@ Page({
     longitude: '',
     ak:"NKGOAVSGiLWsCxmegCdyOfxtRZ2kl8jL",
     gold:0,
-    matchSuc:false
+    type:0,
+    matchSuc:false,
+    awaiting:false
   },
   onLoad: function (option) {
     this.setData({
@@ -59,28 +61,55 @@ Page({
       },
       fail: function (res) {
         console.log(res)
+        doFetch('english.updateposition', { position:' '}, (res) => {
+          console.log(res)
+          that.setData({
+            userInfo: res.data
+          })
+        })
       }
+    })
+    //获取位置之后开始匹配
+    wsSend('ranking',{
+      rankType:option.type
     })
   },
   onReady: function() {
+    //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
+    wsReceive('needGold',res=>{
+      wx.showToast({
+        title: '金币不足',
+        icon: 'none',
+        duration: 2000
+      })
+      time = setTimeout(function () {
+        console.log(111)
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 2500)
+    })
     wsReceive('matchFailed',res=>{
       console.log(res,'fail')
+      this.data.awaiting = true
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
         duration: 2000
       })
       time = setTimeout(function(){
+        console.log(111)
         wx.navigateBack({
           delta: 1
         })
       },2500)
     })
-    wsReceive('joinSuccess',res=>{
+    wsReceive('matchSuccess',res=>{
       console.log(res,'suc')
+      
       this.data.matchSuc = true
       wx.redirectTo({
-        url: '../duizhan/duizhan',
+        url: '../duizhan/duizhan?rid='+res.data.roomInfo.rid,
       })
     })
   },
@@ -89,9 +118,23 @@ Page({
    */
   onUnload: function () {
     //如果匹配未成功离开此页面则认为取消匹配
-    if(!this.data.matchSuc){
+    if (!this.data.matchSuc && !this.data.awaiting){
+      console.log('cancel')
       wsSend('cancelmatch')
     }
     clearTimeout(time)
   },
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str4,
+      path: '/pages/index/index',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
+  }
 })

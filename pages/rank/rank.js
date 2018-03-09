@@ -1,3 +1,4 @@
+const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
 Page({
@@ -34,6 +35,10 @@ Page({
           this.setData({
             rankData: res.data.map(this.getSegment)
           })
+        } else {
+          this.setData({
+            rankData: []
+          })
         }
       })
     } else {
@@ -41,6 +46,10 @@ Page({
         if (res.data.length > 0) {
           this.setData({
             rankData: res.data.map(this.getSegment)
+          })
+        } else {
+          this.setData({
+            rankData: []
           })
         }
       })
@@ -58,7 +67,7 @@ Page({
           wx.showToast({
             title: '暂无数据',
             icon: 'success',
-            duration:500,
+            duration: 500,
             mask: true
           })
         }
@@ -69,5 +78,18 @@ Page({
       })
     }
 
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: app.globalData.str3,
+      path: '/pages/rank/rank',
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/rank.png',
+      success: function () {
+
+      },
+      fail: function () {
+        // 转发失败
+      }
+    }
   }
 })

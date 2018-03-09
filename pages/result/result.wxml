@@ -1,6 +1,6 @@
 <view class="result">
   <view class="defen">
-    <image class="shu-ying" src="https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png"></image>
+    <image class="shu-ying" src="{{isVictory}}"></image>
     <view class="fenshu-lan font">
       <view class="fenshu-juzhong">
         <text class="shu-lan">999</text>
@@ -52,14 +52,15 @@
       <text class="jingyan-jia">+</text>
       <text class="jingyan-shu">9</text>
     </view>
-    <view class="anniu-tiaozhan anniu-wenzi">
+    <view class="anniu-tiaozhan anniu-wenzi" bindtap='toMatch'>
       <text class="tiaozhan">继续挑战</text>
     </view>
     <view class="anniu-fenxiang anniu-wenzi">
       <text class="fenxiang">分享结果</text>
+      <button open-type='share' class="share"></button>
     </view>
-    <view class="fenxiang-shuoming font">
-      <text class="fenxiang-wenzi">分享可获得100</text>
+    <view class="fenxiang-shuoming font" wx:if="{{shareGold}}">
+      <text class="fenxiang-wenzi">分享可获得{{shareGold}}</text>
       <image class="fenxiang-jinbi" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbixiao.png"></image>
     </view>
   </view>

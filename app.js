@@ -1,5 +1,6 @@
 //app.js
 import { start } from 'utils/rest.js';
+const sheet = require('sheets.js')
 App({
   onLaunch: function () {
     wx.onNetworkStatusChange(function (res) {
@@ -19,6 +20,10 @@ App({
   globalData: {
     logined: false,
     userInfo: null,
-    personalInfo: null 
+    personalInfo: null ,
+    str1: sheet.Share.Get(1).title,
+    str2: sheet.Share.Get(2).title,
+    str3: sheet.Share.Get(3).title,
+    str4: sheet.Share.Get(4).title,
   }
 })

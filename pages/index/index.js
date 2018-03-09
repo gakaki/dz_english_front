@@ -20,7 +20,7 @@ Page({
   toSelf() {
     wx.navigateTo({
        url: '../self/self'
-     // url: '../choosePk/choosePk'
+      //url: '../choosePk/choosePk'
     })
   },
   toRank: function () {
@@ -28,33 +28,19 @@ Page({
       url: '../rank/rank'
     })
   },
+  toBackpack() {
+    wx.navigateTo({
+      url: '../backpack/backpack'
+    })
+  },
   toAwaitPk() {
-    wsSend('ranking', {
-      rankType: 1
-    })
-    wsReceive('needGold', res => {
-      console.log(res)
-      wx.showToast({
-        title: '金币不足',
-        icon: 'none',
-        duration: 2000
-      })
-    })
-    wsReceive('waiting', res => {
-      console.log(res)
-      wx.navigateTo({
-        url: '../awaitPK/awaitPK?gold=' + res.data.cost
-      })
+    wx.navigateTo({
+      url: '../choosePk/choosePk',
     })
   },
   toFriPk: function () {
-    console.log('creatroom')
-    wsSend('createroom')
-    wsReceive('createSuccess', res => {
-      console.log(res)
-      wx.navigateTo({
-        url: '../friendPK/friendPK?rid='+res.data.rid
-      })
+    wx.navigateTo({
+      url: '../friendPK/friendPK'
     })
   },
   toZsd() {
@@ -80,9 +66,7 @@ Page({
       showSet: false
     })
   },
-  
   onLoad: function (options) {
-    console.log(options)
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
@@ -91,6 +75,25 @@ Page({
         needExp: v.userInfo.character.experience.needExp
       })
     })
+
+    if(options && options.friendPK){
+      doFetch('english.roomNotExist',{
+        rid:options.rid
+      },(res)=>{
+        if(res.code==0){
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid='+options.rid,
+          })
+        }
+        else{
+          wx.showToast({
+            title: '房间不存在',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
 
     // let aa = {bb:'bb'};
 
@@ -146,14 +149,6 @@ Page({
       })
     }
 
-    if (options.friendPK) {
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + options.rid,
-        })
-      }, 1000)
-    }
-
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -164,13 +159,13 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: '大家一起来拼智力领福利',
+      title: app.globalData.str4,
       path: '/pages/index/index',
-
-      success: function (res) {
+      imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
+      success: function () {
 
       },
-      fail: function (res) {
+      fail: function () {
         // 转发失败
       }
     }
@@ -182,15 +177,5 @@ Page({
         console.log(777)
       })
     }
-    // wsReceive('cancelSuccess', res => {
-    //   console.log(res)
-    //   wsReceive('matchSuccess',res=>{
-    //     wx.showToast({
-    //       title: '您已放弃对战',
-    //       icon: 'none',
-    //       duration: 2000
-    //     })
-    //   })
-    // })
   }
 })
