@@ -226,14 +226,22 @@ width: 690rpx;
   border-radius: 30rpx;
 }
 
-.star image{
+.level-star{
+  position: absolute;
+  right: 0;
+  bottom: 12rpx;
+  background-color: none;
+  height: 50rpx;
+}
+
+.star image,.level-star image{
   margin: 5rpx 5rpx 5rpx 0; 
 }
 
-.star image:first-of-type{
+.star image:first-of-type,.level-star image:first-of-type{
   margin-left: 10rpx;
 }
 
-.star image:last-of-type{
+.star image:last-of-type,.level-star image:last-of-type{
   margin-right: 10rpx;
 }
