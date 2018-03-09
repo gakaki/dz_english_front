@@ -243,9 +243,16 @@ Page({
           rid: options.rid
         }, (res) => {
           if (res.code == 0) {
-            wx.navigateTo({
-              url: '../friendPK/friendPK?rid=' + options.rid,
-            })
+            if (res.data.roomStatus==1){
+              wx.navigateTo({
+                url: '../friendPK/friendPK?rid=' + options.rid,
+              })
+            }
+            else if (res.data.roomStatus == 2){
+              wx.navigateTo({
+                url: '../competition/competition?rid=' + options.rid,
+              })
+            }
           }
           else {
             wx.showToast({
