@@ -176,8 +176,17 @@ Page({
 
         let userLeft = this.data.userLeft;
         let userRight = this.data.userRight;
-        let resultLeft = data.userList[userLeft.uid];
-        let resultRight = data.userList[userRight.uid];
+        let [u1, u2] = data.userList;
+        let resultLeft, resultRight;
+
+        if (userLeft.uid == u1.info.uid) {
+          resultLeft = u1;
+          resultRight = u2;
+        }
+        else{
+          resultLeft = u2;
+          resultRight = u1;
+        }
 
         console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
