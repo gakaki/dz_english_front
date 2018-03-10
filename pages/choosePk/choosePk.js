@@ -1,6 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+let time = null
 Page({
   data: {
     userInfo:{},
@@ -10,6 +11,7 @@ Page({
     season:{},
     canMatch:true,
     starAnimation:false,
+    fromIndex:false,
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -35,8 +37,25 @@ Page({
         title: this.data.season.cfg.name
       })
     })
+    if (options && options.fromIndex){
+      this.data.fromIndex = true
+    }
+  },
+  onReady() {
+    wsReceive('cancelSuccess', res => {
+      console.log(res)
+      wsReceive('matchSuccess', res => {
+        wx.showToast({
+          title: '您已放弃对战',
+          icon: 'none',
+          duration: 2000
+        })
+      })
+    })
+  },
+  onShow() {
     doFetch('english.showpersonal', {}, (res) => {
-      console.log(res,'season')
+      console.log(res, 'season')
 
       //获取用户当前赛季信息
       let season = res.data.userInfo.character.season
@@ -44,7 +63,7 @@ Page({
       for (let key in season) {
         rankInfo = season[key]
       }
-      
+
       //通过读表获取所有段位相关信息
       let stage;
       stage = sheet.stages.map(o => {
@@ -57,7 +76,7 @@ Page({
       })
 
       //是否从结果页面跳转过来的
-      if (options && options.fromIndex){
+      if (this.data.fromIndex) {
         stage.length = rankInfo.rank + 1
         this.setData({
           userInfo: res.data.userInfo,
@@ -66,12 +85,12 @@ Page({
           toView: rankInfo.rank - 3
         })
       }
-      else{
+      else {
         console.log(1111, app.globalData.pkResult.changeInfo)
         let changeInfo = app.globalData.pkResult.changeInfo
         //判断是否升段
-        console.log(changeInfo.isRank,'isRank')
-        if(changeInfo.isRank.isRank){
+        console.log(changeInfo.isRank, 'isRank')
+        if (changeInfo.isRank.isRank) {
           stage.length = rankInfo.rank
           this.setData({
             starAnimation: 'increase',
@@ -80,7 +99,7 @@ Page({
             stage: stage,
             toView: rankInfo.rank - 4
           })
-          setTimeout(() => {
+          time = setTimeout(() => {
             stage.length = rankInfo.rank + 1
             this.setData({
               star: rankInfo.star,
@@ -89,7 +108,7 @@ Page({
             })
           }, 2100)
         }
-        else{
+        else {
           //判断是否加星
           stage.length = rankInfo.rank + 1
           if (changeInfo.isStarUp.isStarUp == 1) {
@@ -110,7 +129,7 @@ Page({
               toView: rankInfo.rank - 3
             })
           }
-          else if (changeInfo.isStarUp.isStarUp == 0){
+          else if (changeInfo.isStarUp.isStarUp == 0) {
             this.setData({
               userInfo: res.data.userInfo,
               star: rankInfo.star,
@@ -120,20 +139,11 @@ Page({
           }
         }
       }
-     
+
     })
   },
-  onReady() {
-    wsReceive('cancelSuccess', res => {
-      console.log(res)
-      wsReceive('matchSuccess', res => {
-        wx.showToast({
-          title: '您已放弃对战',
-          icon: 'none',
-          duration: 2000
-        })
-      })
-    })
+  onUnload() {
+    clearTimeout(time)
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
