@@ -57,9 +57,10 @@
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.2);
   height: 38rpx;
+  width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
-  margin-left: 10rpx
+  margin-left: 10rpx;
 }
 .gold-big {
   width: 43rpx;
@@ -90,13 +91,18 @@
   margin-left: 10rpx;
   border-radius: 15rpx;
 }
-
- .percent-box text {
+.percent-box {
+  width: 176rpx;
+  height: 26rpx;
+  margin: 2rpx;
+  overflow: hidden;
+}
+ .lvl-box text {
   position: absolute;
   left: 50%;
   top:0;
   transform: translateX(-50%);
-  line-height: 30rpx;
+  line-height: 32rpx;
   height: 30rpx;
   vertical-align: middle;
   font-size: 24rpx;
@@ -104,12 +110,7 @@
   color: #fff;
 } 
 
-.percent-box {
-  width: 176rpx;
-  height: 26rpx;
-  margin: 2rpx;
-  overflow: hidden;
-}
+
 
 .percent-bg {
   
