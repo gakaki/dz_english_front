@@ -203,7 +203,7 @@ Page({
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
       let roundAnswer = {}
-      roundAnswer[word] = isRright;
+      roundAnswer['not_select'] = isRright;
       this.setData({
         myScore:0,
         answer,
