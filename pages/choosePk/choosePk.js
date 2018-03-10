@@ -26,7 +26,7 @@ Page({
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/tuofu.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/yasi.png"]
   },
-  onLoad() {
+  onLoad(options) {
     doFetch('english.getseason',{},res=>{
       this.setData({
         season: sheet.Season.Get(res.data.season)
@@ -56,33 +56,8 @@ Page({
         return obj
       })
 
-
-      let localStar = wx.getStorageSync('star')
-      if(localStar){
-        if (rankInfo.star == localStar) {
-          stage.length = rankInfo.rank + 1
-          this.setData({
-            userInfo: res.data.userInfo,
-            star: rankInfo.star,
-            stage: stage,
-            toView: rankInfo.rank - 3
-          })
-          wx.setStorageSync('star', rankInfo.star)
-          console.log(this.data.stage, 'nowStage')
-        }
-        else {
-          
-          this.setData({
-            starAnimation:true,
-            userInfo: res.data.userInfo,
-            star: rankInfo.star,
-            stage: stage,
-            toView: rankInfo.rank - 3
-          })
-          wx.setStorageSync('star', rankInfo.star)
-        }
-      }
-      else{
+      //是否从结果页面跳转过来的
+      if(options && options.fromIndex){
         stage.length = rankInfo.rank + 1
         this.setData({
           userInfo: res.data.userInfo,
@@ -90,9 +65,52 @@ Page({
           stage: stage,
           toView: rankInfo.rank - 3
         })
-        wx.setStorageSync('star', rankInfo.star)
-        console.log(this.data.stage, 'nowStage')
       }
+      else{
+        let changeInfo = app.globalData.pkResult.changeInfo
+        //判断是否升段
+        if(changeInfo.isRank.isRank){
+          //判断是否加星
+          stage.length = rankInfo.rank + 1
+          if(changeInfo.isStarUp.isStarUp==1){
+            this.setData({
+              starAnimation: 'increase',
+              userInfo: res.data.userInfo,
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }
+          else if (changeInfo.isStarUp.isStarUp == -1){
+            this.setData({
+              starAnimation: 'decrease',
+              userInfo: res.data.userInfo,
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }
+        }
+        else{
+          stage.length = rankInfo.rank
+          this.setData({
+            starAnimation: 'increase',
+            userInfo: res.data.userInfo,
+            star: stage[stage,length-2].star,
+            stage: stage,
+            toView: rankInfo.rank - 4
+          })
+          setTimeout(() => {
+            stage.length = rankInfo.rank + 1
+            this.setData({
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }, 2100)
+        }
+      }
+     
     })
   },
   onReady() {

@@ -46,6 +46,14 @@ Page({
       })
     }
    },
+  onReady() {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2]
+    console.log(pages,'pages')
+    prevPage.setData({
+      changeInfo: app.globalData.pkResult.changeInfo
+    })
+  },
   toMatch() {
     wx.redirectTo({
       url: '../choosePk/choosePk',

@@ -90,7 +90,7 @@ Page({
     } else {
       this.hi()
       wx.navigateTo({
-        url: '../choosePk/choosePk',
+        url: '../choosePk/choosePk?fromIndex=true',
       })
     }
   },
