@@ -19,8 +19,9 @@
       <view class="f-r-fs lv">
         <text class="lvl">lv{{lvl}}</text>
         <view class="lvl-box">
+        <text>{{exp}}/{{needExp}}</text>
           <view class="percent-box">
-            <text>{{exp}}/{{needExp}}</text>
+            
             <view style="width:{{wid}}%" class="percent-bg"></view>
           </view>
 

@@ -196,8 +196,6 @@ class Timeline {
     tm.last.finishCall(true, false);
   }
 }
-
-
 module.exports = {
   formatTime: formatTime,
   care : care,

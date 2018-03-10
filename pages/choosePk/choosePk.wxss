@@ -52,6 +52,7 @@
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.2);
   height: 38rpx;
+   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
 }

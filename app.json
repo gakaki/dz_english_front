@@ -1,8 +1,9 @@
 {
   "pages": [
+   
     "pages/index/index",
     "pages/choosePk/choosePk",
-    
+    "pages/rankDes/rankDes",
     "pages/backpack/backpack",
     "pages/self/self",
     "pages/rank/rank",
@@ -13,7 +14,7 @@
     "pages/awaitPK/awaitPK",
     "components/clock/clock",
     "components/progress/progress",
-    "pages/rankDes/rankDes",
+    
     "pages/word/word",
     "pages/shopping/shopping"
   ],
