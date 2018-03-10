@@ -10,7 +10,7 @@ function loadEnglishWords(words) {
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = 4//v.type;
+      cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -33,7 +33,11 @@ function keyboard( letterPos, english){
   let st = new Set();
   let cnt = 9 - letterPos.length;
   while(st.size < cnt) {
-    st.add(String.fromCharCode(Math.floor(Math.random()*26 + 97)))
+    let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    if (english.indexOf(str) == -1) {
+
+      st.add()
+    }
   }
 
   let posStrs = letterPos.map(v => {

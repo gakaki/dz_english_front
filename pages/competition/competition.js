@@ -509,7 +509,7 @@ Page({
     let ridx = this.data.word.english.lastIndexOf(letter);
 
     let sucIdx = -1;
-    let str = this.data.word.english;
+    let str = rightAnswer;
     for(let i = 0; i < str.length; i++) {
       let s = str[i];
       if (s == letter) {
