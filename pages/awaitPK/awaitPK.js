@@ -55,7 +55,7 @@ Page({
             })
           },
           fail: function (res) {
-            console.log(res)
+            console.log(res,'regeocodingFail')
             wx.showToast({
               title: '获取位置失败，请开启位置权限服务并重试',
               duration: 2000
@@ -74,7 +74,7 @@ Page({
         });
       },
       fail: function (res) {
-        console.log(res)
+        console.log(res,'getLocationFail')
         doFetch('english.updateposition', { position:' '}, (res) => {
           console.log(res)
           that.setData({
@@ -124,7 +124,7 @@ Page({
       
       this.data.matchSuc = true
       wx.redirectTo({
-        url: '../duizhan/duizhan?rid='+res.data.roomInfo.rid,
+        url: '../duizhan/duizhan?rid='+res.data.rid,
       })
     })
   },

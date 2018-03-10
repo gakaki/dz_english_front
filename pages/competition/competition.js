@@ -1,6 +1,7 @@
 // pages/competition/competition.js
 const app = getApp()
 import { Word } from '../../sheets.js'
+import {delay} from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
 
@@ -44,7 +45,13 @@ Page({
     roundAnswer:{}
   },
   onLoad(options) {
-    this.setData({ rid: options.rid });
+    //test
+    // let englishWords = loadEnglishWords();
+    // console.log(englishWords)
+    // this.setData({englishWords})
+    // this.roundInit();
+    // return;//test
+    this.setData({ rid: options.rid,round:1 });
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -91,7 +98,12 @@ Page({
   },
 
   onReady() {
-    
+    delay(1000).then(()=>{
+      console.log('delay',1);
+      delay(1000).then(()=>{
+        console.log('delay',2)
+      })
+    })
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -99,6 +111,7 @@ Page({
     
   },
   roundInit(){
+    console.log(this.data.round,'round')
     this.setData({
       word: this.data.englishWords[this.data.round-1],
       title: getRoundName(this.data.round),
@@ -110,6 +123,7 @@ Page({
       clockTime: totalCountTime,
       selectAnswer: [0, 0, 0, 0],
       firstClick:true,
+      bgIndex:[false, false, false, false, false, false, false, false, false],
       hideLetters:[false,false,false,false,false]
     })
     let word = this.data.word;
@@ -173,6 +187,9 @@ Page({
       else {
         let data = res.data;
         let isFriend = data.isFriend;
+        let final = data.final;
+        let gold = data.gold;
+        let exp = data.exp;
 
         let userLeft = this.data.userLeft;
         let userRight = this.data.userRight;
@@ -189,8 +206,8 @@ Page({
         }
 
         console.log('全局结束')
-        //resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
-        app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult};
+        //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
+        app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
         wx.redirectTo({
           url: '../result/result',
         })
@@ -338,13 +355,12 @@ Page({
         case 2:
 
           let hideLetters = this.data.hideLetters;
-          //擦去部分字母
+          //擦去全部字母
           hideLetters.forEach( (v,i) => {
             hideLetters[i] = true
           })
           this.setData({
             hideLetters,
-            hideAllLetters: true,
             time: 1000
           })
           // end = true;
@@ -421,9 +437,15 @@ Page({
   selectLetter(e) {
     let obj = e.currentTarget.dataset;
     let letter = this.data.nineLetters[obj.index];
-    console.log('click letter', letter);
+
+    let bgIndex = this.data.bgIndex;
+    if (bgIndex[obj.index]) {
+      return;//已经点过这个键了
+    }
+    bgIndex[obj.index] = true;
 
     let letters = this.data.letters;
+    console.log(letters,'letters')
     if (!letters.okCnt) {
       letters.okCnt = 0;
     }
@@ -433,13 +455,28 @@ Page({
     let totalScore = 0;
     let isRright = false;
     let finished = false;
+    let hideLetters = this.data.hideLetters;
     //只要点了其中一个正确的字母，就把该字母放到正确的位置上
     let idx = this.data.word.english.indexOf(letter);
-    if (idx > -1) {
-      //正确字母
-      letters[idx] = letter;
-      letters.okCnt++;
+    let ridx = this.data.word.english.lastIndexOf(letter);
 
+    let sucIdx = -1;
+    let str = this.data.word.english;
+    for(let i = 0; i < str.length; i++) {
+      let s = str[i];
+      if (s == letter) {
+        if (hideLetters[i]) {
+          hideLetters[i] = false;
+          sucIdx = i;
+          break;
+        }
+
+      }
+    }
+
+    if (sucIdx > -1) {
+      letters[sucIdx] = letter;
+      letters.okCnt++;
       if (letters.okCnt == letters.length) {
         //回答全部正确
         answer = 1;
@@ -448,10 +485,6 @@ Page({
         myScore = this.data.clockTime * 20;
         totalScore = this.data.totalScore + myScore;
       }
-      else{
-        //让他继续点
-      }
-      
     }
     else {
       //回答出错
@@ -461,16 +494,19 @@ Page({
 
     let roundAnswer = {};
     if (finished) {
+      bgIndex = bgIndex.map(v => true);
       roundAnswer[letters.join()] = isRright;
     }
 
 
     this.setData({
       letters,
+      hideLetters,
       answer,
       roundAnswer,
       myScore,
-      totalScore
+      totalScore,
+      bgIndex
     })
 
     if (finished) {
@@ -517,6 +553,7 @@ Page({
     //     round: this.data.round + 1
     //   })
     // }, 500)
+    console.log(this.data.round,'roundTime')
     //通知后端，一题完成
     wsSend('roundend', {
       rid: this.data.rid,
@@ -565,19 +602,12 @@ Page({
       nineLetters: keyboard(letterPos, english)
     })
   },
-  changeBgColor(v) {
-    let bgIndex = this.data.bgIndex;
-    let i = v.currentTarget.dataset.index;
-    if (!bgIndex[i]) {
-      bgIndex[i] = true;
-      this.setData({
-        bgIndex
-      })
-    }
-  },
+  
   audioPlay(){
     this.audioCtx.play()
   },
+
+
 
   /**
    * 用户点击右上角分享

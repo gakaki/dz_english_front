@@ -1,17 +1,24 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
 
 Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    isVictory:'https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png',
-    shareGold:0
+    isVictory: ['https://gengxin.odao.com/update/h5/yingyu/result/shibai.png',              'https://gengxin.odao.com/update/h5/yingyu/result/pingju.png',
+'https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png'],
+    final:0,
+    gold:0,
+    exp:0,
+    shareGold:0,
+    isSelf:{},
+    notSelf:{}
   },
   onLoad: function () {
-    console.log(app.globalData.pkResult,'pkResult')
+    let pkResult = app.globalData.pkResult
+    console.log(pkResult,'pkResult')
     doFetch('english.getshareaward',{},res=>{
       if(res.code==0){
         this.setData({
@@ -19,41 +26,26 @@ Page({
         })
       }
     })
-    if (app.globalData.userInfo) {
+
+    if(pkResult.resultLeft.info.uid == getUid()){
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        final: pkResult.final,
+        gold: pkResult.gold,
+        exp: pkResult.exp,
+        isSelf: pkResult.resultLeft,
+        notSelf: pkResult.resultRight
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
+    }
+    else{
+      this.setData({
+        final: pkResult.final,
+        gold: pkResult.gold,
+        exp: pkResult.exp,
+        isSelf: pkResult.resultRight,
+        notSelf: pkResult.resultLeft
       })
     }
    },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
   toMatch() {
     wx.redirectTo({
       url: '../choosePk/choosePk',

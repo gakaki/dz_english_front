@@ -101,9 +101,16 @@ function shareTo() {
       rid: app.globalData.friendRid
     }, (res) => {
       if (res.code == 0) {
-        wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
-        })
+        if (res.data.roomStatus == 1) {
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
+          })
+        }
+        else if (res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + app.globalData.friendRid,
+          })
+        }
       }
       else {
         wx.showToast({
@@ -131,17 +138,19 @@ function shareTo() {
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
+    console.log('wsR',action)
     suc(res)
   })
 }
 function wsSend(action, data) {
+  console.log('ws',action)
   socket.emit(action, data)
 }
 
 
 function wsInit() {
   console.log(sid, 'sid')
-  let url = wss + '?_sid=' + sid + '&appName=' + APPNAME;
+  let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {
     console.log('#connect');

@@ -84,12 +84,12 @@ Page({
         index:i
       })
     },150)
-    //监听游戏开始，为了让两边同时跳转将监听放在页面显示的生命周期函数内
+    //监听游戏开始
     wsReceive('matchSuccess', res => {
       console.log(res, 'startGame')
       this.data.startGame = true
       wx.redirectTo({
-        url: '../duizhan/duizhan?rid=' + res.data.roomInfo.rid,
+        url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })
   },

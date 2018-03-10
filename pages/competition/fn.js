@@ -5,7 +5,16 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
  //加载英文单词
 function loadEnglishWords(words) { 
-  // return [{ type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }];
+  //test
+  // let t = [9,9,9,9,9]
+  // return t.map(id => {
+  //   let obj = Object.assign({}, Word.Get(id).cfg);
+  //   obj.type = 4;
+  //   obj.yinbiao = '["66666"]'
+  //   obj.english = obj.english.trim();
+  //   return obj;
+  // })
+
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
@@ -21,17 +30,17 @@ function loadEnglishWords(words) {
 }
 
 function getRoomInfo(rid, cb) {
-  wsReceive('roomInfo',cb);//好友战的房间信息
+  //wsReceive('roomInfo',cb);//好友战的房间信息
   wsReceive('pkInfo',cb);//匹配战的房间信息
 
-  wsSend('getroominfo', {
+  wsSend('getpkinfo', {
     rid: rid
   });
 }
 
 function quanpinKeyboard(letters) {
   let length = 9;
-  let newArr = letters;
+  let newArr = letters.concat();
   for (let i = 0; newArr.length < length; i++) {
     let index = Math.floor(Math.random() * ALLLETTERS.length);
     let noDistinct = newArr.every(v => {

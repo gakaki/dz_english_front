@@ -41,14 +41,11 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 ? "show" : "none"}}'>
-        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' bindtouchstart='changeBgColor' data-index="{{index}}" bindtap='selectLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='selectLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
           <view class='flip-wrap'>
             <view class='front flip poal'>
               <text>{{nineLetters[index]}}</text>
             </view>  
-            <view class='back flip poal' bindtap='showFront' data-index='{{index}}'>
-              <image class='back-img' src='https://gengxin.odao.com/update/h5/yingyu/competition/back.png'></image>
-            </view>
           </view>
         </view>
       </view>
