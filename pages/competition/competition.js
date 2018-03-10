@@ -44,6 +44,7 @@ Page({
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
     myScore:0,
+    otherScore:0,
     totalScore:0,
     roundIsRight:false,
     roundAnswer:{}
@@ -99,7 +100,7 @@ Page({
 
   onUnload() {
     answerSend = true;
-    this.tagRoundEnd();
+    this.tagRoundEnd(true);
   },
 
   onShow: function (e) {
@@ -121,11 +122,17 @@ Page({
       title:null,
       options:null,
       word:{type:0},
+      letters:[],
+      hideLetters:[],
+      nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
       bgIndex: changeArrAllValue(this.data.bgIndex, false),
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
+      bgIndex: [false, false, false, false, false, false, false, false, false],
       answer:0,
+      backClickCount:0,
+      roundAnswer:{}
     })
 
     //开始对应玩法
@@ -163,7 +170,6 @@ Page({
     })
     let word = this.data.word;
     let letters = word.english.split('');
-    console.log(this.data.hideLetters,'hideLetters')
 
     this.setData({ letters})
     switch (word.type) { //题目类型
@@ -191,12 +197,12 @@ Page({
     
   },
 
-  tagRoundEnd() {
+  tagRoundEnd(stopClock = true) {
     if (tm) {
       Timeline.stop(tm);
       tm = null;
     }
-    if (timer) {
+    if (timer && stopClock) {
       clearInterval(timer);
       timer = null;
     }
@@ -241,18 +247,29 @@ Page({
         let ulist = res.data.userList;
         let userLeft = this.data.userLeft;
         let userRight = this.data.userRight;
-        let resultLeft = ulist[userLeft.uid];
-        let resultRight = ulist[userRight.uid];
+        
+        let [u1, u2] = ulist;
+        let resultLeft, resultRight;
 
+        if (userLeft.uid == u1.info.uid) {
+          resultLeft = u1;
+          resultRight = u2;
+        }
+        else{
+          resultLeft = u2;
+          resultRight = u1;
+        }
+
+        console.log('seettlement', ulist)
         //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
         //展示对局答案信息，
-
+        this.setData({otherScore: resultRight.scrore||0, otherAnswer: resultRight.playerAnswer||{}});
       }
     })
 
     //开始下一题
     wsReceive('nextRound', res => {
-      this.tagRoundEnd();
+      this.tagRoundEnd(true);
       this.setData({round: this.data.round + 1});
       this.roundInit();
     })
@@ -305,16 +322,18 @@ Page({
   //显示题目
   showQuestion(){
     let title = null;//隐藏‘第X题’
+    let letters = question.english.split('')
     this.setData({
       title: title,
       word: question,
+      letters,
       rightAnswer: rightAnswer
     })
   },
   hideQuestionLetter(hideAll = false){
     let letterPos = question.eliminate;
     let randomPos = letterPos[0] == -1;//随机扣掉字母
-    let hideLetters = rightAnswer.split().map((v, idx) => {
+    let hideLetters = rightAnswer.split('').map((v, idx) => {
       if (hideAll) {
         return true;
       }
@@ -380,10 +399,10 @@ Page({
   playThree() {
     //new ----------
     this.playtoQuestion('english')
+    .add(1000, this.audioPlay, this)//3秒后，播放音频
+    .add(3000, this.hideQuestionLetter, this)//1秒后，擦去部分字母
     .add(1000, this.keyboard, this)//渲染九宫格键盘
-    .add(3000, this.audioPlay, this)//3秒后，播放音频
-    .add(1000, this.hideQuestionLetter, this)//1秒后，擦去部分字母
-    .add(1000, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    .add(3000, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
     .add(0, this.countClockTime, this)//开始时钟倒计时
     .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
     .start();//timeline开始运行
@@ -408,18 +427,18 @@ Page({
   //渲染全拼九宫格键盘
   showInputKeyboard(){
     this.setData({
-      nineLetters: quanpinKeyboard(this.data.letters)  
+      nineLetters: quanpinKeyboard(rightAnswer)  
     }); 
   },
   showFront(v){  //点击翻牌
     console.log('showfront')
     let bcCount = this.data.backClickCount;
-    let bcLimit = this.data.word.eliminateNum;
+    let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
     if (bcCount < bcLimit) {
       let i = v.currentTarget.dataset.index; //点击的第几个牌面
       let inner = v.currentTarget.dataset.inner;  //牌面对应的字母
-      let letterPos = this.data.word.eliminate;  //要隐藏的字母位置
+      let letterPos = question.eliminate;  //要隐藏的字母位置
       let hideLetters = this.data.hideLetters;  //对应的字母位置是否要隐藏
       let index = letterPos[bcCount];   //第几次点击对应的字母位置
       hideLetters[index] = false;  //将该位子的背面转成正面
@@ -437,9 +456,9 @@ Page({
         let answer = 0;
         let myScore = 0;
         let totalScore = 0;
-        let isRright = false;
-        console.log(letters,word,this.data.word.english)
-        if(word == this.data.word.english) {
+        isRright = false;
+
+        if(word == rightAnswer) {
           answer = 1;
           isRright = true;
           myScore = this.data.clockTime * 20 
@@ -458,7 +477,7 @@ Page({
           answer,
           roundAnswer
         })
-        this.tagRoundEnd();
+        this.tagRoundEnd(false);
       }
     }
   },
@@ -482,7 +501,7 @@ Page({
     let answer = 0;
     let myScore = 0;
     let totalScore = 0;
-    let isRright = false;
+    isRright = false;
     let finished = false;
     let hideLetters = this.data.hideLetters;
     //只要点了其中一个正确的字母，就把该字母放到正确的位置上
@@ -539,7 +558,7 @@ Page({
     })
 
     if (finished) {
-      this.tagRoundEnd();
+      this.tagRoundEnd(false);
 
     }
   },
@@ -571,7 +590,7 @@ Page({
         roundAnswer,
         firstClick: false
       })
-      this.tagRoundEnd()
+      this.tagRoundEnd(false)
     }
 
   },
