@@ -136,6 +136,12 @@ Page({
     if (!this.data.matchSuc && !this.data.awaiting){
       console.log('cancel')
       wsSend('cancelmatch')
+      let pages = getCurrentPages()
+      let prevPage = pages[pages.length - 2]
+      prevPage.setData({
+        fromIndex: true,
+        starAnimation: ''
+      })
     }
     clearTimeout(time)
   },
