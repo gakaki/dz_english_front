@@ -3,7 +3,7 @@
   <view class='now-word' slot="word">
     <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{word ? "show" : "none"}}'>
-      <view class='zhongwen' wx:if='{{word.type === 2}}'>{{word.english}}</view>
+      <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
       <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
       <view class='yinbiao'>
         <text>{{word.symbol}}</text>

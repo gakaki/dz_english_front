@@ -105,7 +105,7 @@ Page({
   },
   roundInit(){
     //new ----------------
-    if (this.data.round >= this.data.englishWords.length) {
+    if (this.data.round > this.data.englishWords.length) {
       return;
     }
     let idx = this.data.round - 1;
