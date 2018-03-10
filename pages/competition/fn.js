@@ -5,15 +5,14 @@ const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 
  //加载英文单词
 function loadEnglishWords(words) { 
-  // return [{ type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }, { type: 4, id: 10, english: 'dusty' }];
+
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = v.type;
+      cloneObj.type = 2//v.type;
       cloneObj.english = cloneObj.english.trim();
-      cloneObj.yinbiao = "['66666']";
-      cloneObj.options = ['苹果', '橘子', '梨花', '花'];
+      cloneObj.China = cloneObj.China.trim();
       return cloneObj
     })
     return englishWords;
@@ -24,14 +23,14 @@ function getRoomInfo(rid, cb) {
   wsReceive('roomInfo',cb);//好友战的房间信息
   wsReceive('pkInfo',cb);//匹配战的房间信息
 
-  wsSend('getroominfo', {
+  wsSend('getpkinfo', {
     rid: rid
   });
 }
 
 function quanpinKeyboard(letters) {
   let length = 9;
-  let newArr = letters;
+  let newArr = letters.concat();
   for (let i = 0; newArr.length < length; i++) {
     let index = Math.floor(Math.random() * ALLLETTERS.length);
     let noDistinct = newArr.every(v => {
@@ -53,6 +52,7 @@ function keyboard( letterPos, english){
   for (let i = 0; i < letterPos.length; i++) {
     nineLetters.push(english.charAt(letterPos[i]))
   }
+
   (function addLetter() {
     let i = Math.floor(Math.random() * 26);
     nineLetters.push(ALLLETTERS[i]);
@@ -123,11 +123,43 @@ function changeArrAllValue(arr,v) {
   return arr2;
 }
 
+
 //设置英文选项列表
 function englishSelector(word){
   let arr = autoSelect(words, 4, word);
   return arr
 }
+
+function getOptions(question, key){
+  let cnt = 0;
+  let limit = 4;
+  let start = Math.max(0, question.id - limit - limit);
+  let end = Math.min(words.length, question.id + limit + limit);
+
+  let arr = [question[key]];
+  let ascend = Math.random() < 0.5;
+  for(let i = ascend ? start:end; i != question.id && (ascend ? i < end : i > start); ascend ? i++ : i--) {
+    if (arr.length >= limit) {
+      break;
+    }
+    let cfg = words[i+''];
+
+    if (cfg.difficult == question.difficult) {
+      arr.push(cfg[key]);
+    }
+  }
+
+  return arr.sort((a,b)=>{return Math.random() - 0.5});
+}
+
+function getChineneOptions(question) {
+  return getOptions(question, 'China')
+}
+
+function getEnglishOptions(question) {
+  return getOptions(question, 'english')
+}
+
 
 //随机选择几个英文单词 arr：待选词的数组，length想要的数组总长度，nowWord需要放入数组里面的东西
 function autoSelect(arr, length,nowWord) {
@@ -162,5 +194,7 @@ module.exports = {
   randomHideLetters,
   changeArrAllValue,
   englishSelector,
-  quanpinKeyboard
+  quanpinKeyboard,
+  getChineneOptions,
+  getEnglishOptions
 }

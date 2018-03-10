@@ -14,7 +14,10 @@ Page({
     exp: 0,
     needExp: 0,
     showSet: false,
-    showBtn: true
+    showBtn: true,
+    goldCount: 0,
+    wid: 0,
+    rankFrame: ''
   },
   //事件处理函数
   hi() {
@@ -90,7 +93,7 @@ Page({
     } else {
       this.hi()
       wx.navigateTo({
-        url: '../choosePk/choosePk',
+        url: '../choosePk/choosePk?fromIndex=true',
       })
     }
   },
@@ -173,10 +176,20 @@ Page({
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
-        lvl: v.userInfo.character.level,
-        exp: v.userInfo.character.experience.exp,
-        needExp: v.userInfo.character.experience.needExp
+        lvl: v.userInfo.character.level || 0,
+        exp: v.userInfo.character.experience.exp || 0,
+        goldCount: v.userInfo.items['1'] || 0,
+        needExp: v.userInfo.character.experience.needExp || 0,
       })
+      if (this.data.exp == 0) {
+        this.setData({
+          wid: 0
+        })
+      } else {
+        this.setData({
+          wid: Math.round(this.data.exp / this.data.needExp * 100)
+        })
+      }
     })
 
     // let aa = {bb:'bb'};
@@ -232,7 +245,7 @@ Page({
         }
       })
     }
-    
+    console.log(this.data.userInfo)
     this.shareTo(options)
 
   },
@@ -243,12 +256,12 @@ Page({
           rid: options.rid
         }, (res) => {
           if (res.code == 0) {
-            if (res.data.roomStatus==1){
+            if (res.data.roomStatus == 1) {
               wx.navigateTo({
                 url: '../friendPK/friendPK?rid=' + options.rid,
               })
             }
-            else if (res.data.roomStatus == 2){
+            else if (res.data.roomStatus == 2) {
               wx.navigateTo({
                 url: '../competition/competition?rid=' + options.rid,
               })
@@ -263,28 +276,28 @@ Page({
           }
         })
       }
-      else{
+      else {
         app.globalData.toFriend = true
         app.globalData.friendRid = options.rid
       }
     }
     else if (options && options.rank) {
-      if (app.globalData.logined){
+      if (app.globalData.logined) {
         wx.navigateTo({
           url: '../rank/rank',
         })
       }
-      else{
+      else {
         app.globalData.toRank = true
       }
     }
     else if (options && options.self) {
-      if (app.globalData.logined){
+      if (app.globalData.logined) {
         wx.navigateTo({
           url: '../self/self',
         })
       }
-      else{
+      else {
         app.globalData.toSelf = true
       }
     }
@@ -305,8 +318,8 @@ Page({
           this.hi()
         })
       },
-      fail: res=>{
-        console.log('fail',res)
+      fail: res => {
+        console.log('fail', res)
       }
     })
   },
@@ -324,12 +337,28 @@ Page({
     }
   },
   onShow: function () {
-    
-    console.log(this.data.showBtn)
+
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
+        this.setData({
+          rankFrame: this.getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+        })
       })
+    }
+  },
+  getRankFrame(season) {
+    let idx = 0
+    for(let i in season) {
+      idx++
+    }
+    if(idx ==1) {
+      console.log(season[idx].rank)
+      return ''
+    }
+    if(idx >1) {
+      let i = idx-1
+      return sheet.Stage.Get(season[i].rank).frame
     }
   }
 })

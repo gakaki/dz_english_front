@@ -13,8 +13,10 @@ Page({
     awardData: []
   },
   onLoad() {
+    this.init()
+  },
+  init() {
     let items = app.globalData.personalInfo.userInfo.items
-    console.log(items)
     let temp;
     temp = sheet.items.map(o => {
       return new sheet.Item(o);
@@ -22,10 +24,12 @@ Page({
     this.setData({
       backData: temp.filter(this.filter)
     })
-    this.data.backData.map(o => {
-      let id = o.cfg.id
-      o.cfg['num'] = items[id] ? items[id] : 0
-      return o
+    this.setData({
+      backData: this.data.backData.map(o => {
+        let id = o.cfg.id
+        o.cfg['num'] = items[id] ? items[id] : 0
+        return o
+      })
     })
     console.log(this.data.backData)
   },
@@ -48,7 +52,6 @@ Page({
     })
   },
   toUse() {
-    console.log(1234)
     this.setData({
       show: false
     })
@@ -71,12 +74,16 @@ Page({
         console.log(iInfo)
         return iInfo
       })
-      
-
       this.setData({
         awardShow: true,
         awardData: aa
       })
+      doFetch('english.showpersonal', {}, (res) => {
+        app.globalData.personalInfo = res.data
+        this.init()
+      })
+
+
     })
   },
   onShareAppMessage: function (res) {

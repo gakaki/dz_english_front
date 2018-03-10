@@ -1,15 +1,15 @@
 <view class="result">
   <view class="defen">
-    <image class="shu-ying" src="{{isVictory}}"></image>
+    <image class="shu-ying" src="{{isVictory[final]}}"></image>
     <view class="fenshu-lan font">
       <view class="fenshu-juzhong">
-        <text class="shu-lan">999</text>
+        <text class="shu-lan">{{isSelf.score}}</text>
         <text class="fen-lan fen">分</text>
       </view>
     </view>
     <view class="fenshu-hong font">
       <view class="fenshu-juzhong">
-        <text class="shu-hong">669</text>
+        <text class="shu-hong">{{notSelf.score}}</text>
        <text class="fen-hong fen">分</text>
       </view>
     </view>
@@ -18,26 +18,29 @@
     <view class="xinxi-lan">
       <view class="wanjia-lan">
         <view class="nicheng-lan font">
-          <text class="wenzi-lan">{{userInfo.nickName}}</text>
+          <text class="wenzi-lan">{{isSelf.info.nickName}}</text>
         </view>
-        <image class="touxiang-lan" src="{{userInfo.avatarUrl}}"></image>
+        <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-lan font">
-        <text class="liandui-wenzi-lan">连对2题</text>
+      <view class="liandui-lan font" wx:if="{{isSelf.continuousRight>1}}">
+        <text class="liandui-wenzi-lan">连对{{isSelf.continuousRight}}题</text>
       </view>
-      <view class="liansheng-lan font">
-        <text class="liansheng-wenzi-lan">9连胜</text>
+      <view class="liansheng-lan font" wx:if="{{isSelf.winningStreak>1}}">
+        <text class="liansheng-wenzi-lan">{{isSelf.winningStreak}}连胜</text>
       </view>
     </view>
     <view class="xinxi-hong">
       <view class="wanjia-hong">
         <view class="nicheng-hong font">
-          <text class="wenzi-hong">{{userInfo.nickName}}</text>
+          <text class="wenzi-hong">{{notSelf.info.nickName}}</text>
         </view>
-        <image class="touxiang-hong" src="{{userInfo.avatarUrl}}"></image>
+        <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-hong font">
-        <text class="liandui-wenzi-hong">连对2题</text>
+      <view class="liandui-hong font" wx:if="{{notSelf.continuousRight>1}}">
+        <text class="liandui-wenzi-hong">连对{{notSelf.continuousRight}}题</text>
+      </view>
+      <view class="liandui-hong font" wx:if="{{notSelf.winningStreak>1}}">
+        <text class="liandui-wenzi-hong">{{notSelf.winningStreak}}连胜</text>
       </view>
     </view>
   </view>
@@ -45,12 +48,12 @@
     <view class="jinbi font">
       <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbida.png"></image>
       <text class="jinbi-jia">+</text>
-      <text class="jinbi-shu">6</text>
+      <text class="jinbi-shu">{{gold}}</text>
     </view>
     <view class="jingyan font">
       <image class="jingyan-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingyan.png"></image>
       <text class="jingyan-jia">+</text>
-      <text class="jingyan-shu">9</text>
+      <text class="jingyan-shu">{{exp}}</text>
     </view>
     <view class="anniu-tiaozhan anniu-wenzi" bindtap='toMatch'>
       <text class="tiaozhan">继续挑战</text>

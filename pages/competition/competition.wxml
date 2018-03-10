@@ -1,13 +1,13 @@
 <!--pages/competition/competition.wxml-->
 <wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'>
   <view class='now-word' slot="word">
-    <view class='round-title {{showIndex === 0 ? "show" : "none"}}'>{{title}}</view>
-    <view class='word-wrap  {{showIndex > 0 ? "show" : "none"}}'>
-      <view class='zhongwen' wx:if='{{word.type === 2}}'>{{word.english}}</view>
+    <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
+    <view class='word-wrap  {{word ? "show" : "none"}}'>
+      <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
       <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
       <view class='yinbiao'>
-        <text>{{word.yinbiao}}</text>
-        <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
+        <text>{{word.symbol}}</text>
+        <audio class='loudspeaker {{title ? "none" :"show"}}' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
           <view class='question {{answer === 2 ? "question-large":""}}' >
@@ -26,7 +26,7 @@
     <view class='multi-words'>
 
       <!-- 九宫格翻转  -->
-      <view wx:if='{{word.type === 1}}' class='selectBtn {{showIndex === 3 || showIndex === 4 ? "show" : "none"}}'>
+      <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
             <view class='flip-wrap' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
             <view class='front flip poal'>
@@ -41,21 +41,18 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 ? "show" : "none"}}'>
-        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' bindtouchstart='changeBgColor' data-index="{{index}}" bindtap='selectLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
           <view class='flip-wrap'>
             <view class='front flip poal'>
               <text>{{nineLetters[index]}}</text>
             </view>  
-            <view class='back flip poal' bindtap='showFront' data-index='{{index}}'>
-              <image class='back-img' src='https://gengxin.odao.com/update/h5/yingyu/competition/back.png'></image>
-            </view>
           </view>
         </view>
       </view>
 
       <!-- 列表  -->
-      <view wx:if='{{word.type === 2 || word.type === 3}}' class='selectBtn selectLists {{showIndex > 1 ? "show" : "none"}}'>
-        <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{word.options}}' wx:key='{{index}}' bindtap='selectAnswer' data-answer='{{item}}' data-id='{{index}}'>
+      <view wx:if='{{options && options.length}}' class='selectBtn selectLists show}}'>
+        <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
           <text>{{item}}</text>
         </view>
       </view>

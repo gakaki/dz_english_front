@@ -1,17 +1,8 @@
 const io = require('./index.js');
-<<<<<<< HEAD
-//const srv = "https://h5t.ddz2018.com/";
-//const wss = "wss://h5t.ddz2018.com/english";
- const srv = "https://local.ddz2018.com/";
- const wss = "wss://local.ddz2018.com/english";
-=======
-
 // const srv = "https://h5t.ddz2018.com/";
 // const wss = "wss://h5t.ddz2018.com/english";
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
->>>>>>> 72e3dd3d7e8b84edd1bc805dd513dc83afd7a5fc
-
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -104,15 +95,22 @@ function userLogin(suc, err) {
   })
 }
 
-function shareTo(){
-  if (app.globalData.toFriend){
+function shareTo() {
+  if (app.globalData.toFriend) {
     doFetch('english.roomNotExist', {
       rid: app.globalData.friendRid
     }, (res) => {
       if (res.code == 0) {
-        wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
-        })
+        if (res.data.roomStatus == 1) {
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
+          })
+        }
+        else if (res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + app.globalData.friendRid,
+          })
+        }
       }
       else {
         wx.showToast({
@@ -123,13 +121,13 @@ function shareTo(){
       }
     })
   }
-  else if (app.globalData.toRank){
+  else if (app.globalData.toRank) {
     wx.navigateTo({
       url: '../rank/rank',
     })
     app.globalData.toRank = false
   }
-  else if (app.globalData.toSelf){
+  else if (app.globalData.toSelf) {
     wx.navigateTo({
       url: '../self/self',
     })
@@ -140,17 +138,19 @@ function shareTo(){
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
+    console.log('wsR',action)
     suc(res)
   })
 }
 function wsSend(action, data) {
+  console.log('ws',action)
   socket.emit(action, data)
 }
 
 
 function wsInit() {
   console.log(sid, 'sid')
-  let url = wss + '?_sid=' + sid + '&appName=' + APPNAME;
+  let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {
     console.log('#connect');

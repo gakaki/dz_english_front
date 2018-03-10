@@ -9,7 +9,7 @@
 
         <view class="flex">
           <text class="x">×</text>
-          <text class="count">{{item.cfg.id}}</text>
+          <text class="count">{{item.cfg.num}}</text>
         </view>
 
       </view>

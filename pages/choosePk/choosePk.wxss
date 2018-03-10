@@ -52,6 +52,7 @@
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.2);
   height: 38rpx;
+   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
 }
@@ -244,4 +245,39 @@ width: 690rpx;
 
 .star image:last-of-type,.level-star image:last-of-type{
   margin-right: 10rpx;
+}
+
+.increase{
+  opacity: 0;
+  animation: increase 1.5s ease-in-out .5s forwards;
+}
+
+decrease{
+  animation: decrease 1s ease-in-out .5s forwards;
+}
+
+@keyframes increase{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1);
+  }
+  75%{
+    transform: scale(1.3);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes decrease{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }
