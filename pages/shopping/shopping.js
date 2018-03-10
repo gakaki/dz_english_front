@@ -80,7 +80,14 @@ Page({
   },
 
   buy: function () {
-
+    console.log(345)
+    doFetch('weChat.minapppay', 
+    { payCount: this.data.shopData[this.data.point],
+      good: this.data.itemInfo[this.data.point].cfg.id
+    }, (res) => {
+      console.log(res.data)
+      this.hide()
+    })
   },
 
   /**
