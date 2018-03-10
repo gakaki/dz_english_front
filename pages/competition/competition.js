@@ -16,6 +16,7 @@ let options;//当前题目答案项
 let rightAnswer;//当前题目的正确答案
 let answer;//当前题目的回答结果:0未设置，1正确，2错误
 let answerSend;//当前题，答案是否已发给后端 
+let isRright;//当前题是否答对了
 
 Page({
   /**
@@ -546,7 +547,7 @@ Page({
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let myScore = 0;
-      let isRright = false;
+      isRright = false;
       let selectAnswer = this.data.selectAnswer;
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
