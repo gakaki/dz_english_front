@@ -57,7 +57,7 @@ Page({
       })
 
       //是否从结果页面跳转过来的
-      if(options && options.fromIndex){
+      if (options && options.fromIndex){
         stage.length = rankInfo.rank + 1
         this.setData({
           userInfo: res.data.userInfo,
@@ -67,6 +67,7 @@ Page({
         })
       }
       else{
+        console.log(1111)
         let changeInfo = app.globalData.pkResult.changeInfo
         //判断是否升段
         if(changeInfo.isRank.isRank){
@@ -96,7 +97,7 @@ Page({
           this.setData({
             starAnimation: 'increase',
             userInfo: res.data.userInfo,
-            star: stage[stage,length-2].star,
+            star: stage[stage.length-2].star,
             stage: stage,
             toView: rankInfo.rank - 4
           })
