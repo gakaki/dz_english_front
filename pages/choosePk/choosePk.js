@@ -80,6 +80,7 @@ Page({
       if (this.data.fromIndex) {
         //是否从结果页面点击返回回来的
         if (this.data.navBack) {
+          this.data.navBack = false
           this.starAnimation(res,stage,rankInfo)
         }
         else {
@@ -93,6 +94,7 @@ Page({
         }
       }
       else {
+        this.data.navBack = false
         this.starAnimation(res,stage,rankInfo)
       }
     })

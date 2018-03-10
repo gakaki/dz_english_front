@@ -47,17 +47,19 @@ Page({
     }
    },
   onUnload() {
+    this.setPageInfo()
+  },
+  setPageInfo() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    console.log(pages,'pages')
+    console.log(pages, 'pages')
     prevPage.setData({
       navBack: true
     })
   },
   toMatch() {
-    wx.redirectTo({
-      url: '../choosePk/choosePk',
-    })
+    this.setPageInfo()
+    wx.navigateBack()
   },
   onShareAppMessage: function (res) {
     return {
