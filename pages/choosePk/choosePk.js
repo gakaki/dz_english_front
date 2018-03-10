@@ -10,8 +10,9 @@ Page({
     toView:0,
     season:{},
     canMatch:true,
-    starAnimation:false,
-    fromIndex:false,
+    starAnimation:'', //控制星星的动画
+    fromIndex:false,  //是否从主页面跳转过来的
+    navBack:false,    //是否从其它页面点击返回返回来的
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -77,70 +78,69 @@ Page({
 
       //是否从结果页面跳转过来的
       if (this.data.fromIndex) {
-        stage.length = rankInfo.rank + 1
-        this.setData({
-          userInfo: res.data.userInfo,
-          star: rankInfo.star,
-          stage: stage,
-          toView: rankInfo.rank - 3
-        })
-      }
-      else {
-        console.log(1111, app.globalData.pkResult.changeInfo)
-        let changeInfo = app.globalData.pkResult.changeInfo
-        //判断是否升段
-        console.log(changeInfo.isRank, 'isRank')
-        if (changeInfo.isRank.isRank) {
-          stage.length = rankInfo.rank
-          this.setData({
-            starAnimation: 'increase',
-            userInfo: res.data.userInfo,
-            star: stage[stage.length - 2].star,
-            stage: stage,
-            toView: rankInfo.rank - 4
-          })
-          time = setTimeout(() => {
-            stage.length = rankInfo.rank + 1
-            this.setData({
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }, 2100)
+        //是否从结果页面点击返回回来的
+        if (this.data.navBack) {
+          this.starAnimation(res,stage,rankInfo)
         }
         else {
-          //判断是否加星
           stage.length = rankInfo.rank + 1
-          if (changeInfo.isStarUp.isStarUp == 1) {
-            this.setData({
-              starAnimation: 'increase',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-          else if (changeInfo.isStarUp.isStarUp == -1) {
-            this.setData({
-              starAnimation: 'decrease',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-          else if (changeInfo.isStarUp.isStarUp == 0) {
-            this.setData({
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
+          this.setData({
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
         }
       }
-
+      else {
+        this.starAnimation(res,stage,rankInfo)
+      }
     })
+  },
+  starAnimation(res,stage,rankInfo) {
+    console.log(1111, app.globalData.pkResult.changeInfo)
+    let changeInfo = app.globalData.pkResult.changeInfo
+    //判断是否提升段位
+    if (changeInfo.isRank.isRank) {
+      //提升段位的时候先执行完加星动画之后在升段位,先保存全部stage防止升段之后stage还是原来的数据并没有下下加一个段位
+      let stageAll = stage
+      stage.length = rankInfo.rank
+      this.setData({
+        starAnimation: 'increase',
+        userInfo: res.data.userInfo,
+        star: stage[stage.length - 2].star,
+        stage: stage,
+        toView: rankInfo.rank - 4
+      })
+      time = setTimeout(() => {
+        stageAll.length = rankInfo.rank + 1
+        this.setData({
+          star: rankInfo.star,
+          stage: stageAll,
+          toView: rankInfo.rank - 3
+        })
+      }, 2100)
+    }
+    else {
+      //判断是否加星
+      stage.length = rankInfo.rank + 1
+      this.setData({
+        userInfo: res.data.userInfo,
+        star: rankInfo.star,
+        stage: stage,
+        toView: rankInfo.rank - 3
+      })
+      if (changeInfo.isStarUp.isStarUp == 1) {
+        this.setData({
+          starAnimation: 'increase',
+        })
+      }
+      else if (changeInfo.isStarUp.isStarUp == -1) {
+        this.setData({
+          starAnimation: 'decrease',
+        })
+      }
+    }
   },
   onUnload() {
     clearTimeout(time)
