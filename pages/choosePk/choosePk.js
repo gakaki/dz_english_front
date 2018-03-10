@@ -12,7 +12,6 @@ Page({
     canMatch:true,
     starAnimation:'', //控制星星的动画
     fromIndex:false,  //是否从主页面跳转过来的
-    navBack:false,    //是否从其它页面点击返回返回来的
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -76,25 +75,18 @@ Page({
         return obj
       })
 
-      //是否从结果页面跳转过来的
+      console.log(this.data.fromIndex, this.data.navBack,'asaf')
+      //是否从主页面跳转过来的
       if (this.data.fromIndex) {
-        //是否从结果页面点击返回回来的
-        if (this.data.navBack) {
-          this.data.navBack = false
-          this.starAnimation(res,stage,rankInfo)
-        }
-        else {
-          stage.length = rankInfo.rank + 1
-          this.setData({
-            userInfo: res.data.userInfo,
-            star: rankInfo.star,
-            stage: stage,
-            toView: rankInfo.rank - 3
-          })
-        }
+        stage.length = rankInfo.rank + 1
+        this.setData({
+          userInfo: res.data.userInfo,
+          star: rankInfo.star,
+          stage: stage,
+          toView: rankInfo.rank - 3
+        })
       }
       else {
-        this.data.navBack = false
         this.starAnimation(res,stage,rankInfo)
       }
     })
@@ -115,7 +107,6 @@ Page({
         toView: rankInfo.rank - 4
       })
       time = setTimeout(() => {
-        console.log(stage, 'stageAll1')
         this.setData({
           star: rankInfo.star,
           stage: stage,
@@ -124,6 +115,7 @@ Page({
       }, 2100)
     }
     else {
+      console.log(changeInfo.isStarUp,'星星')
       //判断是否加星
       stage.length = rankInfo.rank + 1
       this.setData({

@@ -1,11 +1,29 @@
-<view>
-  <view class="">
-    <image class="lingqu-1" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/lingqu.png"></image>
-    <image class="lingqu-2" src=""></image>
-    <image class="lingqu-3" src=""></image>
-    <image class="lingqu-4" src=""></image>
-    <image class="lingqu-5" src=""></image>
-    <image class="lingqu-6" src=""></image>
-    <image class="lingqu-7" src=""></image>
+<view class="qiandao">
+  <view class="qiandao-bai">
+    <view class="shuju">
+      <view class="everyday" wx:for="{{knowledgePoint}}" wx:key="{{index}}">
+        <view class="miaoshu">
+          <text class="miaoshu-wenzi">{{item.name}}</text>
+        </view>
+        <view class="jiangli">
+          <image class="jiangli-tu {{index>1 && index<6  ? 'a' : 'b'}}" src="{{item.img}}"></image>
+        </view>
+        <image class="lingqu" src="{{item.big}}" wx:if="{{tian==index+1}}"></image>
+        <view calss="zhuangtai" wx:if="{{tian > index+1}}">
+          <text class="yilingqu zhuangtai-zi">已领取</text>
+        </view>
+        <view calss="zhuangtai" wx:if="{{tian < index+1}}">
+          <text class="day zhuangtai-zi">{{item.day}}</text>
+        </view>
+        <image class="dagou" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/dagou.png" wx:if="{{tian > index+1}}"></image>
+        <view class="shuliang" wx:if="{{tian <= index+1}}">
+          <text class="shuliang-zi">{{item.shuliang}}</text>
+        </view>
+      </view>
+      <image class="diwen" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/diwen.png"></image>
+    </view>
+  </view>
+  <view class="biaoti">
+    <text class="biaoti-wenzi">每日签到</text>
   </view>
 </view>

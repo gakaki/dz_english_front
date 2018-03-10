@@ -54,7 +54,8 @@ Page({
     let prevPage = pages[pages.length - 2]
     console.log(pages, 'pages')
     prevPage.setData({
-      navBack: true
+      fromIndex: false,
+      starAnimation: ''
     })
   },
   toMatch() {
