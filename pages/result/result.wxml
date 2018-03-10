@@ -1,6 +1,6 @@
 <view class="result">
   <view class="defen">
-    <image class="shu-ying" src="{{isVictory}}"></image>
+    <image class="shu-ying" src="{{isVictory[final]}}"></image>
     <view class="fenshu-lan font">
       <view class="fenshu-juzhong">
         <text class="shu-lan">{{isSelf.score}}</text>
@@ -22,11 +22,11 @@
         </view>
         <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-lan font">
-        <text class="liandui-wenzi-lan">连对2题</text>
+      <view class="liandui-lan font" wx:if="{{isSelf.info.continuousRight>1}}">
+        <text class="liandui-wenzi-lan">连对{{isSelf.info.continuousRight}}题</text>
       </view>
-      <view class="liansheng-lan font">
-        <text class="liansheng-wenzi-lan">9连胜</text>
+      <view class="liansheng-lan font" wx:if="{{isSelf.info.character.winningStreak>1}}">
+        <text class="liansheng-wenzi-lan">{{isSelf.info.character.winningStreak}}连胜</text>
       </view>
     </view>
     <view class="xinxi-hong">
@@ -36,8 +36,11 @@
         </view>
         <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-hong font">
-        <text class="liandui-wenzi-hong">连对2题</text>
+      <view class="liandui-hong font" wx:if="{{notSelf.info.continuousRight>1}}">
+        <text class="liandui-wenzi-hong">连对{{notSelf.info.continuousRight}}题</text>
+      </view>
+      <view class="liandui-hong font" wx:if="{{notSelf.info.character.winningStreak>1}}">
+        <text class="liandui-wenzi-hong">{{notSelf.info.character.winningStreak}}连胜</text>
       </view>
     </view>
   </view>
@@ -45,12 +48,12 @@
     <view class="jinbi font">
       <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbida.png"></image>
       <text class="jinbi-jia">+</text>
-      <text class="jinbi-shu">6</text>
+      <text class="jinbi-shu">{{gold}}</text>
     </view>
     <view class="jingyan font">
       <image class="jingyan-tu" src="https://gengxin.odao.com/update/h5/yingyu/result/jingyan.png"></image>
       <text class="jingyan-jia">+</text>
-      <text class="jingyan-shu">9</text>
+      <text class="jingyan-shu">{{exp}}</text>
     </view>
     <view class="anniu-tiaozhan anniu-wenzi" bindtap='toMatch'>
       <text class="tiaozhan">继续挑战</text>

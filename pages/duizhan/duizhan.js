@@ -74,7 +74,8 @@ Page({
     index_k_lizi: 0,
     isSelf: {},
     notSelf: {},
-    rid: ''
+    rid: '',
+    pkEnd: false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -94,6 +95,8 @@ Page({
       this.getInfo(res)
     })
 
+    this.onPkEndInfo()
+
   },
 
   getInfo(res) {
@@ -112,6 +115,46 @@ Page({
         })
       }
     }
+  },
+
+  onPkEndInfo() {
+    wsReceive('pkEndSettlement', res => {
+      this.data.pkEnd = true
+      if (res.code) {
+        wx.showToast({
+          title: '结算出错了'
+        })
+      }
+      else {
+        console.log(res.data,'pkEnd')
+        let data = res.data;
+        let isFriend = data.isFriend;
+        let final = data.final;
+        let gold = data.gold;
+        let exp = data.exp;
+
+        let userLeft = this.data.isSelf;
+        let userRight = this.data.notSelf;
+        let [u1, u2] = data.userList;
+        let resultLeft, resultRight;
+
+        if (userLeft.uid == u1.info.uid) {
+          resultLeft = u1;
+          resultRight = u2;
+        }
+        else {
+          resultLeft = u2;
+          resultRight = u1;
+        }
+
+        console.log('全局结束')
+        //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
+        app.globalData.pkResult = { resultLeft, resultRight, changeInfo: data.pkResult, final, isFriend, exp, gold };
+        wx.redirectTo({
+          url: '../result/result',
+        })
+      }
+    })
   },
 
   /**
@@ -160,14 +203,15 @@ Page({
       })
     }, 150)
 
-
-    timer = setTimeout(()=>{
-      console.log('toCompetion',this.data.rid)
-      wx.redirectTo({
-        url: '../competition/competition?rid=' + this.data.rid,
-      })
-      console.log('toCompetion', this.data.rid,1111)
-    },3000)
+    if(!this.data.pkEnd){
+      timer = setTimeout(() => {
+        console.log('toCompetion', this.data.rid)
+        wx.redirectTo({
+          url: '../competition/competition?rid=' + this.data.rid,
+        })
+        console.log('toCompetion', this.data.rid, 1111)
+      }, 3000)
+    }
   },
   /**
    * 生命周期函数--监听页面卸载

@@ -9,6 +9,7 @@ Page({
     toView:0,
     season:{},
     canMatch:true,
+    starAnimation:false,
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -44,7 +45,7 @@ Page({
         rankInfo = season[key]
       }
       
-      //通过读表获取段位信息
+      //通过读表获取所有段位相关信息
       let stage;
       stage = sheet.stages.map(o => {
         let obj = {}
@@ -54,14 +55,44 @@ Page({
         obj['star'] = new sheet.Stage(o).star
         return obj
       })
-      stage.length = rankInfo.rank+1
-      this.setData({
-        userInfo: res.data.userInfo,
-        star: rankInfo.star,
-        stage: stage,
-        toView: rankInfo.rank-3
-      })
-      console.log(this.data.stage)
+
+
+      let localStar = wx.getStorageSync('star')
+      if(localStar){
+        if (rankInfo.star == localStar) {
+          stage.length = rankInfo.rank + 1
+          this.setData({
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
+          wx.setStorageSync('star', rankInfo.star)
+          console.log(this.data.stage, 'nowStage')
+        }
+        else {
+          
+          this.setData({
+            starAnimation:true,
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
+          wx.setStorageSync('star', rankInfo.star)
+        }
+      }
+      else{
+        stage.length = rankInfo.rank + 1
+        this.setData({
+          userInfo: res.data.userInfo,
+          star: rankInfo.star,
+          stage: stage,
+          toView: rankInfo.rank - 3
+        })
+        wx.setStorageSync('star', rankInfo.star)
+        console.log(this.data.stage, 'nowStage')
+      }
     })
   },
   onReady() {

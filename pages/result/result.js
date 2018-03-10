@@ -7,7 +7,11 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    isVictory:'https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png',
+    isVictory: ['https://gengxin.odao.com/update/h5/yingyu/result/shibai.png',              'https://gengxin.odao.com/update/h5/yingyu/result/pingju.png',
+'https://gengxin.odao.com/update/h5/yingyu/result/shegnli.png'],
+    final:0,
+    gold:0,
+    exp:0,
     shareGold:0,
     isSelf:{},
     notSelf:{}
@@ -25,12 +29,18 @@ Page({
 
     if(pkResult.resultLeft.info.uid == getUid()){
       this.setData({
+        final: pkResult.final,
+        gold: pkResult.gold,
+        exp: pkResult.exp,
         isSelf: pkResult.resultLeft,
         notSelf: pkResult.resultRight
       })
     }
     else{
       this.setData({
+        final: pkResult.final,
+        gold: pkResult.gold,
+        exp: pkResult.exp,
         isSelf: pkResult.resultRight,
         notSelf: pkResult.resultLeft
       })
