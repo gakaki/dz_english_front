@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/choosePk/choosePk",
     
@@ -15,7 +16,8 @@
     "components/progress/progress",
     "pages/rankDes/rankDes",
     "pages/word/word",
-    "pages/shopping/shopping"
+    "pages/shopping/shopping",
+    "components/qiandao/qiandao"
   ],
   "window": {
     "backgroundTextStyle": "light",
