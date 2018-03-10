@@ -22,11 +22,11 @@
         </view>
         <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-lan font" wx:if="{{isSelf.info.continuousRight>1}}">
-        <text class="liandui-wenzi-lan">连对{{isSelf.info.continuousRight}}题</text>
+      <view class="liandui-lan font" wx:if="{{isSelf.continuousRight>1}}">
+        <text class="liandui-wenzi-lan">连对{{isSelf.continuousRight}}题</text>
       </view>
-      <view class="liansheng-lan font" wx:if="{{isSelf.info.character.winningStreak>1}}">
-        <text class="liansheng-wenzi-lan">{{isSelf.info.character.winningStreak}}连胜</text>
+      <view class="liansheng-lan font" wx:if="{{isSelf.winningStreak>1}}">
+        <text class="liansheng-wenzi-lan">{{isSelf.winningStreak}}连胜</text>
       </view>
     </view>
     <view class="xinxi-hong">
@@ -36,11 +36,11 @@
         </view>
         <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
       </view>
-      <view class="liandui-hong font" wx:if="{{notSelf.info.continuousRight>1}}">
-        <text class="liandui-wenzi-hong">连对{{notSelf.info.continuousRight}}题</text>
+      <view class="liandui-hong font" wx:if="{{notSelf.continuousRight>1}}">
+        <text class="liandui-wenzi-hong">连对{{notSelf.continuousRight}}题</text>
       </view>
-      <view class="liandui-hong font" wx:if="{{notSelf.info.character.winningStreak>1}}">
-        <text class="liandui-wenzi-hong">{{notSelf.info.character.winningStreak}}连胜</text>
+      <view class="liandui-hong font" wx:if="{{notSelf.winningStreak>1}}">
+        <text class="liandui-wenzi-hong">{{notSelf.winningStreak}}连胜</text>
       </view>
     </view>
   </view>

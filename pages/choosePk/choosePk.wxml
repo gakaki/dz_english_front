@@ -42,16 +42,16 @@
           <text class="gold-num">{{item.jian}}</text>
         </view>
         <view class="star" wx:if="{{ index+1 < stage.length-1}}">
-          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
         <view class="star" wx:if="{{stage.length-1 == index+1}}">
-          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
         </view>
         <view class="level-star" wx:if="{{stage.length-1 == index+1}}">
-          <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot {{index==0 && starAnimation ? 'star-animation' : ''}}" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+          <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot {{index==0? starAnimation : ''}}" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
         <view class="star" wx:if="{{stage.length-1 == index}}">
-          <image  wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
         </view>
       </view>
     </view>

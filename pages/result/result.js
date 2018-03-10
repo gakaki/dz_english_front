@@ -46,6 +46,14 @@ Page({
       })
     }
    },
+  onUnload() {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2]
+    console.log(pages,'pages')
+    prevPage.setData({
+      navBack: true
+    })
+  },
   toMatch() {
     wx.redirectTo({
       url: '../choosePk/choosePk',

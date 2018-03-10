@@ -31,6 +31,7 @@ Page({
         return o
       })
     })
+    console.log(this.data.backData)
   },
   filter(item) {
     return item.ifshow == 1
@@ -51,7 +52,6 @@ Page({
     })
   },
   toUse() {
-    console.log(1234)
     this.setData({
       show: false
     })
