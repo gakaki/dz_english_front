@@ -199,9 +199,16 @@ Page({
       timer = null;
     }
 
-    let answer = this.data.roundAnswer;
+    let answer = this.data.answer;
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
+      let roundAnswer = {}
+      roundAnswer[word] = isRright;
+      this.setData({
+        myScore:0,
+        answer,
+        roundAnswer
+      })
     }
 
     if (!answerSend) {
@@ -214,7 +221,7 @@ Page({
         score: this.data.myScore,
         totalScore: this.data.totalScore,
         isRight: this.data.roundIsRight,
-        answer: answer
+        answer: this.data.roundAnswer
       });
       answerSend = true;
     }
@@ -361,8 +368,8 @@ Page({
   //中译英，选项方式
   playTwo() {
     this.playtoQuestion('english')
-    .add(2000, this.audioPlay, this)
-    .add(1000, this.showEnglishOptions, this)
+    .add(1000, this.audioPlay, this)
+    .add(500, this.showEnglishOptions, this)
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
