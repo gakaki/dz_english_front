@@ -51,7 +51,7 @@ Page({
     // this.setData({englishWords})
     // this.roundInit();
     // return;//test
-    this.setData({ rid: options.rid });
+    this.setData({ rid: options.rid,round:1 });
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -604,6 +604,8 @@ Page({
   audioPlay(){
     this.audioCtx.play()
   },
+
+
 
   /**
    * 用户点击右上角分享
