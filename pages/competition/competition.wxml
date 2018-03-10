@@ -7,7 +7,7 @@
       <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
       <view class='yinbiao'>
         <text>{{word.symbol}}</text>
-        <audio  class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
+        <audio class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
           <view class='question {{answer === 2 ? "question-large":""}}' >
@@ -41,7 +41,7 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 ? "show" : "none"}}'>
-        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='selectLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
           <view class='flip-wrap'>
             <view class='front flip poal'>
               <text>{{nineLetters[index]}}</text>
@@ -52,7 +52,7 @@
 
       <!-- 列表  -->
       <view wx:if='{{options && options.length}}' class='selectBtn selectLists show}}'>
-        <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='selectAnswer' data-answer='{{item}}' data-id='{{index}}'>
+        <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
           <text>{{item}}</text>
         </view>
       </view>

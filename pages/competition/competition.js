@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineseOptions, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineneOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -105,6 +105,9 @@ Page({
   },
   roundInit(){
     //new ----------------
+    if (this.data.round >= this.data.englishWords.length) {
+      return;
+    }
     let idx = this.data.round - 1;
     question = this.data.englishWords[idx];
     
@@ -139,7 +142,6 @@ Page({
     return;
 
 
-    console.log(this.data.round,'round')
     this.setData({
       word: this.data.englishWords[this.data.round-1],
       title: getRoundName(this.data.round),
@@ -310,6 +312,7 @@ Page({
     
   showChineseOptions(){
     options = getChineneOptions(question);
+    console.log('options', options)
     this.setData({options})
   },
   showEnglishOptions(){
@@ -325,7 +328,7 @@ Page({
   //英译中，选项方式
   playOne() { 
     //new----------------
-    playtoQuestion('China')
+    this.playtoQuestion('China')
     .add(2000, this.audioPlay, this)
     .add(1000, this.showChineseOptions, this)
     .add(0, this.countClockTime, this)
@@ -336,7 +339,7 @@ Page({
   },
   //中译英，选项方式
   playTwo() {
-    playtoQuestion('english')
+    this.playtoQuestion('english')
     .add(2000, this.audioPlay, this)
     .add(1000, this.showEnglishOptions, this)
     .add(0, this.countClockTime, this)
@@ -346,7 +349,7 @@ Page({
   //翻牌
   playThree() {
     //new ----------
-    playtoQuestion('english')
+    this.playtoQuestion('english')
     .add(1000, this.keyboard, this)//渲染九宫格键盘
     .add(3000, this.audioPlay, this)//3秒后，播放音频
     .add(1000, this.hideQuestionLetter, this)//1秒后，擦去部分字母
@@ -358,7 +361,7 @@ Page({
   },
   //单词拼写
   playFour() { 
-    playtoQuestion('english')
+    this.playtoQuestion('english')
     .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
     .add(1000, this.audioPlay, this)//1秒后，播放音频
     .add(1000, this.hideAllLetters, this)//1秒后，擦去全部字母
@@ -430,7 +433,7 @@ Page({
     }
   },
 
-  selectLetter(e) {
+  chooseLetter(e) {
     let obj = e.currentTarget.dataset;
     let letter = this.data.nineLetters[obj.index];
 
@@ -510,11 +513,12 @@ Page({
     }
   },
 
-  selectAnswer(v) {  //选列选项点击
+  chooseOption(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let myScore = 0;
       let isRright = false;
+      let selectAnswer = this.data.selectAnswer;
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
         isRright = true;
