@@ -67,9 +67,10 @@ Page({
         })
       }
       else{
-        console.log(1111)
+        console.log(1111, app.globalData.pkResult.changeInfo)
         let changeInfo = app.globalData.pkResult.changeInfo
         //判断是否升段
+        console.log(changeInfo.isRank,'isRank')
         if(changeInfo.isRank.isRank){
           //判断是否加星
           stage.length = rankInfo.rank + 1
