@@ -1,7 +1,7 @@
 // pages/competition/competition.js
 const app = getApp()
 import { Word } from '../../sheets.js'
-import {delay} from '../../utils/util.js'
+// import {delay} from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
 
@@ -98,12 +98,12 @@ Page({
   },
 
   onReady() {
-    delay(1000).then(()=>{
-      console.log('delay',1);
-      delay(1000).then(()=>{
-        console.log('delay',2)
-      })
-    })
+    // delay(1000).then(()=>{
+    //   console.log('delay',1);
+    //   delay(1000).then(()=>{
+    //     console.log('delay',2)
+    //   })
+    // })
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context

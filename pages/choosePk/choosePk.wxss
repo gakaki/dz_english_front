@@ -247,12 +247,16 @@ width: 690rpx;
   margin-right: 10rpx;
 }
 
-.star-animation{
+.increase{
   opacity: 0;
-  animation: star 1.5s ease-in-out .5s forwards;
+  animation: increase 1.5s ease-in-out .5s forwards;
 }
 
-@keyframes star{
+decrease{
+  animation: decrease 1s ease-in-out .5s forwards;
+}
+
+@keyframes increase{
   0%{
     opacity: 0;
   }
@@ -266,5 +270,14 @@ width: 690rpx;
   100%{
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes decrease{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
   }
 }
