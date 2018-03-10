@@ -72,33 +72,11 @@ Page({
         //判断是否升段
         console.log(changeInfo.isRank,'isRank')
         if(changeInfo.isRank.isRank){
-          //判断是否加星
-          stage.length = rankInfo.rank + 1
-          if(changeInfo.isStarUp.isStarUp==1){
-            this.setData({
-              starAnimation: 'increase',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-          else if (changeInfo.isStarUp.isStarUp == -1){
-            this.setData({
-              starAnimation: 'decrease',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-        }
-        else{
           stage.length = rankInfo.rank
           this.setData({
             starAnimation: 'increase',
             userInfo: res.data.userInfo,
-            star: stage[stage.length-2].star,
+            star: stage[stage.length - 2].star,
             stage: stage,
             toView: rankInfo.rank - 4
           })
@@ -110,6 +88,36 @@ Page({
               toView: rankInfo.rank - 3
             })
           }, 2100)
+        }
+        else{
+          //判断是否加星
+          stage.length = rankInfo.rank + 1
+          if (changeInfo.isStarUp.isStarUp == 1) {
+            this.setData({
+              starAnimation: 'increase',
+              userInfo: res.data.userInfo,
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }
+          else if (changeInfo.isStarUp.isStarUp == -1) {
+            this.setData({
+              starAnimation: 'decrease',
+              userInfo: res.data.userInfo,
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }
+          else if (changeInfo.isStarUp.isStarUp == 0){
+            this.setData({
+              userInfo: res.data.userInfo,
+              star: rankInfo.star,
+              stage: stage,
+              toView: rankInfo.rank - 3
+            })
+          }
         }
       }
      
