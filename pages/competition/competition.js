@@ -15,6 +15,8 @@ let question;//当前题目
 let options;//当前题目答案项
 let rightAnswer;//当前题目的正确答案
 let answer;//当前题目的回答结果:0未设置，1正确，2错误
+let answerSend;//当前题，答案是否已发给后端 
+let isRright;//当前题是否答对了
 
 Page({
   /**
@@ -49,6 +51,7 @@ Page({
   onLoad(options) {
     
     this.setData({ rid: options.rid,round:1 });
+    console.log('round',this.data.round);
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -95,6 +98,7 @@ Page({
   },
 
   onUnload() {
+    answerSend = true;
     this.tagRoundEnd();
   },
 
@@ -104,8 +108,9 @@ Page({
     
   },
   roundInit(){
-    //new ----------------
-    if (this.data.round >= this.data.englishWords.length) {
+    answerSend = false;
+
+    if (this.data.round > this.data.englishWords.length) {
       return;
     }
     let idx = this.data.round - 1;
@@ -195,9 +200,34 @@ Page({
       clearInterval(timer);
       timer = null;
     }
+
+    let answer = this.data.answer;
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
+      let roundAnswer = {}
+      roundAnswer['not_select'] = isRright;
+      this.setData({
+        myScore:0,
+        answer,
+        roundAnswer
+      })
     }
+
+    if (!answerSend) {
+      //通知后端，一题完成
+      wsSend('roundend', {
+        rid: this.data.rid,
+        wid: this.data.word.id,
+        type: this.data.word.type,
+        time: this.data.round,
+        score: this.data.myScore,
+        totalScore: this.data.totalScore,
+        isRight: this.data.roundIsRight,
+        answer: this.data.roundAnswer
+      });
+      answerSend = true;
+    }
+
   },
 
   onRoundEndInfo() {
@@ -322,15 +352,15 @@ Page({
   playtoQuestion(answerKey){
     rightAnswer = question[answerKey];//设置正确答案内容
     tm = Timeline.add(0, this.showQuestionIdx, this)//显示第几题
-    .add(1000, this.showQuestion, this)//显示题目单词
+    .add(2000, this.showQuestion, this)//显示题目单词
     return tm;
   },
   //英译中，选项方式
   playOne() { 
     //new----------------
     this.playtoQuestion('China')
-    .add(2000, this.audioPlay, this)
-    .add(1000, this.showChineseOptions, this)
+    .add(1000, this.audioPlay, this)
+    .add(500, this.showChineseOptions, this)
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
@@ -340,8 +370,8 @@ Page({
   //中译英，选项方式
   playTwo() {
     this.playtoQuestion('english')
-    .add(2000, this.audioPlay, this)
-    .add(1000, this.showEnglishOptions, this)
+    .add(1000, this.audioPlay, this)
+    .add(500, this.showEnglishOptions, this)
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
@@ -428,7 +458,7 @@ Page({
           answer,
           roundAnswer
         })
-        this.answerFinished()
+        this.tagRoundEnd();
       }
     }
   },
@@ -509,7 +539,8 @@ Page({
     })
 
     if (finished) {
-      this.answerFinished();
+      this.tagRoundEnd();
+
     }
   },
 
@@ -517,7 +548,7 @@ Page({
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let myScore = 0;
-      let isRright = false;
+      isRright = false;
       let selectAnswer = this.data.selectAnswer;
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
@@ -540,26 +571,11 @@ Page({
         roundAnswer,
         firstClick: false
       })
-      this.answerFinished()
+      this.tagRoundEnd()
     }
 
   },
-  answerFinished(){
-    clearInterval(timer)
   
-    //通知后端，一题完成
-    wsSend('roundend', {
-      rid: this.data.rid,
-      wid: this.data.word.id,
-      type: this.data.word.type,
-      time: this.data.round,
-      score: this.data.myScore,
-      totalScore: this.data.totalScore,
-      isRight: this.data.roundIsRight,
-      answer: this.data.roundAnswer
-    });
-
-  },
   countClockTime(){
     if (timer) {
       clearInterval(timer);
