@@ -121,7 +121,7 @@ Page({
     })
 
     //开始对应玩法
-    switch(word.type) {
+    switch(question.type) {
       case 1:
         this.playOne();
         break;
