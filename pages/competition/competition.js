@@ -1,15 +1,20 @@
 // pages/competition/competition.js
 const app = getApp()
 import { Word } from '../../sheets.js'
-// import {delay} from '../../utils/util.js'
+import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, englishSelector, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineseOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
-let timer = null;
 const totalCountTime = 10;
 const roundTotalScore = 200;
 let end = false;  //当前动画显示是否完成
+let timer = null;//当前题目的10秒倒计时句柄
+let tm;//Timeline//当前题目操作时间线
+let question;//当前题目
+let options;//当前题目答案项
+let rightAnswer;//当前题目的正确答案
+let answer;//当前题目的回答结果:0未设置，1正确，2错误
 
 Page({
   /**
@@ -23,18 +28,15 @@ Page({
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
+    rightAnswer: '',//正确答案
+    options:[],//答案选项
     letters: [],  //单词变成字母
     hideLetters: [false,false,false,false,false], //要隐藏的字母
-    hideAllLetters: false, //隐藏所有字母
     englishWords: [],
-    showIndex:0,  //显示顺序
-    titleIndex: 0, //单词是第几题 
     rotateList: [true, true, true, true, true, true, true, true, true], //true为正面，false为背面
-    time:2000,  
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     round:1,  //第几回合，从1开始
-    roundName:null,
     selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
     firstClick:true,
     clockStart: false,
@@ -45,12 +47,7 @@ Page({
     roundAnswer:{}
   },
   onLoad(options) {
-    //test
-    // let englishWords = loadEnglishWords();
-    // console.log(englishWords)
-    // this.setData({englishWords})
-    // this.roundInit();
-    // return;//test
+    
     this.setData({ rid: options.rid,round:1 });
 
     getRoomInfo(options.rid, res => {
@@ -87,7 +84,7 @@ Page({
         this.roundInit()
 
         //监听每局结束
-        this.onRoundEndInfo();
+        this.onRoundEndInfo();        
 
         //监听全局结束
         this.onPkEndInfo();
@@ -97,20 +94,51 @@ Page({
 
   },
 
-  onReady() {
-    // delay(1000).then(()=>{
-    //   console.log('delay',1);
-    //   delay(1000).then(()=>{
-    //     console.log('delay',2)
-    //   })
-    // })
+  onUnload() {
+    this.tagRoundEnd();
   },
+
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
     
   },
   roundInit(){
+    //new ----------------
+    let idx = this.data.round - 1;
+    question = this.data.englishWords[idx];
+    
+    //清理上一局数据
+    this.setData({
+      title:null,
+      options:null,
+      word:{type:0},
+      rotateList: changeArrAllValue(this.data.rotateList, true),
+      bgIndex: changeArrAllValue(this.data.bgIndex, false),
+      firstClick:true,
+      selectAnswer: [0, 0, 0, 0],
+      answer:0,
+    })
+
+    //开始对应玩法
+    switch(question.type) {
+      case 1:
+        this.playOne();
+        break;
+      case 2:
+        this.playTwo();
+        break;
+      case 3:
+        this.playThree();
+        break;
+      case 4:
+        this.playFour();
+        break;
+    }
+    //--------------------
+    return;
+
+
     console.log(this.data.round,'round')
     this.setData({
       word: this.data.englishWords[this.data.round-1],
@@ -156,6 +184,20 @@ Page({
     
   },
 
+  tagRoundEnd() {
+    if (tm) {
+      Timeline.stop(tm);
+      tm = null;
+    }
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    if (!answer) {
+      answer = 2;//未设置过对错的话，认为是时间到了，设置为错
+    }
+  },
+
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
       if (res.code) {
@@ -171,9 +213,16 @@ Page({
         let resultRight = ulist[userRight.uid];
 
         //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
-        //展示对局答案信息，然后开始下一题
+        //展示对局答案信息，
 
       }
+    })
+
+    //开始下一题
+    wsReceive('nextRound', res => {
+      this.tagRoundEnd();
+      this.setData({round: this.data.round + 1});
+      this.roundInit();
     })
   },
 
@@ -214,173 +263,120 @@ Page({
       }
     })
   },
-
-  playOne() {   //翻牌
-    this.keyboard(); //渲染九宫格键盘
-    var timerCount = 0;
-    timerCount = setTimeout(() => {
-      this.setData({
-        showIndex: this.data.showIndex + 1
-      })
-      let type = this.data.word.type;
-      switch (this.data.showIndex) {
-        case 1:  //显示完整单词
-          this.setData({
-            time: 3000
-          })
-          setTimeout(() => {
-            this.audioCtx.play()
-          }, 1000)
-          break;
-        case 2:
-          let letterPos = this.data.word.eliminate;
-          let hideLetters = this.data.hideLetters;
-            //擦去部分字母
-          letterPos.forEach((v) => {
-            hideLetters[v] = true
-          })
-          this.setData({
-            hideLetters,
-            time: 1000
-          })
-          break;
-        case 3:  //显示九宫格
-          this.setData({
-            time: 3000
-          })
-          break;
-        case 4:
-          this.setData({
-            rotateList: changeArrAllValue(this.data.rotateList, false),
-            time: 2000,
-          })
-          setTimeout(() => {
-            this.countClockTime()
-          }, 500)
-
-          break;
-      }
-      clearInterval(timerCount);
-      if (this.data.showIndex < 4) {
-        this.playOne();
-      }
-    }, this.data.time);
+  //显示第几题
+  showQuestionIdx(){
+    this.setData({title: getRoundName(this.data.round)})
   },
-  playTwo() {  //英译中
-    var timerCount = 0;
-    timerCount = setTimeout(() => {
-      this.setData({
-        showIndex: this.data.showIndex + 1
-      })
-      let type = this.data.word.type;
-      switch (this.data.showIndex) {
-        case 1:  
-          this.setData({
-            time: 2000
-          })
-          setTimeout(() => {
-            this.audioCtx.play()
-          }, 1000)
-          break;
-        case 2:
-          let letterPos = this.data.word.eliminate;
-          let hideLetters = this.data.hideLetters;
-            this.setData({
-              hideLetters,
-              time: 1000
-            }) 
-          this.countClockTime();
-          break;
-      }
-      clearInterval(timerCount);
-      if (this.data.showIndex < 2) {
-        this.playTwo();
-      }
-    }, this.data.time);
+  audioPlay(){
+    this.audioCtx.play()
   },
-  playThree() {  //中译英
-    var timerCount = 0;
-    timerCount = setTimeout(() => {
-      this.setData({
-        showIndex: this.data.showIndex + 1
-      })
-      let type = this.data.word.type;
-      switch (this.data.showIndex) {
-        case 1:  //显示完整单词
-          this.setData({
-            time: 2000
-          })
-          setTimeout(() => {
-            this.audioCtx.play()
-          }, 1000)
-          break;
-        case 2:
-          let word = this.data.word;
-          word.options = englishSelector(word.english)
-          console.log(word)
-          this.setData({
-            word
-          })
-          setTimeout(() => {
-            this.countClockTime()
-          }, 500)
-          break;
-      }
-      clearInterval(timerCount);
-      if (this.data.showIndex < 2) {
-        this.playThree();
-      }
-    }, this.data.time);
-  },
-  playFour() { //单词拼写
+  //显示题目
+  showQuestion(){
+    let title = null;//隐藏‘第X题’
     this.setData({
-      nineLetters: quanpinKeyboard(this.data.letters)  //渲染全拼九宫格键盘
-    }); 
-    var timerCount = 0;
-    timerCount = setTimeout(() => {
-      this.setData({
-        showIndex: this.data.showIndex + 1
-      })
-      let type = this.data.word.type;
-      switch (this.data.showIndex) {
-        case 1:  //显示完整单词
-          this.setData({
-            time: 2000
-          })
-          setTimeout(() => {
-            this.audioCtx.play();
-            // end = true;
-          }, 1000)
-          break;
-        case 2:
-
-          let hideLetters = this.data.hideLetters;
-          //擦去全部字母
-          hideLetters.forEach( (v,i) => {
-            hideLetters[i] = true
-          })
-          this.setData({
-            hideLetters,
-            time: 1000
-          })
-          // end = true;
-          break;
-        case 3:
-          this.countClockTime()
-          this.setData({
-            time: 10000
-          })
-          break;
+      title: title,
+      word: question,
+      rightAnswer: rightAnswer
+    })
+  },
+  hideQuestionLetter(hideAll = false){
+    let letterPos = question.eliminate;
+    let randomPos = letterPos[0] == -1;//随机扣掉字母
+    let hideLetters = rightAnswer.split().map((v, idx) => {
+      if (hideAll) {
+        return true;
       }
-      clearInterval(timerCount);
-      
-      
-        if (this.data.showIndex < 4) {
-          console.log(5555555555555)
-          this.playFour();
-        }
-     
-    }, this.data.time);
+      if (randomPos) {
+        return Math.random() > 0.5;
+      }
+      else if (letterPos.indexOf(idx) > -1) {
+        return true;
+      }
+      return false;
+    });
+      //擦去部分字母
+    this.setData({hideLetters});
+  },
+  //显示九宫格
+  showNineCard() {
+
+  },
+  //翻转九宫格至字母不可见
+  flipNineCard() {
+    let rotateList = this.data.rotateList.map(v=> false);
+    this.setData({rotateList});
+  },
+
+    
+  showChineseOptions(){
+    options = getChineneOptions(question);
+    this.setData({options})
+  },
+  showEnglishOptions(){
+    options = getEnglishOptions(question);
+    this.setData({options})
+  },
+  playtoQuestion(answerKey){
+    rightAnswer = question[answerKey];//设置正确答案内容
+    tm = Timeline.add(0, this.showQuestionIdx, this)//显示第几题
+    .add(1000, this.showQuestion, this)//显示题目单词
+    return tm;
+  },
+  //英译中，选项方式
+  playOne() { 
+    //new----------------
+    playtoQuestion('China')
+    .add(2000, this.audioPlay, this)
+    .add(1000, this.showChineseOptions, this)
+    .add(0, this.countClockTime, this)
+    .add(10000, this.tagRoundEnd, this)
+    .start();
+
+    
+  },
+  //中译英，选项方式
+  playTwo() {
+    playtoQuestion('english')
+    .add(2000, this.audioPlay, this)
+    .add(1000, this.showEnglishOptions, this)
+    .add(0, this.countClockTime, this)
+    .add(10000, this.tagRoundEnd, this)
+    .start();
+  },
+  //翻牌
+  playThree() {
+    //new ----------
+    playtoQuestion('english')
+    .add(1000, this.keyboard, this)//渲染九宫格键盘
+    .add(3000, this.audioPlay, this)//3秒后，播放音频
+    .add(1000, this.hideQuestionLetter, this)//1秒后，擦去部分字母
+    .add(1000, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    .add(0, this.countClockTime, this)//开始时钟倒计时
+    .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
+    .start();//timeline开始运行
+    ///-------------
+  },
+  //单词拼写
+  playFour() { 
+    playtoQuestion('english')
+    .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
+    .add(1000, this.audioPlay, this)//1秒后，播放音频
+    .add(1000, this.hideAllLetters, this)//1秒后，擦去全部字母
+    .add(0, this.countClockTime, this)
+    .add(10000, this.tagRoundEnd, this)
+    .start();
+
+  },
+
+  //擦去全部字母
+  hideAllLetters(){
+    this.hideQuestionLetter(true);
+  },
+  //渲染全拼九宫格键盘
+  showInputKeyboard(){
+    this.setData({
+      nineLetters: quanpinKeyboard(this.data.letters)  
+    }); 
   },
   showFront(v){  //点击翻牌
     console.log('showfront')
@@ -429,7 +425,7 @@ Page({
           answer,
           roundAnswer
         })
-        this.roundEnd()
+        this.answerFinished()
       }
     }
   },
@@ -510,17 +506,16 @@ Page({
     })
 
     if (finished) {
-      this.roundEnd();
+      this.answerFinished();
     }
   },
 
   selectAnswer(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
-      let selectAnswer = this.data.selectAnswer;
       let myScore = 0;
       let isRright = false;
-      if (obj.answer == this.data.word.China || obj.answer == this.data.word.english) {
+      if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
         isRright = true;
 
@@ -541,19 +536,13 @@ Page({
         roundAnswer,
         firstClick: false
       })
-      this.roundEnd()
+      this.answerFinished()
     }
 
   },
-  roundEnd(){
+  answerFinished(){
     clearInterval(timer)
-    // setTimeout(() => {
-    //   this.setData({
-    //     clockStart: false,
-    //     round: this.data.round + 1
-    //   })
-    // }, 500)
-    console.log(this.data.round,'roundTime')
+  
     //通知后端，一题完成
     wsSend('roundend', {
       rid: this.data.rid,
@@ -566,46 +555,35 @@ Page({
       answer: this.data.roundAnswer
     });
 
-    this.setData({
-      clockStart: false,
-      round: this.data.round + 1
-    })
-
-
-    setTimeout(() => {
-      if (this.data.round <= roundLimit) {
-        this.roundInit()
-      } else {
-        console.log('结束', this.data.round, roundLimit)
-      }
-    }, 3000)
   },
   countClockTime(){
-    timer = setInterval(()=>{
-      this.setData({
-        clockStart: true,
-        clockTime: this.data.clockTime - 1
-      })
-      if (this.data.clockTime <= 0) {
-        this.setData({
-          answer: 2,
-        })
-        this.roundEnd()
+    if (timer) {
+      clearInterval(timer);
+    }
+    this.setData({
+      clockTime:10
+    });
+
+    timer = setInterval(()=> {
+      let clockTime = this.data.clockTime - 1;
+      if (clockTime <=0) {
+        //倒计时结束 
+        timer && clearInterval(timer);
       }
-    },1000)
+      this.setData({clockTime});
+    }, 1000);
     
   },
+  //设置九宫格
   keyboard() {
-    let letterPos = this.data.word.eliminate;
-    let english = this.data.word.english;
+    let letterPos = question.eliminate;
+    let english = rightAnswer;
     this.setData({
       nineLetters: keyboard(letterPos, english)
     })
   },
   
-  audioPlay(){
-    this.audioCtx.play()
-  },
+  
 
 
 
