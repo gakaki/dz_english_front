@@ -102,21 +102,21 @@ Page({
     let changeInfo = app.globalData.pkResult.changeInfo
     //判断是否提升段位
     if (changeInfo.isRank.isRank) {
-      //提升段位的时候先执行完加星动画之后在升段位,先保存全部stage防止升段之后stage还是原来的数据并没有下下加一个段位
-      let stageAll = stage
-      stage.length = rankInfo.rank
+      //提升段位的时候先执行完加星动画之后在升段位
+      stage.length = rankInfo.rank+1
+      let oldStage = stage.slice(0, rankInfo.rank)
       this.setData({
         starAnimation: 'increase',
         userInfo: res.data.userInfo,
-        star: stage[stage.length - 2].star,
-        stage: stage,
+        star: stage[oldStage.length - 2].star,
+        stage: oldStage,
         toView: rankInfo.rank - 4
       })
       time = setTimeout(() => {
-        stageAll.length = rankInfo.rank + 1
+        console.log(stage, 'stageAll1')
         this.setData({
           star: rankInfo.star,
-          stage: stageAll,
+          stage: stage,
           toView: rankInfo.rank - 3
         })
       }, 2100)
@@ -150,6 +150,7 @@ Page({
     
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
+    console.log(this.data.stage)
     if (this.data.stage.length > type){
       //通过后台和客户端一起判断来防止数据被篡改
       wsSend('canmatch', {
