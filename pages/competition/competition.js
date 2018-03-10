@@ -51,6 +51,7 @@ Page({
   onLoad(options) {
     
     this.setData({ rid: options.rid,round:1 });
+    console.log('round',this.data.round);
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -107,7 +108,8 @@ Page({
     
   },
   roundInit(){
-    //new ----------------
+    answerSend = false;
+
     if (this.data.round > this.data.englishWords.length) {
       return;
     }
@@ -115,7 +117,6 @@ Page({
     question = this.data.englishWords[idx];
     
     //清理上一局数据
-    answerSend = false;
     this.setData({
       title:null,
       options:null,
