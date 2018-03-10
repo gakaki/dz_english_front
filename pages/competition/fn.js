@@ -133,7 +133,7 @@ function englishSelector(word){
 function getOptions(question, key){
   let cnt = 0;
   let limit = 4;
-  let start = Math.max(question.id, question.id - limit - limit);
+  let start = Math.max(0, question.id - limit - limit);
   let end = Math.min(words.length, question.id + limit + limit);
 
   let arr = [question[key]];
@@ -143,6 +143,7 @@ function getOptions(question, key){
       break;
     }
     let cfg = words[i+''];
+
     if (cfg.difficult == question.difficult) {
       arr.push(cfg[key]);
     }
@@ -151,12 +152,12 @@ function getOptions(question, key){
   return arr.sort((a,b)=>{return Math.random() - 0.5});
 }
 
-function getChineseOptions(question) {
-  getOptions(question, 'China')
+function getChineneOptions(question) {
+  return getOptions(question, 'China')
 }
 
 function getEnglishOptions(question) {
-  getOptions(question, 'english')
+  return getOptions(question, 'english')
 }
 
 
@@ -194,6 +195,6 @@ module.exports = {
   changeArrAllValue,
   englishSelector,
   quanpinKeyboard,
-  getChineseOptions,
+  getChineneOptions,
   getEnglishOptions
 }
