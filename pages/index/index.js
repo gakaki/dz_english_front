@@ -14,7 +14,9 @@ Page({
     exp: 0,
     needExp: 0,
     showSet: false,
-    showBtn: true
+    showBtn: true,
+    goldCount:0,
+    wid: 0
   },
   //事件处理函数
   hi() {
@@ -173,10 +175,20 @@ Page({
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({
-        lvl: v.userInfo.character.level,
-        exp: v.userInfo.character.experience.exp,
-        needExp: v.userInfo.character.experience.needExp
+        lvl: v.userInfo.character.level||0,
+        exp: v.userInfo.character.experience.exp || 0,
+        goldCount: v.userInfo.items['1']||0,
+        needExp: v.userInfo.character.experience.needExp||0,
       })
+      if (this.data.exp == 0) {
+        this.setData({
+          wid: 0
+        })
+      }else {
+        this.setData({
+          wid: Math.round(this.data.exp / this.data.needExp*100)
+        })
+      }
     })
 
     // let aa = {bb:'bb'};
@@ -232,7 +244,7 @@ Page({
         }
       })
     }
-    
+    console.log(this.data.userInfo)
     this.shareTo(options)
 
   },
