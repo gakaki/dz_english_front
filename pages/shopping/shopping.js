@@ -82,20 +82,44 @@ Page({
   buy: function () {
     console.log(345)
     doFetch('weChat.minapppay', 
-    { payCount: this.data.shopData[this.data.point],
+    { 
+      // payCount: this.data.shopData[this.data.point],
+      payCount:1,
       good: this.data.itemInfo[this.data.point].cfg.id
-    }, (res) => {
-      console.log(res.data)
-      app.globalData.personalInfo.userInfo.items = res.data
-      wsReceive('getItem',res=>{
-        wx.showToast({
-          title: '购买成功',
-          icon: 'success',
-          duration: 2000,
-          mask: true
-        })
+    }, (r) => {
+      console.log(r.data)
+
+      wx.requestPayment({
+        timeStamp: r.timeStamp,
+        nonceStr: r.nonceStr,
+        package: r.package,
+        signType: r.signType,
+        paySign: r.paySign,
+        success() {
+          app.globalData.personalInfo.userInfo.items = r.data
+          wsReceive('getItem', r => {
+
+            wx.showToast({
+              title: '购买成功',
+              icon: 'success',
+              duration: 2000,
+              mask: true
+            })
+          })
+          this.hide()
+        },
+        fail(res) {
+          wx.showToast({
+            title: '支付失败',
+            icon: 'none'
+          })
+          _this.setData({
+            isSending: false,
+          })
+        }
       })
-      this.hide()
+
+      
     })
   },
 
