@@ -16,6 +16,7 @@ let options;//当前题目答案项
 let rightAnswer;//当前题目的正确答案
 let answerSend;//当前题，答案是否已发给后端 
 let isRight;//当前题是否答对了
+let rid;//房间id
 
 Page({
   /**
@@ -49,7 +50,7 @@ Page({
     roundAnswer:{}
   },
   onLoad(options) {
-    
+    rid = options.rid;
     this.setData({ rid: options.rid,round:1 });
     console.log('competition onload,', options.rid, this.data.round);
 
@@ -182,7 +183,7 @@ Page({
     if (!answerSend) {
       //通知后端，一题完成
       wsSend('roundend', {
-        rid: this.data.rid,
+        rid: rid,
         wid: this.data.word.id,
         type: this.data.word.type,
         time: this.data.round,
