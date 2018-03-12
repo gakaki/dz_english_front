@@ -430,7 +430,6 @@ Page({
         let word = letters.join('');
         answer = 0;
         let myScore = 0;
-        let totalScore = 0;
         isRight = false;
 
         if(word == rightAnswer) {
@@ -476,7 +475,6 @@ Page({
     }
 
     let myScore = 0;
-    let totalScore = 0;
     isRight = false;
     let finished = false;
     let hideLetters = this.data.hideLetters;
