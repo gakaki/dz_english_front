@@ -36,7 +36,7 @@ function keyboard( letterPos, english){
     let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
     if (english.indexOf(str) == -1) {
 
-      st.add()
+      st.add(str)
     }
   }
 
