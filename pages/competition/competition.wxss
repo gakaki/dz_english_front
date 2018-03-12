@@ -114,6 +114,7 @@
   flex-wrap: wrap;
   width: 520rpx;
   height: 100%;
+  overflow: hidden;
 }
 .selectLists {
   justify-content: center;
