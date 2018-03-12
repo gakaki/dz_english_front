@@ -61,10 +61,11 @@
   border: 4rpx solid #fff;
 }
 .header1 {
-  width: 120rpx;
-  height: 120rpx;
-  box-sizing: content-box;
-  border: 5rpx solid #0673d7;
+  width: 129rpx;
+  height: 129rpx;
+  /* box-sizing: content-box; */
+   background-color: #0673d7; 
+   /* border: 5rpx solid #0673d7;  */
   border-radius: 50%;
    margin: 0 30rpx 0 30rpx; 
 }
