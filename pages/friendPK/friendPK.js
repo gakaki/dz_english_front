@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive , getUid } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, shareSuc } from '../../utils/rest.js';
 let time = null
 
 Page({
@@ -142,7 +142,7 @@ Page({
       path: '/pages/index/index?friendPK=true&rid=' + this.data.rid,
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/pk.png',
       success: function () {
-        
+        shareSuc()
       },
       fail: function () {
         // 转发失败

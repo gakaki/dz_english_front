@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
 let bmap,time=null
 
@@ -151,7 +151,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

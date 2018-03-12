@@ -1,6 +1,6 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch } from '../../utils/rest.js';
+import { doFetch, shareSuc } from '../../utils/rest.js';
 Page({
   data: {
     tabAct: true,
@@ -85,7 +85,7 @@ Page({
       path: '/pages/index/index?rank=true',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/rank.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败
