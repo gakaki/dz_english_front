@@ -7,6 +7,7 @@
     <image class="animate animate-right" src="{{animation[index]}}"></image>
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}.png" wx:if="{{frameSelf}}"></image>
         <view class="avatar">
           <image class="touxiang" src="{{list[0].info.avatarUrl}}"></image>
         </view>
@@ -22,8 +23,9 @@
           <image class="icon" src='https://gengxin.odao.com/update/h5/yingyu/friendPK/person.png'></image>
           <text>围观群众{{bystander}}人</text>
         </view>
-      </view> 
+      </view>
       <view class="invitee bg">
+        <image class="touxiangkuang-2" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}.png" wx:if="{{frameOther}}"></image>
         <view class="avatar rotate">
           <image class="touxiang" src="{{list[1].info.avatarUrl}}"></image>
         </view>
@@ -35,7 +37,7 @@
     <view class="button f-r-sb" wx:if="{{list.length<=1}}">
       <view class="btn give-up" bindtap='giveUp'>
         <text>放弃</text>
-      </view> 
+      </view>
       <view class="btn invite">
         <text>邀请</text>
         <button class="share" open-type='share'></button>

@@ -4,7 +4,8 @@
       <text class="season-time">(赛季时间：{{season.cfg.show}})</text>
     </view>
     <view class="user-info f-r-fs">
-      <!-- <view class="flex head-box">
+      <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
+      <view class="flex head-box">
         <image class="head" src="{{userInfo.avatarUrl}}">
         </image>
       </view> -->

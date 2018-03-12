@@ -1,6 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, shareSuc } from '../../utils/rest.js';
+import { getRankFrame } from '../../utils/util.js'
 Page({
   data: {
     userInfo: {},
@@ -12,11 +13,16 @@ Page({
     segment: '',
     sentenceEn: '',
     sentenceCn: '',
-    comment: ''
+    comment: '',
+    rankFrame: '',
+    aa: 0
   },
   onLoad: function () {
 
     doFetch('english.showpersonal', {}, (res) => {
+      this.setData({
+        rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      })
       let tempCount = res.data.newWord.totalWordCount
       let tempArr = sheet.Commentss.map(o => {
         return o.newterminology
@@ -50,12 +56,14 @@ Page({
       let idx = res.data.userInfo.character.cumulativeDays
       this.setData({
         info: res.data,
+        aa: (res.data.newWord.totalWordCount != 0) ? (res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount) : 0,
         sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
         sentenceEn: sheet.Landingessay.Get(idx + 1).English,
         jiyilv: temp,
         shenglv: tempSl,
         segment: sheet.Stage.Get(rank).stage
       })
+      
     })
 
     if (app.globalData.userInfo) {

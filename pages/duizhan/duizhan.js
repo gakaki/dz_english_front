@@ -2,7 +2,8 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
+import { getRankFrame } from '../../utils/util.js'
 
 Page({
   data: {
@@ -75,7 +76,9 @@ Page({
     isSelf: {},
     notSelf: {},
     rid: '',
-    pkEnd: false
+    pkEnd: false,
+    frameSelf:'',//我的段位头像框
+    frameOther:''//对战玩家的段位头像框
   },
   //事件处理函数
   bindViewTap: function () {
@@ -212,6 +215,16 @@ Page({
         console.log('toCompetion', this.data.rid, 1111)
       }, 3000)
     }
+    //显示段位框
+    this.setData({
+      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+    })
+  },
+  onHide() {
+    clearInterval(time);
+    clearTimeout(timer);
+    clearInterval(time_p_lizi);
+    clearInterval(time_k_lizi);
   },
   /**
    * 生命周期函数--监听页面卸载
@@ -221,6 +234,7 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
+    wsClose(['pkEndSettlement','matchInfo'])
   },
   onShareAppMessage: function (res) {
     return {

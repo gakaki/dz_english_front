@@ -1,6 +1,7 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive, shareSuc  } from '../../utils/rest.js';
+import { getRankFrame } from '../../utils/util.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
 let bmap,time=null
 
@@ -15,7 +16,8 @@ Page({
     gold:0,
     type:0,
     matchSuc:false,
-    awaiting:false
+    awaiting:false,
+    frame:'',
   },
   onLoad: function (option) {
     this.setData({
@@ -128,6 +130,11 @@ Page({
       })
     })
   },
+  onShow() {
+    this.setData({
+      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -144,6 +151,7 @@ Page({
       })
     }
     clearTimeout(time)
+    wsClose(['matchSuccess', 'matchFailed','needGold'])
   },
   onShareAppMessage: function (res) {
     return {

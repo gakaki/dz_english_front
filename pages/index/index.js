@@ -17,7 +17,10 @@ Page({
     showBtn: true,
     goldCount: 0,
     wid: 0,
-    rankFrame: ''
+    rankFrame: '',
+    landing: false,   //是否弹出签到窗口
+    landingDay: 0,
+    shareIn:false
   },
   //事件处理函数
   hi() {
@@ -190,6 +193,18 @@ Page({
           wid: Math.round(this.data.exp / this.data.needExp * 100)
         })
       }
+
+      //如果是通过分享并且需要跳转时则暂时不显示签到
+      if(!this.data.shareIn){
+        doFetch('english.isfirstsign', {}, res => {
+          console.log(res)
+          this.setData({
+            landing: res.data.isFirst,
+            landingDay: res.data.day
+          })
+        })
+      }
+      
     })
 
     // let aa = {bb:'bb'};
@@ -250,6 +265,7 @@ Page({
   },
   shareTo(options) {
     if (options && options.friendPK) {
+      this.data.shareIn = true
       if (app.globalData.logined) {
         doFetch('english.roomNotExist', {
           rid: options.rid
@@ -281,6 +297,7 @@ Page({
       }
     }
     else if (options && options.rank) {
+      this.data.shareIn = true
       if (app.globalData.logined) {
         wx.navigateTo({
           url: '../rank/rank',
@@ -291,6 +308,7 @@ Page({
       }
     }
     else if (options && options.self) {
+      this.data.shareIn = true
       if (app.globalData.logined) {
         wx.navigateTo({
           url: '../self/self',
