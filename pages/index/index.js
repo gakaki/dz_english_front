@@ -272,7 +272,7 @@ Page({
     if (options && options.friendPK) {
       this.data.shareIn = true
       if (app.globalData.logined) {
-        doFetch('english.roomNotExist', {
+        doFetch('english.roomnotexist', {
           rid: options.rid
         }, (res) => {
           if (res.code == 0) {
