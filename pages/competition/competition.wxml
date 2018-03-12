@@ -28,11 +28,11 @@
       <!-- 九宫格翻转  -->
       <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}">
-            <view class='flip-wrap' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
-            <view class='front flip poal'>
+            <view class='flip-wrap transition' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
+            <view class='front flip transition poal'>
               <text>{{nineLetters[index]}}</text>
             </view>  
-            <view class='back flip poal' bindtap='showFront' data-index='{{index}}' data-inner='{{item}}'>
+            <view class='back flip transition poal' bindtap='showFront' data-index='{{index}}' data-inner='{{item}}'>
               <image class='back-img' src='https://gengxin.odao.com/update/h5/yingyu/competition/back.png'></image>
             </view>
           </view>
@@ -41,7 +41,7 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
-        <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' >
+        <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter'  >
           <view class='flip-wrap'>
             <view class='front flip poal' style='background:{{bgIndex[index]?"#19b1ff":""}};color:{{bgIndex[index]?"#fff":""}}'>
               <text>{{nineLetters[index]}}</text>
