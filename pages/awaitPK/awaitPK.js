@@ -1,7 +1,7 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive  } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
 let bmap,time=null
 
@@ -115,11 +115,11 @@ Page({
         duration: 2000
       })
       time = setTimeout(function(){
-        console.log(111)
+        console.log('matchFailed back')
         wx.navigateBack({
           delta: 1
         })
-      },2500)
+      },2100)
     })
     wsReceive('matchSuccess',res=>{
       console.log(res,'suc')
@@ -151,6 +151,7 @@ Page({
       })
     }
     clearTimeout(time)
+    wsClose(['matchSuccess', 'matchFailed','needGold'])
   },
   onShareAppMessage: function (res) {
     return {
@@ -158,7 +159,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

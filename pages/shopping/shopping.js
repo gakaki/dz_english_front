@@ -1,6 +1,6 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch } from '../../utils/rest.js';
+import { doFetch, shareSuc, wsSend, wsReceive, wsClose } from '../../utils/rest.js';
 // pages/shoping/shopping.js
 Page({
 
@@ -26,7 +26,7 @@ Page({
       return o.icon
     })
     let itemArr = sheet.shops.map(shp => {
-      return sheet.Item.Get(shp.itemid)
+      return sheet.Item.Get(sheet.Shop.Get(shp.id).itemid['k'])
     })
     this.setData({
       shopData: tempPrice,
@@ -54,7 +54,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    wsClose('getItem')
   },
 
   /**
@@ -86,6 +86,15 @@ Page({
       good: this.data.itemInfo[this.data.point].cfg.id
     }, (res) => {
       console.log(res.data)
+      app.globalData.personalInfo.userInfo.items = res.data
+      wsReceive('getItem',res=>{
+        wx.showToast({
+          title: '购买成功',
+          icon: 'success',
+          duration: 2000,
+          mask: true
+        })
+      })
       this.hide()
     })
   },
@@ -113,7 +122,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

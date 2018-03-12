@@ -20,17 +20,18 @@
 }
 
 .biaoti{
-  width: 288rpx;
-  height: 95rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/word/piaodai.png')0 0 no-repeat;
+  width: 394rpx;
+  height: 115rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dres.png') 0 0 no-repeat;
   background-size: cover;
   position: absolute;
+  left: 50%;
+  margin-left: -197rpx; 
   z-index: 3;
-  margin-top: -52rpx;
+  margin-top: -55rpx;
   text-align: center;
-  line-height: 66rpx;
+  line-height: 80rpx;
   font-size: 42rpx;
-  margin-left: 204rpx;
 }
 
 .biaoti-wenzi{

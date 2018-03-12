@@ -10,10 +10,10 @@
     "pages/duizhan/duizhan",
     "pages/friendPK/friendPK",
     "pages/result/result",
-    "pages/competition/competition",
     "pages/awaitPK/awaitPK",
     "components/clock/clock",
     "components/progress/progress",
+    "pages/competition/competition",
     
     "pages/word/word",
     "pages/shopping/shopping",

@@ -1,7 +1,7 @@
 // pages/word/word.js
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
 
 Page({
 
@@ -201,7 +201,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

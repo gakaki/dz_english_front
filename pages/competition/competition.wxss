@@ -114,6 +114,7 @@
   flex-wrap: wrap;
   width: 520rpx;
   height: 100%;
+  overflow: hidden;
 }
 .selectLists {
   justify-content: center;
@@ -157,9 +158,7 @@
   width: 168rpx;
   height: 170rpx;
 }
-.one-word-active {
-  background: #cdeeff;
-}
+
 
 .one-select {
   width: 500rpx;

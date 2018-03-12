@@ -1,10 +1,11 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-import { getRankFrame } from '../../utils/util.js';
+import { getRankFrame } from '../../utils/util.js'
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
+    rankFrame: '',
     userInfo:{},
     stage: [],
     star: 0,
@@ -57,8 +58,9 @@ Page({
   },
   onShow() {
     doFetch('english.showpersonal', {}, (res) => {
-      console.log(res, 'season')
-
+      this.setData({
+        rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      })
       //获取用户当前赛季信息
       let season = res.data.userInfo.character.season
       let rankInfo
@@ -77,10 +79,10 @@ Page({
         return obj
       })
 
-      console.log(this.data.fromIndex, this.data.navBack,'asaf')
-      //是否从主页面跳转过来的
-      if (this.data.fromIndex) {
-        stage.length = rankInfo.rank + 1
+      console.log(this.data.fromIndex, 'asaf')
+      //是否到达最高等级
+      if (rankInfo.rank==15){
+        stage.length = rankInfo.rank
         this.setData({
           userInfo: res.data.userInfo,
           star: rankInfo.star,
@@ -88,8 +90,20 @@ Page({
           toView: rankInfo.rank - 3
         })
       }
-      else {
-        this.starAnimation(res,stage,rankInfo)
+      else{
+        //是否从主页面跳转过来的
+        if (this.data.fromIndex) {
+          stage.length = rankInfo.rank + 1
+          this.setData({
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
+        }
+        else {
+          this.starAnimation(res, stage, rankInfo)
+        }
       }
     })
     // 显示段位框
@@ -144,6 +158,7 @@ Page({
   },
   onUnload() {
     clearTimeout(time)
+    wsClose(['cancelSuccess', 'matchSuccess','needGold'])
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
@@ -183,7 +198,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

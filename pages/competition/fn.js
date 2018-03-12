@@ -31,25 +31,25 @@ function getRoomInfo(rid, cb) {
 function keyboard( letterPos, english){  
   let st = new Set();
   let cnt = 9 - letterPos.length;
+
   while(st.size < cnt) {
     let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    
     if (english.indexOf(str) == -1) {
-
       st.add(str)
     }
   }
-
-  let posStrs = letterPos.map(v => {
-    return english[v-1];
+  let posStrs = letterPos.map((v) => {
+    return english[v];
   })
-  return Array.from(st).concat(posStrs).sort(()=>{return Math.random() - 0.5});
+  return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
 
 }
 
 function quanpinKeyboard(english) {
   let pos = [];
-  let idx = english.length + 1;
-  while(--idx > 0) {
+  let idx = english.length;
+  while(--idx > -1) {
     pos.push(idx);
   }
   console.log(english, pos, 'quanpinKeyboard_pos')
@@ -120,11 +120,14 @@ function getOptions(question, key){
 
   let arr = [question[key]];
   let ascend = Math.random() < 0.5;
-  for(let i = ascend ? start:end; i != question.id && (ascend ? i < end : i > start); ascend ? i++ : i--) {
+  for(let i = ascend ? start:end; ascend ? i < end : i > start; ascend ? i++ : i--) {
     if (arr.length >= limit) {
       break;
     }
-    let cfg = words[i+''];
+    let cfg = words[i];
+    if (cfg.id == question.id) {
+      continue;
+    }
 
     if (cfg.difficult == question.difficult) {
       arr.push(cfg[key]);

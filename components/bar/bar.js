@@ -11,11 +11,10 @@ Component({
       type: Number,
       value: 0,
       observer:function(score){
-        oldScoreA = score + oldScoreA;
-        var percent = oldScoreA/totalScore*100 + '%';
+        var percent = score/totalScore*100 + '%';
         this.setData({
           percent,
-          nowScoreA: oldScoreA
+          nowScoreA: score
         })
       }
     },
@@ -23,17 +22,16 @@ Component({
       type: Number,
       value: 0,
       observer: function (score) {
-        oldScoreB = score + oldScoreB;
-        var percent = oldScoreB / totalScore * 100 + '%';
+        var percent = score / totalScore * 100 + '%';
         this.setData({
           percent,
-          nowScoreB: oldScoreB
+          nowScoreB: score
         })
       }
     },
     type: {
       type: String,
-      value:"A"
+      value:"A",
     }
    
   },

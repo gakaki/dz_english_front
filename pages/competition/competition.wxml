@@ -21,13 +21,13 @@
   </view>
 
   <view class='multi-wrap' slot='select'>
-    <bar class="bar" scoreA='{{myScore}}' type='A'></bar>
+    <bar class="bar" scoreA='{{totalScore}}' type='A'></bar>
 
     <view class='multi-words'>
 
       <!-- 九宫格翻转  -->
       <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
-        <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}">
             <view class='flip-wrap' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
             <view class='front flip poal'>
               <text>{{nineLetters[index]}}</text>
@@ -41,9 +41,9 @@
 
       <!--九宫格键盘  -->
       <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
-        <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
+        <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' >
           <view class='flip-wrap'>
-            <view class='front flip poal'>
+            <view class='front flip poal' style='background:{{bgIndex[index]?"#19b1ff":""}};color:{{bgIndex[index]?"#fff":""}}'>
               <text>{{nineLetters[index]}}</text>
             </view>  
           </view>

@@ -3,9 +3,19 @@
     <view class="mid-box ">
 
       <view class="top-con flex">
-        <view class="head-box flex">
+        <!-- <view class="head-box flex">
           <image class="head" src='{{userInfo.avatarUrl}}'></image>
-        </view>
+        </view> -->
+
+<view wx:if="{{rankFrame.length>0}}" class="frame flex">
+      <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
+      <view class="header flex">
+        <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+    </view>
+    <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+      <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
+    </view>
 
         <view class="record-box flex">
           <view class="left f-c-fs">
@@ -15,14 +25,14 @@
           <view class="sx-left"></view>
           <view class="sx-rgt"></view>
           <view class="right f-c-fs">
-            <text class="num">{{info.newWord.newWordCount}}</text>
+            <text class="num">{{info.todayWords}}</text>
             <text class="des">本日斩获单词</text>
           </view>
         </view>
 
       </view>
       <view class="jiyi-box flex">
-        <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{info.remember.rightCount}}%</text>
+        <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{aa}}%</text>
       </view>
       <view class="pingyu-box flex">
         <text class="pingyu">评语：{{comment}}</text>

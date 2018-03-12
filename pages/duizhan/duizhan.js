@@ -209,9 +209,9 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        // wx.redirectTo({
-        //   url: '../competition/competition?rid=' + this.data.rid,
-        // })
+        wx.redirectTo({
+          url: '../competition/competition?rid=' + this.data.rid,
+        })
         console.log('toCompetion', this.data.rid, 1111)
       }, 3000)
     }
@@ -234,6 +234,7 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
+    wsClose(['pkEndSettlement','matchInfo'])
   },
   onShareAppMessage: function (res) {
     return {
@@ -241,7 +242,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

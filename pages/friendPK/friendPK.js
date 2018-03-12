@@ -119,6 +119,7 @@ Page({
       })
     }
     clearInterval(time);
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess','roomInfo'])
   },
 
   start: function() {
@@ -149,7 +150,7 @@ Page({
       path: '/pages/index/index?friendPK=true&rid=' + this.data.rid,
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/pk.png',
       success: function () {
-        
+        shareSuc()
       },
       fail: function () {
         // 转发失败

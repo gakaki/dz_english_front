@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
+import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
 
 Page({
   data: {
@@ -19,8 +19,8 @@ Page({
   onLoad: function () {
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
-    doFetch('english.getshareaward',{},res=>{
-      if(res.code==0){
+    doFetch('english.canshare',{},res=>{
+      if(res.data.canShare){
         this.setData({
           shareGold:res.data.num
         })
@@ -47,7 +47,9 @@ Page({
     }
    },
   onUnload() {
-    this.setPageInfo()
+    if (!app.globalData.pkResult.isFriend) {
+      this.setPageInfo()
+    }
   },
   setPageInfo() {
     let pages = getCurrentPages()
@@ -59,7 +61,10 @@ Page({
     })
   },
   toMatch() {
-    this.setPageInfo()
+    //是否为好友局
+    if (!app.globalData.pkResult.isFriend){
+      this.setPageInfo()
+    }
     wx.navigateBack()
   },
   onShareAppMessage: function (res) {
@@ -68,7 +73,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败
