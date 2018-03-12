@@ -82,8 +82,8 @@ function userLogin(suc, err) {
             app.globalData.personalInfo = res.data;
             //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
             shareTo()
+            
           })
-
         }
       }, err);
 
