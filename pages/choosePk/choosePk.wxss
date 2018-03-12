@@ -39,7 +39,7 @@
   width: 152rpx;
   height: 122rpx;
   position: relative;
-   /* transform: scale(0.68, 0.68);  */
+  transform: scale(0.68, 0.68);
   margin: 8rpx 0 0 8rpx;
 }
 

@@ -51,11 +51,16 @@
       </view>
 
       <!-- 列表  -->
-      <view wx:if='{{options && options.length}}' class='selectBtn selectLists show}}'>
+       <view wx:if='{{options && options.length}}' class='selectBtn selectLists}}'>
         <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
           <text>{{item}}</text>
         </view>
-      </view>
+      </view> 
+       <!-- <view class='selectBtn selectLists}}'>
+        <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
+          <text>{{item}}</text>
+        </view>
+      </view> -->
     </view>
 
     <bar class="bar" scoreB='{{otherScore}}' type='B'></bar>
