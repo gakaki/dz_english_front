@@ -2,8 +2,8 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineneOptions, quanpinKeyboard} from './fn.js'
+import { doFetch, wsSend, wsReceive, getUid, wsClose } from '../../utils/rest.js';
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -17,7 +17,7 @@ let rightAnswer;//当前题目的正确答案
 let answerSend;//当前题，答案是否已发给后端 
 let isRight;//当前题是否答对了
 let rid;//房间id
-let round,totalScore;
+let round, totalScore; //round第几回合，从1开始 //本人总分
 
 Page({
   /**
@@ -39,14 +39,13 @@ Page({
     rotateList: [true, true, true, true, true, true, true, true, true], //true为正面，false为背面
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
-    round:1,  //第几回合，从1开始
     selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
     firstClick:true,
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
     myScore:0,  //当前自己本轮得分
     otherScore:0,  //他人总分
-    totalScore:0,  //本人总分
+    totalScore:0,
     roundIsRight:false,
     roundAnswer:{}
   },
@@ -55,14 +54,9 @@ Page({
     rid = options.rid;
     round = 1;
     totalScore = 0;
-    // this.setData({ 
-    //   rid: options.rid,
-    //   round:1,
-    //   totalScore: 0 });//这些数据第二轮第二题时是第一轮的。！！！
     console.log('competition onload,', options.rid, round);
 
     getRoomInfo(options.rid, res => {
-      console.log('555555555555555555555555555555555555555555555555555')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -107,6 +101,7 @@ Page({
   onUnload() {
     answerSend = true;
     this.tagRoundEnd(true);
+    wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo','pkInfo']);
   },
 
   onShow: function (e) {
@@ -194,7 +189,7 @@ Page({
         type: this.data.word.type,
         time: round,
         score: this.data.myScore,
-        totalScore: totalScore,
+        totalScore,
         isRight: this.data.roundIsRight,
         answer: this.data.roundAnswer
       });
@@ -435,7 +430,7 @@ Page({
           answer = 1;
           isRight = true;
           myScore = this.data.clockTime * 20 
-          totalScore = this.data.totalScore + myScore;
+          totalScore = totalScore + myScore;
           
         } 
         else {
@@ -506,7 +501,7 @@ Page({
         isRight = true;
         finished = true;
         myScore = this.data.clockTime * 20;
-        totalScore = this.data.totalScore + myScore;
+        totalScore = totalScore + myScore;
       }
     }
     else {
@@ -552,7 +547,7 @@ Page({
         isRight = true;
         answer = 1;
         myScore = this.data.clockTime * 20;
-        let totalScore = this.data.totalScore + myScore;
+        totalScore = totalScore + myScore;
         this.setData({
           myScore,
           totalScore

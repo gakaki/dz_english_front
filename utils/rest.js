@@ -147,6 +147,16 @@ function wsSend(action, data) {
   socket.emit(action, data)
 }
 
+function wsClose(actions) {
+  if(Array.isArray(actions)) {
+    actions.forEach(v=>{
+      socket.removeAllListeners(v)
+    })
+  } else {
+    socket.removeAllListeners(actions)
+  }
+  
+}
 
 function wsInit() {
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
@@ -253,5 +263,6 @@ module.exports = {
   getUid,
   fixedNum,
   wsSend,
-  wsReceive
+  wsReceive,
+  wsClose
 }
