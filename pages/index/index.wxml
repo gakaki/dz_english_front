@@ -11,7 +11,6 @@
         <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
       </view>
     </view>
-
     <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
       <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
     </view>
