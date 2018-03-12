@@ -96,7 +96,7 @@ Page({
           wx.showToast({
             title: '暂无数据',
             icon: 'success',
-            duration: 500,
+            duration: 2000,
             mask: true
           })
         }
