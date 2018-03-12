@@ -5,7 +5,7 @@
     </view>
     <view class="user-info f-r-fs">
       <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
-      <view class="flex head-box">
+      <!-- <view class="flex head-box">
         <image class="head" src="{{userInfo.avatarUrl}}">
         </image>
       </view> -->
