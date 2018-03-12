@@ -590,10 +590,8 @@ Page({
       let clockTime = this.data.clockTime - 1;
       if (clockTime <=0) {
         //倒计时结束 
-        if(this.timer) {
-          clearInterval(timer);
-          this.setData({ clockStart:false });
-        }
+        clearInterval(timer);
+        this.setData({ clockStart:false });
       }
       this.setData({ clockTime});
     }, 1000);

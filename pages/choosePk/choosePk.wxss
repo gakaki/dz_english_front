@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-.head-box {
+ .head-box {
   background-color: #0068c8;
   width: 105rpx;
   height: 105rpx;
@@ -109,6 +109,10 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #fff;
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 }
 
 .gold-box {

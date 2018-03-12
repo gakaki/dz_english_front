@@ -15,7 +15,7 @@ Page({
     sentenceCn: '',
     comment: '',
     rankFrame: '',
-    aa: 0
+    newWordsPercent: 0
   },
   onLoad: function () {
 
@@ -56,7 +56,7 @@ Page({
       let idx = res.data.userInfo.character.cumulativeDays
       this.setData({
         info: res.data,
-        aa: (res.data.newWord.totalWordCount != 0) ? (res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount) : 0,
+        newWordsPercent: (res.data.newWord.totalWordCount != 0) ? (res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount) : 0,
         sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
         sentenceEn: sheet.Landingessay.Get(idx + 1).English,
         jiyilv: temp,

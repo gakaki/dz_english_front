@@ -168,6 +168,11 @@ Page({
       showSet: false
     })
   },
+  _hide() {
+    this.setData({
+      landing:false
+    })
+  },
   getInfo() {
     wx.openSetting({
       success: (res) => {
