@@ -189,3 +189,10 @@
   opacity: 0;
   transition: 0;
 }
+
+.start-mc {
+  position: absolute;
+  top: 120rpx;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
