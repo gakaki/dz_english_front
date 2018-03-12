@@ -296,21 +296,18 @@ Page({
   },
   hideQuestionLetter(hideAll = false){
     let letterPos = question.eliminate;
-    let randomPos = letterPos[0] == -1;//随机扣掉字母
     let hideLetters = rightAnswer.split('').map((v, idx) => {
       if (hideAll) {
         return true;
-      }
-      if (randomPos) {
-        return Math.random() > 0.5;
       }
       else if (letterPos.indexOf(idx) > -1) {
         return true;
       }
       return false;
     });
+
       //擦去部分字母
-    this.setData({hideLetters});
+    this.setData({ hideLetters, letterPos});
   },
   //显示九宫格
   showNineCard() {
@@ -593,7 +590,7 @@ Page({
   },
   //设置九宫格
   keyboard() {
-    let letterPos = question.eliminate;
+    let letterPos = this.data.letterPos;
     let english = rightAnswer;
     this.setData({
       nineLetters: keyboard(letterPos, english)
