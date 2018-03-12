@@ -1,6 +1,6 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch } from '../../utils/rest.js';
+import { doFetch, shareSuc } from '../../utils/rest.js';
 Page({
   data: {
     userInfo: {},
@@ -97,7 +97,7 @@ Page({
       title: app.globalData.str2,
       path: '/pages/index/index?self=true',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

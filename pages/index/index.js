@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, start, shareSuc } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
 Page({
   data: {
@@ -327,7 +327,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

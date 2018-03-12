@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, getUid, wsClose } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
@@ -608,7 +608,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

@@ -135,6 +135,12 @@ function shareTo() {
   }
 }
 
+function shareSuc() {
+  doFetch('english.getshareaward',{},res=>{
+    console.log(res.data.getItem,'分享成功')
+  })
+}
+
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
@@ -264,5 +270,6 @@ module.exports = {
   fixedNum,
   wsSend,
   wsReceive,
-  wsClose
+  wsClose,
+  shareSuc
 }
