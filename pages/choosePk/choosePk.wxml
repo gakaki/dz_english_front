@@ -12,7 +12,7 @@
         <text class="nn">{{userInfo.nickName}}</text>
         <view class="gold-box f-r-fs">
           <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
-          <text class="gold-count">{{userInfo.items[1]}}</text>
+          <text class="gold-count">{{userInfo.items[1] || 0}}</text>
         </view>
       </view>
       <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png" bindtap='toDes'></image>

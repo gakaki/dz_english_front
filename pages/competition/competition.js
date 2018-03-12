@@ -14,9 +14,9 @@ let tm;//Timeline//当前题目操作时间线
 let question;//当前题目
 let options;//当前题目答案项
 let rightAnswer;//当前题目的正确答案
-let answer;//当前题目的回答结果:0未设置，1正确，2错误
 let answerSend;//当前题，答案是否已发给后端 
-let isRright;//当前题是否答对了
+let isRight;//当前题是否答对了
+let rid;//房间id
 
 Page({
   /**
@@ -50,9 +50,9 @@ Page({
     roundAnswer:{}
   },
   onLoad(options) {
-    
+    rid = options.rid;
     this.setData({ rid: options.rid,round:1 });
-    console.log('round',this.data.round);
+    console.log('competition onload,', options.rid, this.data.round);
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -64,7 +64,7 @@ Page({
         let selfUser = app.globalData.userInfo;
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
-        
+        console.log([u1, u2],'[u1,u2]')
         //进这个页面时，自己是对战方之一
         if (u1.uid == selfUser.uid) {
           userLeft = u1.info;
@@ -116,13 +116,15 @@ Page({
     }
     let idx = this.data.round - 1;
     question = this.data.englishWords[idx];
-    
+    console.log(question)
     //清理上一局数据
     this.setData({
       title:null,
       options:null,
       word:{type:0},
       letters:[],
+      answer: 0,
+      roundIsRight:false,
       hideLetters:[],
       nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
@@ -130,7 +132,6 @@ Page({
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
       bgIndex: [false, false, false, false, false, false, false, false, false],
-      answer:0,
       backClickCount:0,
       roundAnswer:{}
     })
@@ -150,50 +151,7 @@ Page({
         this.playFour();
         break;
     }
-    //--------------------
-    return;
-
-
-    this.setData({
-      word: this.data.englishWords[this.data.round-1],
-      title: getRoundName(this.data.round),
-      showIndex: 0,
-      rotateList: changeArrAllValue(this.data.rotateList, true),
-      answer:0,
-      time: 2000,
-      backClickCount: 0,
-      clockTime: totalCountTime,
-      selectAnswer: [0, 0, 0, 0],
-      firstClick:true,
-      bgIndex:[false, false, false, false, false, false, false, false, false],
-      hideLetters:[false,false,false,false,false]
-    })
-    let word = this.data.word;
-    let letters = word.english.split('');
-
-    this.setData({ letters})
-    switch (word.type) { //题目类型
-      case 1:
-        let letterPos = word.eliminate;
-        let nowPos = [];
-        let length = word.english.length;
-        if (word.eliminate == -1) {
-          letterPos = randomHideLetters(length, word.eliminateNum)
-          word.eliminate = letterPos;
-        }
-        
-        this.playOne();
-        break;
-      case 2:
-        this.playTwo();
-        break;
-      case 3:
-        this.playThree();
-        break;  
-      case 4:
-        this.playFour();
-        break;
-    }
+    
     
   },
 
@@ -206,15 +164,18 @@ Page({
       clearInterval(timer);
       timer = null;
     }
-
     let answer = this.data.answer;
+    let roundIsRight = this.data.roundIsRight;
+
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
+      roundIsRight = false;
       let roundAnswer = {}
-      roundAnswer['not_select'] = isRright;
+      roundAnswer['not_select'] = false;
       this.setData({
         myScore:0,
         answer,
+        roundIsRight,
         roundAnswer
       })
     }
@@ -222,7 +183,7 @@ Page({
     if (!answerSend) {
       //通知后端，一题完成
       wsSend('roundend', {
-        rid: this.data.rid,
+        rid: rid,
         wid: this.data.word.id,
         type: this.data.word.type,
         time: this.data.round,
@@ -271,7 +232,7 @@ Page({
     wsReceive('nextRound', res => {
       this.tagRoundEnd(true);
       this.setData({round: this.data.round + 1});
-      this.roundInit();
+      tm = Timeline.add(1500, this.roundInit, this).start();
     })
   },
 
@@ -441,26 +402,30 @@ Page({
       let letterPos = question.eliminate;  //要隐藏的字母位置
       let hideLetters = this.data.hideLetters;  //对应的字母位置是否要隐藏
       let index = letterPos[bcCount];   //第几次点击对应的字母位置
+      let answer = this.data.answer;
+
       hideLetters[index] = false;  //将该位子的背面转成正面
       letters[index] = inner;   //正面的字母显示到上面
       let rotateList = this.data.rotateList;  //翻牌的列表
       rotateList[i] = true
+
       this.setData({
         rotateList, 
         backClickCount: bcCount+1,
         letters,
         hideLetters
       })
+
       if (bcCount == bcLimit - 1) {
         let word = letters.join('');
-        let answer = 0;
+        answer = 0;
         let myScore = 0;
         let totalScore = 0;
-        isRright = false;
+        isRight = false;
 
         if(word == rightAnswer) {
           answer = 1;
-          isRright = true;
+          isRight = true;
           myScore = this.data.clockTime * 20 
           totalScore = this.data.totalScore + myScore;
           
@@ -470,11 +435,12 @@ Page({
         }
 
         let roundAnswer = {}
-        roundAnswer[word] = isRright;
+        roundAnswer[word] = isRight;
         this.setData({
           myScore,
-          totalScore,
           answer,
+          roundIsRight: isRight,
+          totalScore,
           roundAnswer
         })
         this.tagRoundEnd(false);
@@ -498,12 +464,13 @@ Page({
       letters.okCnt = 0;
     }
 
-    let answer = 0;
     let myScore = 0;
     let totalScore = 0;
-    isRright = false;
+    isRight = false;
     let finished = false;
     let hideLetters = this.data.hideLetters;
+    let answer = this.data.answer;
+
     //只要点了其中一个正确的字母，就把该字母放到正确的位置上
     let idx = this.data.word.english.indexOf(letter);
     let ridx = this.data.word.english.lastIndexOf(letter);
@@ -528,7 +495,7 @@ Page({
       if (letters.okCnt == letters.length) {
         //回答全部正确
         answer = 1;
-        isRright = true;
+        isRight = true;
         finished = true;
         myScore = this.data.clockTime * 20;
         totalScore = this.data.totalScore + myScore;
@@ -543,18 +510,19 @@ Page({
     let roundAnswer = {};
     if (finished) {
       bgIndex = bgIndex.map(v => true);
-      roundAnswer[letters.join()] = isRright;
+      roundAnswer[letters.join()] = isRight;
     }
 
 
     this.setData({
+      answer,
       letters,
       hideLetters,
-      answer,
       roundAnswer,
       myScore,
       totalScore,
-      bgIndex
+      bgIndex,
+      roundIsRight: isRight
     })
 
     if (finished) {
@@ -567,12 +535,14 @@ Page({
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let myScore = 0;
-      isRright = false;
+      isRight = false;
+      let answer = this.data.answer;
       let selectAnswer = this.data.selectAnswer;
+
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
-        isRright = true;
-
+        isRight = true;
+        answer = 1;
         myScore = this.data.clockTime * 20;
         let totalScore = this.data.totalScore + myScore;
         this.setData({
@@ -580,12 +550,15 @@ Page({
           totalScore
         })
       } else {
+        answer = 2;
         selectAnswer[obj.id] = 2;
       }
 
       let roundAnswer = {};
-      roundAnswer[obj.answer] = isRright;
+      roundAnswer[obj.answer] = isRight;
       this.setData({
+        answer,
+        roundIsRight: isRight,
         selectAnswer,
         roundAnswer,
         firstClick: false
@@ -622,9 +595,6 @@ Page({
     })
   },
   
-  
-
-
 
   /**
    * 用户点击右上角分享

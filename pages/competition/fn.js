@@ -1,6 +1,5 @@
 import { Word,words } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
  //加载英文单词
@@ -36,23 +35,24 @@ function keyboard( letterPos, english){
     let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
     if (english.indexOf(str) == -1) {
 
-      st.add()
+      st.add(str)
     }
   }
 
   let posStrs = letterPos.map(v => {
-    return english[v-1];
+    return english[v];
   })
-  return Array.from(st).concat(posStrs).sort(()=>{return Math.random() - 0.5});
+  return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
 
 }
 
 function quanpinKeyboard(english) {
   let pos = [];
-  let idx = english.length + 1;
-  while(--idx > 0) {
+  let idx = english.length;
+  while(--idx > -1) {
     pos.push(idx);
   }
+  console.log(english, pos, 'quanpinKeyboard_pos')
   return keyboard(pos, english);
 }  
  //每回合的中文名字
@@ -112,12 +112,6 @@ function changeArrAllValue(arr,v) {
 }
 
 
-//设置英文选项列表
-function englishSelector(word){
-  let arr = autoSelect(words, 4, word);
-  return arr
-}
-
 function getOptions(question, key){
   let cnt = 0;
   let limit = 4;
@@ -149,30 +143,6 @@ function getEnglishOptions(question) {
 }
 
 
-//随机选择几个英文单词 arr：待选词的数组，length想要的数组总长度，nowWord需要放入数组里面的东西
-function autoSelect(arr, length,nowWord) {
-  let newArr = [];
-  nowWord && newArr.push(nowWord);
-  for (let i = 0; newArr.length < length; i++) {
-    let index = Math.floor(Math.random() * arr.length);
-
-    let noDistinct = newArr.every((v,i)=>{
-      return v.id !== arr[index].id
-    })
-    if (noDistinct) {
-      newArr.push(arr[index].english)
-    }
-  }
-  newArr.sort((a, b) => {
-    return Math.random() - 0.5
-  })
-  return newArr;
-}
-
-
-
-
-
 module.exports = {
   loadEnglishWords,
   getRoomInfo,
@@ -181,7 +151,6 @@ module.exports = {
   hideLettersArr,
   randomHideLetters,
   changeArrAllValue,
-  englishSelector,
   quanpinKeyboard,
   getChineneOptions,
   getEnglishOptions

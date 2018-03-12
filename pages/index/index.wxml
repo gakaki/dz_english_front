@@ -5,9 +5,17 @@
   </view>
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
-    <view class="header">
-      <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view wx:if="{{rankFrame.length>0}}" class="frame">
+      <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
+      <view class="header flex">
+        <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
+      </view>
     </view>
+
+ <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+        <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}" ></image>
+      </view>
+
     <view class="info f-c-sb">
       <text class="nn">{{userInfo.nickName}}</text>
 
@@ -19,9 +27,9 @@
       <view class="f-r-fs lv">
         <text class="lvl">lv{{lvl}}</text>
         <view class="lvl-box">
-        <text>{{exp}}/{{needExp}}</text>
+          <text>{{exp}}/{{needExp}}</text>
           <view class="percent-box">
-            
+
             <view style="width:{{wid}}%" class="percent-bg"></view>
           </view>
 
@@ -53,6 +61,6 @@
 
   </view>
   <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
-  <qiandao id="qiandao-bor" wx:if="{{falss}}"></qiandao>  
+  <qiandao id="qiandao-bor" wx:if="{{false}}"></qiandao>  
    <!-- <pro time="{{time}}"></pro>  -->
 </view>
