@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineneOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
@@ -43,9 +43,9 @@ Page({
     firstClick:true,
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
-    myScore:0,
-    otherScore:0,
-    totalScore:0,
+    myScore:0,  //当前自己本轮得分
+    otherScore:0,  //他人总分
+    totalScore:0,  //本人总分
     roundIsRight:false,
     roundAnswer:{}
   },
@@ -64,12 +64,11 @@ Page({
         })
       }
       else {
-        let selfUser = app.globalData.userInfo;
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
         console.log([u1, u2],'[u1,u2]')
         //进这个页面时，自己是对战方之一
-        if (u1.uid == selfUser.uid) {
+        if (u1.info.uid == getUid()) {
           userLeft = u1.info;
           userRight = u2.info;
         }
@@ -78,7 +77,8 @@ Page({
           userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
-        
+        console.log(userLeft,'userLeft')
+
         let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
         //更新数据 
         this.setData({
@@ -227,7 +227,8 @@ Page({
         console.log('seettlement', ulist)
         //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
         //展示对局答案信息，
-        this.setData({otherScore: resultRight.scrore||0, otherAnswer: resultRight.playerAnswer||{}});
+        this.setData({otherScore: resultRight.score||0, otherAnswer: resultRight.playerAnswer||{}});
+        console.log(this.data.otherScore, this.data.otherAnswer,'otherAnswer')
       }
     })
 
