@@ -83,19 +83,19 @@ Page({
     console.log(345)
     doFetch('weChat.minapppay', 
     { 
-      // payCount: this.data.shopData[this.data.point],
+      payCount: this.data.shopData[this.data.point],
       payCount:1,
       good: this.data.itemInfo[this.data.point].cfg.id
     }, (r) => {
       console.log(r.data)
 
       wx.requestPayment({
-        timeStamp: r.timeStamp,
-        nonceStr: r.nonceStr,
-        package: r.package,
-        signType: r.signType,
-        paySign: r.paySign,
-        success() {
+        timeStamp: r.data.payload.timeStamp,
+        nonceStr: r.data.payload.nonceStr,
+        package: r.data.payload.package,
+        signType: r.data.payload.signType,
+        paySign: r.data.payload.paySign,
+        success(r) {
           app.globalData.personalInfo.userInfo.items = r.data
           wsReceive('getItem', r => {
 
