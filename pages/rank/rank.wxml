@@ -33,7 +33,7 @@
 
       <view class="info f-c-sb">
         <view class='info-top f-r-fs'>
-          <text class='nn'>{{item.nickName}}</text>
+          <text class='nn text-of'>{{item.nickName}}</text>
           <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
           <text class="adress">{{item.location?item.location:''}}</text>
         </view>
