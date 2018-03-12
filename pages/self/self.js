@@ -1,6 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, shareSuc } from '../../utils/rest.js';
+import { getRankFrame } from '../../utils/util.js'
 Page({
   data: {
     userInfo: {},
@@ -12,11 +13,15 @@ Page({
     segment: '',
     sentenceEn: '',
     sentenceCn: '',
-    comment: ''
+    comment: '',
+    rankFrame: ''
   },
   onLoad: function () {
 
     doFetch('english.showpersonal', {}, (res) => {
+      this.setData({
+        rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      })
       let tempCount = res.data.newWord.totalWordCount
       let tempArr = sheet.Commentss.map(o => {
         return o.newterminology
