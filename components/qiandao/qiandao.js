@@ -48,6 +48,7 @@ Component({
           })
         }
       })
+      this.triggerEvent("hide")
     }
   }
 

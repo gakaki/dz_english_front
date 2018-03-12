@@ -217,7 +217,8 @@ Page({
     }
     //显示段位框
     this.setData({
-      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+      frameOther: getRankFrame(this.data.notSelf.info.character.season)
     })
   },
   onHide() {
