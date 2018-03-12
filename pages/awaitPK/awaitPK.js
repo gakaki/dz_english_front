@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive, shareSuc  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
 let bmap,time=null
 
@@ -144,6 +144,7 @@ Page({
       })
     }
     clearTimeout(time)
+    wsClose(['matchSuccess', 'matchFailed','needGold'])
   },
   onShareAppMessage: function (res) {
     return {

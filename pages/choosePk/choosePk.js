@@ -1,7 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { care, getRankFrame } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.js';
 
 let time = null
 Page({
@@ -154,6 +154,7 @@ Page({
   },
   onUnload() {
     clearTimeout(time)
+    wsClose(['cancelSuccess', 'matchSuccess','needGold'])
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')

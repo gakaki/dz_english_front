@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, shareSuc, wsClose } from '../../utils/rest.js';
 let time = null
 
 Page({
@@ -112,6 +112,7 @@ Page({
       })
     }
     clearInterval(time);
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess','roomInfo'])
   },
 
   start: function() {
