@@ -53,6 +53,6 @@
 
   </view>
   <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
-  <qiandao id="qiandao-bor" wx:if="{{falss}}"></qiandao>  
+  <qiandao id="qiandao-bor" wx:if="{{false}}"></qiandao>  
    <!-- <pro time="{{time}}"></pro>  -->
 </view>
