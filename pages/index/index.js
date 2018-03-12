@@ -3,7 +3,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js');
 import { doFetch, wsSend, wsReceive, start } from '../../utils/rest.js';
-import { care } from '../../utils/util.js'
+import { care, getRankFrame } from '../../utils/util.js'
 Page({
   data: {
     time: 10,
