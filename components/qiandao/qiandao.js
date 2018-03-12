@@ -13,7 +13,8 @@ Component({
    * 页面的初始数据
    */
   data: {
-    reward:[]
+    reward:[],
+    getReward:false
   },
 
   attached() {
@@ -28,7 +29,7 @@ Component({
       obj.name = sheet.Item.Get(landing[i][0].k).name
       obj.icon = sheet.Item.Get(landing[i][0].k).icon
       obj.num = landing[i][0].v
-      obj.day = '第'+i+'天'
+      obj.day = '第'+(i+1)+'天'
       reward[i] = obj
     }
     console.log(reward)
@@ -41,6 +42,11 @@ Component({
     getReward() {
       doFetch('english.signin', {}, res => {
         console.log(res,'landingSuc')
+        if(res.code==0){
+          this.setData({
+            getReward:true
+          })
+        }
       })
     }
   }

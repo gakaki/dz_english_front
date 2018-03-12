@@ -53,6 +53,26 @@
   transform: rotate(8deg);
 }
 
+.touxiangkuang{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  transform:scale(.80);
+  top: 36rpx;
+  left: 26rpx;
+  z-index: 2;
+}
+
+.touxiangkuang-2{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  transform:scale(.80);
+  top: 36rpx;
+  right: 30rpx;
+  z-index: 2;
+}
+
 .touxiang{
   width: 118rpx;
   height: 118rpx;

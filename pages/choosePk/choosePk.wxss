@@ -90,6 +90,14 @@
   border: 3rpx solid #fff;
 }
 
+.touxiangkuang{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  transform:scale(.64);
+  left: -30rpx;
+}
+
 .top-mid {
   margin-left: 20rpx;
   height: 100%;

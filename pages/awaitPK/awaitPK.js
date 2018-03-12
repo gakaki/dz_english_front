@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+import { getRankFrame } from '../../utils/util.js';
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
 let bmap,time=null
@@ -15,7 +16,8 @@ Page({
     gold:0,
     type:0,
     matchSuc:false,
-    awaiting:false
+    awaiting:false,
+    frame:'',
   },
   onLoad: function (option) {
     this.setData({
@@ -126,6 +128,11 @@ Page({
       wx.redirectTo({
         url: '../duizhan/duizhan?rid='+res.data.rid,
       })
+    })
+  },
+  onShow() {
+    this.setData({
+      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
   },
   /**

@@ -1,8 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { care, getRankFrame } from '../../utils/util.js'
+import { getRankFrame } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.js';
-
 let time = null
 Page({
   data: {
@@ -15,6 +14,7 @@ Page({
     canMatch:true,
     starAnimation:'', //控制星星的动画
     fromIndex:false,  //是否从主页面跳转过来的
+    frame:'',//段位头像框
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -105,6 +105,10 @@ Page({
           this.starAnimation(res, stage, rankInfo)
         }
       }
+    })
+    // 显示段位框
+    this.setData({
+      frame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
   },
   starAnimation(res,stage,rankInfo) {
