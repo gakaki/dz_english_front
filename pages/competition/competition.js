@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, getUid } from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions,getChineneOptions, quanpinKeyboard} from './fn.js'
 
 let roundLimit = 5;
@@ -17,6 +17,7 @@ let rightAnswer;//当前题目的正确答案
 let answerSend;//当前题，答案是否已发给后端 
 let isRight;//当前题是否答对了
 let rid;//房间id
+let round,totalScore;
 
 Page({
   /**
@@ -43,30 +44,35 @@ Page({
     firstClick:true,
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
-    myScore:0,
-    otherScore:0,
-    totalScore:0,
+    myScore:0,  //当前自己本轮得分
+    otherScore:0,  //他人总分
+    totalScore:0,  //本人总分
     roundIsRight:false,
     roundAnswer:{}
   },
   onLoad(options) {
+    console.log('======================load')
     rid = options.rid;
-    this.setData({ rid: options.rid,round:1 });
-    console.log('competition onload,', options.rid, this.data.round);
+    round = 1;
+    totalScore = 0;
+    // this.setData({ 
+    //   rid: options.rid,
+    //   round:1,
+    //   totalScore: 0 });//这些数据第二轮第二题时是第一轮的。！！！
+    console.log('competition onload,', options.rid, round);
 
     getRoomInfo(options.rid, res => {
+      console.log('555555555555555555555555555555555555555555555555555')
       if (res.code) {
         wx.showToast({
           title: '出错了',
         })
       }
       else {
-        let selfUser = app.globalData.userInfo;
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
-        console.log([u1, u2],'[u1,u2]')
         //进这个页面时，自己是对战方之一
-        if (u1.uid == selfUser.uid) {
+        if (u1.info.uid == getUid()) {
           userLeft = u1.info;
           userRight = u2.info;
         }
@@ -75,7 +81,8 @@ Page({
           userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
-        
+        console.log(userLeft,'userLeft')
+
         let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
         //更新数据 
         this.setData({
@@ -97,7 +104,6 @@ Page({
     });
 
   },
-
   onUnload() {
     answerSend = true;
     this.tagRoundEnd(true);
@@ -111,10 +117,10 @@ Page({
   roundInit(){
     answerSend = false;
 
-    if (this.data.round > this.data.englishWords.length) {
+    if (round > this.data.englishWords.length) {
       return;
     }
-    let idx = this.data.round - 1;
+    let idx = round - 1;
     question = this.data.englishWords[idx];
     console.log(question)
     //清理上一局数据
@@ -186,13 +192,14 @@ Page({
         rid: rid,
         wid: this.data.word.id,
         type: this.data.word.type,
-        time: this.data.round,
+        time: round,
         score: this.data.myScore,
-        totalScore: this.data.totalScore,
+        totalScore: totalScore,
         isRight: this.data.roundIsRight,
         answer: this.data.roundAnswer
       });
       answerSend = true;
+      console.log(round,'roundddddddddddddddddddddddddddddddd')
     }
 
   },
@@ -224,15 +231,16 @@ Page({
         console.log('seettlement', ulist)
         //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
         //展示对局答案信息，
-        this.setData({otherScore: resultRight.scrore||0, otherAnswer: resultRight.playerAnswer||{}});
+        this.setData({otherScore: resultRight.score||0, otherAnswer: resultRight.playerAnswer||{}});
       }
     })
-
     //开始下一题
     wsReceive('nextRound', res => {
       this.tagRoundEnd(true);
-      this.setData({round: this.data.round + 1});
+      round++;
+      // this.setData({round: this.data.round + 1});
       tm = Timeline.add(1500, this.roundInit, this).start();
+      console.log(round, 'downnnnnnnnnnnnnnnnnnnn')
     })
   },
 
@@ -275,7 +283,7 @@ Page({
   },
   //显示第几题
   showQuestionIdx(){
-    this.setData({title: getRoundName(this.data.round)})
+    this.setData({title: getRoundName(round)})
   },
   audioPlay(){
     this.audioCtx.play()

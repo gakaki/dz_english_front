@@ -21,7 +21,7 @@
   </view>
 
   <view class='multi-wrap' slot='select'>
-    <bar class="bar" scoreA='{{myScore}}' type='A'></bar>
+    <bar class="bar" scoreA='{{totalScore}}' type='A'></bar>
 
     <view class='multi-words'>
 
