@@ -51,7 +51,7 @@ Page({
   onLoad(options) {
     
     this.setData({ rid: options.rid,round:1 });
-    console.log('round',this.data.round);
+    console.log('competition onload,', options.rid, this.data.round);
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
