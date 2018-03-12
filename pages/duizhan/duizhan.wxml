@@ -2,11 +2,13 @@
   <view class="lan">
     <view class="lan-shouji">
       <view class="lan-ziliao">
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}.png" wx:if="{{frameSelf}}"></image>
         <image class="lan-touxiang" src="{{isSelf.info.avatarUrl}}"></image>
         <text class="lan-nicheng font">{{isSelf.info.nickName}}</text>
       </view>
     </view>
     <image class="animate animate-left" src="{{animation[index]}}"></image>
+    <image class="zhejiao" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="lan-tankuang font">
       <view class="lan-liansheng" wx:if="{{isSelf.info.character.winningStreak}}">
         <text class="lan-liansheng-shuzi lan-xinxi">{{isSelf.info.character.winningStreak}}</text>
@@ -48,8 +50,7 @@
   </view>
   <view class="hong">
     <view class="hong-tankuang font">
-      <view class="hong-fanzhuan">
-        <view class="hong-liansheng" wx:if="{{notSelf.info.character.winningStreak}}">
+      <view class="hong-liansheng" wx:if="{{notSelf.info.character.winningStreak}}">
         <text class="hong-liansheng-shuzi hong-xinxi">{{notSelf.info.character.winningStreak}}</text>
         <text class="hong-liansheng-wenzi">连胜</text>
       </view>
@@ -59,14 +60,14 @@
       </view>
       <text class="hong-dengji hong-xinxi">LV.{{notSelf.info.character.level}}</text>
     </view>
-      </view>
     <image class="animate animate-right" src="{{animation[index]}}"></image>
+    <image class="zhejiao-2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="hong-shouji">
       <view class="hong-ziliao">
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}.png" wx:if="{{frameOther}}"></image>
         <image class="hong-touxiang" src="{{notSelf.info.avatarUrl}}"></image>
         <text class="hong-nicheng font">{{notSelf.info.nickName}}</text>
       </view>
     </view>
-    
   </view>
 </view>

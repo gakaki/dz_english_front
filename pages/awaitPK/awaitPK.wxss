@@ -60,7 +60,7 @@
   position: absolute;
   top: 90rpx;
   left: 202rpx;
-  z-index: 10;
+  z-index: 2;
 }
 
 .duihuakuang{
@@ -121,12 +121,20 @@
 .touxiangkuang{
   width: 158rpx;
   height: 158rpx;
-  border: 5rpx solid rgba(360, 360, 360, 0.6);
-  border-radius: 50%;
   position: absolute;
   left: 50%;
   top: 220rpx;
   transform: translate(-50%,0);
+}
+
+.touxiangkuang-tu{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(.9);
+  z-index: 4;
 }
 
 .touxiang{
@@ -139,6 +147,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
+  z-index: 3;
 }
 
 .nicheng{

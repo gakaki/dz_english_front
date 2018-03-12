@@ -1,6 +1,7 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, shareSuc, wsClose } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive , getUid } from '../../utils/rest.js';
+import { getRankFrame } from '../../utils/util.js';
 let time = null
 
 Page({
@@ -19,6 +20,8 @@ Page({
     rid:'',
     isOwner:false,
     startGame:false,
+    frameSelf:'',
+    frameOther:''
   },
 
   /**
@@ -92,13 +95,17 @@ Page({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })
+      // 显示段位框
+    this.setData({
+      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide() {
+    clearInterval(time);
   },
 
   /**
