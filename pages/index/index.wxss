@@ -87,12 +87,19 @@
   font-size: 32rpx;
   font-family: 'Microsoft YaHei';
   align-self: flex-start;
+  overflow: hidden;
 }
+ .nn {
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+} 
 
 
 .gold-box {
   align-self: flex-start;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #09579f;
   height: 38rpx;
   width: 160rpx;
   border-radius: 19rpx;
@@ -135,6 +142,7 @@
   height: 26rpx;
   margin: 2rpx;
   overflow: hidden;
+  border-radius: 13rpx;
 }
  .lvl-box text {
   position: absolute;

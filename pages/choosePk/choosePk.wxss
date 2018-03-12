@@ -39,7 +39,7 @@
   width: 152rpx;
   height: 122rpx;
   position: relative;
-   /* transform: scale(0.68, 0.68);  */
+  transform: scale(0.68, 0.68);
   margin: 8rpx 0 0 8rpx;
 }
 
@@ -109,6 +109,10 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #fff;
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 }
 
 .gold-box {
