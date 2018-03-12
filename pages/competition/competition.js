@@ -51,7 +51,10 @@ Page({
   },
   onLoad(options) {
     rid = options.rid;
-    this.setData({ rid: options.rid,round:1 });//这些数据第二轮第二题时是第一轮的。！！！
+    this.setData({ 
+      rid: options.rid,
+      round:1,
+      totalScore:0 });//这些数据第二轮第二题时是第一轮的。！！！
     console.log('competition onload,', options.rid, this.data.round);
 
     getRoomInfo(options.rid, res => {
