@@ -122,6 +122,7 @@ Page({
       word:{type:0},
       letters:[],
       answer: 0,
+      roundIsRight:false,
       hideLetters:[],
       nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
@@ -162,13 +163,17 @@ Page({
       timer = null;
     }
     let answer = this.data.answer;
+    let roundIsRight = this.data.roundIsRight;
+
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
+      roundIsRight = false;
       let roundAnswer = {}
       roundAnswer['not_select'] = false;
       this.setData({
         myScore:0,
         answer,
+        roundIsRight,
         roundAnswer
       })
     }
@@ -432,6 +437,7 @@ Page({
         this.setData({
           myScore,
           answer,
+          roundIsRight: isRright,
           totalScore,
           roundAnswer
         })
@@ -513,7 +519,8 @@ Page({
       roundAnswer,
       myScore,
       totalScore,
-      bgIndex
+      bgIndex,
+      roundIsRight: isRight
     })
 
     if (finished) {
@@ -549,6 +556,7 @@ Page({
       roundAnswer[obj.answer] = isRright;
       this.setData({
         answer,
+        roundIsRight: isRright,
         selectAnswer,
         roundAnswer,
         firstClick: false
