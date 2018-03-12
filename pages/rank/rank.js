@@ -95,8 +95,8 @@ Page({
         } else {
           wx.showToast({
             title: '暂无数据',
-            icon: 'success',
-            duration: 500,
+            icon: 'none',
+            duration: 2000,
             mask: true
           })
         }
