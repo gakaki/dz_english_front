@@ -1,5 +1,4 @@
 .con {
-  /* padding-top: 28rpx; */
   width: 100vw;
   height: 100vh;
 }
