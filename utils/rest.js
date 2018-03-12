@@ -69,7 +69,15 @@ function userLogin(suc, err) {
       doFetch('user.login', { info: info.userInfo }, res => {
         isAuth = true;
         if (res.code != CODE_SUC) {
-          err(res.code);
+          // err(res.code);
+          wx.clearStorageSync('_sid');
+          wx.clearStorageSync('uid');
+          wx.login({
+            success: res => {
+              isAuth = false;
+              sdkAuth(res.code, suc)
+            }
+          })
         }
         else {
           res = res.data;

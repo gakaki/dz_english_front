@@ -5,10 +5,6 @@
     </view>
     <view class="user-info f-r-fs">
       <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
-      <!-- <view class="flex head-box">
-        <image class="head" src="{{userInfo.avatarUrl}}">
-        </image>
-      </view> -->
       <view wx:if="{{rankFrame.length > 0}}" class="frame">
         <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
         <view class="header flex">
@@ -17,6 +13,7 @@
       </view>
 
       <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+      
         <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
       </view>
       <view class="top-mid f-c-sb">
