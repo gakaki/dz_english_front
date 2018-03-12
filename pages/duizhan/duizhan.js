@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, shareSuc, wsClose } from '../../utils/rest.js';
 
 Page({
   data: {
@@ -221,6 +221,7 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
+    wsClose(['pkEndSettlement','matchInfo'])
   },
   onShareAppMessage: function (res) {
     return {
