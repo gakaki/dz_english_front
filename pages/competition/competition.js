@@ -15,7 +15,7 @@ let question;//当前题目
 let options;//当前题目答案项
 let rightAnswer;//当前题目的正确答案
 let answerSend;//当前题，答案是否已发给后端 
-let isRright;//当前题是否答对了
+let isRight;//当前题是否答对了
 
 Page({
   /**
@@ -420,11 +420,11 @@ Page({
         answer = 0;
         let myScore = 0;
         let totalScore = 0;
-        isRright = false;
+        isRight = false;
 
         if(word == rightAnswer) {
           answer = 1;
-          isRright = true;
+          isRight = true;
           myScore = this.data.clockTime * 20 
           totalScore = this.data.totalScore + myScore;
           
@@ -434,11 +434,11 @@ Page({
         }
 
         let roundAnswer = {}
-        roundAnswer[word] = isRright;
+        roundAnswer[word] = isRight;
         this.setData({
           myScore,
           answer,
-          roundIsRight: isRright,
+          roundIsRight: isRight,
           totalScore,
           roundAnswer
         })
@@ -465,7 +465,7 @@ Page({
 
     let myScore = 0;
     let totalScore = 0;
-    isRright = false;
+    isRight = false;
     let finished = false;
     let hideLetters = this.data.hideLetters;
     let answer = this.data.answer;
@@ -494,7 +494,7 @@ Page({
       if (letters.okCnt == letters.length) {
         //回答全部正确
         answer = 1;
-        isRright = true;
+        isRight = true;
         finished = true;
         myScore = this.data.clockTime * 20;
         totalScore = this.data.totalScore + myScore;
@@ -509,7 +509,7 @@ Page({
     let roundAnswer = {};
     if (finished) {
       bgIndex = bgIndex.map(v => true);
-      roundAnswer[letters.join()] = isRright;
+      roundAnswer[letters.join()] = isRight;
     }
 
 
@@ -534,13 +534,13 @@ Page({
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
       let myScore = 0;
-      isRright = false;
+      isRight = false;
       let answer = this.data.answer;
       let selectAnswer = this.data.selectAnswer;
 
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
-        isRright = true;
+        isRight = true;
         answer = 1;
         myScore = this.data.clockTime * 20;
         let totalScore = this.data.totalScore + myScore;
@@ -554,10 +554,10 @@ Page({
       }
 
       let roundAnswer = {};
-      roundAnswer[obj.answer] = isRright;
+      roundAnswer[obj.answer] = isRight;
       this.setData({
         answer,
-        roundIsRight: isRright,
+        roundIsRight: isRight,
         selectAnswer,
         roundAnswer,
         firstClick: false
