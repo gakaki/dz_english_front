@@ -8,13 +8,10 @@ function loadEnglishWords(words) {
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
-      // let obj = Word.Get(1);
       let cloneObj = Object.assign({}, obj.cfg);
-      // cloneObj.type = v.type;
-      cloneObj.type = 1;
+      cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
-      console.log(cloneObj)
       return cloneObj
     })
     return englishWords;
@@ -34,15 +31,15 @@ function getRoomInfo(rid, cb) {
 function keyboard( letterPos, english){  
   let st = new Set();
   let cnt = 9 - letterPos.length;
+
   while(st.size < cnt) {
     let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    
     if (english.indexOf(str) == -1) {
-
       st.add(str)
     }
   }
-
-  let posStrs = letterPos.map(v => {
+  let posStrs = letterPos.map((v) => {
     return english[v];
   })
   return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
@@ -116,7 +113,6 @@ function changeArrAllValue(arr,v) {
 
 
 function getOptions(question, key){
-  console.log(question,key)
   let cnt = 0;
   let limit = 4;
   let start = Math.max(0, question.id - limit - limit);
