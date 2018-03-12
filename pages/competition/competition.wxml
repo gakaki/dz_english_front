@@ -9,9 +9,9 @@
         <text>{{word.symbol}}</text>
         <audio class='loudspeaker {{title ? "none" :"show"}}' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
-      <view class='quelou' wx:if='{{word.type===1 || word.type===4}}'>
+      <view class='quelou' wx:if='{{word.type===3 || word.type===4}}'>
           <view class='question {{answer === 2 ? "question-large":""}}' >
-            <text class='letter {{hideLetters[index] || hideAllLetters?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}'>{{item}}</text>      
+            <text class='letter {{hideLetters[index] ?"hide-word":""}}' wx:for='{{letters}}' wx:key='{{index}}'>{{item}}</text>      
             <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
             <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
           </view>
@@ -40,7 +40,7 @@
       </view>
 
       <!--九宫格键盘  -->
-      <view wx:if='{{word.type === 4}}' class='selectBtn {{showIndex === 3 ? "show" : "none"}}'>
+      <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word {{bgIndex[index] ? "one-word-active":""}}' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter' style='color:{{letters[index].color}};background:{{letters[index].bgColor}}'>
           <view class='flip-wrap'>
             <view class='front flip poal'>

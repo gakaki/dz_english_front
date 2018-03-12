@@ -10,7 +10,7 @@ function loadEnglishWords(words) {
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = 2//v.type;
+      cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -28,45 +28,33 @@ function getRoomInfo(rid, cb) {
   });
 }
 
-function quanpinKeyboard(letters) {
-  let length = 9;
-  let newArr = letters.concat();
-  for (let i = 0; newArr.length < length; i++) {
-    let index = Math.floor(Math.random() * ALLLETTERS.length);
-    let noDistinct = newArr.every(v => {
-      return v !== ALLLETTERS[index]
-    })
-    if (noDistinct) {
-      newArr.push(ALLLETTERS[index])
-    }
-  }
-  newArr.sort((a, b) => {
-    return Math.random() - 0.5
-  })
-  return newArr
-}  
-
 //设置九宫格键盘
 function keyboard( letterPos, english){  
-  let nineLetters = [];
-  for (let i = 0; i < letterPos.length; i++) {
-    nineLetters.push(english.charAt(letterPos[i]))
+  let st = new Set();
+  let cnt = 9 - letterPos.length;
+  while(st.size < cnt) {
+    let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    if (english.indexOf(str) == -1) {
+
+      st.add()
+    }
   }
 
-  (function addLetter() {
-    let i = Math.floor(Math.random() * 26);
-    nineLetters.push(ALLLETTERS[i]);
-    nineLetters = [...new Set(nineLetters)];
-    if (nineLetters.length < 9) {
-      addLetter()
-    }
-  })()
-  nineLetters = nineLetters.sort(() => {
-    return Math.random() - 0.5
-  });
-  return nineLetters
+  let posStrs = letterPos.map(v => {
+    return english[v-1];
+  })
+  return Array.from(st).concat(posStrs).sort(()=>{return Math.random() - 0.5});
+
 }
 
+function quanpinKeyboard(english) {
+  let pos = [];
+  let idx = english.length + 1;
+  while(--idx > 0) {
+    pos.push(idx);
+  }
+  return keyboard(pos, english);
+}  
  //每回合的中文名字
 function getRoundName(v) { 
   let title = null;

@@ -245,7 +245,6 @@ Page({
         }
       })
     }
-    console.log(this.data.userInfo)
     this.shareTo(options)
 
   },
@@ -310,10 +309,9 @@ Page({
     })
   },
   auth() {
-    console.log(3333)
+
     wx.openSetting({
       success: (res) => {
-        console.log('auth')
         start((res) => {
           this.hi()
         })
