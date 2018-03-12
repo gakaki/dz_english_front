@@ -8,10 +8,13 @@ function loadEnglishWords(words) {
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
+      // let obj = Word.Get(1);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = v.type;
+      // cloneObj.type = v.type;
+      cloneObj.type = 1;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
+      console.log(cloneObj)
       return cloneObj
     })
     return englishWords;
@@ -113,6 +116,7 @@ function changeArrAllValue(arr,v) {
 
 
 function getOptions(question, key){
+  console.log(question,key)
   let cnt = 0;
   let limit = 4;
   let start = Math.max(0, question.id - limit - limit);
@@ -120,11 +124,14 @@ function getOptions(question, key){
 
   let arr = [question[key]];
   let ascend = Math.random() < 0.5;
-  for(let i = ascend ? start:end; i != question.id && (ascend ? i < end : i > start); ascend ? i++ : i--) {
+  for(let i = ascend ? start:end; ascend ? i < end : i > start; ascend ? i++ : i--) {
     if (arr.length >= limit) {
       break;
     }
-    let cfg = words[i+''];
+    let cfg = words[i];
+    if (cfg.id == question.id) {
+      continue;
+    }
 
     if (cfg.difficult == question.difficult) {
       arr.push(cfg[key]);

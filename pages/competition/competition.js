@@ -54,7 +54,7 @@ Page({
     rid = options.rid;
     round = 1;
     totalScore = 0;
-    console.log('competition onload,', options.rid, round);
+    
 
     getRoomInfo(options.rid, res => {
       if (res.code) {
@@ -194,7 +194,7 @@ Page({
         answer: this.data.roundAnswer
       });
       answerSend = true;
-      console.log(round,'roundddddddddddddddddddddddddddddddd')
+      
     }
 
   },
@@ -233,9 +233,9 @@ Page({
     wsReceive('nextRound', res => {
       this.tagRoundEnd(true);
       round++;
-      // this.setData({round: this.data.round + 1});
+      this.setData({ clockStart: false });
       tm = Timeline.add(1500, this.roundInit, this).start();
-      console.log(round, 'downnnnnnnnnnnnnnnnnnnn')
+      
     })
   },
 
@@ -320,9 +320,7 @@ Page({
   flipNineCard() {
     let rotateList = this.data.rotateList.map(v=> false);
     this.setData({rotateList});
-  },
-
-    
+  }, 
   showChineseOptions(){
     options = getChineneOptions(question);
     console.log('options', options)
@@ -576,16 +574,20 @@ Page({
       clearInterval(timer);
     }
     this.setData({
-      clockTime:10
+      clockTime:10,
+      clockStart: true
     });
 
     timer = setInterval(()=> {
       let clockTime = this.data.clockTime - 1;
       if (clockTime <=0) {
         //倒计时结束 
-        timer && clearInterval(timer);
+        if(this.timer) {
+          clearInterval(timer);
+          this.setData({ clockStart:false });
+        }
       }
-      this.setData({clockTime});
+      this.setData({ clockTime});
     }, 1000);
     
   },
