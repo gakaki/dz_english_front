@@ -206,9 +206,9 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        // wx.redirectTo({
-        //   url: '../competition/competition?rid=' + this.data.rid,
-        // })
+        wx.redirectTo({
+          url: '../competition/competition?rid=' + this.data.rid,
+        })
         console.log('toCompetion', this.data.rid, 1111)
       }, 3000)
     }
