@@ -6,7 +6,7 @@
           <text class="miaoshu-wenzi">{{item.name}}</text>
         </view>
         <view class="jiangli">
-          <image class="jiangli-tu {{index>1 && index<6  ? 'a' : 'b'}}" src="{{item.img}}"></image>
+          <image class="jiangli-tu {{index>1 && index<6  ? 'jiangli-1' : 'jiangli-2'}}" src="{{item.img}}"></image>
         </view>
         <image class="lingqu" src="{{item.big}}" wx:if="{{tian==index+1}}"></image>
         <view calss="zhuangtai" wx:if="{{tian > index+1}}">
