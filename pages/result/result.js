@@ -47,7 +47,9 @@ Page({
     }
    },
   onUnload() {
-    this.setPageInfo()
+    if (!app.globalData.pkResult.isFriend) {
+      this.setPageInfo()
+    }
   },
   setPageInfo() {
     let pages = getCurrentPages()
@@ -59,7 +61,10 @@ Page({
     })
   },
   toMatch() {
-    this.setPageInfo()
+    //是否为好友局
+    if (!app.globalData.pkResult.isFriend){
+      this.setPageInfo()
+    }
     wx.navigateBack()
   },
   onShareAppMessage: function (res) {
