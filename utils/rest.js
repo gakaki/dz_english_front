@@ -149,7 +149,6 @@ function wsSend(action, data) {
 
 
 function wsInit() {
-  console.log(sid, 'sid')
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {

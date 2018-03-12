@@ -10,13 +10,13 @@ Component({
       type: Boolean,
       value: true,
       observer:function(a) {
-        console.log(a)
+        // console.log(a)
       }
     },
     clockTime:{
       type: Number,
       value: 10, observer: function (a) {
-        console.log(a)
+        // console.log(a)
       }
     }
   }
