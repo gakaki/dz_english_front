@@ -63,7 +63,7 @@ Page({
         let selfUser = app.globalData.userInfo;
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
-        
+        console.log([u1, u2],'[u1,u2]')
         //进这个页面时，自己是对战方之一
         if (u1.uid == selfUser.uid) {
           userLeft = u1.info;
@@ -115,6 +115,7 @@ Page({
     }
     let idx = this.data.round - 1;
     question = this.data.englishWords[idx];
+    console.log(question)
     //清理上一局数据
     this.setData({
       title:null,
