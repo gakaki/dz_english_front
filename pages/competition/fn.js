@@ -1,19 +1,9 @@
 import { Word,words } from '../../sheets.js'
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
-const ALLLETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
  //加载英文单词
 function loadEnglishWords(words) { 
-  //test
-  // let t = [9,9,9,9,9]
-  // return t.map(id => {
-  //   let obj = Object.assign({}, Word.Get(id).cfg);
-  //   obj.type = 4;
-  //   obj.yinbiao = '["66666"]'
-  //   obj.english = obj.english.trim();
-  //   return obj;
-  // })
 
     let englishWords = [];
     englishWords = words.map((v) => {
@@ -21,8 +11,7 @@ function loadEnglishWords(words) {
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
-      cloneObj.yinbiao = "['66666']";
-      cloneObj.options = ['苹果', '橘子', '梨花', '花'];
+      cloneObj.China = cloneObj.China.trim();
       return cloneObj
     })
     return englishWords;
@@ -30,7 +19,7 @@ function loadEnglishWords(words) {
 }
 
 function getRoomInfo(rid, cb) {
-  //wsReceive('roomInfo',cb);//好友战的房间信息
+  wsReceive('roomInfo',cb);//好友战的房间信息
   wsReceive('pkInfo',cb);//匹配战的房间信息
 
   wsSend('getpkinfo', {
@@ -38,44 +27,34 @@ function getRoomInfo(rid, cb) {
   });
 }
 
-function quanpinKeyboard(letters) {
-  let length = 9;
-  let newArr = letters.concat();
-  for (let i = 0; newArr.length < length; i++) {
-    let index = Math.floor(Math.random() * ALLLETTERS.length);
-    let noDistinct = newArr.every(v => {
-      return v !== ALLLETTERS[index]
-    })
-    if (noDistinct) {
-      newArr.push(ALLLETTERS[index])
-    }
-  }
-  newArr.sort((a, b) => {
-    return Math.random() - 0.5
-  })
-  return newArr
-}  
-
 //设置九宫格键盘
 function keyboard( letterPos, english){  
-  let nineLetters = [];
-  for (let i = 0; i < letterPos.length; i++) {
-    nineLetters.push(english.charAt(letterPos[i]))
-  }
-  (function addLetter() {
-    let i = Math.floor(Math.random() * 26);
-    nineLetters.push(ALLLETTERS[i]);
-    nineLetters = [...new Set(nineLetters)];
-    if (nineLetters.length < 9) {
-      addLetter()
+  let st = new Set();
+  let cnt = 9 - letterPos.length;
+  while(st.size < cnt) {
+    let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    if (english.indexOf(str) == -1) {
+
+      st.add(str)
     }
-  })()
-  nineLetters = nineLetters.sort(() => {
-    return Math.random() - 0.5
-  });
-  return nineLetters
+  }
+
+  let posStrs = letterPos.map(v => {
+    return english[v-1];
+  })
+  return Array.from(st).concat(posStrs).sort(()=>{return Math.random() - 0.5});
+
 }
 
+function quanpinKeyboard(english) {
+  let pos = [];
+  let idx = english.length + 1;
+  while(--idx > 0) {
+    pos.push(idx);
+  }
+  console.log(english, pos, 'quanpinKeyboard_pos')
+  return keyboard(pos, english);
+}  
  //每回合的中文名字
 function getRoundName(v) { 
   let title = null;
@@ -132,34 +111,36 @@ function changeArrAllValue(arr,v) {
   return arr2;
 }
 
-//设置英文选项列表
-function englishSelector(word){
-  let arr = autoSelect(words, 4, word);
-  return arr
-}
 
-//随机选择几个英文单词 arr：待选词的数组，length想要的数组总长度，nowWord需要放入数组里面的东西
-function autoSelect(arr, length,nowWord) {
-  let newArr = [];
-  nowWord && newArr.push(nowWord);
-  for (let i = 0; newArr.length < length; i++) {
-    let index = Math.floor(Math.random() * arr.length);
+function getOptions(question, key){
+  let cnt = 0;
+  let limit = 4;
+  let start = Math.max(0, question.id - limit - limit);
+  let end = Math.min(words.length, question.id + limit + limit);
 
-    let noDistinct = newArr.every((v,i)=>{
-      return v.id !== arr[index].id
-    })
-    if (noDistinct) {
-      newArr.push(arr[index].english)
+  let arr = [question[key]];
+  let ascend = Math.random() < 0.5;
+  for(let i = ascend ? start:end; i != question.id && (ascend ? i < end : i > start); ascend ? i++ : i--) {
+    if (arr.length >= limit) {
+      break;
+    }
+    let cfg = words[i+''];
+
+    if (cfg.difficult == question.difficult) {
+      arr.push(cfg[key]);
     }
   }
-  newArr.sort((a, b) => {
-    return Math.random() - 0.5
-  })
-  return newArr;
+
+  return arr.sort((a,b)=>{return Math.random() - 0.5});
 }
 
+function getChineneOptions(question) {
+  return getOptions(question, 'China')
+}
 
-
+function getEnglishOptions(question) {
+  return getOptions(question, 'english')
+}
 
 
 module.exports = {
@@ -170,6 +151,7 @@ module.exports = {
   hideLettersArr,
   randomHideLetters,
   changeArrAllValue,
-  englishSelector,
-  quanpinKeyboard
+  quanpinKeyboard,
+  getChineneOptions,
+  getEnglishOptions
 }

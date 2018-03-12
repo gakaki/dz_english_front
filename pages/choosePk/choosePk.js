@@ -10,8 +10,8 @@ Page({
     toView:0,
     season:{},
     canMatch:true,
-    starAnimation:false,
-    fromIndex:false,
+    starAnimation:'', //控制星星的动画
+    fromIndex:false,  //是否从主页面跳转过来的
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -75,7 +75,8 @@ Page({
         return obj
       })
 
-      //是否从结果页面跳转过来的
+      console.log(this.data.fromIndex, this.data.navBack,'asaf')
+      //是否从主页面跳转过来的
       if (this.data.fromIndex) {
         stage.length = rankInfo.rank + 1
         this.setData({
@@ -86,61 +87,54 @@ Page({
         })
       }
       else {
-        console.log(1111, app.globalData.pkResult.changeInfo)
-        let changeInfo = app.globalData.pkResult.changeInfo
-        //判断是否升段
-        console.log(changeInfo.isRank, 'isRank')
-        if (changeInfo.isRank.isRank) {
-          stage.length = rankInfo.rank
-          this.setData({
-            starAnimation: 'increase',
-            userInfo: res.data.userInfo,
-            star: stage[stage.length - 2].star,
-            stage: stage,
-            toView: rankInfo.rank - 4
-          })
-          time = setTimeout(() => {
-            stage.length = rankInfo.rank + 1
-            this.setData({
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }, 2100)
-        }
-        else {
-          //判断是否加星
-          stage.length = rankInfo.rank + 1
-          if (changeInfo.isStarUp.isStarUp == 1) {
-            this.setData({
-              starAnimation: 'increase',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-          else if (changeInfo.isStarUp.isStarUp == -1) {
-            this.setData({
-              starAnimation: 'decrease',
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-          else if (changeInfo.isStarUp.isStarUp == 0) {
-            this.setData({
-              userInfo: res.data.userInfo,
-              star: rankInfo.star,
-              stage: stage,
-              toView: rankInfo.rank - 3
-            })
-          }
-        }
+        this.starAnimation(res,stage,rankInfo)
       }
-
     })
+  },
+  starAnimation(res,stage,rankInfo) {
+    console.log(1111, app.globalData.pkResult.changeInfo)
+    let changeInfo = app.globalData.pkResult.changeInfo
+    //判断是否提升段位
+    if (changeInfo.isRank.isRank) {
+      //提升段位的时候先执行完加星动画之后在升段位
+      stage.length = rankInfo.rank+1
+      let oldStage = stage.slice(0, rankInfo.rank)
+      this.setData({
+        starAnimation: 'increase',
+        userInfo: res.data.userInfo,
+        star: stage[oldStage.length - 2].star,
+        stage: oldStage,
+        toView: rankInfo.rank - 4
+      })
+      time = setTimeout(() => {
+        this.setData({
+          star: rankInfo.star,
+          stage: stage,
+          toView: rankInfo.rank - 3
+        })
+      }, 2100)
+    }
+    else {
+      console.log(changeInfo.isStarUp,'星星')
+      //判断是否加星
+      stage.length = rankInfo.rank + 1
+      this.setData({
+        userInfo: res.data.userInfo,
+        star: rankInfo.star,
+        stage: stage,
+        toView: rankInfo.rank - 3
+      })
+      if (changeInfo.isStarUp.isStarUp == 1) {
+        this.setData({
+          starAnimation: 'increase',
+        })
+      }
+      else if (changeInfo.isStarUp.isStarUp == -1) {
+        this.setData({
+          starAnimation: 'decrease',
+        })
+      }
+    }
   },
   onUnload() {
     clearTimeout(time)
@@ -150,6 +144,7 @@ Page({
     
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
+    console.log(this.data.stage)
     if (this.data.stage.length > type){
       //通过后台和客户端一起判断来防止数据被篡改
       wsSend('canmatch', {

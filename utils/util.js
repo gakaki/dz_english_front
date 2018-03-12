@@ -17,7 +17,6 @@ const formatNumber = n => {
 
 function care (obj, key, cb) {
   if (obj.__pKeys && obj.__pKeys.has(key)) {
-    console.log('has cared',key)
     obj.__pKeys.get(key).add(cb);
   }
   else {
@@ -28,7 +27,7 @@ function care (obj, key, cb) {
     obj.__pKeys.get(key).add(cb);
 
     let d = Object.getOwnPropertyDescriptor(obj, key)
-    console.log('care key', key, d)
+
     d.ctx = d.ctx || obj;
 
     // let oget,oset;
