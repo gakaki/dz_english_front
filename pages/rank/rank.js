@@ -24,6 +24,13 @@ Page({
           rankData: res.data.map(this.getSegment)
         })
 
+      } else {
+        wx.showToast({
+          title: '暂无数据',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        })
       }
     })
   },
@@ -71,6 +78,12 @@ Page({
           })
 
         } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
           this.setData({
             rankData: []
           })
