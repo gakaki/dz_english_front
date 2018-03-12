@@ -127,6 +127,7 @@
   font-family: 'Microsoft YaHei';
   display: inline-block;
   height: 30rpx;
+  line-height: 30rpx
 }
 
 .lvl-box {
