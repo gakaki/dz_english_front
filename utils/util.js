@@ -1,3 +1,4 @@
+const sheet = require('../sheets.js');
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -211,9 +212,15 @@ function getRankFrame(season) {
     } else return sheet.Stage.Get(season[i].rank).frame
   }
 }
+function getPersonFrame(rank) {
+    if (parseInt(rank) <= 6) {
+      return ''
+    } else return sheet.Stage.Get(parseInt(rank)).frame
+}
 module.exports = {
   getRankFrame: getRankFrame,
   formatTime: formatTime,
   care : care,
-  Timeline:Timeline
+  Timeline:Timeline,
+  getPersonFrame: getPersonFrame
 }

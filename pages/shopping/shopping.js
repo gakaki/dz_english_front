@@ -26,7 +26,7 @@ Page({
       return o.icon
     })
     let itemArr = sheet.shops.map(shp => {
-      return sheet.Item.Get(shp.itemid)
+      return sheet.Item.Get(sheet.Shop.Get(shp.id).itemid['k'])
     })
     this.setData({
       shopData: tempPrice,
