@@ -116,7 +116,7 @@ Page({
     }
     let idx = this.data.round - 1;
     question = this.data.englishWords[idx];
-    
+    answer = 0;
     //清理上一局数据
     this.setData({
       title:null,
@@ -130,7 +130,6 @@ Page({
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
       bgIndex: [false, false, false, false, false, false, false, false, false],
-      answer:0,
       backClickCount:0,
       roundAnswer:{}
     })
@@ -150,50 +149,7 @@ Page({
         this.playFour();
         break;
     }
-    //--------------------
-    return;
-
-
-    this.setData({
-      word: this.data.englishWords[this.data.round-1],
-      title: getRoundName(this.data.round),
-      showIndex: 0,
-      rotateList: changeArrAllValue(this.data.rotateList, true),
-      answer:0,
-      time: 2000,
-      backClickCount: 0,
-      clockTime: totalCountTime,
-      selectAnswer: [0, 0, 0, 0],
-      firstClick:true,
-      bgIndex:[false, false, false, false, false, false, false, false, false],
-      hideLetters:[false,false,false,false,false]
-    })
-    let word = this.data.word;
-    let letters = word.english.split('');
-
-    this.setData({ letters})
-    switch (word.type) { //题目类型
-      case 1:
-        let letterPos = word.eliminate;
-        let nowPos = [];
-        let length = word.english.length;
-        if (word.eliminate == -1) {
-          letterPos = randomHideLetters(length, word.eliminateNum)
-          word.eliminate = letterPos;
-        }
-        
-        this.playOne();
-        break;
-      case 2:
-        this.playTwo();
-        break;
-      case 3:
-        this.playThree();
-        break;  
-      case 4:
-        this.playFour();
-        break;
-    }
+    
     
   },
 
@@ -207,7 +163,6 @@ Page({
       timer = null;
     }
 
-    let answer = this.data.answer;
     if (!answer) {
       answer = 2;//未设置过对错的话，认为是时间到了，设置为错
       let roundAnswer = {}
@@ -271,7 +226,7 @@ Page({
     wsReceive('nextRound', res => {
       this.tagRoundEnd(true);
       this.setData({round: this.data.round + 1});
-      this.roundInit();
+      tm = Timeline.add(1500, this.roundInit, this).start();
     })
   },
 
@@ -453,7 +408,7 @@ Page({
       })
       if (bcCount == bcLimit - 1) {
         let word = letters.join('');
-        let answer = 0;
+        answer = 0;
         let myScore = 0;
         let totalScore = 0;
         isRright = false;
@@ -473,8 +428,8 @@ Page({
         roundAnswer[word] = isRright;
         this.setData({
           myScore,
-          totalScore,
           answer,
+          totalScore,
           roundAnswer
         })
         this.tagRoundEnd(false);
@@ -498,7 +453,6 @@ Page({
       letters.okCnt = 0;
     }
 
-    let answer = 0;
     let myScore = 0;
     let totalScore = 0;
     isRright = false;
@@ -548,9 +502,9 @@ Page({
 
 
     this.setData({
+      answer,
       letters,
       hideLetters,
-      answer,
       roundAnswer,
       myScore,
       totalScore,
@@ -572,7 +526,7 @@ Page({
       if (obj.answer == rightAnswer) {
         selectAnswer[obj.id] = 1;
         isRright = true;
-
+        answer = 1;
         myScore = this.data.clockTime * 20;
         let totalScore = this.data.totalScore + myScore;
         this.setData({
@@ -580,12 +534,14 @@ Page({
           totalScore
         })
       } else {
+        answer = 2;
         selectAnswer[obj.id] = 2;
       }
 
       let roundAnswer = {};
       roundAnswer[obj.answer] = isRright;
       this.setData({
+        answer,
         selectAnswer,
         roundAnswer,
         firstClick: false
