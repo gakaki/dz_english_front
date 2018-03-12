@@ -76,7 +76,7 @@ Page({
           userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
-        console.log(userLeft,'userLeft')
+        console.log(res.data.roomInfo.wordList,'userLeft')
 
         let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
         //更新数据 
@@ -173,7 +173,6 @@ Page({
       let roundAnswer = {}
       roundAnswer['not_select'] = false;
       this.setData({
-        myScore:0,
         answer,
         roundIsRight,
         roundAnswer
@@ -431,7 +430,6 @@ Page({
         let word = letters.join('');
         answer = 0;
         let myScore = 0;
-        let totalScore = 0;
         isRight = false;
 
         if(word == rightAnswer) {
@@ -477,7 +475,6 @@ Page({
     }
 
     let myScore = 0;
-    let totalScore = 0;
     isRight = false;
     let finished = false;
     let hideLetters = this.data.hideLetters;

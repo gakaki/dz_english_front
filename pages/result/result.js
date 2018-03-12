@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid,shareSuc } from '../../utils/rest.js';
+import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
 
 Page({
   data: {
