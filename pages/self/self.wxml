@@ -32,7 +32,7 @@
 
       </view>
       <view class="jiyi-box flex">
-        <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{aa}}%</text>
+        <text class="jiyi">记忆率{{jiyilv}}%，其中新词汇占{{newWordsPercent}}%</text>
       </view>
       <view class="pingyu-box flex">
         <text class="pingyu">评语：{{comment}}</text>
