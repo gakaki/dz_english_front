@@ -31,15 +31,15 @@ function getRoomInfo(rid, cb) {
 function keyboard( letterPos, english){  
   let st = new Set();
   let cnt = 9 - letterPos.length;
+
   while(st.size < cnt) {
     let str = String.fromCharCode(Math.floor(Math.random()*26 + 97));
+    
     if (english.indexOf(str) == -1) {
-
       st.add(str)
     }
   }
-
-  let posStrs = letterPos.map(v => {
+  let posStrs = letterPos.map((v) => {
     return english[v];
   })
   return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
@@ -120,11 +120,14 @@ function getOptions(question, key){
 
   let arr = [question[key]];
   let ascend = Math.random() < 0.5;
-  for(let i = ascend ? start:end; i != question.id && (ascend ? i < end : i > start); ascend ? i++ : i--) {
+  for(let i = ascend ? start:end; ascend ? i < end : i > start; ascend ? i++ : i--) {
     if (arr.length >= limit) {
       break;
     }
-    let cfg = words[i+''];
+    let cfg = words[i];
+    if (cfg.id == question.id) {
+      continue;
+    }
 
     if (cfg.difficult == question.difficult) {
       arr.push(cfg[key]);

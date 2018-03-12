@@ -360,7 +360,6 @@ Page({
         this.setData({
           rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
-        console.log(this.data.rankFrame)
       })
     }
   },
