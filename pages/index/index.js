@@ -342,23 +342,26 @@ Page({
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
         this.setData({
-          rankFrame: this.getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+          rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
+        console.log(this.data.rankFrame)
       })
     }
   },
-  getRankFrame(season) {
-    let idx = 0
-    for(let i in season) {
-      idx++
-    }
-    if(idx ==1) {
-      console.log(season[idx].rank)
-      return ''
-    }
-    if(idx >1) {
-      let i = idx-1
-      return sheet.Stage.Get(season[i].rank).frame
-    }
-  }
+  // getRankFrame(season) {
+  //   let idx = 0
+  //   for(let i in season) {
+  //     idx++
+  //   }
+  //   if(idx ==1) {
+  //     console.log(season[idx].rank)
+  //     return ''
+  //   }
+  //   if(idx >1) {
+  //     let i = idx-1
+  //     if (parseInt(season[i].rank) <= 6) {
+  //       return ''
+  //     }else return sheet.Stage.Get(season[i].rank).frame
+  //   }
+  // }
 })
