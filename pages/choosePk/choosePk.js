@@ -75,10 +75,10 @@ Page({
         return obj
       })
 
-      console.log(this.data.fromIndex, this.data.navBack,'asaf')
-      //是否从主页面跳转过来的
-      if (this.data.fromIndex) {
-        stage.length = rankInfo.rank + 1
+      console.log(this.data.fromIndex, 'asaf')
+      //是否到达最高等级
+      if (rankInfo.rank==15){
+        stage.length = rankInfo.rank
         this.setData({
           userInfo: res.data.userInfo,
           star: rankInfo.star,
@@ -86,8 +86,20 @@ Page({
           toView: rankInfo.rank - 3
         })
       }
-      else {
-        this.starAnimation(res,stage,rankInfo)
+      else{
+        //是否从主页面跳转过来的
+        if (this.data.fromIndex) {
+          stage.length = rankInfo.rank + 1
+          this.setData({
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
+        }
+        else {
+          this.starAnimation(res, stage, rankInfo)
+        }
       }
     })
   },

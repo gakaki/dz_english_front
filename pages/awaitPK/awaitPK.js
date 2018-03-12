@@ -113,11 +113,11 @@ Page({
         duration: 2000
       })
       time = setTimeout(function(){
-        console.log(111)
+        console.log('matchFailed back')
         wx.navigateBack({
           delta: 1
         })
-      },2500)
+      },2100)
     })
     wsReceive('matchSuccess',res=>{
       console.log(res,'suc')
