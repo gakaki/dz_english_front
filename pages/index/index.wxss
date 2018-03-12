@@ -23,20 +23,58 @@
   height: 128rpx;
 }
 
+.frame {
+  width: 227rpx;
+  height: 181rpx;
+  position: relative;
+  margin: 8rpx 0 0 8rpx;
+  /* background-color: red; */
+}
+
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 227rpx;
+  height: 181rpx;
+  z-index: 6;
+}
+
 .header {
-  width: 128rpx;
-  height: 128rpx;
-  box-sizing: border-box;
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -51%);
+  width: 146rpx;
+  height: 146rpx;
+  box-sizing: content-box;
   border: 5rpx solid #0673d7;
   border-radius: 50%;
-  margin: 0 30rpx 0 30rpx;
+  /* margin: 0 30rpx 0 30rpx; */
 }
 
 .userinfo-avatar {
-  width: 120rpx;
-  height: 120rpx;
+  width: 138rpx;
+  height: 138rpx;
   border-radius: 50%;
-  box-sizing: border-box;
+  box-sizing: content-box;
+  border: 4rpx solid #fff;
+}
+.header1 {
+  width: 146rpx;
+  height: 146rpx;
+  box-sizing: content-box;
+  border: 5rpx solid #0673d7;
+  border-radius: 50%;
+   margin: 0 30rpx 0 30rpx; 
+}
+
+.userinfo-avatar1 {
+  width: 138rpx;
+  height: 138rpx;
+  border-radius: 50%;
+  box-sizing: content-box;
   border: 4rpx solid #fff;
 }
 
@@ -65,11 +103,13 @@
 .gold-big {
   width: 43rpx;
   height: 41rpx;
-  margin-left: -10rpx;
+  margin-left: -6rpx;
 }
 .gold-count {
   font-size: 28rpx;
   color: #fff;
+  width: 120rpx;
+  text-align: center;
   font-weight: bold;
   margin-left: 10rpx;
   margin-right: 12rpx;

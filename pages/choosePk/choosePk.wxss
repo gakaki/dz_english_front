@@ -59,11 +59,13 @@
 .gold-big {
   width: 43rpx;
   height: 41rpx;
-  margin-left: -10rpx;
+  margin-left: -6rpx;
 }
 .gold-count {
   font-size: 28rpx;
   color: #fff;
+   width: 120rpx;
+  text-align: center;
   font-weight: bold;
   margin-left: 10rpx;
   margin-right: 12rpx;

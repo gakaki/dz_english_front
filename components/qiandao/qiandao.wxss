@@ -105,13 +105,13 @@
   
 }
 
-.a{
+.jiangli-1{
   width: 130rpx;
   height: 150rpx;
   transform: scale(0.80);
 }
 
-.b{
+.jiangli-2{
   width: 149rpx;
   height: 116rpx;
   transform: scale(0.85);
