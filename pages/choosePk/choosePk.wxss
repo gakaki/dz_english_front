@@ -323,10 +323,6 @@
   height: 50rpx;
 }
 
-<<<<<<< HEAD
-.star image, .level-star image {
-  margin: 5rpx 5rpx 5rpx 0;
-=======
 .item-text{
   color: #b07145;
   font-weight: bold;
@@ -338,7 +334,7 @@
 
 .star image,.level-star image{
   margin: 5rpx 5rpx 5rpx 0; 
->>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
+
 }
 
 .star image:first-of-type, .level-star image:first-of-type {

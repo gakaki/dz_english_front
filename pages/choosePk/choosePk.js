@@ -1,11 +1,8 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-<<<<<<< HEAD
-import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
-=======
 import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
->>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
+
 let time = null
 Page({
   data: {

@@ -1,11 +1,6 @@
 const io = require('./index.js');
-<<<<<<< HEAD
  //const srv = "https://h5t.ddz2018.com/";
  //const wss = "wss://h5t.ddz2018.com/english";
-=======
-// const srv = "https://h5t.ddz2018.com/";
-// const wss = "wss://h5t.ddz2018.com/english";
->>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
