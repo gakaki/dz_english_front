@@ -1,9 +1,11 @@
 .con {
-  padding-top: 28rpx;
+  /* padding-top: 28rpx; */
   width: 100vw;
   height: 100vh;
 }
-
+.sc-box {
+  margin-top: 28rpx;
+}
 .item {
   margin: 0 auto;
   margin-bottom: 20rpx;
