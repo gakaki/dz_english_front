@@ -1,7 +1,11 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
+<<<<<<< HEAD
 import { doFetch } from '../../utils/rest.js';
 import { getRankFrame, getPersonFrame } from '../../utils/util.js'
+=======
+import { doFetch, shareSuc } from '../../utils/rest.js';
+>>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
 Page({
   data: {
     tabAct: true,
@@ -116,7 +120,7 @@ Page({
       path: '/pages/index/index?rank=true',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/rank.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

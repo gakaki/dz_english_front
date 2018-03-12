@@ -1,7 +1,11 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
+<<<<<<< HEAD
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
+=======
+import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
+>>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
 let time = null
 Page({
   data: {
@@ -78,10 +82,10 @@ Page({
         return obj
       })
 
-      console.log(this.data.fromIndex, this.data.navBack,'asaf')
-      //是否从主页面跳转过来的
-      if (this.data.fromIndex) {
-        stage.length = rankInfo.rank + 1
+      console.log(this.data.fromIndex, 'asaf')
+      //是否到达最高等级
+      if (rankInfo.rank==15){
+        stage.length = rankInfo.rank
         this.setData({
           userInfo: res.data.userInfo,
           star: rankInfo.star,
@@ -89,8 +93,20 @@ Page({
           toView: rankInfo.rank - 3
         })
       }
-      else {
-        this.starAnimation(res,stage,rankInfo)
+      else{
+        //是否从主页面跳转过来的
+        if (this.data.fromIndex) {
+          stage.length = rankInfo.rank + 1
+          this.setData({
+            userInfo: res.data.userInfo,
+            star: rankInfo.star,
+            stage: stage,
+            toView: rankInfo.rank - 3
+          })
+        }
+        else {
+          this.starAnimation(res, stage, rankInfo)
+        }
       }
     })
   },
@@ -180,7 +196,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

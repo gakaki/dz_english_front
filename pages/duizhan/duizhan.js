@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, shareSuc } from '../../utils/rest.js';
 
 Page({
   data: {
@@ -228,7 +228,7 @@ Page({
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
-
+        shareSuc()
       },
       fail: function () {
         // 转发失败

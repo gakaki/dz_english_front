@@ -40,16 +40,16 @@ function keyboard( letterPos, english){
   }
 
   let posStrs = letterPos.map(v => {
-    return english[v-1];
+    return english[v];
   })
-  return Array.from(st).concat(posStrs).sort(()=>{return Math.random() - 0.5});
+  return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
 
 }
 
 function quanpinKeyboard(english) {
   let pos = [];
-  let idx = english.length + 1;
-  while(--idx > 0) {
+  let idx = english.length;
+  while(--idx > -1) {
     pos.push(idx);
   }
   console.log(english, pos, 'quanpinKeyboard_pos')

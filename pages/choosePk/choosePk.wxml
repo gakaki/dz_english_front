@@ -34,9 +34,12 @@
   <scroll-view scroll-y class="segment-box" scroll-into-view="rank{{toView}}" scroll-with-animation="true">
 
     <view id="rank{{index}}" wx:for="{{stage}}" wx:key="{{index}}" class="segment-list f-r-fs" data-rank="{{index+1}}" bindtap='match'>
-      <view class="lock flex" hidden='{{index<stage.length-1}}'>
+      <view class="lock flex" hidden='{{index<stage.length-1 || stage.length==15}}'>
         <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
 
+      </view>
+      <view class="kuang" wx:if="{{index>5}}">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/choosePK/fram_{{index+1}}.png"></image>
       </view>
       <view class="pai-bg  flex">
         <image class="pai" src="{{level[index]}}"></image>
@@ -51,25 +54,29 @@
           <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
           <text class="gold-num">{{item.jian}}</text>
         </view>
-        <view class="star" wx:if="{{ index+1 < stage.length-1}}">
+        <view class="star" wx:if="{{ index+1 < stage.length-1 || stage.length == 15 && index!=14}}">
           <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
-        <view class="star" wx:if="{{stage.length-1 == index+1}}">
+        <view class="star" wx:if="{{stage.length-1 == index+1 && stage.length != 15}}">
           <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
         </view>
         <view class="level-star" wx:if="{{stage.length-1 == index+1}}">
           <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot {{index==0? starAnimation : ''}}" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
         </view>
-        <view class="star" wx:if="{{stage.length-1 == index}}">
+        <view class="star" wx:if="{{stage.length-1 == index && index!=14}}">
           <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
         </view>
+        <view class="star" wx:if="{{stage.length==15 && index==14}}">
+          <image class="item-rgt-bot last-star" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+          <text class="item-text">{{star}}</text>
+        </view> 
       </view>
     </view>
 
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png"></image>
-    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png" hidden="{{stage.length==15}}"></image>
   </scroll-view>
 
 

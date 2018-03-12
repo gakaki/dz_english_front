@@ -1,6 +1,11 @@
 const io = require('./index.js');
+<<<<<<< HEAD
  //const srv = "https://h5t.ddz2018.com/";
  //const wss = "wss://h5t.ddz2018.com/english";
+=======
+// const srv = "https://h5t.ddz2018.com/";
+// const wss = "wss://h5t.ddz2018.com/english";
+>>>>>>> 736e1b6ee2ef0861f411ea6d5df8950ec06967cf
 const srv = "https://local.ddz2018.com/";
 const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
@@ -135,6 +140,12 @@ function shareTo() {
   }
 }
 
+function shareSuc() {
+  doFetch('english.getshareaward',{},res=>{
+    console.log(res.data.getItem,'分享成功')
+  })
+}
+
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
@@ -147,9 +158,18 @@ function wsSend(action, data) {
   socket.emit(action, data)
 }
 
+function wsClose(actions) {
+  if(Array.isArray(actions)) {
+    actions.forEach(v=>{
+      socket.removeAllListeners(v)
+    })
+  } else {
+    socket.removeAllListeners(actions)
+  }
+  
+}
 
 function wsInit() {
-  console.log(sid, 'sid')
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {
@@ -254,5 +274,7 @@ module.exports = {
   getUid,
   fixedNum,
   wsSend,
-  wsReceive
+  wsReceive,
+  wsClose,
+  shareSuc
 }
