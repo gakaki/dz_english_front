@@ -7,14 +7,11 @@ function loadEnglishWords(words) {
 
     let englishWords = [];
     englishWords = words.map((v) => {
-      // let obj = Word.Get(v.id);
-      let obj = Word.Get(1);
+      let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      // cloneObj.type = v.type;
-      cloneObj.type = 3;
+      cloneObj.type = v.type;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
-      console.log(cloneObj)
       return cloneObj
     })
     return englishWords;

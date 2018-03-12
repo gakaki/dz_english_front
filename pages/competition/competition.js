@@ -18,6 +18,7 @@ let answerSend;//当前题，答案是否已发给后端
 let isRight;//当前题是否答对了
 let rid;//房间id
 let round, totalScore; //round第几回合，从1开始 //本人总分
+let canClick = false; //9宫格是否可以点击
 
 Page({
   /**
@@ -111,13 +112,12 @@ Page({
   },
   roundInit(){
     answerSend = false;
-
+    canClick = false;
     if (round > this.data.englishWords.length) {
       return;
     }
     let idx = round - 1;
     question = this.data.englishWords[idx];
-    console.log(question)
     //清理上一局数据
     this.setData({
       title:null,
@@ -132,7 +132,6 @@ Page({
       bgIndex: changeArrAllValue(this.data.bgIndex, false),
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
-      bgIndex: [false, false, false, false, false, false, false, false, false],
       backClickCount:0,
       roundAnswer:{}
     })
@@ -295,10 +294,24 @@ Page({
     })
   },
   hideQuestionLetter(hideAll = false){
+    canClick = true;
     let letterPos = question.eliminate;
+    let randomPos = letterPos[0] == -1;//随机扣掉字母
+    if (randomPos) {
+      letterPos = []
+    }
     let hideLetters = rightAnswer.split('').map((v, idx) => {
       if (hideAll) {
         return true;
+      }
+      if (randomPos) {
+        let toHide = Math.random() > 0.5;
+        if (toHide) {
+          letterPos.push(idx)
+          question.eliminate = letterPos;
+        }
+        
+        return toHide;
       }
       else if (letterPos.indexOf(idx) > -1) {
         return true;
@@ -447,6 +460,7 @@ Page({
   },
 
   chooseLetter(e) {
+    if(!canClick) return;
     let obj = e.currentTarget.dataset;
     let letter = this.data.nineLetters[obj.index];
 
@@ -455,7 +469,7 @@ Page({
       return;//已经点过这个键了
     }
     bgIndex[obj.index] = true;
-
+    console.log(bgIndex, 'bgIndex')
     let letters = this.data.letters;
     console.log(letters,'letters')
     if (!letters.okCnt) {
@@ -507,7 +521,7 @@ Page({
 
     let roundAnswer = {};
     if (finished) {
-      bgIndex = bgIndex.map(v => true);
+      // bgIndex = bgIndex.map(v => true);
       roundAnswer[letters.join()] = isRight;
     }
 
