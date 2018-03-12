@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-.head-box {
+/* .head-box {
   background-color: #0068c8;
   width: 105rpx;
   height: 105rpx;
@@ -27,6 +27,61 @@
 }
 
 .head {
+  background-color: #335bb8;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3rpx solid #fff;
+} */
+
+.frame {
+  width: 152rpx;
+  height: 122rpx;
+  position: relative;
+   /* transform: scale(0.68, 0.68);  */
+  margin: 8rpx 0 0 8rpx;
+}
+
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+.header {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #0068c8;
+  width: 105rpx;
+  height: 105rpx;
+}
+
+.userinfo-avatar {
+  background-color: #335bb8;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3rpx solid #fff;
+}
+
+.header1 {
+  background-color: #0068c8;
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+
+.userinfo-avatar1 {
   background-color: #335bb8;
   width: 96rpx;
   height: 96rpx;
@@ -52,24 +107,27 @@
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.2);
   height: 38rpx;
-   width: 160rpx;
+  width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
 }
+
 .gold-big {
   width: 43rpx;
   height: 41rpx;
   margin-left: -6rpx;
 }
+
 .gold-count {
   font-size: 28rpx;
   color: #fff;
-   width: 120rpx;
+  width: 120rpx;
   text-align: center;
   font-weight: bold;
   margin-left: 10rpx;
   margin-right: 12rpx;
 }
+
 .wenhao {
   width: 44rpx;
   height: 44rpx;
@@ -107,16 +165,17 @@
   box-shadow: 0 3rpx 0 #f3e2c0;
   border-radius: 20rpx;
   z-index: 20;
-  overflow: hidden
+  overflow: hidden;
 }
+
 .lock {
   position: absolute;
   left: 0;
-  top:0;
-background-color: rgba(0,0,0,0.5);
-width: 690rpx;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 690rpx;
   height: 153rpx;
-  z-index: 3
+  z-index: 3;
 }
 
 .segment-list::before {
@@ -136,12 +195,14 @@ width: 690rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/awaitPK/pai-bg.png') 0 0 no-repeat;
   background-size: cover;
   z-index: 2;
-   margin-left: 30rpx;
+  margin-left: 30rpx;
 }
+
 .pai {
   width: 103rpx;
   height: 100rpx;
 }
+
 .lock-icon {
   width: 144rpx;
   height: 145rpx;
@@ -173,13 +234,15 @@ width: 690rpx;
   color: #b07145;
   font-weight: bold;
 }
+
 .item-rgt {
   position: absolute;
-  right: 0; 
+  right: 0;
   top: 0;
   height: 100%;
   margin-right: 20rpx;
 }
+
 .item-rgt-top {
   text-align: right;
   width: 112rpx;
@@ -187,40 +250,46 @@ width: 690rpx;
   border-radius: 25rpx;
   margin-top: 12rpx;
 }
+
 .gold-mid {
   width: 37rpx;
   height: 35rpx;
   margin-left: 10rpx;
   vertical-align: middle;
 }
+
 .gold-num {
   font-size: 28rpx;
   color: #b07145;
   font-weight: bold;
-  margin-left: 5rpx
+  margin-left: 5rpx;
 }
+
 .item-rgt-bot {
   width: 39rpx;
   height: 39rpx;
   margin-bottom: 20rpx;
   margin-left: 5rpx;
 }
-.point,.wenhao-icon {
+
+.point, .wenhao-icon {
   margin: 0 auto;
-   display: block;
+  display: block;
   margin-top: 20rpx;
 }
+
 .point {
   width: 39rpx;
   height: 41rpx;
   display: block;
 }
+
 .wenhao-icon {
   width: 82rpx;
   height: 121rpx;
 }
 
-.star{
+.star {
   height: 50rpx;
   align-self: flex-end;
   display: flex;
@@ -229,7 +298,7 @@ width: 690rpx;
   border-radius: 30rpx;
 }
 
-.level-star{
+.level-star {
   position: absolute;
   right: 0;
   bottom: 12rpx;
@@ -237,49 +306,53 @@ width: 690rpx;
   height: 50rpx;
 }
 
-.star image,.level-star image{
-  margin: 5rpx 5rpx 5rpx 0; 
+.star image, .level-star image {
+  margin: 5rpx 5rpx 5rpx 0;
 }
 
-.star image:first-of-type,.level-star image:first-of-type{
+.star image:first-of-type, .level-star image:first-of-type {
   margin-left: 10rpx;
 }
 
-.star image:last-of-type,.level-star image:last-of-type{
+.star image:last-of-type, .level-star image:last-of-type {
   margin-right: 10rpx;
 }
 
-.increase{
+.increase {
   opacity: 0;
-  animation: increase 1.5s ease-in-out .5s forwards;
+  animation: increase 1.5s ease-in-out 0.5s forwards;
 }
 
-decrease{
-  animation: decrease 1s ease-in-out .5s forwards;
+decrease {
+  animation: decrease 1s ease-in-out 0.5s forwards;
 }
 
-@keyframes increase{
-  0%{
+@keyframes increase {
+  0% {
     opacity: 0;
   }
-  50%{
+
+  50% {
     opacity: 1;
     transform: scale(1);
   }
-  75%{
+
+  75% {
     transform: scale(1.3);
   }
-  100%{
+
+  100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-@keyframes decrease{
-  0%{
+@keyframes decrease {
+  0% {
     opacity: 1;
   }
-  100%{
+
+  100% {
     opacity: 0;
   }
 }

@@ -1,18 +1,27 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
+import { getRankFrame, getPersonFrame } from '../../utils/util.js'
 Page({
   data: {
     tabAct: true,
     rankData: [],
-    preSeasonData: []
+    preSeasonData: [],
+    rankFrame: ''
   },
   onLoad() {
     doFetch('english.getfriendrankinglist', {}, (res) => {
       if (res.data.length > 0) {
         this.setData({
+          rankFrame: res.data.map(o => {
+            return getPersonFrame(o.rank)
+          })
+        })
+
+        this.setData({
           rankData: res.data.map(this.getSegment)
         })
+
       }
     })
   },
@@ -33,8 +42,14 @@ Page({
       doFetch('english.getfriendrankinglist', {}, (res) => {
         if (res.data.length > 0) {
           this.setData({
+            rankFrame: res.data.map(o => {
+              return getPersonFrame(o.rank)
+            })
+          })
+          this.setData({
             rankData: res.data.map(this.getSegment)
           })
+
         } else {
           this.setData({
             rankData: []
@@ -45,8 +60,14 @@ Page({
       doFetch('english.getworldrankinglist', { "season": 0 }, (res) => {
         if (res.data.length > 0) {
           this.setData({
+            rankFrame: res.data.map(o => {
+              return getPersonFrame(o.rank)
+            })
+          })
+          this.setData({
             rankData: res.data.map(this.getSegment)
           })
+
         } else {
           this.setData({
             rankData: []
@@ -60,9 +81,15 @@ Page({
       doFetch('english.getworldrankinglist', { "season": 1 }, (res) => {
         if (typeof (res.data) != 'undefined' && res.data.length > 0) {
           this.setData({
+            rankFrame: res.data.map(o => {
+              return getPersonFrame(o.rank)
+            })
+          })
+          this.setData({
             preSeasonData: res.data.map(this.getSegment),
             rankData: res.data.map(this.getSegment)
           })
+
         } else {
           wx.showToast({
             title: '暂无数据',
@@ -73,9 +100,13 @@ Page({
         }
       })
     } else {
+      rankFrame: res.data.map(o => {
+        return getPersonFrame(o.rank)
+      })
       this.setData({
         rankData: this.data.preSeasonData
       })
+     
     }
 
   },

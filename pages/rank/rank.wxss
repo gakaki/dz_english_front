@@ -136,17 +136,73 @@
   font-family: Microsoft YaHei;
 }
 
-.head-box {
+/* .head-box {
   z-index: 12;
   background-color: #f89200;
   width: 128rpx;
   height: 128rpx;
   border-radius: 50%;
-  margin: 0 43rpx 0 73rpx
+  margin: 0 43rpx 0 67rpx
 }
 
 .head {
   background-color: #335bb8;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 4rpx solid #fff;
+} */
+
+.frame {
+   width: 227rpx;
+  height: 181rpx; 
+  position: relative;
+  /* margin: 0 43rpx 0 67rpx; */
+  margin: 0 0rpx 0 22rpx;
+}
+
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+    width: 227rpx;
+  height: 181rpx;  
+  z-index: 6;
+  transform: scale(0.8, 0.8);
+}
+
+.header {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: content-box;
+  border: 5rpx solid #F89200;
+  border-radius: 50%;
+}
+
+.userinfo-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 4rpx solid #fff;
+}
+
+.header1 {
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: content-box;
+  border: 5rpx solid #F89200;
+  border-radius: 50%;
+  margin: 0 43rpx 0 76rpx;
+}
+
+.userinfo-avatar1 {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
@@ -157,13 +213,14 @@
 .info {
   color: #b07145;
   height: 120rpx;
-  width: 454rpx;
+  /* width: 454rpx; */
+  width: 424rpx;
   font-weight: bold;
 }
 
 .info-top, .info-bot {
   height: 60rpx;
-  width: 454rpx;
+  width: 424rpx;
 }
 
 .info-top {
@@ -180,13 +237,13 @@
   height: 35rpx;
   width: 27rpx;
   position: absolute;
-  left: 284rpx;
+  left: 254rpx;
   top: 9rpx;
 }
 
 .adress {
   position: absolute;
-  left: 316rpx;
+  left: 286rpx;
   top: 8rpx;
   font-size: 30rpx;
 }
@@ -248,6 +305,6 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #fff;
-  transform: translateY(20rpx); 
+  transform: translateY(20rpx);
   border-bottom: 2rpx solid #fff;
 }

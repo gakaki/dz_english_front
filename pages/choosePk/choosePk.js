@@ -1,9 +1,11 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
+import { care, getRankFrame } from '../../utils/util.js'
 let time = null
 Page({
   data: {
+    rankFrame: '',
     userInfo:{},
     stage: [],
     star: 0,
@@ -55,8 +57,9 @@ Page({
   },
   onShow() {
     doFetch('english.showpersonal', {}, (res) => {
-      console.log(res, 'season')
-
+      this.setData({
+        rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      })
       //获取用户当前赛季信息
       let season = res.data.userInfo.character.season
       let rankInfo

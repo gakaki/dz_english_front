@@ -16,10 +16,21 @@
       <image class="lt" src="https://gengxin.odao.com/update/h5/yingyu/rank/left-top.png"></image>
       <text class="one">{{index+1}}</text>
 
-      <view class="flex head-box">
+      <!-- <view class="flex head-box">
         <image class="head" src="{{item.avatarUrl}}">
         </image>
+      </view> -->
+      <view wx:if="{{rankFrame[index].length > 0}}" class="frame">
+        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}"></image>
+        <view class="header flex">
+          <image bindtap='toSelf' class="userinfo-avatar" src="{{item.avatarUrl}}"></image>
+        </view>
       </view>
+
+      <view wx:if="{{rankFrame[index].length == 0}}" class="header1 flex">
+        <image bindtap='toSelf' class="userinfo-avatar1" src="{{item.avatarUrl}}"></image>
+      </view>
+
       <view class="info f-c-sb">
         <view class='info-top f-r-fs'>
           <text class='nn'>{{item.nickName}}</text>
