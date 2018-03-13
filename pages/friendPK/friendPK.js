@@ -38,6 +38,7 @@ Page({
       })
     }
     else{
+      wsSend('joinroom', { rid: options.rid})
       this.getInfo(options.rid)
     } 
     console.log(this.data.rid,'rid')
