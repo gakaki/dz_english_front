@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc } from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -187,6 +187,7 @@ Page({
   },
 
   tagRoundEnd(stopClock = true) {
+    canClick = false;
     if (tm) {
       Timeline.stop(tm);
       tm = null;
@@ -213,6 +214,7 @@ Page({
     if (!answerSend) {
       //通知后端，一题完成
       console.log('通知后端，一题完成')
+      canClick = false;
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -220,6 +222,7 @@ Page({
         time: round,
         score: this.data.myScore,
         totalScore,
+        clockTime:this.data.clockTime,
         isRight: this.data.roundIsRight,
         answer: this.data.roundAnswer
       });
@@ -264,7 +267,6 @@ Page({
       round++;
       this.setData({ clockStart: false });
       tm = Timeline.add(1500, this.roundInit, this).start();
-      
     })
   },
 
@@ -324,7 +326,6 @@ Page({
     })
   },
   hideQuestionLetter(hideAll = false){
-    canClick = true;
     let letterPos = question.eliminate;
     let randomPos = letterPos[0] == -1;//随机扣掉字母
     if (randomPos) {
@@ -433,6 +434,7 @@ Page({
     }); 
   },
   showFront(v){  //点击翻牌
+    if (!canClick) return;
     console.log('showfront')
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
@@ -466,7 +468,7 @@ Page({
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
-          myScore = this.data.clockTime * 20 
+          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
           totalScore = totalScore + myScore;
           
         } 
@@ -537,7 +539,7 @@ Page({
         answer = 1;
         isRight = true;
         finished = true;
-        myScore = this.data.clockTime * 20;
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
       }
     }
@@ -549,7 +551,6 @@ Page({
 
     let roundAnswer = {};
     if (finished) {
-      // bgIndex = bgIndex.map(v => true);
       roundAnswer[letters.join()] = isRight;
     }
 
@@ -583,7 +584,7 @@ Page({
         selectAnswer[obj.id] = 1;
         isRight = true;
         answer = 1;
-        myScore = this.data.clockTime * 20;
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
         this.setData({
           myScore,
@@ -609,6 +610,7 @@ Page({
   },
   
   countClockTime(){
+    canClick = true;
     if (timer) {
       clearInterval(timer);
     }

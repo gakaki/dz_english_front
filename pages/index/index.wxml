@@ -1,8 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="qiandao">
-
-  </view>
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
     <view wx:if="{{rankFrame.length>0}}" class="frame">
@@ -15,25 +12,27 @@
       <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
     </view>
 
-    <view class="info f-c-sb">
+    <view class="info f-c-sa">
       <text class="nn">{{userInfo.nickName}}</text>
+      <view class="sec f-r-fs">
+        <view class="gold-box f-r-fs">
+          <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
+          <text class="gold-count">{{goldCount}}</text>
+        </view>
 
-      <view class="gold-box f-r-fs">
-        <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
-        <text class="gold-count">{{goldCount}}</text>
-      </view>
+        <view class="f-r-fs lv">
+          <text class="lvl">LV{{lvl}}</text>
+          <view class="lvl-box">
+            <text>{{exp}}/{{needExp}}</text>
+            <view class="percent-box">
 
-      <view class="f-r-fs lv">
-        <text class="lvl">lv{{lvl}}</text>
-        <view class="lvl-box">
-           <text>{{exp}}/{{needExp}}</text> 
-          <view class="percent-box">
+              <view style="width:{{wid}}%" class="percent-bg"></view>
+            </view>
 
-            <view style="width:{{wid}}%" class="percent-bg"></view>
           </view>
-
         </view>
       </view>
+
     </view>
     <view class="share-box">
       <image class='share' bindtap='toGetInfo' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>

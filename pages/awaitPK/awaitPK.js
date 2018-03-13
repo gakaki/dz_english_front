@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
 let Bmap = require('../../libs/bmap/bmap-wx.min.js')
@@ -76,8 +77,11 @@ Page({
         });
       },
       fail: function (res) {
-        console.log(res,'getLocationFail')
-        doFetch('english.updateposition', { position:' '}, (res) => {
+        console.log(res, 'getLocationFail')
+        let location = sheet.Constant.Get(3).value.split(',')
+        let index = Math.floor(Math.random()*location.length)
+        let choosePoa = location[index]
+        doFetch('english.updateposition', { position:choosePoa}, (res) => {
           console.log(res)
           that.setData({
             userInfo: res.data
