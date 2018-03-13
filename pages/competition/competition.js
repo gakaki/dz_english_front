@@ -435,8 +435,7 @@ Page({
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
-          myScore = calculateScore(this.data.clockTime, round, 'a')
-          console.log(this.data.userLeft,round, myScore)
+          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
           totalScore = totalScore + myScore;
           
         } 
@@ -507,7 +506,7 @@ Page({
         answer = 1;
         isRight = true;
         finished = true;
-        myScore = this.data.clockTime * 20;
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
       }
     }
@@ -553,7 +552,7 @@ Page({
         selectAnswer[obj.id] = 1;
         isRight = true;
         answer = 1;
-        myScore = this.data.clockTime * 20;
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
         this.setData({
           myScore,
