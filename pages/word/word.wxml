@@ -96,7 +96,7 @@
       <view class="confirm btn" bindtap='shop' style='margin-left:40rpx'>
         <text class="font">去商店</text>
       </view>
-      <view class="share btn" bindtap='shop'>
+      <view class="share btn">
         <text class="font">去分享</text>
         <button class="share-btn" open-type='share'></button>
       </view>
