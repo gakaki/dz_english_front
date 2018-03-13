@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
 Page({
   data: {
@@ -29,137 +29,74 @@ Page({
     })
   },
   toGetInfo() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(()=>{
       this.hi()
-    }
+    })
+
   },
   toSelf() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../self/self'
       })
-    }
+    })
   },
   toRank: function () {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../rank/rank'
       })
-    }
+    })
   },
   toBackpack() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../backpack/backpack'
       })
-    }
+    })
   },
   toAwaitPk() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
-        url: '../choosePk/choosePk?fromIndex=true',
+        url: '../choosePk/choosePk?fromIndex=true'
       })
-    }
+    })
   },
   toFriPk: function () {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../friendPK/friendPK'
       })
-    }
+    })
   },
   toZsd() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../word/word'
       })
-    }
+    })
   },
   toShop() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../shopping/shopping'
       })
-    }
+    })
   },
   toSet() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+    start(() => {
       this.hi()
       this.setData({
         showSet: true
       })
-    }
-
+    })
   },
 
   //带下划线的为组件抛上来的方法
@@ -200,37 +137,37 @@ Page({
       }
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
-      if(!this.data.shareIn){
-        doFetch('english.isfirstsign', {}, res => {
-          console.log(res)
-          this.setData({
-            landing: res.data.isFirst,
-            landingDay: res.data.day
-          })
-        })
-      }
+      // if(!this.data.shareIn){
+      //   doFetch('english.isfirstsign', {}, res => {
+      //     console.log(res)
+      //     this.setData({
+      //       landing: res.data.isFirst,
+      //       landingDay: res.data.day
+      //     })
+      //   })
+      // }
       
     })
 
     
-    /*start(()=> {
-      let v = app.globalData;
-      console.log(v)
-      this.setData({
-        lvl: v.userInfo.character.level || 0,
-        exp: v.userInfo.character.experience.exp || 0,
-        goldCount: v.userInfo.items['1'] || 0,
-        needExp: v.userInfo.character.experience.needExp || 0,
-      })
-      if (this.data.exp == 0) {
-        this.setData({
-          wid: 0
-        })
-      } else {
-        this.setData({
-          wid: Math.round(this.data.exp / this.data.needExp * 100)
-        })
-      }
+    firstStart(()=> {
+      // let v = app.globalData;
+      // console.log(v)
+      // this.setData({
+      //   lvl: v.userInfo.character.level || 0,
+      //   exp: v.userInfo.character.experience.exp || 0,
+      //   goldCount: v.userInfo.items['1'] || 0,
+      //   needExp: v.userInfo.character.experience.needExp || 0,
+      // })
+      // if (this.data.exp == 0) {
+      //   this.setData({
+      //     wid: 0
+      //   })
+      // } else {
+      //   this.setData({
+      //     wid: Math.round(this.data.exp / this.data.needExp * 100)
+      //   })
+      // }
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
@@ -242,7 +179,7 @@ Page({
           })
         })
       }
-    })*/
+    })
 
 
 
@@ -353,7 +290,7 @@ Page({
     }
   },
   onShow: function () {
-
+   
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;

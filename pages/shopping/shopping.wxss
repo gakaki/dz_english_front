@@ -32,8 +32,10 @@
 
 .top text{
   font-size: 30rpx;
-  -webkit-text-stroke: 1rpx #0070e8;
-  font-weight: 900;
+   font-family: 'Microsoft YaHei'; 
+      -webkit-text-stroke: 1rpx #0070e8;    
+   font-weight: bold; 
+  color: #fff;
 }
 
 .gold{
