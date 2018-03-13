@@ -414,9 +414,9 @@ Page({
   //单词拼写
   playFour() { 
     this.playtoQuestion('english')
-    .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
+    .add(0, this.hideAllLetters, this)//隐藏文字
     .add(1000, this.audioPlay, this)//1秒后，播放音频
-    .add(1000, this.hideAllLetters, this)//1秒后，擦去全部字母
+    .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
@@ -435,7 +435,6 @@ Page({
   },
   showFront(v){  //点击翻牌
     if (!canClick) return;
-    console.log('showfront')
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
