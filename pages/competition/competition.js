@@ -117,6 +117,7 @@ Page({
   mcAttached(target) {
     let anTm = Timeline.add(1500, this.startPlayMc2, this)
     .add(1600, ()=>{
+      console.log('animiation mc2 start')
       this.setData({
         startMc1: false,
         startMc2: false
