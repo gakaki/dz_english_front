@@ -1,29 +1,32 @@
-<view class="qiandao">
-  <view class="qiandao-bai">
-    <view class="shuju">
-      <view class="everyday" wx:for="{{reward}}" wx:key="{{index}}">
-        <view class="miaoshu">
-          <text class="miaoshu-wenzi">{{item.name}}</text>
+<view>
+  <view class="qiandao">
+    <view class="qiandao-bai">
+      <view class="shuju">
+        <view class="everyday" wx:for="{{reward}}" wx:key="{{index}}">
+          <view class="miaoshu">
+            <text class="miaoshu-wenzi">{{item.name}}</text>
+          </view>
+          <view class="jiangli">
+            <image class="jiangli-tu jiangli-2" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{item.icon}}"></image>
+          </view>
+          <image class="lingqu" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/lingqu.png" wx:if="{{tian==index+1 && !getReward}}" bindtap='getReward'></image>
+          <view calss="zhuangtai" wx:if="{{tian > index+1 || getReward && tian>=index+1}}">
+            <text class="yilingqu zhuangtai-zi">已领取</text>
+          </view>
+          <view calss="zhuangtai" wx:if="{{tian < index+1}}">
+            <text class="day zhuangtai-zi">{{item.day}}</text>
+          </view>
+          <image class="dagou" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/dagou.png" wx:if="{{tian > index+1 || getReward && tian>=index+1}}"></image>
+          <view class="shuliang" wx:if="{{tian <= index+1 && !getReward}}">
+            <text class="shuliang-zi">x{{item.num}}</text>
+          </view>
         </view>
-        <view class="jiangli">
-          <image class="jiangli-tu jiangli-2" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{item.icon}}"></image>
-        </view>
-        <image class="lingqu" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/lingqu.png" wx:if="{{tian==index+1 && !getReward}}" bindtap='getReward'></image>
-        <view calss="zhuangtai" wx:if="{{tian > index+1 || getReward && tian>=index+1}}">
-          <text class="yilingqu zhuangtai-zi">已领取</text>
-        </view>
-        <view calss="zhuangtai" wx:if="{{tian < index+1}}">
-          <text class="day zhuangtai-zi">{{item.day}}</text>
-        </view>
-        <image class="dagou" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/dagou.png" wx:if="{{tian > index+1 || getReward && tian>=index+1}}"></image>
-        <view class="shuliang" wx:if="{{tian <= index+1 && !getReward}}">
-          <text class="shuliang-zi">x{{item.num}}</text>
-        </view>
+        <image class="diwen" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/diwen.png"></image>
       </view>
-      <image class="diwen" src="https://gengxin.odao.com/update/h5/yingyu/qiandao/diwen.png"></image>
+    </view>
+    <view class="biaoti">
+      <text class="biaoti-wenzi">每日签到</text>
     </view>
   </view>
-  <view class="biaoti">
-    <text class="biaoti-wenzi">每日签到</text>
-  </view>
+  <view class="mask" bindtap='_cancelEvent'></view>
 </view>

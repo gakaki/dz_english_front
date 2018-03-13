@@ -89,6 +89,11 @@
   font-family: 'Microsoft YaHei';
   align-self: flex-start;
   overflow: hidden;
+  font-weight: bold
+}
+.lv {
+  margin-left: 40rpx;
+  align-self: center;
 }
  .nn {
   width: 200rpx;
@@ -97,7 +102,9 @@
   text-overflow: ellipsis; 
 } 
 
-
+.sec {
+  width: 100%;
+}
 .gold-box {
   align-self: flex-start;
   background-color: #09579f;
@@ -105,12 +112,14 @@
   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
-  margin-left: 10rpx;
+  position: relative;
 }
 .gold-big {
+  position: absolute;
+  top: 0;
+  left: -6rpx;
   width: 43rpx;
   height: 41rpx;
-  margin-left: -6rpx;
 }
 .gold-count {
   font-size: 28rpx;
@@ -118,7 +127,7 @@
   width: 120rpx;
   text-align: center;
   font-weight: bold;
-  margin-left: 10rpx;
+  margin-left: 36rpx;
   margin-right: 12rpx;
 }
 
@@ -170,10 +179,11 @@
 
 .share-box {
   align-self: flex-start;
-  position: relative;
+  position: absolute;
   width: 44rpx;
+  top: 0;
   height: 44rpx;
-  margin-right: 42rpx;
+  right: 42rpx;
 }
 
 .share {

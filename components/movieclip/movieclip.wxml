@@ -1,0 +1,2 @@
+<!--components/movieclip/movieclip.wxml-->
+<image src='{{res ? (resRoot + res + ".png") : ""}}' style='width:{{resWidth}}rpx;height:{{resHeight}}rpx' ></image>

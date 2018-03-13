@@ -6,10 +6,10 @@
   overflow: hidden;
 }
 .text-of {
-  width: 184rpx;
+  width: 168rpx;
  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; 
+   text-overflow: ellipsis;  
 }
 .tab-bg {
   width: 750rpx;
@@ -86,8 +86,8 @@
 }
 
 .hxb {
-  position: fixed;
-  top: 1100rpx;
+  position: absolute;
+  top: 47rpx;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9;
@@ -97,11 +97,11 @@
 
 .rank-box {
   z-index: 10;
-  max-height: 980rpx;
   width: 100%;
   position: fixed;
   left: 0;
-  top: 130rpx;
+  top: 128rpx;
+  bottom: 83rpx;
   overflow: hidden;
 }
 
@@ -188,6 +188,7 @@
   box-sizing: content-box;
   border: 5rpx solid #F89200;
   border-radius: 50%;
+  overflow: hidden
 }
 
 .userinfo-avatar {
@@ -205,6 +206,7 @@
   border: 5rpx solid #F89200;
   border-radius: 50%;
   margin: 0 43rpx 0 76rpx;
+  overflow: hidden
 }
 
 .userinfo-avatar1 {

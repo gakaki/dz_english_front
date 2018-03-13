@@ -1,6 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
+let time = null
 
 Component({
   properties:{
@@ -38,6 +39,10 @@ Component({
     })
   },
 
+  detached() {
+    clearTimeout(time)
+  },
+
   methods: {
     getReward() {
       doFetch('english.signin', {}, res => {
@@ -46,10 +51,18 @@ Component({
           this.setData({
             getReward:true
           })
+          time = setTimeout(() => {
+            console.log(111)
+            this.triggerEvent("hide")
+          }, 1000)
         }
       })
+    },
+
+    _cancelEvent() {
+      //触发取消回调
       this.triggerEvent("hide")
-    }
+    },
   }
 
 })

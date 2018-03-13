@@ -1,9 +1,9 @@
 <view id="rank">
   <view class=" tab-bg">
     <view class='flex tab'>
-      <text class="tab-one {{tabAct?'tab-act':''}}" bindtap='clickTab'>好友排行</text>
+      <text class="tab-one {{tabAct?'tab-act':''}}" bindtap='clickTab' data-id='1'>好友排行</text>
       <text class="shuxian"></text>
-      <text class="tab-two {{tabAct?'':'tab-act'}}" bindtap='clickTab'>世界排行</text>
+      <text class="tab-two {{tabAct?'':'tab-act'}}" bindtap='clickTab' data-id='2'>世界排行</text>
       <image bindtap='toDes' class="des" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png"></image>
     </view>
     <view class="flex">
@@ -47,12 +47,10 @@
       </view>
     </view>
   </scroll-view>
-  <view class="flex">
-    <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
-  </view>
 
   <view class="bot-bg flex">
     <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>上赛季排行榜</text>
+    <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
 </view>

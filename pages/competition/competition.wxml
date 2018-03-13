@@ -4,7 +4,7 @@
     <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{word ? "show" : "none"}}'>
       <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
-      <view class='zhongwen' wx:else=''><text>{{word.speech}}.</text>{{word.China}}</view>
+      <view class='zhongwen' wx:else=''><text>{{word.speech}} </text>{{word.China}}</view>
       <view class='yinbiao'>
         <text>{{word.symbol}}</text>
         <audio class='loudspeaker {{title ? "none" :"show"}}' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
@@ -15,9 +15,11 @@
             <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
             <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
           </view>
-          <text class='letter letters' wx:if='{{answer === 2}}'>{{word.english}}</text>
+          <text class='letter {{answer === 2?"letters":""}}' wx:if='{{answer === 2}}'>{{word.english}}</text>
         </view>
     </view> 
+    <movieclip wx:if='startMc1' class='start-mc' mcAttached='{{mcAttached}}' resWidth='{{starMcWd1}}' resHeight='{{starMcHt1}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
+    <movieclip wx:if='startMc2' class='start-mc' autoPlayCount='{{"1"}}' resWidth='{{starMcWd2}}' resHeight='{{starMcHt2}}' resPrefix='{{startMcResPrefix2}}' resStartIdx='{{startMcResStartIdx2}}' resEndIdx="{{startMcResEndIdx2}}" ></movieclip>
   </view>
 
   <view class='multi-wrap' slot='select'>

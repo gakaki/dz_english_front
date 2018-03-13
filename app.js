@@ -13,10 +13,10 @@ App({
         wx.hideLoading()
       }
     })
-    start((res) => {
-      // console.log('login')
+    // start((res) => {
+    //   // console.log('login')
      
-    })
+    // })
     
   },
   globalData: {
@@ -31,6 +31,18 @@ App({
     friendRid: '',
     toRank: false,
     toSelf: false,
-    pkResult:{}        //{resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
+    pkResult:{},        //{resultLeft/resultRight: {info:player, score:number, continuousRight:number, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
+  },
+  globalLastTapTime: 0,
+  preventMoreTap: function (e) {
+    var globaTime = this.globalLastTapTime;
+    var time = e.timeStamp;
+    if (Math.abs(time - globaTime) < 1000 && globaTime != 0) {
+      this.globalLastTapTime = time;
+      return true;
+    } else {
+      this.globalLastTapTime = time;
+      return false;
+    }
   }
 })

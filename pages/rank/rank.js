@@ -37,21 +37,22 @@ Page({
   },
   getSegment: function (item) {
     item.rank = sheet.Stage.Get(item.rank).stage
-    if (item.location == ' ' || typeof (item.location) == 'undefined') {
-      item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 5)] 
+    if (item.hasOwnProperty('location') == false || item.location == ' ') {
+      item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
     return item
   },
-  toDes() {
+  toDes(e) {
+    if (app.preventMoreTap(e)) { return; }
     wx.navigateTo({
       url: '../rankDes/rankDes'
     })
   },
-  clickTab() {
-    this.setData({
-      tabAct: !this.data.tabAct
-    })
-    if (this.data.tabAct) {
+  clickTab(e) {
+    if (e.target.dataset.id == 1) {
+      this.setData({
+        tabAct: true
+      })
       doFetch('english.getfriendrankinglist', {}, (res) => {
         if (res.data.length > 0) {
           this.setData({
@@ -64,12 +65,21 @@ Page({
           })
 
         } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
           this.setData({
             rankData: []
           })
         }
       })
     } else {
+      this.setData({
+        tabAct: false
+      })
       doFetch('english.getworldrankinglist', { "season": 0 }, (res) => {
         if (res.data.length > 0) {
           this.setData({

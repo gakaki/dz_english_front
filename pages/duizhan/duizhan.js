@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid, wsClose  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc  } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js'
 
 Page({
@@ -106,17 +106,21 @@ Page({
     let userList = res.data.userList
     this.data.rid = res.data.rid
     console.log(this.data.rid, res.data, 'toComRid')
-    for (let i = 0; i < userList.length; i++) {
-      if (userList[i].info.uid == getUid()) {
-        this.setData({
-          isSelf: userList[i],
-        })
-      }
-      else {
-        this.setData({
-          notSelf: userList[i],
-        })
-      }
+    if (userList[0].info.uid == getUid()) {
+      this.setData({
+        isSelf: userList[0],
+        notSelf: userList[1],
+        frameSelf: getRankFrame(userList[0].info.character.season),
+        frameOther: getRankFrame(userList[1].info.character.season)
+      })
+    }
+    else {
+      this.setData({
+        isSelf: userList[1],
+        notSelf: userList[0],
+        frameSelf: getRankFrame(userList[1].info.character.season),
+        frameOther: getRankFrame(userList[0].info.character.season)
+      })
     }
   },
 
@@ -215,11 +219,7 @@ Page({
         console.log('toCompetion', this.data.rid, 1111)
       }, 3000)
     }
-    //显示段位框
-    this.setData({
-      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
-      frameOther: getRankFrame(this.data.notSelf.info.character.season)
-    })
+    
   },
   onHide() {
     clearInterval(time);

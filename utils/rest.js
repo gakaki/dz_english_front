@@ -1,8 +1,16 @@
 const io = require('./index.js');
+<<<<<<< HEAD
  const srv = "https://h5t.ddz2018.com/";
  const wss = "wss://h5t.ddz2018.com/english";
 // const srv = "https://local.ddz2018.com/";
 // const wss = "wss://local.ddz2018.com/english";
+=======
+
+//  const srv = "https://h5t.ddz2018.com/";
+//  const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com/english";
+>>>>>>> 9eb2a41711df9d4b95474fa6f37da283fea8a98a
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -22,7 +30,6 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
-
   }
   if (!uid) {
     uid = wx.getStorageSync('uid');
@@ -88,7 +95,6 @@ function userLogin(suc, err) {
           app.globalData.logined = true
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-            //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
             shareTo()
             
           })
@@ -145,7 +151,7 @@ function shareTo() {
 
 function shareSuc() {
   doFetch('english.getshareaward',{},res=>{
-    console.log(res.data.getItem,'分享成功')
+    console.log(res.data,'分享成功')
   })
 }
 
@@ -253,22 +259,81 @@ class LsnNode {
 //启动（会默认走一遍登录流程）
 const start = suc => {
 
-  wx.checkSession({
-    success: () => {
-      isAuth = true;
-      userLogin(suc, showErr);
-    },
-    fail: res => {
-      wx.login({
-        success: res => {
-          isAuth = false;
-          sdkAuth(res.code, suc)
-        }
-      })
-    }
-  })
-}
+  // wx.checkSession({
+  //   success: () => {
+  //     isAuth = true;
+  //     userLogin(suc, showErr);
+  //   },
+  //   fail: res => {
+  //     wx.login({
+  //       success: res => {
+  //         isAuth = false;
+  //         sdkAuth(res.code, suc)
+  //       }
+  //     })
+  //   }
+  // })
 
+
+
+
+   app = getApp()
+
+  if (app.globalData.hasUserInfo) {
+        suc();
+    } else {
+      // wx.getSetting({
+      //   success: res => {
+      //     if (res.authSetting) {
+      //       if (!res.authSetting.scope.userInfo) {
+
+      //       }
+            
+      //     }
+      //   }
+      // })
+        wx.openSetting({
+            success: res => {
+                wx.checkSession({
+                    success: () => {
+                        isAuth = true;
+                        userLogin(suc, showErr);
+                    },
+                    fail: res => {
+                        wx.login({
+                            success: res => {
+                                isAuth = false;
+                                sdkAuth(res.code, suc)
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+}
+const firstStart = suc => {
+  app = getApp()
+
+  if (app.globalData.hasUserInfo) {
+    suc();
+  } else {
+        wx.checkSession({
+          success: () => {
+            isAuth = true;
+            userLogin(suc, showErr);
+          },
+          fail: res => {
+            wx.login({
+              success: res => {
+                isAuth = false;
+                sdkAuth(res.code, suc)
+              }
+            })
+          }
+        })
+  }
+}
 
 module.exports = {
   start,
@@ -279,5 +344,6 @@ module.exports = {
   wsSend,
   wsReceive,
   wsClose,
-  shareSuc
+  shareSuc,
+  firstStart
 }

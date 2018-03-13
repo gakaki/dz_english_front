@@ -173,7 +173,9 @@ Page({
       })
       wsReceive('needGold', res => {
         console.log(res)
-        this.data.canMatch = false
+        this.setData({
+          canMatch:false
+        })
         wx.showToast({
           title: '金币不足',
           icon: 'none',

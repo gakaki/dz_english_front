@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
 Page({
   data: {
@@ -28,138 +28,85 @@ Page({
       hasUserInfo: true
     })
   },
-  toGetInfo() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toGetInfo(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(()=>{
       this.hi()
-    }
+    })
+
   },
-  toSelf() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toSelf(e) {
+    console.log(app)
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../self/self'
       })
-    }
+    })
   },
-  toRank: function () {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toRank: function (e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../rank/rank'
       })
-    }
+    })
   },
-  toBackpack() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toBackpack(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../backpack/backpack'
       })
-    }
+    })
   },
-  toAwaitPk() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toAwaitPk(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
-        url: '../choosePk/choosePk?fromIndex=true',
+        url: '../choosePk/choosePk?fromIndex=true'
       })
-    }
+    })
   },
-  toFriPk: function () {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toFriPk: function (e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../friendPK/friendPK'
       })
-    }
+    })
   },
-  toZsd() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toZsd(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../word/word'
       })
-    }
+    })
   },
-  toShop() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toShop(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       wx.navigateTo({
         url: '../shopping/shopping'
       })
-    }
+    })
   },
-  toSet() {
-    if (!app.globalData.hasUserInfo) {
-      wx.openSetting({
-        success: (res) => {
-          start((res) => {
-          })
-        }
-      })
-    } else {
+  toSet(e) {
+    if (app.preventMoreTap(e)) { return; }
+    start(() => {
       this.hi()
       this.setData({
         showSet: true
       })
-    }
-
+    })
   },
 
   //带下划线的为组件抛上来的方法
@@ -200,6 +147,39 @@ Page({
       }
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
+      // if(!this.data.shareIn){
+      //   doFetch('english.isfirstsign', {}, res => {
+      //     console.log(res)
+      //     this.setData({
+      //       landing: res.data.isFirst,
+      //       landingDay: res.data.day
+      //     })
+      //   })
+      // }
+      
+    })
+
+    
+    firstStart(()=> {
+      // let v = app.globalData;
+      // console.log(v)
+      // this.setData({
+      //   lvl: v.userInfo.character.level || 0,
+      //   exp: v.userInfo.character.experience.exp || 0,
+      //   goldCount: v.userInfo.items['1'] || 0,
+      //   needExp: v.userInfo.character.experience.needExp || 0,
+      // })
+      // if (this.data.exp == 0) {
+      //   this.setData({
+      //     wid: 0
+      //   })
+      // } else {
+      //   this.setData({
+      //     wid: Math.round(this.data.exp / this.data.needExp * 100)
+      //   })
+      // }
+
+      //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
         doFetch('english.isfirstsign', {}, res => {
           console.log(res)
@@ -209,34 +189,9 @@ Page({
           })
         })
       }
-      
     })
 
-    // let aa = {bb:'bb'};
 
-    // Object.defineProperty(aa, 'cc', {
-    //   get:()=> {
-    //     return 5;
-    //   },
-    //   set:(v) => {
-    //     console.log('call old set of cc')
-    //     this.value =v;
-    //   },
-    //   configurable:true
-    // })
-
-    // care(aa, 'bb', v=> {
-    //   console.log('bb changed,now is ',v)
-    // });
-
-    // care(aa, 'cc', v => {
-    //   console.log('cc changed now is', v)
-    // })
-
-    // setTimeout(()=> {
-    //   // aa.bb = 'ccccc'
-    //   aa.cc = '222222'
-    // }, 1000)
 
 
     if (app.globalData.userInfo) {
@@ -331,19 +286,6 @@ Page({
       hasUserInfo: true
     })
   },
-  auth() {
-
-    wx.openSetting({
-      success: (res) => {
-        start((res) => {
-          this.hi()
-        })
-      },
-      fail: res => {
-        console.log('fail', res)
-      }
-    })
-  },
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str4,
@@ -358,7 +300,7 @@ Page({
     }
   },
   onShow: function () {
-
+   
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;

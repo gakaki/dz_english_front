@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive , getUid ,wsClose} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -64,12 +64,12 @@ Page({
       if (res.data.userList.length==1){
         // 显示段位框
         this.setData({
-          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
         })
       }
       else if (res.data.userList.length == 2){
         this.setData({
-          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
           frameOther: getRankFrame(res.data.userList[1].info.character.season),
         })
       }
