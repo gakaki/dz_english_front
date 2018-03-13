@@ -28,13 +28,16 @@ Page({
       hasUserInfo: true
     })
   },
-  toGetInfo() {
+  toGetInfo(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(()=>{
       this.hi()
     })
 
   },
-  toSelf() {
+  toSelf(e) {
+    console.log(app)
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -42,7 +45,8 @@ Page({
       })
     })
   },
-  toRank: function () {
+  toRank: function (e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -50,7 +54,8 @@ Page({
       })
     })
   },
-  toBackpack() {
+  toBackpack(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -58,7 +63,8 @@ Page({
       })
     })
   },
-  toAwaitPk() {
+  toAwaitPk(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -66,7 +72,8 @@ Page({
       })
     })
   },
-  toFriPk: function () {
+  toFriPk: function (e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -74,7 +81,8 @@ Page({
       })
     })
   },
-  toZsd() {
+  toZsd(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -82,7 +90,8 @@ Page({
       })
     })
   },
-  toShop() {
+  toShop(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       wx.navigateTo({
@@ -90,7 +99,8 @@ Page({
       })
     })
   },
-  toSet() {
+  toSet(e) {
+    if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
       this.setData({

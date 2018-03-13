@@ -62,17 +62,33 @@ Page({
       console.log(res.data)
       let tempArr = []
       let data = res.data
+      let arrr = []
       for (let key in data) {
         let obj = {}
         obj[key] = data[key]
         tempArr.push(obj)
+        let k = parseInt(key)
+
+         arrr = this.data.backData.map(o=>{
+          if(o.cfg.id == k) {
+            o.cfg.num = data[key] + o.cfg.num
+          }
+          return o
+        })
+
+       
       }
+      console.log(arrr)
+      this.setData({
+        backData: arrr
+      })
+
       console.log(tempArr)
       let aa = tempArr.map(o => {
         let iInfo
         for (let k in o) {
           iInfo = sheet.Item.Get(k)
-          iInfo.cfg['count'] = o[k]
+          iInfo.cfg['count'] = o[k]///need copy
         } 
         console.log(iInfo)
         return iInfo
@@ -81,11 +97,10 @@ Page({
         awardShow: true,
         awardData: aa
       })
-      doFetch('english.showpersonal', {}, (res) => {
-        app.globalData.personalInfo = res.data
-        this.init()
-      })
-
+      // doFetch('english.showpersonal', {}, (res) => {
+      //   app.globalData.personalInfo = res.data
+      //   this.init()
+      // })
 
     })
   },

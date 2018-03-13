@@ -156,11 +156,10 @@ function calculateScore(countTime, round, type, addition){
       nowPlus = addition[v].plus
     }
   }
-  
   if (round == 5) {
-    nowScore = countTime * 20 * 2 * (1 + nowPlus);
+    nowScore = parseInt(countTime * 20 * 2 * (100 + nowPlus)/100);
   } else {
-    nowScore = countTime * 20 * (1 + nowPlus);
+    nowScore = parseInt(countTime * 20 * (100 + nowPlus)/100);
   }
   return nowScore 
 }
