@@ -163,7 +163,8 @@ Page({
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
-      roundAnswer:{}
+      roundAnswer:{},
+      clockTime: 10
     })
 
     //开始对应玩法
@@ -214,6 +215,7 @@ Page({
       //通知后端，一题完成
       console.log('通知后端，一题完成')
       canClick = false;
+      console.log(this.data.word.id,'==================>wid')
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -471,7 +473,8 @@ Page({
           totalScore = totalScore + myScore;
         } 
         else {
-          answer = 2
+          answer = 2;
+          isRight = true;
         }
 
         let roundAnswer = {}
@@ -544,6 +547,7 @@ Page({
     else {
       //回答出错
       answer = 2;
+      isRight = false;
       finished = true;
     }
 
@@ -613,7 +617,6 @@ Page({
       clearInterval(timer);
     }
     this.setData({
-      clockTime:10,
       clockStart: true
     });
 

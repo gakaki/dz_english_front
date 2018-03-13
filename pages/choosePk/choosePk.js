@@ -162,7 +162,7 @@ Page({
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
-    
+    if (app.preventMoreTap(res)) { return; }
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
@@ -189,10 +189,18 @@ Page({
       }
     }
   },
+  
   toDes() {
     wx.navigateTo({
       url: '../rankDes/rankDes',
     })
+  },
+  toSelf(e) {
+    if (app.preventMoreTap(e)) { return; }
+    wx.navigateTo({
+      url: '../self/self'
+    })
+    
   },
   onShareAppMessage: function (res) {
     return {
