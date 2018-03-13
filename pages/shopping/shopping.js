@@ -87,6 +87,7 @@ Page({
       payCount:1,
       good: this.data.point+1
     }, (r) => {
+      this.hide()
       wx.requestPayment({
         timeStamp: r.data.payload.timeStamp,
         nonceStr: r.data.payload.nonceStr,
@@ -95,24 +96,22 @@ Page({
         paySign: r.data.payload.paySign,
         success(r) {
           app.globalData.personalInfo.userInfo.items = r.data
-          wsReceive('getItem', r => {
-
-            wx.showToast({
-              title: '购买成功',
-              icon: 'success',
-              duration: 2000,
-              mask: true
-            })
+          
+          wx.showToast({
+            title: '购买成功',
+            icon: 'success',
+            duration: 2000,
+            mask: true
           })
-          this.hide()
+          wsReceive('getItem', r => {
+           
+          })
+          
         },
         fail(res) {
           wx.showToast({
             title: '支付失败',
             icon: 'none'
-          })
-          _this.setData({
-            isSending: false,
           })
         }
       })
