@@ -4,10 +4,23 @@ import { doFetch, shareSuc } from '../../utils/rest.js';
 Page({
   data: {
     stage: [],
-    awardIcon: []
+    awardIcon: [
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-copper.png', 'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-silver.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-silver.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-silver.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-silver.png', 'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-gold.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-gold.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-gold.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-gold.png',
+      'https://gengxin.odao.com/update/h5/yingyu/rankDes/box-gold.png']
   },
   onLoad() {
-  
+
     let stage;
     stage = sheet.stages.map(o => {
       // let obj = {}
@@ -19,12 +32,9 @@ Page({
     let awardItem = sheet.stages.map(o => {
       return new sheet.Stage(o).award['k']
     })
-    let awardIcon = awardItem.map(o => {
-      return sheet.Item.Get(o).icon
-    })
+
     this.setData({
-      stage: stage,
-      awardIcon: awardIcon
+      stage: stage
     })
   },
   onShareAppMessage: function (res) {

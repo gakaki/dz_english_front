@@ -89,6 +89,11 @@
   font-family: 'Microsoft YaHei';
   align-self: flex-start;
   overflow: hidden;
+  font-weight: bold
+}
+.lv {
+  margin-left: 40rpx;
+  align-self: center;
 }
  .nn {
   width: 200rpx;
@@ -97,7 +102,9 @@
   text-overflow: ellipsis; 
 } 
 
-
+.sec {
+  width: 100%;
+}
 .gold-box {
   align-self: flex-start;
   background-color: #09579f;
@@ -105,7 +112,6 @@
   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
-  margin-left: 10rpx;
   position: relative;
 }
 .gold-big {
@@ -173,10 +179,11 @@
 
 .share-box {
   align-self: flex-start;
-  position: relative;
+  position: absolute;
   width: 44rpx;
+  top: 0;
   height: 44rpx;
-  margin-right: 42rpx;
+  right: 42rpx;
 }
 
 .share {
