@@ -37,11 +37,9 @@ Page({
   },
   getSegment: function (item) {
     item.rank = sheet.Stage.Get(item.rank).stage
-    console.log(item.hasOwnProperty('location'))
     if (item.hasOwnProperty('location') == false || item.location == ' ') {
       item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
-    console.log(item.location)
     return item
   },
   toDes() {
