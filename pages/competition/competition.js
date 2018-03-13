@@ -189,6 +189,7 @@ Page({
         wid: this.data.word.id,
         type: this.data.word.type,
         time: round,
+        round: round,
         score: this.data.myScore,
         totalScore,
         clockTime:this.data.clockTime,
