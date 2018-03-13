@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-/* .head-box {
+ .head-box {
   background-color: #0068c8;
   width: 105rpx;
   height: 105rpx;
@@ -33,13 +33,13 @@
   border-radius: 50%;
   box-sizing: border-box;
   border: 3rpx solid #fff;
-} */
+} 
 
 .frame {
   width: 152rpx;
   height: 122rpx;
   position: relative;
-   /* transform: scale(0.68, 0.68);  */
+  transform: scale(0.68, 0.68);
   margin: 8rpx 0 0 8rpx;
 }
 
@@ -82,7 +82,6 @@
 }
 
 .userinfo-avatar1 {
-  background-color: #335bb8;
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;
@@ -109,6 +108,10 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #fff;
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 }
 
 .gold-box {
@@ -118,12 +121,15 @@
   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
+  position: relative;
 }
 
 .gold-big {
+  position: absolute;
+  left: -6rpx;
+  top: 0;
   width: 43rpx;
   height: 41rpx;
-  margin-left: -6rpx;
 }
 
 .gold-count {
@@ -132,7 +138,7 @@
   width: 120rpx;
   text-align: center;
   font-weight: bold;
-  margin-left: 10rpx;
+  margin-left: 36rpx;
   margin-right: 12rpx;
 }
 

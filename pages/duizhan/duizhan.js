@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose  } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js'
 
 Page({
@@ -217,7 +217,8 @@ Page({
     }
     //显示段位框
     this.setData({
-      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+      frameOther: getRankFrame(this.data.notSelf.info.character.season)
     })
   },
   onHide() {

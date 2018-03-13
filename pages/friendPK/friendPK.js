@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive , getUid } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive , getUid ,wsClose} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -38,6 +38,7 @@ Page({
       })
     }
     else{
+      wsSend('joinroom', { rid: options.rid})
       this.getInfo(options.rid)
     } 
     console.log(this.data.rid,'rid')
@@ -58,6 +59,18 @@ Page({
       if (res.data.userList[0].info.uid == getUid()) {
         this.setData({
           isOwner: true
+        })
+      }
+      if (res.data.userList.length==1){
+        // 显示段位框
+        this.setData({
+          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+        })
+      }
+      else if (res.data.userList.length == 2){
+        this.setData({
+          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+          frameOther: getRankFrame(res.data.userList[1].info.character.season),
         })
       }
       this.setData({
@@ -95,10 +108,7 @@ Page({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })
-      // 显示段位框
-    this.setData({
-      frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
-    })
+     
   },
 
   /**

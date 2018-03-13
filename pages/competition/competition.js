@@ -90,7 +90,7 @@ Page({
           userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
-        console.log(res.data.roomInfo.wordList,'userLeft')
+        
 
         let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
         //更新数据 
@@ -212,6 +212,7 @@ Page({
 
     if (!answerSend) {
       //通知后端，一题完成
+      console.log('通知后端，一题完成')
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -252,7 +253,6 @@ Page({
           resultRight = u1;
         }
 
-        console.log('seettlement', ulist)
         //resultLeft/resultRight: {info:player, scrore:number, continuousRight:number, playerAnswer:[{letterOrChoice:true/false}]}
         //展示对局答案信息，
         this.setData({otherScore: resultRight.score||0, otherAnswer: resultRight.playerAnswer||{}});
@@ -363,7 +363,7 @@ Page({
   }, 
   showChineseOptions(){
     options = getChineneOptions(question);
-    console.log('options', options)
+    
     this.setData({options})
   },
   showEnglishOptions(){
@@ -498,9 +498,9 @@ Page({
       return;//已经点过这个键了
     }
     bgIndex[obj.index] = true;
-    console.log(bgIndex, 'bgIndex')
+    
     let letters = this.data.letters;
-    console.log(letters,'letters')
+    
     if (!letters.okCnt) {
       letters.okCnt = 0;
     }
@@ -621,10 +621,8 @@ Page({
       let clockTime = this.data.clockTime - 1;
       if (clockTime <=0) {
         //倒计时结束 
-        if(this.timer) {
-          clearInterval(timer);
-          this.setData({ clockStart:false });
-        }
+        clearInterval(timer);
+        this.setData({ clockStart:false });
       }
       this.setData({ clockTime});
     }, 1000);

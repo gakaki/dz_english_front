@@ -15,7 +15,7 @@ Page({
     sentenceCn: '',
     comment: '',
     rankFrame: '',
-    aa: 0
+    newWordsPercent: 0
   },
   onLoad: function () {
 
@@ -54,9 +54,13 @@ Page({
         tempSl = parseInt((res.data.userInfo.character.wins / res.data.userInfo.character.total) * 100)
       }
       let idx = res.data.userInfo.character.cumulativeDays
+      let wCount = sheet.landingessays.map(o=>{
+        return o
+      })
+       idx = idx % wCount.length
       this.setData({
         info: res.data,
-        aa: (res.data.newWord.totalWordCount != 0) ? (res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount) : 0,
+        newWordsPercent: (res.data.newWord.totalWordCount != 0) ? (res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount) : 0,
         sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
         sentenceEn: sheet.Landingessay.Get(idx + 1).English,
         jiyilv: temp,

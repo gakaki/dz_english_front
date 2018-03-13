@@ -168,6 +168,11 @@ Page({
       showSet: false
     })
   },
+  _hide() {
+    this.setData({
+      landing:false
+    })
+  },
   getInfo() {
     wx.openSetting({
       success: (res) => {
@@ -267,7 +272,7 @@ Page({
     if (options && options.friendPK) {
       this.data.shareIn = true
       if (app.globalData.logined) {
-        doFetch('english.roomNotExist', {
+        doFetch('english.roomisexist', {
           rid: options.rid
         }, (res) => {
           if (res.code == 0) {

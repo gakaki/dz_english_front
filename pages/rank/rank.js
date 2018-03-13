@@ -24,11 +24,22 @@ Page({
           rankData: res.data.map(this.getSegment)
         })
 
+       
+      } else {
+        wx.showToast({
+          title: '暂无数据',
+          icon: 'none',
+          duration: 500,
+          mask: true
+        })
       }
     })
   },
   getSegment: function (item) {
     item.rank = sheet.Stage.Get(item.rank).stage
+    if (item.location == ' ' || typeof (item.location) == 'undefined') {
+      item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 5)] 
+    }
     return item
   },
   toDes() {
@@ -53,6 +64,12 @@ Page({
           })
 
         } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 500,
+            mask: true
+          })
           this.setData({
             rankData: []
           })
@@ -71,6 +88,12 @@ Page({
           })
 
         } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 500,
+            mask: true
+          })
           this.setData({
             rankData: []
           })
@@ -96,7 +119,7 @@ Page({
           wx.showToast({
             title: '暂无数据',
             icon: 'none',
-            duration: 2000,
+            duration: 500,
             mask: true
           })
         }

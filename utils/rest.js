@@ -1,6 +1,6 @@
 const io = require('./index.js');
- const srv = "https://h5t.ddz2018.com/";
- const wss = "wss://h5t.ddz2018.com/english";
+  const srv = "https://h5t.ddz2018.com/";
+  const wss = "wss://h5t.ddz2018.com/english";
 //const srv = "https://local.ddz2018.com/";
 //const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
@@ -22,6 +22,8 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
+
+    
 
   }
   if (!uid) {
@@ -69,7 +71,15 @@ function userLogin(suc, err) {
       doFetch('user.login', { info: info.userInfo }, res => {
         isAuth = true;
         if (res.code != CODE_SUC) {
-          err(res.code);
+          // err(res.code);
+          wx.clearStorageSync('_sid');
+          wx.clearStorageSync('uid');
+          wx.login({
+            success: res => {
+              isAuth = false;
+              sdkAuth(res.code, suc)
+            }
+          })
         }
         else {
           res = res.data;

@@ -19,14 +19,14 @@
       <text class="nn">{{userInfo.nickName}}</text>
 
       <view class="gold-box f-r-fs">
-        <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
+        <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
         <text class="gold-count">{{goldCount}}</text>
       </view>
 
       <view class="f-r-fs lv">
         <text class="lvl">lv{{lvl}}</text>
         <view class="lvl-box">
-          <text>{{exp}}/{{needExp}}</text>
+           <text>{{exp}}/{{needExp}}</text> 
           <view class="percent-box">
 
             <view style="width:{{wid}}%" class="percent-bg"></view>
@@ -60,5 +60,5 @@
 
   </view>
   <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
-  <qiandao id="qiandao-bor" tian="{{landingDay}}" wx:if="{{landing}}"></qiandao>
+  <qiandao id="qiandao-bor" tian="{{landingDay}}" wx:if="{{landing}}" bind:hide="_hide"></qiandao>
 </view>

@@ -48,7 +48,13 @@ Component({
           })
         }
       })
-    }
+      this.triggerEvent("hide")
+    },
+
+    _cancelEvent() {
+      //触发取消回调
+      this.triggerEvent("hide")
+    },
   }
 
 })

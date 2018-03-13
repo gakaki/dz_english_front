@@ -188,6 +188,7 @@
   box-sizing: content-box;
   border: 5rpx solid #F89200;
   border-radius: 50%;
+  overflow: hidden
 }
 
 .userinfo-avatar {
@@ -205,6 +206,7 @@
   border: 5rpx solid #F89200;
   border-radius: 50%;
   margin: 0 43rpx 0 76rpx;
+  overflow: hidden
 }
 
 .userinfo-avatar1 {

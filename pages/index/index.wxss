@@ -61,10 +61,11 @@
   border: 4rpx solid #fff;
 }
 .header1 {
-  width: 120rpx;
-  height: 120rpx;
-  box-sizing: content-box;
-  border: 5rpx solid #0673d7;
+  width: 129rpx;
+  height: 129rpx;
+  /* box-sizing: content-box; */
+   background-color: #0673d7; 
+   /* border: 5rpx solid #0673d7;  */
   border-radius: 50%;
    margin: 0 30rpx 0 30rpx; 
 }
@@ -87,22 +88,32 @@
   font-size: 32rpx;
   font-family: 'Microsoft YaHei';
   align-self: flex-start;
+  overflow: hidden;
 }
+ .nn {
+  width: 184rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+} 
 
 
 .gold-box {
   align-self: flex-start;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #09579f;
   height: 38rpx;
   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
   margin-left: 10rpx;
+  position: relative;
 }
 .gold-big {
+  position: absolute;
+  top: 0;
+  left: -6rpx;
   width: 43rpx;
   height: 41rpx;
-  margin-left: -6rpx;
 }
 .gold-count {
   font-size: 28rpx;
@@ -110,7 +121,7 @@
   width: 120rpx;
   text-align: center;
   font-weight: bold;
-  margin-left: 10rpx;
+  margin-left: 36rpx;
   margin-right: 12rpx;
 }
 
@@ -120,6 +131,7 @@
   font-family: 'Microsoft YaHei';
   display: inline-block;
   height: 30rpx;
+  line-height: 30rpx
 }
 
 .lvl-box {
@@ -135,6 +147,7 @@
   height: 26rpx;
   margin: 2rpx;
   overflow: hidden;
+  border-radius: 13rpx;
 }
  .lvl-box text {
   position: absolute;
