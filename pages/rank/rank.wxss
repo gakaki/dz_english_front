@@ -97,11 +97,10 @@
 
 .rank-box {
   z-index: 10;
-  /* max-height: 980rpx; */
   width: 100%;
   position: fixed;
   left: 0;
-  top: 130rpx;
+  top: 128rpx;
   bottom: 83rpx;
   overflow: hidden;
 }
