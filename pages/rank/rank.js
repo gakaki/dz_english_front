@@ -42,16 +42,17 @@ Page({
     }
     return item
   },
-  toDes() {
+  toDes(e) {
+    if (app.preventMoreTap(e)) { return; }
     wx.navigateTo({
       url: '../rankDes/rankDes'
     })
   },
-  clickTab() {
-    this.setData({
-      tabAct: !this.data.tabAct
-    })
-    if (this.data.tabAct) {
+  clickTab(e) {
+    if (e.target.dataset.id == 1) {
+      this.setData({
+        tabAct: true
+      })
       doFetch('english.getfriendrankinglist', {}, (res) => {
         if (res.data.length > 0) {
           this.setData({
@@ -76,6 +77,9 @@ Page({
         }
       })
     } else {
+      this.setData({
+        tabAct: false
+      })
       doFetch('english.getworldrankinglist', { "season": 0 }, (res) => {
         if (res.data.length > 0) {
           this.setData({
