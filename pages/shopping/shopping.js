@@ -85,11 +85,8 @@ Page({
     { 
       payCount: this.data.shopData[this.data.point],
       payCount:1,
-      // good: this.data.itemInfo[this.data.point].cfg.id
       good: this.data.point+1
     }, (r) => {
-      console.log(r.data)
-
       wx.requestPayment({
         timeStamp: r.data.payload.timeStamp,
         nonceStr: r.data.payload.nonceStr,
