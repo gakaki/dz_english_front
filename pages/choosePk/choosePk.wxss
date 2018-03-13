@@ -108,7 +108,7 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #fff;
-  width: 200rpx;
+  width: 184rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; 
