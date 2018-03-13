@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc } from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard} from './fn.js'
+import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -435,7 +435,8 @@ Page({
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
-          myScore = this.data.clockTime * 20 
+          myScore = calculateScore(this.data.clockTime, round, 'a')
+          console.log(this.data.userLeft,round, myScore)
           totalScore = totalScore + myScore;
           
         } 

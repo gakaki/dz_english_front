@@ -9,7 +9,8 @@ function loadEnglishWords(words) {
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = v.type;
+      // cloneObj.type = v.type;
+      cloneObj.type = 3;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -145,6 +146,17 @@ function getEnglishOptions(question) {
   return getOptions(question, 'english')
 }
 
+function calculateScore(countTime, round, type){
+  
+  let nowScore ;
+  if (round == 5) {
+    nowScore =  countTime * 20 * 2;
+  } else {
+    nowScore =  countTime * 20;
+  }
+  return nowScore 
+}
+
 
 module.exports = {
   loadEnglishWords,
@@ -156,5 +168,6 @@ module.exports = {
   changeArrAllValue,
   quanpinKeyboard,
   getChineneOptions,
-  getEnglishOptions
+  getEnglishOptions,
+  calculateScore
 }
