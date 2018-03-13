@@ -47,12 +47,10 @@
       </view>
     </view>
   </scroll-view>
-  <view class="flex">
-    <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
-  </view>
 
   <view class="bot-bg flex">
     <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>上赛季排行榜</text>
+    <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
 </view>

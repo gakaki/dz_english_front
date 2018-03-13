@@ -86,8 +86,8 @@
 }
 
 .hxb {
-  position: fixed;
-  top: 1100rpx;
+  position: absolute;
+  top: 47rpx;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9;
@@ -97,11 +97,12 @@
 
 .rank-box {
   z-index: 10;
-  max-height: 980rpx;
+  /* max-height: 980rpx; */
   width: 100%;
   position: fixed;
   left: 0;
   top: 130rpx;
+  bottom: 83rpx;
   overflow: hidden;
 }
 
