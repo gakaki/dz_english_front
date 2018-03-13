@@ -38,6 +38,10 @@
 .content {
   padding: 0 10rpx;
   font: bold 30rpx/130rpx 'Microsoft YaHei';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 110rpx;
 }
 .user-r {
   flex-direction: row-reverse;
