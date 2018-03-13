@@ -163,10 +163,18 @@
 }
 
 .person text{
+  display: inline-block;
+  max-height: 40rpx;
+  width: 168rpx;
   color: #fff;
   font-size: 24rpx;
   font-weight: bold;
   font-family: 'Microsoft Yahei';
+  text-align: right;
+  overflow: hidden;
+  line-height: 40rpx;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .button{
