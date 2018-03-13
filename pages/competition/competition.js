@@ -471,7 +471,6 @@ Page({
           isRight = true;
           myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
           totalScore = totalScore + myScore;
-          
         } 
         else {
           answer = 2
