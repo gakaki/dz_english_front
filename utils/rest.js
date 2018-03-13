@@ -269,6 +269,33 @@ const start = suc => {
       })
     }
   })
+
+
+
+
+
+  /*if (app.globalData.hasUserInfo) {
+        suc();
+    } else {
+        wx.openSetting({
+            success: res => {
+                wx.checkSession({
+                    success: () => {
+                        isAuth = true;
+                        userLogin(suc, showErr);
+                    },
+                    fail: res => {
+                        wx.login({
+                            success: res => {
+                                isAuth = false;
+                                sdkAuth(res.code, suc)
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }*/
 }
 
 

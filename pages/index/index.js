@@ -212,31 +212,39 @@ Page({
       
     })
 
-    // let aa = {bb:'bb'};
+    
+    /*start(()=> {
+      let v = app.globalData;
+      console.log(v)
+      this.setData({
+        lvl: v.userInfo.character.level || 0,
+        exp: v.userInfo.character.experience.exp || 0,
+        goldCount: v.userInfo.items['1'] || 0,
+        needExp: v.userInfo.character.experience.needExp || 0,
+      })
+      if (this.data.exp == 0) {
+        this.setData({
+          wid: 0
+        })
+      } else {
+        this.setData({
+          wid: Math.round(this.data.exp / this.data.needExp * 100)
+        })
+      }
 
-    // Object.defineProperty(aa, 'cc', {
-    //   get:()=> {
-    //     return 5;
-    //   },
-    //   set:(v) => {
-    //     console.log('call old set of cc')
-    //     this.value =v;
-    //   },
-    //   configurable:true
-    // })
+      //如果是通过分享并且需要跳转时则暂时不显示签到
+      if(!this.data.shareIn){
+        doFetch('english.isfirstsign', {}, res => {
+          console.log(res)
+          this.setData({
+            landing: res.data.isFirst,
+            landingDay: res.data.day
+          })
+        })
+      }
+    })*/
 
-    // care(aa, 'bb', v=> {
-    //   console.log('bb changed,now is ',v)
-    // });
 
-    // care(aa, 'cc', v => {
-    //   console.log('cc changed now is', v)
-    // })
-
-    // setTimeout(()=> {
-    //   // aa.bb = 'ccccc'
-    //   aa.cc = '222222'
-    // }, 1000)
 
 
     if (app.globalData.userInfo) {
