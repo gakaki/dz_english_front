@@ -64,12 +64,12 @@ Page({
       if (res.data.userList.length==1){
         // 显示段位框
         this.setData({
-          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
         })
       }
       else if (res.data.userList.length == 2){
         this.setData({
-          frameSelf: getRankFrame(app.globalData.personalInfo.userInfo.character.season),
+          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
           frameOther: getRankFrame(res.data.userList[1].info.character.season),
         })
       }

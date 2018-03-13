@@ -1,5 +1,4 @@
 const io = require('./index.js');
-
  const srv = "https://h5t.ddz2018.com/";
  const wss = "wss://h5t.ddz2018.com/english";
 // const srv = "https://local.ddz2018.com/";
@@ -23,6 +22,8 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
+
+    
 
   }
   if (!uid) {
