@@ -15,7 +15,7 @@
             <image class='false-word-icon' wx:if='{{answer === 2}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/err.png'></image>
             <image class='true-word-icon' wx:if='{{answer === 1}}' src='https://gengxin.odao.com/update/h5/yingyu/competition/true.png'></image> 
           </view>
-          <text class='letter {{answer === 2?"letters":""}}' wx:if='{{answer === 2}}'>{{word.english}}</text>
+          <text class='letter letters' wx:if='{{answer === 2}}'>{{word.english}}</text>
         </view>
     </view> 
     <movieclip wx:if='startMc1' class='start-mc' mcAttached='{{mcAttached}}' resWidth='{{starMcWd1}}' resHeight='{{starMcHt1}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
