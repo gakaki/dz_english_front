@@ -2,7 +2,7 @@
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{itemInfo}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
       <view class="top flex">
-        <text class="font {{item.cfg.name.length==2 ? 'gold' : 'box'}}">{{item.cfg.name}}</text>
+        <text class=" {{item.cfg.name.length==2 ? 'gold' : 'box'}}">{{item.cfg.name}}</text>
         <image class="icon" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{itemIcon[index]}}"></image>
       </view>
       <view class="bottom">

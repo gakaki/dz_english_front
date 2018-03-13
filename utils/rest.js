@@ -1,4 +1,5 @@
 const io = require('./index.js');
+
  const srv = "https://h5t.ddz2018.com/";
  const wss = "wss://h5t.ddz2018.com/english";
 // const srv = "https://local.ddz2018.com/";
@@ -90,7 +91,6 @@ function userLogin(suc, err) {
           app.globalData.logined = true
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-            //console.log(Object.getOwnPropertyDescriptor(app.globalData, 'personalInfo').value)
             shareTo()
             
           })
@@ -255,28 +255,39 @@ class LsnNode {
 //启动（会默认走一遍登录流程）
 const start = suc => {
 
-  wx.checkSession({
-    success: () => {
-      isAuth = true;
-      userLogin(suc, showErr);
-    },
-    fail: res => {
-      wx.login({
-        success: res => {
-          isAuth = false;
-          sdkAuth(res.code, suc)
-        }
-      })
-    }
-  })
+  // wx.checkSession({
+  //   success: () => {
+  //     isAuth = true;
+  //     userLogin(suc, showErr);
+  //   },
+  //   fail: res => {
+  //     wx.login({
+  //       success: res => {
+  //         isAuth = false;
+  //         sdkAuth(res.code, suc)
+  //       }
+  //     })
+  //   }
+  // })
 
 
 
 
+   app = getApp()
 
-  /*if (app.globalData.hasUserInfo) {
+  if (app.globalData.hasUserInfo) {
         suc();
     } else {
+      // wx.getSetting({
+      //   success: res => {
+      //     if (res.authSetting) {
+      //       if (!res.authSetting.scope.userInfo) {
+
+      //       }
+            
+      //     }
+      //   }
+      // })
         wx.openSetting({
             success: res => {
                 wx.checkSession({
@@ -295,9 +306,30 @@ const start = suc => {
                 })
             }
         })
-    }*/
+    }
 }
+const firstStart = suc => {
+  app = getApp()
 
+  if (app.globalData.hasUserInfo) {
+    suc();
+  } else {
+        wx.checkSession({
+          success: () => {
+            isAuth = true;
+            userLogin(suc, showErr);
+          },
+          fail: res => {
+            wx.login({
+              success: res => {
+                isAuth = false;
+                sdkAuth(res.code, suc)
+              }
+            })
+          }
+        })
+  }
+}
 
 module.exports = {
   start,
@@ -308,5 +340,6 @@ module.exports = {
   wsSend,
   wsReceive,
   wsClose,
-  shareSuc
+  shareSuc,
+  firstStart
 }

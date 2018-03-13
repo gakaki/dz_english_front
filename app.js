@@ -13,10 +13,10 @@ App({
         wx.hideLoading()
       }
     })
-    start((res) => {
-      // console.log('login')
+    // start((res) => {
+    //   // console.log('login')
      
-    })
+    // })
     
   },
   globalData: {
