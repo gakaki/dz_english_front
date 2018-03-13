@@ -18,6 +18,8 @@
           <text class='letter {{answer === 2?"letters":""}}' wx:if='{{answer === 2}}'>{{word.english}}</text>
         </view>
     </view> 
+    <movieclip wx:if='startMc1' class='start-mc' mcAttached='{{mcAttached}}' resWidth='{{starMcWd1}}' resHeight='{{starMcHt1}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
+    <movieclip wx:if='startMc2' class='start-mc' autoPlayCount='{{"1"}}' resWidth='{{starMcWd2}}' resHeight='{{starMcHt2}}' resPrefix='{{startMcResPrefix2}}' resStartIdx='{{startMcResStartIdx2}}' resEndIdx="{{startMcResEndIdx2}}" ></movieclip>
   </view>
 
   <view class='multi-wrap' slot='select'>

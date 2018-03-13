@@ -48,7 +48,21 @@ Page({
     otherScore:0,  //他人总分
     totalScore:0,
     roundIsRight:false,
-    roundAnswer:{}
+    roundAnswer:{},
+    //mc
+    startMcResPrefix: 'dz_bg_',
+    startMcResStartIdx: 1,
+    startMcResEndIdx: 7,
+    startMcResPrefix2: 'dz_word_',
+    startMcResStartIdx2: 1,
+    startMcResEndIdx2: 7,
+    startMc1:true,
+    startMc2:false,
+    starMcWd1: 704,
+    starMcHt1: 73,
+    starMcWd2: 749,
+    starMcHt2: 275,
+
   },
   onLoad(options) {
     console.log('======================load')
@@ -57,7 +71,7 @@ Page({
     totalScore = 0;
     
 
-    getRoomInfo(options.rid, res => {
+    getRoomInfo(rid, res => {
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -99,6 +113,23 @@ Page({
     });
 
   },
+
+  mcAttached(target) {
+    let anTm = Timeline.add(1500, this.startPlayMc2, this)
+    .add(1600, ()=>{
+      console.log('animiation mc2 start')
+      this.setData({
+        startMc1: false,
+        startMc2: false
+      }, this)
+    }).start();
+
+  },
+
+  startPlayMc2(){
+    this.setData({startMc2:true})
+  },
+
   onUnload() {
     answerSend = true;
     this.tagRoundEnd(true);

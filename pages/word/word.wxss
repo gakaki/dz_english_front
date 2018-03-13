@@ -183,7 +183,7 @@
 }
 
 .cost{
-  width: 417rpx;
+  width: 445rpx;
   margin-top: 14rpx;
 }
 
