@@ -13,7 +13,10 @@ Page({
     awardData: []
   },
   onLoad() {
-    this.init()
+    doFetch('english.showpersonal', {}, (res) => {
+      app.globalData.personalInfo = res.data;
+      this.init()
+    })
   },
   init() {
     let items = app.globalData.personalInfo.userInfo.items
