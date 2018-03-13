@@ -68,13 +68,15 @@ Page({
         obj[key] = data[key]
         tempArr.push(obj)
         let k = parseInt(key)
-        let upNum = 'backData['+k+'].cfg.num'
+
          arrr = this.data.backData.map(o=>{
           if(o.cfg.id == k) {
             o.cfg.num = data[key] + o.cfg.num
           }
           return o
-        })       
+        })
+
+       
       }
       console.log(arrr)
       this.setData({
@@ -86,7 +88,7 @@ Page({
         let iInfo
         for (let k in o) {
           iInfo = sheet.Item.Get(k)
-          iInfo.cfg['count'] = o[k]
+          iInfo.cfg['count'] = o[k]///need copy
         } 
         console.log(iInfo)
         return iInfo
