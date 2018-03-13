@@ -31,10 +31,8 @@
 }
 
 .top text{
-  font-size: 30rpx;
-   font-family: 'Microsoft YaHei'; 
-      -webkit-text-stroke: 1rpx #0070e8;    
-   font-weight: bold; 
+  font: bold 30rpx 'Microsoft YaHei';
+  -webkit-text-stroke: 1rpx #0070e8;
   color: #fff;
 }
 

@@ -147,7 +147,7 @@ function shareTo() {
 
 function shareSuc() {
   doFetch('english.getshareaward',{},res=>{
-    console.log(res.data.getItem,'分享成功')
+    console.log(res.data,'分享成功')
   })
 }
 
