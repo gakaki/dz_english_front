@@ -191,7 +191,7 @@
 
 .start-mc {
   position: absolute;
-  top: 120rpx;
+  top: 320rpx;
   left: 50vw;
   transform: translate(-50%, -50%);
 }

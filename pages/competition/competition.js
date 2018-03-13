@@ -57,7 +57,7 @@ Page({
     startMcResStartIdx2: 1,
     startMcResEndIdx2: 7,
     startMc1:true,
-    startMc2:false,
+    startMc2:true,
     starMcWd1: 704,
     starMcHt1: 73,
     starMcWd2: 749,
@@ -101,7 +101,7 @@ Page({
         })
 
         //开始对战
-        this.roundInit()
+        // this.roundInit()
 
         //监听每局结束
         this.onRoundEndInfo();        
@@ -114,21 +114,20 @@ Page({
 
   },
 
-  mcAttached(target) {
-    let anTm = Timeline.add(1500, this.startPlayMc2, this)
-    .add(1600, ()=>{
-      console.log('animiation mc2 start')
+  mcStopped(){
+
+    tm = Timeline.add(1000, ()=>{
+      //移除开始动画
       this.setData({
-        startMc1: false,
-        startMc2: false
-      }, this)
+        startMc1:false,
+        startMc2:false
+      });
+
+      //开始对战
+      this.roundInit();
     }).start();
-
   },
 
-  startPlayMc2(){
-    this.setData({startMc2:true})
-  },
 
   onUnload() {
     answerSend = true;
