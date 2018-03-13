@@ -64,6 +64,12 @@ Page({
           })
 
         } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 500,
+            mask: true
+          })
           this.setData({
             rankData: []
           })
