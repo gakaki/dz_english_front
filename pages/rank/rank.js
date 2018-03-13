@@ -42,7 +42,8 @@ Page({
     }
     return item
   },
-  toDes() {
+  toDes(e) {
+    if (app.preventMoreTap(e)) { return; }
     wx.navigateTo({
       url: '../rankDes/rankDes'
     })
