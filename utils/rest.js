@@ -23,9 +23,6 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
-
-    
-
   }
   if (!uid) {
     uid = wx.getStorageSync('uid');

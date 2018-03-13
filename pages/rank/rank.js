@@ -68,7 +68,7 @@ Page({
           wx.showToast({
             title: '暂无数据',
             icon: 'none',
-            duration: 500,
+            duration: 1000,
             mask: true
           })
           this.setData({
