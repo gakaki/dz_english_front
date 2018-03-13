@@ -32,7 +32,6 @@
 
 .top text{
   font: bold 30rpx 'Microsoft YaHei';
-  -webkit-text-stroke: 1rpx #0070e8;
   color: #fff;
 }
 
@@ -40,6 +39,7 @@
   letter-spacing: 20rpx;
   padding-left: 20rpx;
 }
+
 
 .box{
   letter-spacing: 6rpx;
