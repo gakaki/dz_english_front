@@ -121,12 +121,15 @@
   width: 160rpx;
   border-radius: 19rpx;
   border: 1rpx solid #449ff3;
+  position: relative;
 }
 
 .gold-big {
+  position: absolute;
+  left: -6rpx;
+  top: 0;
   width: 43rpx;
   height: 41rpx;
-  margin-left: -6rpx;
 }
 
 .gold-count {
@@ -135,7 +138,7 @@
   width: 120rpx;
   text-align: center;
   font-weight: bold;
-  margin-left: 10rpx;
+  margin-left: 36rpx;
   margin-right: 12rpx;
 }
 
