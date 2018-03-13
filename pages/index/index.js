@@ -331,19 +331,6 @@ Page({
       hasUserInfo: true
     })
   },
-  auth() {
-
-    wx.openSetting({
-      success: (res) => {
-        start((res) => {
-          this.hi()
-        })
-      },
-      fail: res => {
-        console.log('fail', res)
-      }
-    })
-  },
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str4,
