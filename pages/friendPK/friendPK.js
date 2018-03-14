@@ -76,7 +76,6 @@ Page({
         bystander: res.data.roomInfo.bystanderCount,
         list: res.data.userList
       })
-      console.log(this.data.list,'listttttttttttt')
     })
 
     wsReceive('dissolve', res => {  //房主离开

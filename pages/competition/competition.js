@@ -63,6 +63,8 @@ Page({
     starMcHt1: 73,
     starMcWd2: 749,
     starMcHt2: 275,
+    showMask: false,
+    maskPos:0
 
   },
   onLoad(options) {
@@ -511,7 +513,7 @@ Page({
         } 
         else {
           answer = 2;
-          this.playResultAudio(isRight)
+          this.playResultAudio(isRight);
         }
 
 
@@ -662,7 +664,19 @@ Page({
     }
 
   },
-  
+  failSelect(){
+    this.setData({
+      showMask: true
+    });
+    let x = 10;
+    let timer = setInterval(()=>{
+      x = 0 - x;
+      this.setData({
+        maskPos: x
+      })
+      
+    },500)
+  },
   countClockTime(){
     canClick = true;
     if (timer) {

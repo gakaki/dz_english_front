@@ -2,6 +2,7 @@
 const app = getApp()
 import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
 import { Item } from '../../sheets.js'
+let map = [];
 
 Page({
   data: {
@@ -23,7 +24,17 @@ Page({
     show:false
   },
   onLoad: function (e) {
-    console.log(e, 'eeeeeeeeeeeeeeeee')
+    let hasMap = map.every(v=>{
+      return v != 'matchSuccess';
+    })
+    if(hasMap) {
+      wsReceive('matchSuccess', res => {
+        wx.redirectTo({
+          url: '../duizhan/duizhan?rid=' + res.data.rid,
+        })
+      })
+      map.push('matchSuccess')
+    }
     if(e.otherLeave) {
       wx.showToast({
         title: '对方逃跑',

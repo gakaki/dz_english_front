@@ -158,14 +158,14 @@ Page({
       }
 
       doFetch('english.develop', {}, (res) => {
-        for(let k in res.data) {
-          if(res.data[k].canUp) {
+        for (let k in res.data) {
+          if (res.data[k].canUp) {
             this.setData({
               canUp: true
             })
             return
           }
-        }        
+        }
       })
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
@@ -182,6 +182,9 @@ Page({
     })
     this.shareTo(options)
     
+
+  
+
     firstStart(()=> {
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
@@ -194,8 +197,6 @@ Page({
         })
       }
     })
-
-
 
 
     if (app.globalData.userInfo) {
