@@ -26,4 +26,7 @@
   <view class='main-select'>
     <slot name='select'></slot>
   </view>
+  <view class='start-mcs'>
+    <slot name='mcs'></slot>
+  </view>
 </view>

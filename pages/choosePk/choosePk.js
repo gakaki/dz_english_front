@@ -162,7 +162,7 @@ Page({
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
-    
+    if (app.preventMoreTap(res,300)) { return; }
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
@@ -173,7 +173,9 @@ Page({
       })
       wsReceive('needGold', res => {
         console.log(res)
-        this.data.canMatch = false
+        this.setData({
+          canMatch:false
+        })
         wx.showToast({
           title: '金币不足',
           icon: 'none',
@@ -187,10 +189,18 @@ Page({
       }
     }
   },
+  
   toDes() {
     wx.navigateTo({
       url: '../rankDes/rankDes',
     })
+  },
+  toSelf(e) {
+    if (app.preventMoreTap(e)) { return; }
+    wx.navigateTo({
+      url: '../self/self'
+    })
+    
   },
   onShareAppMessage: function (res) {
     return {

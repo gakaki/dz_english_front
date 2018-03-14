@@ -12,7 +12,8 @@ Page({
     show: false,
     shopData: [],    //道具信息
     itemInfo: [],   //道具itemId对应的item信息
-    itemIcon: ''
+    itemIcon: '',
+    shopNum:[]
   },
 
   /**
@@ -25,15 +26,18 @@ Page({
     let itemIcon = sheet.shops.map(o => {
       return o.icon
     })
+    let shopNum = sheet.shops.map(o=>{
+      return o.itemid.v
+    })
     let itemArr = sheet.shops.map(shp => {
       return sheet.Item.Get(sheet.Shop.Get(shp.id).itemid['k'])
     })
     this.setData({
       shopData: tempPrice,
       itemInfo: itemArr,
-      itemIcon: itemIcon
+      itemIcon: itemIcon,
+      shopNum
     })
-    console.log(tempPrice)
   },
 
   /**

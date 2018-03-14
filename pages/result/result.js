@@ -16,7 +16,8 @@ Page({
     isSelf:{},
     notSelf:{}
   },
-  onLoad: function () {
+  onLoad: function (e) {
+    console.log(e)
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{

@@ -57,7 +57,7 @@ Page({
     startMcResStartIdx2: 1,
     startMcResEndIdx2: 7,
     startMc1:true,
-    startMc2:false,
+    startMc2:true,
     starMcWd1: 704,
     starMcHt1: 73,
     starMcWd2: 749,
@@ -101,7 +101,7 @@ Page({
         })
 
         //开始对战
-        this.roundInit()
+        // this.roundInit()
 
         //监听每局结束
         this.onRoundEndInfo();        
@@ -114,21 +114,20 @@ Page({
 
   },
 
-  mcAttached(target) {
-    let anTm = Timeline.add(1500, this.startPlayMc2, this)
-    .add(1600, ()=>{
-      console.log('animiation mc2 start')
+  mcStopped(){
+
+    tm = Timeline.add(1000, ()=>{
+      //移除开始动画
       this.setData({
-        startMc1: false,
-        startMc2: false
-      }, this)
+        startMc1:false,
+        startMc2:false
+      });
+
+      //开始对战
+      this.roundInit();
     }).start();
-
   },
 
-  startPlayMc2(){
-    this.setData({startMc2:true})
-  },
 
   onUnload() {
     answerSend = true;
@@ -164,7 +163,8 @@ Page({
       firstClick:true,
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
-      roundAnswer:{}
+      roundAnswer:{},
+      clockTime: 10
     })
 
     //开始对应玩法
@@ -215,6 +215,7 @@ Page({
       //通知后端，一题完成
       console.log('通知后端，一题完成')
       canClick = false;
+      console.log(this.data.word.id,'==================>wid')
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -264,8 +265,12 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
-      this.tagRoundEnd(true);
+      console.log(res.data)
+      if(res.data.round - round != 1) {
+        return
+      }
       round++;
+      this.tagRoundEnd(true);
       this.setData({ clockStart: false });
       tm = Timeline.add(1500, this.roundInit, this).start();
     })
@@ -273,6 +278,7 @@ Page({
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
+      console.log(res)
       if (res.code) {
         wx.showToast({
           title: '结算出错了'
@@ -303,7 +309,7 @@ Page({
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
         wx.redirectTo({
-          url: '../result/result',
+          url: '../result/result?otherleave=' + data.isLeave + '&isUp=' + data.pkResult.isUp,
         })
       }
     })
@@ -415,9 +421,9 @@ Page({
   //单词拼写
   playFour() { 
     this.playtoQuestion('english')
-    .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
+    .add(0, this.hideAllLetters, this)//隐藏文字
     .add(1000, this.audioPlay, this)//1秒后，播放音频
-    .add(1000, this.hideAllLetters, this)//1秒后，擦去全部字母
+    .add(1000, this.showInputKeyboard, this)//渲染全拼九宫格键盘
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
@@ -436,7 +442,7 @@ Page({
   },
   showFront(v){  //点击翻牌
     if (!canClick) return;
-    console.log('showfront')
+    if (app.preventMoreTap(v,300)) { return; }
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
@@ -471,10 +477,10 @@ Page({
           isRight = true;
           myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
           totalScore = totalScore + myScore;
-          
         } 
         else {
-          answer = 2
+          answer = 2;
+          isRight = true;
         }
 
         let roundAnswer = {}
@@ -486,6 +492,7 @@ Page({
           totalScore,
           roundAnswer
         })
+        console.log(this.data.roundIsRight,'roundIsRight')
         this.tagRoundEnd(false);
       }
     }
@@ -547,6 +554,7 @@ Page({
     else {
       //回答出错
       answer = 2;
+      isRight = false;
       finished = true;
     }
 
@@ -616,7 +624,6 @@ Page({
       clearInterval(timer);
     }
     this.setData({
-      clockTime:10,
       clockStart: true
     });
 

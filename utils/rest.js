@@ -23,9 +23,6 @@ function doFetch(action, data, suc, err) {
     if (sid) {
       data._sid = sid;
     }
-
-    
-
   }
   if (!uid) {
     uid = wx.getStorageSync('uid');
@@ -207,7 +204,8 @@ function wsInit() {
 
     socket.on('error', () => {
       console.log('#error');
-    });
+    });    
+
   })
 
 }

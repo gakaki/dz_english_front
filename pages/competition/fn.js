@@ -9,8 +9,8 @@ function loadEnglishWords(words) {
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      cloneObj.type = v.type;
-      // cloneObj.type = 3;
+      // cloneObj.type = v.type;
+      cloneObj.type = 3;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -156,11 +156,10 @@ function calculateScore(countTime, round, type, addition){
       nowPlus = addition[v].plus
     }
   }
-  
   if (round == 5) {
-    nowScore = countTime * 20 * 2 * (1 + nowPlus);
+    nowScore = parseInt(countTime * 20 * 2 * (100 + nowPlus)/100);
   } else {
-    nowScore = countTime * 20 * (1 + nowPlus);
+    nowScore = parseInt(countTime * 20 * (100 + nowPlus)/100);
   }
   return nowScore 
 }

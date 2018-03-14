@@ -107,22 +107,30 @@ Component({
           let needLoopTime = this.data.needLoopTime;
           let leftLoop = this.data.leftLoop;
 
-          //reset 
-          curIdx = this.data.resStartIdx;
+          
 
-          if (needLoopTime > 0) {
+          if (needLoopTime > 0 ) {
             leftLoop--;
             if (leftLoop <= 0) {
               //finish all loops
+              curIdx = this.data.resEndIdx;
               this.stop();
             }
+            else {
+              //reset 
+              curIdx = this.data.resStartIdx;
+            }
+          }
+          else {
+              //reset 
+              curIdx = this.data.resStartIdx;
           }
         }
 
         let res = this.data.resPrefix + this._prefillZero(curIdx, this.data.resPreZeroCount);
         this.setData({res, curIdx, tm});
 
-      }, 80);//约12帧/秒
+      }, 125);//约8帧/秒
 
       this.setData({tm});
     },
@@ -132,6 +140,8 @@ Component({
       if (tm) {
         clearInterval(tm);
         this.setData({tm:null})
+        this.triggerEvent('mcStopped',{})
+        console.log(`${this.data.resPrefix} movieclip stoped`)
       }
     }
   }
