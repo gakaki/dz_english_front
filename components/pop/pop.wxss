@@ -7,7 +7,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -56%);
+  transform: translate(-50%, -60%);
   z-index: 30;
   background-color: #fff;
   width: 690rpx;
@@ -33,7 +33,7 @@
   height: 62rpx;
 }
 .pop-box {
-  margin-top: 80rpx;
+  margin-top: 57rpx;
 }
 .tip {
   margin: 0 70rpx;
@@ -58,7 +58,7 @@
 .title {
   position: absolute;
   left: 50%;
-  top: -70rpx;
+  top: -50rpx;
   color: #fff;
   font-size: 54rpx;
   text-shadow: 3rpx 3rpx 0 #d86100;
@@ -117,12 +117,9 @@
   width: 54rpx;
   height: 54rpx;
   background: #ff9700;
-  font: bold 24rpx/54rpx 'Microsoft YaHei';
+  font: bold 28rpx/54rpx 'Microsoft YaHei';
   text-align: center;
   border-radius: 50%;
-}
- .num-large {
-  font-size: 28rpx;
 } 
 .icon{
   width: 149rpx;
