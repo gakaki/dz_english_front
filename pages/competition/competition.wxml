@@ -65,4 +65,8 @@
     <bar class="bar" scoreB='{{otherScore}}' type='B'></bar>
 
   </view>
+
+  <audio hidden='{{true}}' id="true" src='https://gengxin.odao.com/update/h5/yingyu/audio/true.mp3'></audio>
+  <audio hidden='{{true}}' id="false" src='https://gengxin.odao.com/update/h5/yingyu/audio/false.mp3'></audio>
+  <audio hidden='{{true}}' id="select" src='https://gengxin.odao.com/update/h5/yingyu/audio/select.mp3'></audio>
 </wrap>

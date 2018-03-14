@@ -28,7 +28,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     if(options && !options.rid){
       console.log('creatroom')
       wsSend('createroom')
@@ -41,7 +40,6 @@ Page({
       wsSend('joinroom', { rid: options.rid})
       this.getInfo(options.rid)
     } 
-    console.log(this.data.rid,'rid')
     
   },
   getInfo(rid){
@@ -50,9 +48,9 @@ Page({
       rid: this.data.rid
     })
     wsReceive('roomInfo', res => {
-      console.log(res, 'frienPK')
+      console.log(res, 'roomInfo')
       if (res.data.roomStatus == 2) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
       }
@@ -78,14 +76,15 @@ Page({
         list: res.data.userList
       })
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function (options) {
-    console.log(app.globalData.str1)
-  },
 
+    wsReceive('dissolve', res => {  //房主离开
+      console.log(res, 'dissolve')
+      wx.redirectTo({
+        url: '../index/index?ownerLeave=true',
+      })
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -104,7 +103,7 @@ Page({
     wsReceive('matchSuccess', res => {
       console.log(res, 'startGame')
       this.data.startGame = true
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })
@@ -121,34 +120,19 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    if(this.data.isOwner && !this.data.startGame){
-      wsSend('leaveroom')
-      wsReceive('dissolve', res => {
-        console.log(res, 'dissolve')
-      })
-    }
-    clearInterval(time);
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess','roomInfo'])
-  },
-
   start: function() {
-    console.log(111)
     wsSend('startgame',{
       rid: this.data.rid
     })
   },
 
   giveUp() {
-    if(this.data.isOwner){
-      wsSend('leaveroom')
-      wsReceive('dissolve',res=>{
-        console.log(res,'dissolve')
-      })
-    }
+    wsSend('leaveroom',{rid:this.data.rid})
     wx.navigateBack({
       delta: 1
     })
+    clearInterval(time);
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
 
   /**

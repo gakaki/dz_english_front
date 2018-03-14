@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/choosePk/choosePk",
     "pages/rankDes/rankDes",
@@ -12,9 +11,7 @@
     "pages/result/result",
     "pages/awaitPK/awaitPK",
     "components/clock/clock",
-    "components/progress/progress",
     "pages/competition/competition",
-    
     "pages/word/word",
     "pages/shopping/shopping",
     "components/qiandao/qiandao"

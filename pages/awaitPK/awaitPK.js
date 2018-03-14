@@ -104,7 +104,6 @@ Page({
         duration: 2000
       })
       time = setTimeout(function () {
-        console.log(111)
         wx.navigateBack({
           delta: 1
         })

@@ -128,6 +128,11 @@ Page({
     })
   },
   onLoad: function (options) {
+    if(options.ownerLeave) {
+      wx.showToast({
+        title: '房主已离开'
+      })
+    }
     care(app.globalData, 'personalInfo', v => {
       console.log(v)
       this.setData({

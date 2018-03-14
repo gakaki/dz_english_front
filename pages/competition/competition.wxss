@@ -190,6 +190,7 @@
   transition: 0;
 }
 
+
 .start-mc {
   position: absolute;
   top: 320rpx;

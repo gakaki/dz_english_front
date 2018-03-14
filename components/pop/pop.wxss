@@ -1,0 +1,128 @@
+/* components/pop/pop.wxss */
+
+.award-pop {
+  box-shadow: 0 3rpx 0 0 #a7d4ee;
+  border-radius: 30rpx;
+  margin-top: 38rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 30;
+  background-color: #fff;
+  width: 690rpx;
+  height: 540rpx;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.title {
+  position: relative;
+}
+.img-l {
+  position: absolute;
+  left: -59rpx;
+  top: 10rpx;
+  width: 79rpx;
+  height: 72rpx;
+}
+.img-r {
+  position: absolute;
+  right: -71rpx;
+  top: 25rpx;
+  width: 71rpx;
+  height: 62rpx;
+}
+.pop-box {
+  margin-top: 57rpx;
+}
+.tip {
+  margin: 0 70rpx;
+  font: bold 32rpx/72rpx 'Microsoft YaHei';
+  text-align: center;
+  border-bottom: 3rpx dashed #6cadce;
+}
+.tip-lv {
+  color: #19b1ff;
+}
+.name {
+  letter-spacing: 2rpx;
+  margin: 20rpx auto 10rpx;
+  width: 155rpx;
+  height: 50rpx;
+  background: #526ec6;
+  font: bold 30rpx/50rpx 'Microsoft YaHei';
+  border-radius: 25rpx;
+  color: #fff;
+  text-align: center;
+}
+.title {
+  position: absolute;
+  left: 50%;
+  top: -50rpx;
+  color: #fff;
+  font-size: 54rpx;
+  text-shadow: 3rpx 3rpx 0 #d86100;
+  transform: translateX(-50%);
+  font-weight: bold;
+  text-align: center;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/dres.png') 0 0 no-repeat;
+  width: 394rpx;
+  height: 115rpx;
+  line-height: 80rpx;
+  background-size: cover;
+}
+
+.button {
+  width: 692rpx;
+  height: 159rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/word/mianban2.png') 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  align-items: flex-start;
+}
+
+.btn {
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/btn-green-big.png') 0 0 no-repeat;
+  width: 362rpx;
+  height: 104rpx;
+  background-size: cover;
+  text-align: center;
+  margin: 28rpx auto 0;
+  color: #fff;
+}
+
+.use {
+  height: 104rpx;
+  line-height: 104rpx;
+  font-size: 46rpx;
+  letter-spacing: 20rpx;
+  font-weight: normal;
+}
+
+.top{
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 auto;
+  background: #19b1ff;
+  border-radius: 50%;
+}
+.num {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  width: 54rpx;
+  height: 54rpx;
+  background: #ff9700;
+  font: bold 28rpx/54rpx 'Microsoft YaHei';
+  text-align: center;
+  border-radius: 50%;
+} 
+.icon{
+  width: 149rpx;
+  height: 116rpx;
+  margin-top: 11rpx;
+}
