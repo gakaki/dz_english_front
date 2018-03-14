@@ -1,0 +1,63 @@
+<!--index.wxml-->
+<view class="container">
+  <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
+  <view class="userInfo f-r-fs">
+    <view wx:if="{{rankFrame.length>0}}" class="frame">
+      <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
+      <view class="header flex">
+        <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+    </view>
+    <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+      <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+
+    <view class="info f-c-sa">
+      <text class="nn">{{userInfo.nickName}}</text>
+      <view class="sec f-r-fs">
+        <view class="gold-box f-r-fs">
+          <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
+          <text class="gold-count">{{goldCount}}</text>
+        </view>
+
+        <view class="f-r-fs lv">
+          <text class="lvl">LV{{lvl}}</text>
+          <view class="lvl-box">
+            <text>{{exp}}/{{needExp}}</text>
+            <view class="percent-box">
+
+              <view style="width:{{wid}}%" class="percent-bg"></view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="share-box">
+      <image class='share' bindtap='toGetInfo' src='https://gengxin.odao.com/update/h5/yingyu/index/share.png'></image>
+      <button wx:if="{{hasUserInfo}}" class='share-btn' open-type="share"></button>
+    </view>
+  </view>
+  <view class="flex">
+    <image class='match-bg' bindtap='toAwaitPk' src='https://gengxin.odao.com/update/h5/yingyu/index/match.png'></image>
+  </view>
+  <view class="flex">
+    <image class='duizhan-bg' bindtap='toFriPk' src='https://gengxin.odao.com/update/h5/yingyu/index/duizhan-bg.png'></image>
+  </view>
+
+  <view class="tab f-r-sb">
+    <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank1.png'></image>
+    <image class='shop' bindtap='toShop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
+    <image class='zhishidian' bindtap='toZsd' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
+    <image class='qidai' bindtap='toBackpack' src='https://gengxin.odao.com/update/h5/yingyu/index/pakage.png'></image>
+    <image class='setting' bindtap='toSet' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
+    <view class="c-box">
+      <image class='customer' bindtap='toGetInfo' src='https://gengxin.odao.com/update/h5/yingyu/index/customer.png'></image>
+      <button wx:if="{{hasUserInfo}}" open-type='contact' class="contact"></button>
+    </view>
+
+  </view>
+  <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
+  <qiandao id="qiandao-bor" tian="{{landingDay}}" wx:if="{{landing}}" bind:hide="_hide"></qiandao>
+</view>

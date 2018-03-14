@@ -1,0 +1,36 @@
+<view class="awaitPK">
+  <view class="chuangkou">
+    <view class="duihuakuang">
+      <text class="duihuakuang-wenzi font">等待玩家链接···</text>
+    </view>
+    <image class="zhejiao" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/zhejiao.png"></image>
+  </view>
+  <view class="konghezi">
+    <view class="konghezi-hong"></view>
+    <view class="konghezi-huang"></view>
+    <view class="konghezi-xia"></view>
+  </view>
+  <image class="xingqiu-zhi" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-zhi.png"></image>
+  <image class="xingqiu-huang" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-huang.png"></image>
+  <view class="diqiu">
+    <view>
+      <image class="feichuan" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/feichuan.png"></image>
+    </view>
+    <view class="touxiangkuang">
+      <image class="touxiangkuang-tu" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
+      <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+    </view>  
+    <view class="ziliao">
+        <view class="wenzi">
+          <text class="nicheng font">{{userInfo.nickName}}</text>
+        </view>
+        <view class="nicheng wenzi" wx:if="{{userInfo.location}}">
+          <text class="wenzi font">来自:{{userInfo.location}}</text>
+        </view>
+        <view class="jinbi wenzi">
+          <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/jinbi.png"></image>
+          <text class="jinbi-shuzi font">{{gold}}</text>
+        </view>
+      </view>
+    </view> 
+</view>

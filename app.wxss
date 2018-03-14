@@ -1,0 +1,79 @@
+/**app.wxss**/
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+.con-bg {
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.flex {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+} 
+.f-r-sb {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+} 
+.f-r-fs {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.f-c-fs {
+  display: flex;
+  flex-direction: column;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.f-c-sb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.f-c-sa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.patl {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.patr {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.pabl {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.pabr {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.font{
+  font-family: 'Microsoft YaHei';
+  font-weight: bold;
+  color: #fff;
+}

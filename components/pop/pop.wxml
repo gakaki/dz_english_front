@@ -1,0 +1,22 @@
+<!--components/pop/pop.wxml-->
+
+<view class="award-pop" wx:if='{{show}}'>
+  <view class='title'>
+    <image class='img-l' src='https://gengxin.odao.com/update/h5/yingyu/result/left.png'></image>
+    <text>恭喜升级</text>
+    <image class='img-r' src='https://gengxin.odao.com/update/h5/yingyu/result/right.png'></image>
+  </view>
+  <view class="pop-box" >
+    <view class='tip'>升级到<text class='tip-lv'>{{lv}}级</text>获得</view>
+    <view class='name'>{{name}}</view>
+    <view class='top'>
+      <image class="icon" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{iconName}}"></image>
+      <text class='num'>X<text class='num-large'>{{num}}</text></text>
+    </view>
+  </view>
+  <view class="button flex">
+    <view class="btn" bindtap='hidePop'>
+      <text class="font use">确定</text>
+    </view>
+  </view>
+</view>

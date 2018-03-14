@@ -1,0 +1,88 @@
+/* components/compete/compete.wxss */
+.compete {
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.top-content {
+  position: relative;
+  height: 474rpx;
+}
+.users {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 32rpx;
+}
+.user {
+  display: flex;
+  margin-top: 6rpx; 
+  height: 172rpx;
+  width: 334rpx;
+  color: #fff;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-blue.png') no-repeat;
+  background-size: 334rpx 172rpx;
+}
+.avatar {
+  margin: 9rpx 4rpx 0 10rpx; 
+  width: 108rpx;
+  height: 108rpx;
+  border: 3rpx solid #fff;
+  border-radius: 50%;
+}
+.avatar-r {
+  margin: 9rpx 10rpx 0 4rpx;
+}
+.content {
+  padding: 0 10rpx;
+  font: bold 30rpx/130rpx 'Microsoft YaHei';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 110rpx;
+}
+.user-r {
+  flex-direction: row-reverse;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-red.png') no-repeat;
+  background-size: 334rpx 172rpx;
+}
+.countdown {
+  position: absolute;
+  left: 300rpx;
+  top: 32rpx;
+  z-index: 9;
+  width: 150rpx;
+  height: 177rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/competition/countdown.png') no-repeat;
+  background-size: 150rpx 177rpx;
+}
+
+.gouzi {
+  position: absolute;
+  left: 0;
+  top: 146rpx;
+  z-index: 8;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.gz {
+  width: 22rpx;
+  height: 78rpx;
+}
+.blackboard {
+  position: absolute;
+  left: 0;
+  top: 198rpx;
+  width: 100%;
+}
+.main-select {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 25rpx;
+  padding: 0 15rpx;
+  height: 652rpx;
+}

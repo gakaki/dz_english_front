@@ -1,0 +1,32 @@
+<!--components/compete/compete.wxml-->
+
+<view class='compete'>
+  <view class='top-content'>
+    <view class='users'>
+      <view class='user'>
+        <image class="avatar" src="{{userLeft.avatarUrl}}"></image>
+        <view class='content'>{{userLeft.nickName}}</view>
+      </view>
+      <view class='countdown'> 
+         <clock clockStart='{{clockStart}}' clockTime='{{clockTime}}'></clock> 
+      </view>
+      <view class='user user-r'>
+        <image class="avatar avatar-r" src="{{userRight.avatarUrl}}"></image>
+        <view class='content'>{{userRight.nickName}}</view>
+      </view>
+    </view>
+    <view class='gouzi'>
+      <image class='gz' src='https://gengxin.odao.com/update/h5/yingyu/competition/gouzi.png'></image>
+      <image class='gz' src='https://gengxin.odao.com/update/h5/yingyu/competition/gouzi.png'></image>
+    </view>
+    <view class='blackboard'>
+      <slot name='word'></slot>
+    </view>
+  </view>
+  <view class='main-select'>
+    <slot name='select'></slot>
+  </view>
+  <view class='start-mcs'>
+    <slot name='mcs'></slot>
+  </view>
+</view>

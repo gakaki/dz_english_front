@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bar":"../bar/bar",
+    "clock":"../clock/clock"
+  }
+}

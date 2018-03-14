@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/choosePk/choosePk",
+    "pages/rankDes/rankDes",
+    "pages/backpack/backpack",
+    "pages/self/self",
+    "pages/rank/rank",
+    "pages/duizhan/duizhan",
+    "pages/friendPK/friendPK",
+    "pages/result/result",
+    "pages/awaitPK/awaitPK",
+    "pages/competition/competition",
+    "pages/word/word",
+    "pages/shopping/shopping",
+    "components/qiandao/qiandao"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "英文乐翻天",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#2890f1"
+  }
+}

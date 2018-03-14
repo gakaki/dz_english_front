@@ -1,0 +1,328 @@
+.result{
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.defen{
+  width: 100vw;
+  height: 175rpx;
+  font-size: 80rpx;
+  font-style: italic;
+  letter-spacing: 2rpx;
+  font-weight: 900;
+}
+
+.shu-ying{
+  width: 274rpx;
+  height: 152rpx;
+  position: absolute;
+  top: 28rpx;
+  left: 50%;
+  margin-left: -137rpx;
+  perspective: 1000rpx;
+  transform-style: preserve-3d;
+  opacity: 0;
+  animation: shuying 0.1s ease-in 1s forwards; 
+}
+
+.fenshu-lan{
+  width: 220rpx;
+  height: 77rpx;
+  position: absolute;
+  -webkit-text-stroke: 4rpx #007be3;
+  text-shadow: 0 4px #6293c4;
+  top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: left 0.4s ease-in forwards;
+}
+
+.fenshu-hong{
+  width: 220rpx;
+  height: 77rpx;
+  position: absolute;
+  right: 22rpx;
+  -webkit-text-stroke: 4rpx #c10727;
+  text-shadow: 0 4px #6293c4;
+  top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: right 0.4s ease-in forwards;
+}
+
+.fen{
+  font-size: 40rpx;
+}
+
+.xinxi{
+  width: 100vw;
+  height: 290rpx;
+  margin-top: 28rpx;
+  align-items: flex-start;
+}
+
+.xinxi-lan{
+  animation: left 0.4s ease-in forwards;
+}
+
+.wanjia-lan{
+  width: 337rpx;
+  height: 143rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/result/mianbanlan.png') 0 0 no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.nicheng-lan{
+  width: 200rpx;
+  margin-top: 50rpx;
+  font-size: 32rpx;
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.touxiang-lan{
+  width: 108rpx;
+  height: 108rpx;
+  border: 3rpx solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4rpx #007be3;
+  margin-top: 11rpx;
+  left: 210rpx;
+  position: absolute;
+}
+
+.liandui-lan{
+  width: 210rpx;
+  height: 60rpx;
+  margin-top: 15rpx;
+  background-color: #19b1ff;
+  font-size: 30rpx;
+  border-top-right-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+
+.liandui-wenzi-lan{
+  margin-left: 43rpx;
+  line-height: 60rpx;
+  
+}
+
+.liansheng-lan{
+  width: 210rpx;
+  height: 60rpx;
+  margin-top: 10rpx;
+  background-color: #19b1ff;
+  font-size: 30rpx;
+  border-top-right-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+.liansheng-wenzi-lan{
+  margin-left: 58rpx;
+  line-height: 60rpx;
+}
+
+.xinxi-hong{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: column;
+  animation: right 0.4s ease-in forwards;
+}
+
+.wanjia-hong{
+  width: 337rpx;
+  height: 143rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/result/mianbanhong.png') 0 0 no-repeat;
+  background-size: cover;
+  position:relative;
+}
+
+.touxiang-hong{
+  width: 108rpx;
+  height: 108rpx;
+  border: 3rpx solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4rpx #c10727;
+  margin-top: 11rpx;
+  margin-left: 11rpx;
+  position: absolute;
+}
+
+.nicheng-hong{
+  width: 200rpx;
+  right: 0rpx;
+  margin-top: 50rpx;
+  font-size: 32rpx;
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.liandui-hong{
+  width: 210rpx;
+  height: 60rpx;
+  margin-top: 15rpx;
+  margin-right: 0rpx;
+  background-color: #f44160;
+  font-size: 30rpx;
+  border-top-left-radius: 40rpx;
+  border-bottom-left-radius: 40rpx;
+  text-align: right;
+}
+
+.liandui-wenzi-hong{
+  line-height: 60rpx;
+  margin-right: 43rpx;
+}
+
+.jinbi{
+  width: 551rpx;
+  height: 102rpx;
+  margin-top: 34rpx;
+  font-size: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-color: #2890f1;
+  border-width: 2rpx;
+  border-bottom-style: solid;
+}
+
+.jinbi-tu{
+  width: 69rpx;
+  height: 66rpx;
+}
+
+.jinbi-jia{
+  color: #2890f1;
+  margin-left: 20rpx;
+}
+
+.jinbi-shu{
+  color: #2890f1;
+  margin-left: 20rpx;
+}
+
+.jingyan{
+  width: 551rpx;
+  height: 100rpx;
+  font-size: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-color: #2890f1;
+  border-width: 2rpx;
+  border-bottom-style: solid;
+}
+
+.jingyan-tu{
+  width: 70rpx;
+  height: 72rpx;
+}
+
+.jingyan-jia{
+  color: #2890f1;
+  margin-left: 16rpx;
+}
+
+.jingyan-shu{
+  color: #2890f1;
+  margin-left: 20rpx;
+}
+
+.anniu-tiaozhan{
+  width: 448rpx;
+  height: 129rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/result/anniucheng.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 80rpx;
+}
+
+.anniu-fenxiang{
+  width: 438rpx;
+  height: 119rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/result/anniulv.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 32rpx;
+  position: relative;
+}
+
+.anniu-wenzi{
+  font-family: 'Microsoft YaHei';
+  color: #fff;
+  font-size: 50rpx;
+  letter-spacing: 5rpx;
+  text-align: center;
+  line-height: 115rpx;
+}
+
+.fenxiang-shuoming{
+  margin-top: 37rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.fenxiang-wenzi{
+  font-size: 26rpx;
+  color: #6cadce;
+}
+
+.fenxiang-jinbi{
+  width:33rpx;
+  height: 31rpx; 
+  margin-left: 4rpx;
+}
+
+.share{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+/*以下是动画设置····  */
+
+@keyframes left {
+  0%{
+    margin-left: -337rpx;
+  }
+
+  100%{
+    margin-left: 0;
+  }
+}
+
+@keyframes right {
+  0%{
+    margin-right: -337rpx;
+  }
+
+  100%{
+    margin-right: 0;
+  }
+}
+
+@keyframes shuying {
+  0%{
+    opacity: 1;
+    transform: scale3d(1.5,1.5,1.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
+}
+

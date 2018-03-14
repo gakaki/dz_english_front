@@ -1,0 +1,452 @@
+.duizhan{
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.lan{
+  width: 100vw;
+  height: 500rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.lan-shouji{
+  width:345rpx;
+  height:470rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-lan.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: 30rpx;
+}
+
+.lan-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 122rpx;
+}
+
+.touxiangkuang{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  margin-left: 6rpx;
+  margin-top: -18rpx;
+}
+
+.lan-touxiang{
+  width: 145rpx;
+  height: 145rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+  margin-left: 42rpx;
+}
+
+.lan-nicheng{
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.zhejiao{
+  width: 72rpx;
+  height: 51rpx;
+  position: absolute;
+  top: 260rpx;
+  right: 308rpx;
+}
+
+.lan-tankuang{
+  width: 274rpx;
+  height: 242rpx;
+  background-color: #fff;
+  background-size: cover;
+  margin-top:91rpx;
+  margin-right: 35rpx;
+  color: #4b65b7;
+  font-size: 44rpx;
+  font-family: "Microsofe Yahei";
+  border-radius: 30rpx;
+  box-shadow: -3px 4px #70ade7;
+}
+
+.lan-xinxi{
+  margin-left: 26rpx;
+}
+
+.lan-liansheng{
+  margin-top: 18rpx;
+}
+
+.lan-liansheng-wenzi{
+  color: #fff;
+  -webkit-text-stroke: 4rpx #ff6183;
+  font-size: 40rpx;
+}
+
+.lan-dizhi{
+  margin-top: 8rpx;
+}
+
+.lan-dizhi-wenzi{
+  font-size: 40rpx;
+}
+
+.lan-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
+}
+
+.lan-dengji{
+  margin-top: 8rpx;
+}
+
+.pk{
+  width: 100vw;
+  height: 218rpx; 
+}
+
+.pk-lan{
+  width:405rpx;
+  height:239rpx;
+  left: -405rpx;
+  position: absolute;
+  top: 494rpx;
+  animation: left .3s ease-in forwards; 
+}
+
+.pk-lan image{
+  width:405rpx;
+  height:239rpx;
+}
+
+/* .point{
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 77rpx;
+  left: 0;
+  animation: lpoint 1s linear infinite; 
+  box-shadow: 0 0 2rpx #f00;
+} */
+
+.pk-hong{
+  width:405rpx;
+  height:239rpx;
+  right: -405rpx;
+  position: absolute;
+  top: 466rpx;
+  animation: right .3s ease-in forwards;
+}
+
+.pk-hong image{
+  width:405rpx;
+  height:239rpx;
+}
+
+.pk-tu{
+  width:239rpx;
+  height:158rpx;
+  position: absolute;
+  left: 262rpx;
+  top: 508rpx;
+  perspective: 1000rpx;
+  transform: scale3d(2.5,2.5,2.5);
+  transform-style: preserve-3d;
+  opacity: 0; 
+  animation: pk .5s ease-in .5s forwards; 
+}
+
+.dianliu{
+  width:47rpx;
+  height:66rpx;
+  position: absolute;
+  top: 433rpx;
+  left: 306rpx;
+}
+
+.dianliu2{
+  width:27rpx;
+  height:58rpx;
+  position: absolute;
+  top: 423rpx;
+  left: 384rpx;
+}
+
+.dianliu3{
+  width:30rpx;
+  height:55rpx;
+  position: absolute;
+  top: 718rpx;
+  left: 336rpx;
+}
+
+.dianliu4{
+  width:33rpx;
+  height:77rpx;
+  position: absolute;
+  top: 717rpx;
+  left: 382rpx;
+}
+
+.dianliu5{
+  width:32rpx;
+  height:41rpx;
+  position: absolute;
+  top: 700rpx;
+  left: 411rpx;
+}
+
+.hong{
+  display: flex;
+  justify-content: space-between;
+}
+
+.hong-shouji{
+  margin-top: -20rpx;
+  width:345rpx;
+  height:440rpx;
+}
+
+.zhejiao-2{
+  width: 88rpx;
+  height: 51rpx;
+  position: absolute;
+  transform:rotateY(180deg);
+  left: 308rpx;
+  margin-top: 320rpx;
+}
+
+.hong-tankuang{
+  width: 274rpx;
+  height: 242rpx;
+  background-color: #fff;
+  background-size: cover;
+  margin-top:146rpx;
+  margin-left: 35rpx;
+  border-radius: 30rpx;
+  color: #4b65b7;
+  font-size: 44rpx;
+  font-family: "Microsofe Yahei";
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 4px #70ade7;
+}
+
+.hong-xinxi{
+  margin-left: 29rpx;
+}
+
+.hong-liansheng{
+  margin-top: 21rpx;
+}
+
+.hong-liansheng-wenzi{
+  color: #fff;
+  -webkit-text-stroke: 4rpx #ff6183;
+  font-size: 40rpx;
+}
+
+.hong-dizhi{
+  margin-top: 8rpx;
+}
+
+.hong-dizhi-tu{
+  width: 27rpx;
+  height: 35rpx;
+  vertical-align:middle;
+}
+
+.hong-dizhi-wenzi{
+  font-size: 40rpx;
+}
+
+.hong-dengji{
+  margin-top: 8rpx;
+}
+
+.hong-shouji{
+  width:345rpx;
+  height:470rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/duizhan/shouji-hong.png') 0 0 no-repeat;
+  background-size: cover;
+  margin-top: -20rpx;
+}
+
+.hong-ziliao{
+  width: 245rpx;
+  display: flex;
+  flex-direction: column;
+  top: 812rpx;
+  right: 0rpx;
+  position: absolute;
+}
+
+.hong-touxiang{
+  width: 145rpx;
+  height: 145rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+  margin-left: 45rpx;
+}
+
+.hong-nicheng{
+  align-self: center;
+  display: inline-block;
+  font-size: 40rpx;
+  max-width: 245rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.animate{
+  width: 200rpx;
+  height: 122rpx;
+  position: absolute;
+  z-index: 0;
+}
+
+.animate-left{
+  top: 92rpx;
+  left: 298rpx;
+  transform: scalex(-1);
+}
+
+.animate-right{
+  top: 871rpx;
+  right: 320rpx;
+}
+
+.shandian{
+  opacity: 0;
+  animation: opa .5s linear .5s infinite forwards;
+}
+
+.animation-dianliu-lan{
+  position: absolute;
+  top: 520rpx;
+}
+
+.dianliu-yincang{
+  opacity: 0;
+}
+
+.animation-dianliuL{
+  width: 232rpx;
+  height: 142rpx;
+}
+
+.animation-dianliu-hong{
+  position: absolute;
+  top: 520rpx;
+  right: 0rpx;
+}
+
+.animation-dianliuR{
+  width: 232rpx;
+  height: 142rpx;
+}
+
+.p-lizi{
+  width: 44rpx;
+  height: 49rpx;
+  margin-left: 270rpx;
+  margin-top: 12rpx;
+  position: absolute;
+  animation: pk .5s ease-in .5s forwards; 
+}
+
+.k-lizi{
+  width: 94rpx;
+  height: 46rpx;
+  margin-left: 400rpx;
+  margin-top: -25rpx;
+  position: absolute;
+  animation: pk .5s ease-in .5s forwards; 
+}
+
+
+/*以下部分为动画*/
+@keyframes left {
+  0%{
+    left: -405rpx;
+  }
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes right {
+  0%{
+    right: -405rpx;
+  }
+  100%{
+    right: 0;
+  }
+}
+
+@keyframes pk {
+  0%{
+    opacity: 1;
+    transform: scale3d(2.5,2.5,2.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes opa{
+  0%{
+    opacity: 0.1;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
+
+/* @keyframes lpoint{
+  0%{
+    left:0;
+    top: 77rpx;
+  }
+  45%{
+    left: 135rpx;
+    top: 42rpx;
+  }
+  55%{
+    left: 160rpx;
+    top: 54rpx;
+  }
+  65%{
+    left: 176rpx;
+    top: 80rpx;
+  }
+  90%{
+    left: 190rpx;
+    top:124rpx;
+  }
+  95%{
+    left: 210rpx;
+    top: 140rpx;
+  }
+  100%{
+    left: 224rpx;
+    top: 145rpx;
+  } 
+} */

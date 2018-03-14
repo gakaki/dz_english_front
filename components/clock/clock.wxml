@@ -1,0 +1,10 @@
+<!--components/clock/clock.wxml-->
+<view class="circleProgress_wrapper"> 
+  <text class="num">{{clockTime}}</text> 
+  <view class="wrapper right">  
+      <view class="circleProgress rightcircle {{clockStart?'rightcircle-start':''}}"></view>  
+  </view>  
+  <view class="wrapper left">  
+      <view class="circleProgress leftcircle {{clockStart?'leftcircle-start':''}}"></view>  
+  </view>  
+</view> 

@@ -1,0 +1,317 @@
+#rank {
+  width: 100vw;
+  height: 100vh;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.text-of {
+  width: 168rpx;
+ overflow: hidden;
+  white-space: nowrap;
+   text-overflow: ellipsis;  
+}
+.tab-bg {
+  width: 750rpx;
+  height: 241rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rank/t-bg.png') 0 0 no-repeat;
+  background-size: cover;
+}
+
+.tab {
+  position: relative;
+  width: 100%;
+}
+
+.des {
+  position: absolute;
+  top: 32rpx;
+  right: 20rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.tab text {
+  /* line-height: 72rpx;
+  width: 212rpx;*/
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 30rpx;
+}
+
+.tab-one {
+  box-sizing: border-box;
+  height: 56rpx;
+  text-align: center;
+  /* border-bottom-left-radius: 36rpx;
+  border-top-left-radius: 36rpx; */
+  margin-right: 60rpx;
+}
+
+.shuxian {
+  margin-top: 10rpx;
+  display: inline-block;
+  width: 4rpx;
+  height: 62rpx;
+  background-color: #335bb8;
+}
+
+.tab-two {
+  box-sizing: border-box;
+  height: 56rpx;
+  margin-left: 60rpx;
+  text-align: center;
+  /* border-bottom-right-radius: 36rpx;
+  border-top-right-radius: 36rpx */
+}
+
+.tab-act {
+  /* background-color: rgba(165,209,253,.8);
+  text-decoration: underline;
+  color: #335bb8 */
+  padding-bottom: 6rpx;
+  border-bottom: 4rpx solid #fff9e3;
+}
+
+/* .tab-def {
+  color: #fff;
+  background-color: rgba(0,0,0,.2); 
+} */
+
+.hx {
+  margin-top: 30rpx;
+  width: 710rpx;
+  height: 20rpx;
+}
+
+.hxb {
+  position: absolute;
+  top: 47rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  width: 710rpx;
+  height: 20rpx;
+}
+
+.rank-box {
+  z-index: 10;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 128rpx;
+  bottom: 83rpx;
+  overflow: hidden;
+}
+
+.item {
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  align-items: center;
+  position: relative;
+  width: 690rpx;
+  height: 150rpx;
+  background-color: #fffef7;
+  box-shadow: 0 3rpx 0 #f3e2c0;
+  border-radius: 20rpx;
+  z-index: 20;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.lt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.one {
+  z-index: 11;
+  position: absolute;
+  left: 10rpx;
+  top: 5rpx;
+  font-weight: bold;
+  font-size: 42rpx;
+  color: #fff;
+  font-family: Microsoft YaHei;
+}
+
+/* .head-box {
+  z-index: 12;
+  background-color: #f89200;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  margin: 0 43rpx 0 67rpx
+}
+
+.head {
+  background-color: #335bb8;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 4rpx solid #fff;
+} */
+
+.frame {
+   width: 227rpx;
+  height: 181rpx; 
+  position: relative;
+  /* margin: 0 43rpx 0 67rpx; */
+  margin: 0 0rpx 0 22rpx;
+}
+
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+    width: 227rpx;
+  height: 181rpx;  
+  z-index: 6;
+  transform: scale(0.8, 0.8);
+}
+
+.header {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: content-box;
+  border: 5rpx solid #F89200;
+  border-radius: 50%;
+  overflow: hidden
+}
+
+.userinfo-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 4rpx solid #fff;
+}
+
+.header1 {
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: content-box;
+  border: 5rpx solid #F89200;
+  border-radius: 50%;
+  margin: 0 43rpx 0 76rpx;
+  overflow: hidden
+}
+
+.userinfo-avatar1 {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 4rpx solid #fff;
+}
+
+.info {
+  color: #b07145;
+  height: 120rpx;
+  /* width: 454rpx; */
+  width: 424rpx;
+  font-weight: bold;
+}
+
+.info-top, .info-bot {
+  height: 60rpx;
+  width: 424rpx;
+}
+
+.info-top {
+  align-items: flex-start;
+  border-bottom: 2rpx solid #ffe071;
+  position: relative;
+}
+
+.info-bot {
+  align-items: flex-end;
+}
+
+.gps-icon {
+  height: 35rpx;
+  width: 27rpx;
+  position: absolute;
+  left: 254rpx;
+  top: 9rpx;
+}
+
+.adress {
+  position: absolute;
+  left: 286rpx;
+  top: 8rpx;
+  font-size: 30rpx;
+}
+
+.nn {
+  position: absolute;
+  left: 22rpx;
+  top: 8rpx;
+  font-size: 30rpx;
+}
+
+.ch {
+  font-size: 28rpx;
+  width: 158rpx;
+  height: 50rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/rank/ch-bg.png') 0 0 no-repeat;
+  background-size: cover;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.star-box {
+  font-size: 33rpx;
+  align-items: center;
+  margin-top: 9rpx;
+  margin-right: 22rpx;
+  height: 50rpx;
+  width: 164rpx;
+  border-radius: 26rpx;
+  background-color: #ffeeaf;
+}
+
+.star-box image {
+  margin-left: 10rpx;
+}
+
+.star-box text {
+  margin-left: 9rpx;
+}
+
+.star-icon {
+  height: 39rpx;
+  width: 39rpx;
+}
+
+.bot-bg {
+  width: 100%;
+  height: 140rpx;
+  background-color: #2890f1;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.pre-season {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  transform: translateY(20rpx);
+}

@@ -1,0 +1,13 @@
+<scroll-view scroll-y class="con-bg con">
+<view class="sc-box">
+<view wx:for="{{stage}}" wx:key="{{index}}" class="item f-r-fs">
+        <image class="head" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{item.cfg.frame}}.png"></image>
+
+      <text class="des">{{item.cfg.stage}}</text>
+      <text class="jl">奖励:</text>
+      <image src="{{awardIcon[index]}}" class="icon"></image>
+      <text class="num">X{{item.cfg.award['v']}}</text>
+    </view>
+</view>
+    
+</scroll-view>

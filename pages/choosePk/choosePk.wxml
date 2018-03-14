@@ -1,0 +1,82 @@
+<view class="con-bg">
+  <view class="top-bg">
+    <view class="flex">
+      <text class="season-time">(赛季时间：{{season.cfg.show}})</text>
+    </view>
+    <view class="user-info f-r-fs">
+      <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
+      <view wx:if="{{rankFrame.length > 0}}" class="frame">
+        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
+        <view class="header flex">
+          <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+      </view>
+
+      <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+      
+        <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="top-mid f-c-sb">
+        <text class="nn">{{userInfo.nickName}}</text>
+        <view class="gold-box f-r-fs">
+          <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
+          <text class="gold-count">{{userInfo.items[1] || 0}}</text>
+        </view>
+      </view>
+      <image class="wenhao" src="https://gengxin.odao.com/update/h5/yingyu/common/wenhao.png" bindtap='toDes'></image>
+    </view>
+    <view class="flex">
+      <image class="hx" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
+    </view>
+  </view>
+  <scroll-view scroll-y class="segment-box" scroll-into-view="rank{{toView}}" scroll-with-animation="true">
+
+    <view id="rank{{index}}" wx:for="{{stage}}" wx:key="{{index}}" class="segment-list f-r-fs" data-rank="{{index+1}}" bindtap='match'>
+      <view class="lock flex" hidden='{{index<stage.length-1 || stage.length==15}}'>
+        <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
+
+      </view>
+      <view class="kuang" wx:if="{{index>5}}">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/choosePK/fram_{{index+1}}.png"></image>
+      </view>
+      <view class="pai-bg  flex">
+        <image class="pai" src="{{level[index]}}"></image>
+      </view>
+      <view class="item-mid f-c-sb">
+        <text class="segment">{{item.stage}}</text>
+        <text class="mid-line"></text>
+        <text class="award">奖金:{{item.jia}}</text>
+      </view>
+      <view class="item-rgt f-c-sb">
+        <view class="item-rgt-top">
+          <image class="gold-mid " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-mid.png"></image>
+          <text class="gold-num">{{item.jian}}</text>
+        </view>
+        <view class="star" wx:if="{{ index+1 < stage.length-1 || stage.length == 15 && index!=14}}">
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        </view>
+        <view class="star" wx:if="{{stage.length-1 == index+1 && stage.length != 15}}">
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
+        </view>
+        <view class="level-star" wx:if="{{stage.length-1 == index+1}}">
+          <image wx:for="{{star}}" wx:key="{{index}}" class="item-rgt-bot {{index==0? starAnimation : ''}}" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+        </view>
+        <view class="star" wx:if="{{stage.length-1 == index && index!=14}}">
+          <image wx:for="{{item.star}}" wx:key="{{index}}" class="item-rgt-bot " src="https://gengxin.odao.com/update/h5/yingyu/choosePK/star-di.png"></image>
+        </view>
+        <view class="star" wx:if="{{stage.length==15 && index==14}}">
+          <image class="item-rgt-bot last-star" src="https://gengxin.odao.com/update/h5/yingyu/common/star.png"></image>
+          <text class="item-text">{{star}}</text>
+        </view> 
+      </view>
+    </view>
+
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{stage.length==15}}"></image>
+    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png" hidden="{{stage.length==15}}"></image>
+  </scroll-view>
+
+
+
+</view>
