@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc, wsClose } from '../../utils/rest.js';
 import { care, getRankFrame } from '../../utils/util.js'
 Page({
   data: {
@@ -75,10 +75,14 @@ Page({
   toFriPk: function (e) {
     if (app.preventMoreTap(e)) { return; }
     start(() => {
-      this.hi()
-      wx.navigateTo({
-        url: '../friendPK/friendPK'
+      this.hi();
+      wsSend('joinroom')
+      wsReceive('joinSuccess',(res)=>{
+        wx.navigateTo({
+          url: '../friendPK/friendPK?rid=' + res.data.rid
+        })
       })
+     
     })
   },
   toZsd(e) {
@@ -272,6 +276,9 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onUnload(){
+    wsClose(['joinSuccess'])
   },
   onShareAppMessage: function (res) {
     return {

@@ -28,18 +28,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options && !options.rid){
-      console.log('creatroom')
-      wsSend('createroom')
-      wsReceive('createSuccess', res => {
-        console.log(res, 'creatSuc')
-        this.getInfo(res.data.rid)
-      })
-    }
-    else{
-      wsSend('joinroom', { rid: options.rid})
+    console.log(options.rid)
+    if(options && options.rid){
+      
       this.getInfo(options.rid)
-    } 
+    } else {
+      // wx.redirectTo({
+      //   url: '../index/index',
+      // })
+    }
     
   },
   getInfo(rid){

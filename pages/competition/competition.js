@@ -32,6 +32,7 @@ Page({
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
+    chinese:[],
     rightAnswer: '',//正确答案
     options:[],//答案选项
     letters: [],  //单词变成字母
@@ -334,6 +335,9 @@ Page({
       word: question,
       letters,
       rightAnswer: rightAnswer
+    })
+    this.setData({
+      chinese:this.data.word.China.split(';')
     })
   },
   hideQuestionLetter(hideAll = false){
