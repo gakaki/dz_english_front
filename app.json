@@ -10,6 +10,7 @@
     "pages/friendPK/friendPK",
     "pages/result/result",
     "pages/awaitPK/awaitPK",
+    "components/clock/clock",
     "pages/competition/competition",
     "pages/word/word",
     "pages/shopping/shopping",

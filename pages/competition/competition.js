@@ -564,6 +564,7 @@ Page({
         finished = true;
         myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
+
         this.playResultAudio(isRight)
      
       } else {
@@ -576,6 +577,7 @@ Page({
       finished = true;
       this.playResultAudio(isRight)
     }
+
     let roundAnswer = {};
     if (finished) {
       roundAnswer[letters.join()] = isRight;

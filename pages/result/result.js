@@ -22,9 +22,9 @@ Page({
     iconName:''
   },
   onLoad: function (e) {
-    console.log(e,'eeeeeeeeeeeeeeeee')
+    console.log(e, 'eeeeeeeeeeeeeeeee')
     let isUp = JSON.parse(e.isUp)
-    let award = [12,1];
+    let award = [12, 1];
     let item = Item.Get(award[0]);
     this.setData({
       isUp,
@@ -32,8 +32,6 @@ Page({
       num: award[1],
       name: item.name
     })
-    
-    
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{
