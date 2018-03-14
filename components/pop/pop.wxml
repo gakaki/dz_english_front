@@ -11,7 +11,7 @@
     <view class='name'>{{name}}</view>
     <view class='top'>
       <image class="icon" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{iconName}}"></image>
-      <text class='num'>X<text class='num-large'>{{num}}</text></text>
+      <text class='num'>×<text class='num-large'>{{num}}</text></text>
     </view>
   </view>
   <view class="button flex">

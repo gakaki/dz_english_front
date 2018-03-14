@@ -109,6 +109,7 @@
   border-radius: 50%;
 }
 .num {
+  display: inline-block;
   position: absolute;
   right: 0;
   top: 0;
@@ -116,8 +117,9 @@
   width: 54rpx;
   height: 54rpx;
   background: #ff9700;
-  font: 24rpx/54rpx 'Microsoft YaHei';
-  
+  font: bold 24rpx/54rpx 'Microsoft YaHei';
+  text-align: center;
+  border-radius: 50%;
 }
  .num-large {
   font-size: 28rpx;
