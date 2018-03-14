@@ -24,6 +24,11 @@ Page({
   },
   onLoad: function (e) {
     console.log(e, 'eeeeeeeeeeeeeeeee')
+    if(e.otherLeave) {
+      wx.showToast({
+        title: '对方逃跑',
+      })
+    }
     if(e.k) {
       let item = Item.Get(e.k);
       this.setData({

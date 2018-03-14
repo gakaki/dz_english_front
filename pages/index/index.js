@@ -234,14 +234,15 @@ Page({
         doFetch('english.roomisexist', {
           rid: options.rid
         }, (res) => {
-          console.log(res.data.roomStatus,'res.data.roomStatus')
+          console.log(res.data,'res.data.roomStatus')
+          let rid = options.rid;
           if (res.code == 0) {
-            if (res.data.roomStatus == 1) {
+            if (res.data && res.data.roomStatus == 1) {
               wx.navigateTo({
-                url: '../friendPK/friendPK?rid=' + options.rid,
+                url: '../friendPK/friendPK?rid=' + rid,
               })
             }
-            else if (res.data.roomStatus == 2) {
+            else if (res.data && res.data.roomStatus == 2) {
               wx.navigateTo({
                 url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
               })

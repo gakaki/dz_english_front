@@ -9,10 +9,10 @@
       <view class="inviter bg">
         <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}.png" wx:if="{{frameSelf}}"></image>
         <view class="avatar">
-          <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
+          <image class="touxiang" src="{{list[0].info.avatarUrl}}"></image>
         </view>
         <view class="name">
-          <text>{{userInfo.nickName}}</text>
+          <text>{{list[0].info.nickName}}</text>
         </view>
         <view class="qipao">
           <text>发起者</text>
