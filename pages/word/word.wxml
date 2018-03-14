@@ -37,7 +37,7 @@
           <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">{{knowInfo[point+1].levelUP.needG}}</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">{{knowInfo[point+1].levelUP.needI}}/{{knowInfo[point+1].levelUP.haveI}}</text>
+          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">{{knowInfo[point+1].levelUP.haveI}}/{{knowInfo[point+1].levelUP.needI}}</text>
         </view>
       </view>
       <view class="cost max" wx:if="{{isMax}}">

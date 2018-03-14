@@ -1,6 +1,7 @@
 //获取应用实例
 const app = getApp()
 import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
+import { Item } from '../../sheets.js'
 
 Page({
   data: {
@@ -14,11 +15,24 @@ Page({
     exp:0,
     shareGold:0,
     isSelf:{},
-    notSelf:{}
+    notSelf:{},
+    name:'',
+    lv:0,
+    num:5,
+    iconName:''
   },
   onLoad: function (e) {
-    console.log(e)
+    console.log(e, 'eeeeeeeeeeeeeeeee')
+    
     let isUp = JSON.parse(e.isUp)
+    let award = [12, 1];
+    let item = Item.Get(award[0]);
+    this.setData({
+      isUp,
+      iconName: item.icon,
+      num: award[1],
+      name: item.name
+    })
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{

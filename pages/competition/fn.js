@@ -10,7 +10,7 @@ function loadEnglishWords(words) {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
-      // cloneObj.type = 3;
+      // cloneObj.type = 4;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj

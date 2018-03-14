@@ -50,7 +50,7 @@ Page({
     wsReceive('roomInfo', res => {
       console.log(res, 'roomInfo')
       if (res.data.roomStatus == 2) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
       }
@@ -76,17 +76,15 @@ Page({
         list: res.data.userList
       })
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function (options) {
-    console.log(app.globalData.str1)
+
     wsReceive('dissolve', res => {  //房主离开
-        console.log(res, 'dissolve')
+      console.log(res, 'dissolve')
+      wx.redirectTo({
+        url: '../index/index?ownerLeave=true',
+      })
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -105,7 +103,7 @@ Page({
     wsReceive('matchSuccess', res => {
       console.log(res, 'startGame')
       this.data.startGame = true
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })
@@ -122,14 +120,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    wsSend('leaveroom',{rid:this.data.rid})
-    clearInterval(time);
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
-  },
-
   start: function() {
-    console.log(111)
     wsSend('startgame',{
       rid: this.data.rid
     })
@@ -140,6 +131,8 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+    clearInterval(time);
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
 
   /**

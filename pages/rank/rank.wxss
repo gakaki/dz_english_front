@@ -314,5 +314,4 @@
   font-weight: bold;
   color: #fff;
   transform: translateY(20rpx);
-  border-bottom: 2rpx solid #fff;
 }
