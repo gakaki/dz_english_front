@@ -66,7 +66,7 @@
 
   </view>
 
-  <audio hidden='{{true}}' id="true" src='https://gengxin.odao.com/update/h5/yingyu/audio/true.png'></audio>
-  <audio hidden='{{true}}' id="false" src='https://gengxin.odao.com/update/h5/yingyu/audio/false.png'></audio>
-  <audio hidden='{{true}}' id="select" src='https://gengxin.odao.com/update/h5/yingyu/audio/select.png'></audio>
+  <audio hidden='{{true}}' id="true" src='https://gengxin.odao.com/update/h5/yingyu/audio/true.mp3'></audio>
+  <audio hidden='{{true}}' id="false" src='https://gengxin.odao.com/update/h5/yingyu/audio/false.mp3'></audio>
+  <audio hidden='{{true}}' id="select" src='https://gengxin.odao.com/update/h5/yingyu/audio/select.mp3'></audio>
 </wrap>

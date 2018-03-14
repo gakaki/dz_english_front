@@ -5,6 +5,7 @@ import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.
 let time = null
 Page({
   data: {
+    isFirstClick:true,
     rankFrame: '',
     userInfo:{},
     stage: [],
@@ -43,6 +44,9 @@ Page({
     if (options && options.fromIndex){
       this.data.fromIndex = true
     }
+    this.setData({
+      isFirstClick:true
+    })
   },
   onReady() {
     wsReceive('cancelSuccess', res => {
@@ -159,7 +163,12 @@ Page({
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
-    if (app.preventMoreTap(res,300)) { return; }
+    if(!this.data.isFirstClick) {
+      return
+    }
+    this.setData({
+      isFirstClick: false
+    })
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)

@@ -446,8 +446,14 @@ Page({
   },
   showFront(v){  //点击翻牌
     if (!canClick) return;
-    if (app.preventMoreTap(v,300)) { return; }
-    this.audioSelect.play();
+
+    let obj = v.currentTarget.dataset;
+    let bgIndex = this.data.bgIndex;
+    if (bgIndex[obj.index]) {
+      return;//已经点过这个键了
+    }
+    bgIndex[obj.index] = true;
+    
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
@@ -500,6 +506,8 @@ Page({
         })
         console.log(this.data.roundIsRight,'roundIsRight')
         this.tagRoundEnd(false);
+      } else {
+        this.audioSelect.play();
       }
     }
   },
@@ -514,7 +522,7 @@ Page({
       return;//已经点过这个键了
     }
     bgIndex[obj.index] = true;
-    
+
     this.audioSelect.play();
 
     let letters = this.data.letters;
@@ -563,7 +571,6 @@ Page({
     else {
       //回答出错
       answer = 2;
-      isRight = false;
       finished = true;
     }
     this.playResultAudio(isRight)
