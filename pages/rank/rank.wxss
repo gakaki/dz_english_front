@@ -100,6 +100,7 @@
   width: 100%;
   position: fixed;
   left: 0;
+  right: 0;
   top: 128rpx;
   bottom: 83rpx;
   overflow: hidden;
