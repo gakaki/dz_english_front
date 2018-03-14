@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
+import { doFetch, getUid, shareSuc, wsReceive } from '../../utils/rest.js';
 import { Item } from '../../sheets.js'
 let map = [];
 
@@ -24,17 +24,17 @@ Page({
     show:false
   },
   onLoad: function (e) {
-    let hasMap = map.every(v=>{
-      return v != 'matchSuccess';
-    })
-    if(hasMap) {
-      wsReceive('matchSuccess', res => {
-        wx.redirectTo({
-          url: '../duizhan/duizhan?rid=' + res.data.rid,
-        })
-      })
-      map.push('matchSuccess')
-    }
+    // let hasMap = map.every(v=>{
+    //   return v != 'matchSuccess';
+    // })
+    // if(hasMap) {
+    //   wsReceive('matchSuccess', res => {
+    //     wx.redirectTo({
+    //       url: '../duizhan/duizhan?rid=' + res.data.rid,
+    //     })
+    //   })
+    //   map.push('matchSuccess')
+    // }
     if(e.otherLeave) {
       wx.showToast({
         title: '对方逃跑',

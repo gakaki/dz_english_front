@@ -19,6 +19,7 @@ let isRight;//当前题是否答对了
 let rid;//房间id
 let round, totalScore; //round第几回合，从1开始 //本人总分
 let canClick = false; //9宫格是否可以点击
+let pkEnd = false
 
 Page({
   /**
@@ -69,7 +70,7 @@ Page({
   },
   onLoad(options) {
     console.log('======================load')
-    
+    pkEnd = false;
     rid = options.rid;
     round = 1;
     totalScore = 0;
@@ -137,7 +138,10 @@ Page({
     answerSend = true;
     this.tagRoundEnd(true);
     wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo','pkInfo']);
-    wsSend('leaveroom', { rid: rid })
+    if (!pkEnd) { 
+      wsSend('leaveroom', { rid: rid })
+    }
+   
   },
 
   onShow: function (e) {
@@ -293,6 +297,7 @@ Page({
         })
       }
       else {
+        pkEnd = true;
         let data = res.data;
         let isFriend = data.isFriend;
         let final = data.final;

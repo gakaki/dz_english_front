@@ -202,14 +202,15 @@
 }
 
 .mask {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  position: fixed;
+  left: 60%;
+  top: 60%;
   width: 0;
   height: 0;
   transform: translate(-50%, -50%);
-  transition: 2s;
+  transition: 1s;
   background: rgba(255, 0, 0, 0);
+  z-index: 10;
 }
 .mask-big {
   width: 100%;

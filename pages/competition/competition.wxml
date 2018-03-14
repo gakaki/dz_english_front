@@ -1,5 +1,6 @@
 <!--pages/competition/competition.wxml-->
  <wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'> 
+   
    <view class='now-word' slot="word">
     <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{word ? "show" : "none"}}'>
@@ -28,6 +29,7 @@
   </view>
 
   <view class='multi-wrap' slot='select'>
+    <view class='mask {{showMask?"mask-big":""}}' wx:if='{{showMask}}'></view>
     <bar class="bar" scoreA='{{totalScore}}' type='A'></bar>
 
     <view class='multi-words'> 
@@ -72,5 +74,4 @@
   <audio hidden='{{true}}' id="true" src='https://gengxin.odao.com/update/h5/yingyu/audio/true.mp3'></audio>
   <audio hidden='{{true}}' id="false" src='https://gengxin.odao.com/update/h5/yingyu/audio/false.mp3'></audio>
   <audio hidden='{{true}}' id="select" src='https://gengxin.odao.com/update/h5/yingyu/audio/select.mp3'></audio>
-  <view class='mask {{showMask?"mask-big":""}}' wx:if='{{showMask}}'></view>
  </wrap> 

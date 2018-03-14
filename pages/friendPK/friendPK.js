@@ -134,7 +134,7 @@ Page({
   },
 
   giveUp() {
-    wsSend('leaveroom',{rid:this.data.rid})
+    wsSend('leaveroom', { rid: this.data.rid})
     wx.navigateBack({
       delta: 1
     })
