@@ -157,9 +157,15 @@ Page({
         console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = { resultLeft, resultRight, changeInfo: data.pkResult, final, isFriend, exp, gold };
-        let isUp = JSON.stringify(data.pkResult.isUp);
+        let isUp = data.pkResult.isUp;
+        console.log(isUp)
+        let show = isUp.isUp;
+        let level = isUp.level;
+        let k = isUp.awards.k;
+        let v = isUp.awards.v;
+
         wx.redirectTo({
-          url: '../result/result?isUp=' + isUp,
+          url: '../result/result?' + '&show=' + show + '&level=' + level + '&k=' + k + '&v' + v
         })
 
       }

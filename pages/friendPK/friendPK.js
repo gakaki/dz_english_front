@@ -30,13 +30,13 @@ Page({
   onLoad: function (options) {
     console.log(options.rid)
     if(options && options.rid){
-      
+      console.log(!options.isOwner,'options.isOwner')
+      if (!options.isOwner) {
+        wsSend('joinroom', { rid: options.rid})
+      }
+     
       this.getInfo(options.rid)
-    } else {
-      // wx.redirectTo({
-      //   url: '../index/index',
-      // })
-    }
+    } 
     
   },
   getInfo(rid){
@@ -44,6 +44,7 @@ Page({
     wsSend('getroominfo', {
       rid: this.data.rid
     })
+    console.log('roomInfooooooooooo')
     wsReceive('roomInfo', res => {
       console.log(res, 'roomInfo')
       if (res.data.roomStatus == 2) {
@@ -100,7 +101,7 @@ Page({
     wsReceive('matchSuccess', res => {
       console.log(res, 'startGame')
       this.data.startGame = true
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
     })

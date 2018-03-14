@@ -19,19 +19,21 @@ Page({
     name:'',
     lv:0,
     num:5,
-    iconName:''
+    iconName:'',
+    level:0,
+    show:false
   },
   onLoad: function (e) {
     console.log(e, 'eeeeeeeeeeeeeeeee')
     
-    let isUp = JSON.parse(e.isUp)
-    let award = [12, 1];
-    let item = Item.Get(award[0]);
+    let item = Item.Get(e.k);
     this.setData({
       isUp,
       iconName: item.icon,
-      num: award[1],
-      name: item.name
+      num: e.v,
+      name: item.name,
+      level: e.level,
+      show: e.show
     })
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')

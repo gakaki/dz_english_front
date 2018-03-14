@@ -67,5 +67,5 @@
       <image class="fenxiang-jinbi" src="https://gengxin.odao.com/update/h5/yingyu/result/jingbixiao.png"></image>
     </view>
   </view>
-  <pop name='{{name}}' lv='{{isUp.level}}' num='{{num}}' iconName='{{iconName}}' show='{{isUp.isUp}}'></pop>
+  <pop name='{{name}}' lv='{{level}}' num='{{num}}' iconName='{{iconName}}' show='{{isUp}}'></pop>
 </view>

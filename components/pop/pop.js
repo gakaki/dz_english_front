@@ -13,8 +13,8 @@ Component({
       value: 5
     },
     num: {
-      type: Number,
-      value: 1
+      type: String,
+      value: '1'
     },
     iconName: {
       type: String,

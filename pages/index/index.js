@@ -75,16 +75,19 @@ Page({
   },
   toFriPk: function (e) {
     if (app.preventMoreTap(e)) { return; }
-    start(() => {
+    // start(() => {
       this.hi();
+      console.log('joinroom')
       wsSend('joinroom')
       wsReceive('joinSuccess',(res)=>{
+        console.log('joinSuccessssssssssssss')
+        if (app.preventMoreTap(e, 1000)) { return; }
         wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + res.data.rid
+          url: '../friendPK/friendPK?rid=' + res.data.rid + '&isOwner=' + res.data.isCreate
         })
       })
      
-    })
+    // })
   },
   toZsd(e) {
     if (app.preventMoreTap(e)) { return; }
@@ -139,7 +142,6 @@ Page({
       })
     }
     care(app.globalData, 'personalInfo', v => {
-      console.log(v)
       this.setData({
         lvl: v.userInfo.character.level || 0,
         exp: v.userInfo.character.experience.exp || 0,
@@ -235,6 +237,7 @@ Page({
         doFetch('english.roomisexist', {
           rid: options.rid
         }, (res) => {
+          console.log(res.data.roomStatus,'res.data.roomStatus')
           if (res.code == 0) {
             if (res.data.roomStatus == 1) {
               wx.navigateTo({
@@ -243,7 +246,7 @@ Page({
             }
             else if (res.data.roomStatus == 2) {
               wx.navigateTo({
-                url: '../competition/competition?rid=' + options.rid,
+                url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
               })
             }
           }
@@ -292,7 +295,7 @@ Page({
     })
   },
   onUnload(){
-    wsClose(['joinSuccess'])
+    wsClose('joinSuccess')
   },
   onShareAppMessage: function (res) {
     return {
