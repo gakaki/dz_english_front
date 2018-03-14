@@ -158,31 +158,13 @@ Page({
       // }
       
     })
-
+    this.shareTo(options)
     
     firstStart(()=> {
-      // let v = app.globalData;
-      // console.log(v)
-      // this.setData({
-      //   lvl: v.userInfo.character.level || 0,
-      //   exp: v.userInfo.character.experience.exp || 0,
-      //   goldCount: v.userInfo.items['1'] || 0,
-      //   needExp: v.userInfo.character.experience.needExp || 0,
-      // })
-      // if (this.data.exp == 0) {
-      //   this.setData({
-      //     wid: 0
-      //   })
-      // } else {
-      //   this.setData({
-      //     wid: Math.round(this.data.exp / this.data.needExp * 100)
-      //   })
-      // }
-
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
         doFetch('english.isfirstsign', {}, res => {
-          console.log(res)
+          console.log(res,'isfirst')
           this.setData({
             landing: res.data.isFirst,
             landingDay: res.data.day
@@ -220,7 +202,7 @@ Page({
         }
       })
     }
-    this.shareTo(options)
+   
 
   },
   shareTo(options) {
