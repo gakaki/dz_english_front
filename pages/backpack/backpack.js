@@ -34,7 +34,6 @@ Page({
         return o
       })
     })
-    console.log(this.data.backData)
   },
   filter(item) {
     return item.ifshow == 1
@@ -97,10 +96,10 @@ Page({
         awardShow: true,
         awardData: aa
       })
-      // doFetch('english.showpersonal', {}, (res) => {
-      //   app.globalData.personalInfo = res.data
-      //   this.init()
-      // })
+      doFetch('english.showpersonal', {}, (res) => {
+        app.globalData.personalInfo = res.data
+        this.init()
+      })
 
     })
   },

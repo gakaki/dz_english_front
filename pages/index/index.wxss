@@ -107,7 +107,7 @@
 }
 .gold-box {
   align-self: flex-start;
-  background-color: #09579f;
+  background-color: rgba(9, 87, 159, 0.6);
   height: 38rpx;
   width: 160rpx;
   border-radius: 19rpx;
@@ -144,7 +144,7 @@
   position: relative;
   width: 180rpx;
   height: 30rpx;
-  background-color: #09579f;
+  background-color: rgba(9, 87, 159, 0.6);
   margin-left: 10rpx;
   border-radius: 15rpx;
 }

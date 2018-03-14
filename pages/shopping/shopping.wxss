@@ -36,6 +36,7 @@
 }
 
 .gold{
+  
   letter-spacing: 20rpx;
   padding-left: 20rpx;
 }

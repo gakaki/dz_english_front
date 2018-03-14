@@ -1,20 +1,3 @@
-/* .mid-box {
-  align-self: flex-start;
-  width: 690rpx;
-  margin-top: 30rpx;
-  position: relative;
-  overflow: hidden;
-   /* background-color: #fff  
-}
-.bg-big {
-  position: absolute;
-  top: 80rpx;
-  left: 0;
-   width: 100%;
-  height: 100%; 
-background-color: #fff;
-z-index: 0
-} */
 
 .self {
   overflow: hidden;

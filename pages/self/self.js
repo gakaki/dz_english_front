@@ -62,7 +62,7 @@ Page({
        idx = idx % wCount.length
       this.setData({
         info: res.data,
-        newWordsPercent: (res.data.newWord.totalWordCount != 0) ? parseInt((res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount)) : 0,
+        newWordsPercent: (res.data.newWord.totalWordCount != 0) ? parseInt(((res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount))*100) : 0,
         sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
         sentenceEn: sheet.Landingessay.Get(idx + 1).English,
         jiyilv: temp,

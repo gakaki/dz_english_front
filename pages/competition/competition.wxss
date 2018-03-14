@@ -164,11 +164,12 @@
 .one-select {
   width: 500rpx;
   height: 123rpx;
-  border-radius: 50rpx;
+  border-radius: 20rpx;
   text-align: center;
   line-height: 123rpx;
   font: bold 44rpx/123rpx 'Microsoft YaHei';
   background: #fff;
+  box-shadow: 0 4rpx 0 rgba(98, 147, 196, 0.6);
 }
 
 .true {
@@ -191,7 +192,7 @@
 
 .start-mc {
   position: absolute;
-  top: 120rpx;
+  top: 320rpx;
   left: 50vw;
   transform: translate(-50%, -50%);
 }

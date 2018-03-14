@@ -17,7 +17,7 @@
       </view>
       <view class="content">
         <view class="main-text">
-          <text class="font">{{itemInfo[point].cfg.name}}</text>
+          <text class="font">{{itemInfo[point].cfg.name}}X{{shopNum[point]}}</text>
         </view>
         <view class="buy ziti">
           <text class="font">{{itemInfo[point].cfg.description}}</text>

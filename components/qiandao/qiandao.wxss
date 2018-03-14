@@ -15,8 +15,8 @@
   position: absolute;
   background-color: #fff;
   border-radius: 20rpx;
-  margin-top: 15rpx;
-  margin-left: 15rpx; 
+  top: 15rpx;
+  left: 15rpx; 
 }
 
 .biaoti{
@@ -77,6 +77,7 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  position: relative;
 }
 
 .miaoshu{
@@ -103,7 +104,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .jiangli-1{
@@ -123,8 +123,8 @@
   height: 53rpx; 
   position: absolute;
   align-self: flex-end;
-  margin-top: 58rpx;
-  margin-left: -24rpx;
+  top: 58rpx;
+  right: 24rpx;
 }
 
 .shuliang{
@@ -133,8 +133,8 @@
   background-color: #ff9700;
   position: absolute;
   align-self: flex-end;
-  margin-top: 58rpx;
-  margin-left: -24rpx;
+  top: 58rpx;
+  right: 24rpx;
   font-size: 30rpx;
   border-radius: 50%;
   text-align: center;
@@ -169,6 +169,7 @@
   height: 207rpx;
   position: absolute;
   bottom: 0rpx;
+  left: 0;
   z-index: 0;
 }
 
