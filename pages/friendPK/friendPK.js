@@ -123,7 +123,7 @@ Page({
    */
   onUnload: function () {
     if(this.data.isOwner && !this.data.startGame){
-      wsSend('leaveroom')
+      wsSend('leaveroom',{rid:this.data.rid})
       wsReceive('dissolve', res => {
         console.log(res, 'dissolve')
       })
