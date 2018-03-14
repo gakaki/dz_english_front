@@ -76,17 +76,12 @@ Page({
         list: res.data.userList
       })
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function (options) {
-    console.log(app.globalData.str1)
+
     wsReceive('dissolve', res => {  //房主离开
-        console.log(res, 'dissolve')
+      console.log(res, 'dissolve')
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -129,7 +124,6 @@ Page({
   },
 
   start: function() {
-    console.log(111)
     wsSend('startgame',{
       rid: this.data.rid
     })

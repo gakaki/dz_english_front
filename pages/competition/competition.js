@@ -138,6 +138,9 @@ Page({
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioTrue = wx.createAudioContext('true')
+    this.audioFalse = wx.createAudioContext('false')
+    this.audioSelect = wx.createAudioContext('select')
     
   },
   roundInit(){
@@ -444,6 +447,7 @@ Page({
   showFront(v){  //点击翻牌
     if (!canClick) return;
     if (app.preventMoreTap(v,300)) { return; }
+    this.audioSelect.play();
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
@@ -471,7 +475,6 @@ Page({
         let word = letters.join('');
         answer = 0;
         let myScore = 0;
-        isRight = false;
 
         if(word == rightAnswer) {
           answer = 1;
@@ -481,8 +484,10 @@ Page({
         } 
         else {
           answer = 2;
-          isRight = true;
+          isRight = false;
         }
+
+        this.playResultAudio(isRight)
 
         let roundAnswer = {}
         roundAnswer[word] = isRight;
@@ -510,6 +515,8 @@ Page({
     }
     bgIndex[obj.index] = true;
     
+    this.audioSelect.play();
+
     let letters = this.data.letters;
     
     if (!letters.okCnt) {
@@ -550,6 +557,7 @@ Page({
         finished = true;
         myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
+     
       }
     }
     else {
@@ -558,6 +566,7 @@ Page({
       isRight = false;
       finished = true;
     }
+    this.playResultAudio(isRight)
 
     let roundAnswer = {};
     if (finished) {
@@ -581,7 +590,11 @@ Page({
 
     }
   },
-
+  playResultAudio(isRight){
+    setTimeout(()=>{
+      isRight ? this.audioTrue.play() : this.audioFalse.play();
+    },300)
+  },
   chooseOption(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
@@ -604,6 +617,8 @@ Page({
         answer = 2;
         selectAnswer[obj.id] = 2;
       }
+
+      this.playResultAudio(isRight)
 
       let roundAnswer = {};
       roundAnswer[obj.answer] = isRight;
