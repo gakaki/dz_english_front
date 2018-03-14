@@ -98,15 +98,18 @@ Page({
         package: r.data.payload.package,
         signType: r.data.payload.signType,
         paySign: r.data.payload.paySign,
-        success(r) {
-          app.globalData.personalInfo.userInfo.items = r.data
-          wsReceive('getItem', r => {
-            wx.showToast({
-              title: '购买成功',
-              icon: 'success',
-              duration: 2000,
-              mask: true
-            })
+        success(res) {
+          console.log(res)
+          app.globalData.personalInfo.userInfo.items = res.data
+          
+          wx.showToast({
+            title: '购买成功',
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          })
+          wsReceive('getItem', res => {
+           
           })
         },
         fail(res) {
