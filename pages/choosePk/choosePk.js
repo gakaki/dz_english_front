@@ -157,9 +157,18 @@ Page({
       }
     }
   },
+  
   onUnload() {
     clearTimeout(time)
     wsClose(['cancelSuccess', 'matchSuccess'])
+    this.setData({
+      isFirstClick: true
+    })
+  },
+  onHide(){
+    this.setData({
+      isFirstClick: true
+    })
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
