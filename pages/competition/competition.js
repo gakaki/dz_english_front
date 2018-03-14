@@ -69,7 +69,7 @@ Page({
   },
   onLoad(options) {
     console.log('======================load')
-    console.log(options,'commmmmmmmmmmmmmmmm')
+    
     rid = options.rid;
     round = 1;
     totalScore = 0;
@@ -514,6 +514,8 @@ Page({
         else {
           answer = 2;
           this.playResultAudio(isRight);
+          this.failSelect();
+          
         }
 
 
@@ -596,7 +598,8 @@ Page({
       //回答出错
       answer = 2;
       finished = true;
-      this.playResultAudio(isRight)
+      this.playResultAudio(isRight);
+      this.failSelect();
     }
 
     let roundAnswer = {};
@@ -647,6 +650,7 @@ Page({
       } else {
         answer = 2;
         selectAnswer[obj.id] = 2;
+        this.failSelect();
       }
 
       this.playResultAudio(isRight)
@@ -665,17 +669,15 @@ Page({
 
   },
   failSelect(){
+    console.log('dataaaaaaaaaaaaaaa')
     this.setData({
       showMask: true
     });
-    let x = 10;
-    let timer = setInterval(()=>{
-      x = 0 - x;
+    setTimeout(()=>{
       this.setData({
-        maskPos: x
-      })
-      
-    },500)
+        showMask: false
+      });
+    },2000)
   },
   countClockTime(){
     canClick = true;

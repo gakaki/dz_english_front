@@ -1,6 +1,6 @@
 <!--pages/competition/competition.wxml-->
-<wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'>
-  <view class='now-word' slot="word">
+ <wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'> 
+   <view class='now-word' slot="word">
     <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
     <view class='word-wrap  {{word ? "show" : "none"}}'>
       <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
@@ -30,10 +30,10 @@
   <view class='multi-wrap' slot='select'>
     <bar class="bar" scoreA='{{totalScore}}' type='A'></bar>
 
-    <view class='multi-words'>
+    <view class='multi-words'> 
 
       <!-- 九宫格翻转  -->
-      <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
+       <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}">
             <view class='flip-wrap transition' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
             <view class='front flip transition poal'>
@@ -44,10 +44,10 @@
             </view>
           </view>
         </view>
-      </view>
+      </view> 
 
       <!--九宫格键盘  -->
-      <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
+       <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter'  >
           <view class='flip-wrap'>
             <view class='front flip poal' style='background:{{bgIndex[index]?"#19b1ff":""}};color:{{bgIndex[index]?"#fff":""}}'>
@@ -55,10 +55,10 @@
             </view>  
           </view>
         </view>
-      </view>
+      </view> 
 
       <!-- 列表  -->
-       <view wx:if='{{word.type === 1 || word.type === 2}}' class='selectBtn selectLists}}'>
+        <view wx:if='{{word.type === 1 || word.type === 2}}' class='selectBtn selectLists}}'>
         <view class='one-select {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
           <text>{{item}}</text>
         </view>
@@ -67,10 +67,10 @@
 
     <bar class="bar" scoreB='{{otherScore}}' type='B'></bar>
 
-  </view>
+  </view> 
 
   <audio hidden='{{true}}' id="true" src='https://gengxin.odao.com/update/h5/yingyu/audio/true.mp3'></audio>
   <audio hidden='{{true}}' id="false" src='https://gengxin.odao.com/update/h5/yingyu/audio/false.mp3'></audio>
   <audio hidden='{{true}}' id="select" src='https://gengxin.odao.com/update/h5/yingyu/audio/select.mp3'></audio>
-  <view class='mask' wx:if='{{showMask}}' style='transform:translateX({{maskPos}}px)'></view>
-</wrap>
+  <view class='mask {{showMask?"mask-big":""}}' wx:if='{{showMask}}'></view>
+ </wrap> 
