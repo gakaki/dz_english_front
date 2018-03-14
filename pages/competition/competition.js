@@ -278,6 +278,7 @@ Page({
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
+      console.log(res)
       if (res.code) {
         wx.showToast({
           title: '结算出错了'
@@ -308,7 +309,7 @@ Page({
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
         wx.redirectTo({
-          url: '../result/result/?isleave=`{res.data.isLeave}`',
+          url: '../result/result?otherleave=`{data.isLeave}`&isUp=`{data.pkResult.isUp}`',
         })
       }
     })

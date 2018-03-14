@@ -204,7 +204,8 @@ function wsInit() {
 
     socket.on('error', () => {
       console.log('#error');
-    });
+    });    
+
   })
 
 }
