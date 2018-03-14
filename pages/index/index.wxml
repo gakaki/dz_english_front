@@ -49,7 +49,11 @@
   <view class="tab f-r-sb">
     <image class='rank' bindtap='toRank' src='https://gengxin.odao.com/update/h5/yingyu/index/rank1.png'></image>
     <image class='shop' bindtap='toShop' src='https://gengxin.odao.com/update/h5/yingyu/index/shop.png'></image>
-    <image class='zhishidian' bindtap='toZsd' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
+    <view class="word">
+      <image class='zhishidian' bindtap='toZsd' src='https://gengxin.odao.com/update/h5/yingyu/index/zhishidian.png'></image>
+      <image id="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{canUp}}"></image>
+    </view>
+
     <image class='qidai' bindtap='toBackpack' src='https://gengxin.odao.com/update/h5/yingyu/index/pakage.png'></image>
     <image class='setting' bindtap='toSet' src='https://gengxin.odao.com/update/h5/yingyu/index/setting.png'></image>
     <view class="c-box">

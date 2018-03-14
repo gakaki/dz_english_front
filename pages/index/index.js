@@ -20,7 +20,8 @@ Page({
     rankFrame: '',
     landing: false,   //是否弹出签到窗口
     landingDay: 0,
-    shareIn:false
+    shareIn:false,
+    canUp: false
   },
   //事件处理函数
   hi() {
@@ -154,6 +155,19 @@ Page({
           wid: Math.round(this.data.exp / this.data.needExp * 100)
         })
       }
+
+      doFetch('english.develop', {}, (res) => {
+        for(let k in res.data) {
+          if(res.data[k].canUp) {
+            this.setData({
+              canUp: true
+            })
+            console.log(this.data.canUp)
+            return
+          }
+        }
+        
+      })
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
       // if(!this.data.shareIn){
