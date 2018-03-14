@@ -5,7 +5,7 @@
     <view class='word-wrap  {{word ? "show" : "none"}}'>
       <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
       <view class='zhongwen' wx:else=''>
-        <text>{{word.speech}} {{word.type}}</text>
+        <text>{{word.speech}}</text>
         <text wx:for='{{chinese}}' wx:key='{{index}}'>{{item}}</text>
       </view>
       <view class='yinbiao'>

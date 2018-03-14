@@ -5,9 +5,12 @@ import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.
 let time = null
 Page({
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isFirstClick:true,
     rankFrame: '',
-    userInfo:{},
+    backuserInfo:{},
     stage: [],
     star: 0,
     toView:0,
@@ -47,6 +50,34 @@ Page({
     this.setData({
       isFirstClick:true
     })
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  
   },
   onReady() {
     wsReceive('cancelSuccess', res => {
@@ -86,18 +117,19 @@ Page({
       if (rankInfo.rank==15){
         stage.length = rankInfo.rank
         this.setData({
-          userInfo: res.data.userInfo,
+          backuserInfo: res.data.userInfo,
           star: rankInfo.star,
           stage: stage,
           toView: rankInfo.rank - 3
         })
+
       }
       else{
         //是否从主页面跳转过来的
         if (this.data.fromIndex) {
           stage.length = rankInfo.rank + 1
           this.setData({
-            userInfo: res.data.userInfo,
+            backuserInfo: res.data.userInfo,
             star: rankInfo.star,
             stage: stage,
             toView: rankInfo.rank - 3
@@ -122,7 +154,7 @@ Page({
       let oldStage = stage.slice(0, rankInfo.rank)
       this.setData({
         starAnimation: 'increase',
-        userInfo: res.data.userInfo,
+        backuserInfo: res.data.userInfo,
         star: stage[oldStage.length - 2].star,
         stage: oldStage,
         toView: rankInfo.rank - 4
@@ -140,7 +172,7 @@ Page({
       //判断是否加星
       stage.length = rankInfo.rank + 1
       this.setData({
-        userInfo: res.data.userInfo,
+        backuserInfo: res.data.userInfo,
         star: rankInfo.star,
         stage: stage,
         toView: rankInfo.rank - 3
@@ -182,7 +214,7 @@ Page({
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
     if (this.data.stage.length > type){
-      if (this.data.userInfo.items[1] >= gold) {
+      if (this.data.backuserInfo.items[1] >= gold) {
         wx.navigateTo({
           url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
         })

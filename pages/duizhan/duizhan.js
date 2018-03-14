@@ -161,11 +161,18 @@ Page({
         console.log(isUp)
         let show = isUp.isUp;
         let level = isUp.level;
-        let k = isUp.awards.k;
-        let v = isUp.awards.v;
+        let url = '';
+        if (isUp.awards) {
+          let k = isUp.awards.k;
+          let v = isUp.awards.v;
+          url = '&show=' + show + '&level=' + level + '&k=' + k + '&v' + v
+
+        } else {
+          url = '&show=' + show
+        }
 
         wx.redirectTo({
-          url: '../result/result?' + '&show=' + show + '&level=' + level + '&k=' + k + '&v' + v
+          url: '../result/result?' + url
         })
 
       }

@@ -77,15 +77,14 @@ Page({
     if (app.preventMoreTap(e)) { return; }
     // start(() => {
       this.hi();
-      console.log('joinroom')
-      wsSend('joinroom')
-      wsReceive('joinSuccess',(res)=>{
-        console.log('joinSuccessssssssssssss')
-        if (app.preventMoreTap(e, 1000)) { return; }
+      
+      // wsReceive('joinSuccess',(res)=>{
+      //   console.log('joinSuccessssssssssssss')
+      //   if (app.preventMoreTap(e, 1000)) { return; }
         wx.navigateTo({
-          url: '../friendPK/friendPK?rid=' + res.data.rid + '&isOwner=' + res.data.isCreate
+          url: '../friendPK/friendPK'
         })
-      })
+      // })
      
     // })
   },
@@ -164,11 +163,9 @@ Page({
             this.setData({
               canUp: true
             })
-            console.log(this.data.canUp)
             return
           }
-        }
-        
+        }        
       })
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
@@ -294,9 +291,6 @@ Page({
       hasUserInfo: true
     })
   },
-  onUnload(){
-    wsClose('joinSuccess')
-  },
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str4,
@@ -320,6 +314,8 @@ Page({
         })
       })
     }
+
+
   },
   // getRankFrame(season) {
   //   let idx = 0

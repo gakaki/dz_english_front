@@ -17,7 +17,6 @@ Page({
     isSelf:{},
     notSelf:{},
     name:'',
-    lv:0,
     num:5,
     iconName:'',
     level:0,
@@ -25,14 +24,17 @@ Page({
   },
   onLoad: function (e) {
     console.log(e, 'eeeeeeeeeeeeeeeee')
+    if(e.k) {
+      let item = Item.Get(e.k);
+      this.setData({
+        num: e.v,
+        level: e.level,
+        iconName: item.icon,
+        name: item.name
+      })
+    }
     
-    let item = Item.Get(e.k);
     this.setData({
-      isUp,
-      iconName: item.icon,
-      num: e.v,
-      name: item.name,
-      level: e.level,
       show: e.show
     })
     let pkResult = app.globalData.pkResult

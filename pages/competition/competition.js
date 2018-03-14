@@ -135,6 +135,7 @@ Page({
     answerSend = true;
     this.tagRoundEnd(true);
     wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo','pkInfo']);
+    wsSend('leaveroom', { rid: rid })
   },
 
   onShow: function (e) {
@@ -169,7 +170,8 @@ Page({
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
       roundAnswer:{},
-      clockTime: 10
+      clockTime: 10,
+      chinese:[]
     })
     
 
@@ -188,8 +190,6 @@ Page({
         this.playFour();
         break;
     }
-    
-    
   },
 
   tagRoundEnd(stopClock = true) {
@@ -318,11 +318,18 @@ Page({
         console.log(isUp)
         let show = isUp.isUp;
         let level = isUp.level;
-        let k = isUp.awards.k;
-        let v = isUp.awards.v;
-        
+        let url = '';
+        if (isUp.awards) {
+          let k = isUp.awards.k;
+          let v = isUp.awards.v;
+          url = '&show=' + show + '&level=' + level  + '&k=' + k + '&v' + v
+
+        } else {
+          url = '&show=' + show
+        }
+
         wx.redirectTo({
-          url: '../result/result?otherleave=' + data.isLeave + '&show=' + show + '&level=' + level + '&k=' + k + '&v' + v,
+          url: '../result/result?' + url
         })
       }
     })
