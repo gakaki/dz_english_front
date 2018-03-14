@@ -162,7 +162,7 @@ Page({
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
-    if (app.preventMoreTap(res)) { return; }
+    if (app.preventMoreTap(res,300)) { return; }
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)

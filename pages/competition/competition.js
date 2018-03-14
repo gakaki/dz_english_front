@@ -265,8 +265,12 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
-      this.tagRoundEnd(true);
+      console.log(res.data)
+      if(res.data.round - round != 1) {
+        return
+      }
       round++;
+      this.tagRoundEnd(true);
       this.setData({ clockStart: false });
       tm = Timeline.add(1500, this.roundInit, this).start();
     })
@@ -304,7 +308,7 @@ Page({
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
         wx.redirectTo({
-          url: '../result/result',
+          url: '../result/result/?isleave=`{res.data.isLeave}`',
         })
       }
     })
@@ -437,6 +441,7 @@ Page({
   },
   showFront(v){  //点击翻牌
     if (!canClick) return;
+    if (app.preventMoreTap(v,300)) { return; }
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
