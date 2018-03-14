@@ -129,7 +129,7 @@ Page({
       })
     }
     clearInterval(time);
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess','roomInfo'])
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
 
   start: function() {

@@ -9,8 +9,8 @@ function loadEnglishWords(words) {
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
-      // cloneObj.type = v.type;
-      cloneObj.type = 3;
+      cloneObj.type = v.type;
+      // cloneObj.type = 3;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj

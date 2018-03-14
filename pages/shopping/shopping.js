@@ -100,17 +100,14 @@ Page({
         paySign: r.data.payload.paySign,
         success(r) {
           app.globalData.personalInfo.userInfo.items = r.data
-          
-          wx.showToast({
-            title: '购买成功',
-            icon: 'success',
-            duration: 2000,
-            mask: true
-          })
           wsReceive('getItem', r => {
-           
+            wx.showToast({
+              title: '购买成功',
+              icon: 'success',
+              duration: 2000,
+              mask: true
+            })
           })
-          
         },
         fail(res) {
           wx.showToast({
