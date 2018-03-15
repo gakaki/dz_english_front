@@ -169,7 +169,7 @@ Page({
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
 
-        wx.redirectTo({
+        wx.reLaunch({
           url: '../result/result?' + url
         })
         wsClose(['pkEndSettlement', 'matchInfo'])
