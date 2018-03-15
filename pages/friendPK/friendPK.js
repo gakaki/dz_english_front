@@ -26,21 +26,32 @@ Page({
    */
   onLoad: function (options) {
     console.log('======================onload')
+    this.canJoinRoom(options)
+     
+  },
+  canJoinRoom(options){
+    if (app.globalData.logined) {
+      this.joinRoom(options)
+    } else {
+      setTimeout(() => {
+        this.canJoinRoom(options);
+      }, 500)
+    }
+  },
+  joinRoom(options){
     if (options.rid) {
       wsSend('joinroom', { rid: options.rid })
-      this.getInfo(options.rid)
     } else {
       wsSend('joinroom')
-      wsReceive('joinSuccess', (res) => {
-        console.log(res)
-        if (!res.data.isOwner) {
-          wsSend('joinroom', { rid: res.data.rid })
-        }
-        this.getInfo(res.data.rid)
-      })    
-    }
 
-     
+    }
+    wsReceive('joinSuccess', (res) => {
+      console.log(res)
+      if (!res.data.isOwner) {
+        wsSend('joinroom', { rid: res.data.rid })
+      }
+      this.getInfo(res.data.rid)
+    })   
   },
   getInfo(rid){
     this.data.rid = rid

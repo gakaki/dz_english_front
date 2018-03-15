@@ -97,7 +97,7 @@ Page({
       this.getInfo(res)
     })
 
-    this.onPkEndInfo()
+    // this.onPkEndInfo()
 
   },
 
@@ -169,7 +169,7 @@ Page({
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
 
-        wx.reLaunch({
+        wx.redirectTo({
           url: '../result/result?' + url
         })
         wsClose(['pkEndSettlement', 'matchInfo'])
@@ -247,7 +247,7 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
-    // wsClose(['pkEndSettlement','matchInfo'])
+    wsClose(['pkEndSettlement','matchInfo'])
     // if (!this.data.pkEnd) {
     //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
     // }

@@ -31,7 +31,7 @@ Page({
       return v != 'matchSuccess';
     })
     if(hasMap) {
-      wsClose('matchSuccess')
+      // wsClose('matchSuccess')
       wsReceive('matchSuccess', res => {
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
@@ -90,6 +90,7 @@ Page({
     }
    },
   onUnload() {
+    console.log('onunloaddddddddddddddddddddd')
     if (!app.globalData.pkResult.isFriend) {
       this.setPageInfo()
     }
@@ -105,6 +106,7 @@ Page({
   },
   toMatch() {
     //是否为好友局
+    console.log(app.globalData.pkResult.isFriend,'app.globalData.pkResult.isFriend')
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
       wx.navigateBack()

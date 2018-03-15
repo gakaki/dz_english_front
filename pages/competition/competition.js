@@ -137,7 +137,7 @@ Page({
   onUnload() {
     answerSend = true;
     this.tagRoundEnd(true);
-    wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo','pkInfo']);
+    
     if (!pkEnd) { 
       wsSend('leaveroom', { rid: rid })
     }
@@ -333,8 +333,8 @@ Page({
         } else {
           url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         }
-        
-        wx.reLaunch({
+        wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo', 'pkInfo']);
+        wx.redirectTo({
           url: '../result/result?' + url
         })
       }
