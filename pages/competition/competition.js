@@ -329,12 +329,11 @@ Page({
         if (isUp.awards) {
           let k = isUp.awards.k;
           let v = isUp.awards.v;
-          url = '&show=' + show + '&level=' + level  + '&k=' + k + '&v=' + v + '&rid=' + rid
-
+          url = '&show=' + show + '&level=' + level + '&k=' + k + '&v=' + v + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         } else {
-          url = '&show=' + show + '&rid=' + rid
+          url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         }
-
+        
         wx.redirectTo({
           url: '../result/result?' + url
         })

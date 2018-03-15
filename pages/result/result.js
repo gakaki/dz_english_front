@@ -41,6 +41,7 @@ Page({
     if(e.otherLeave) {
       wx.showToast({
         title: '对方逃跑',
+        icon:'none'
       })
     }
     if(e.k) {
@@ -48,8 +49,8 @@ Page({
       this.setData({
         num: e.v,
         level: e.level,
-        iconName: item.icon,
-        name: item.name
+        iconName: item.cfg.icon,
+        name: item.cfg.name
       })
     }
     

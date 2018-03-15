@@ -9,8 +9,8 @@ Component({
       value: '金宝箱'
     },
     lv: {
-      type: Number,
-      value: 5
+      type: String,
+      value: '5'
     },
     num: {
       type: String,
@@ -24,6 +24,7 @@ Component({
       type: Boolean,
       value: true
     }
+    
   },
 
   /**
@@ -38,9 +39,8 @@ Component({
    */
   methods: {
     hidePop:function(){
-      console.log(this)
       this.setData({
-        show:false
+        show: false
       })
     }
   }
