@@ -135,8 +135,8 @@ Page({
 
   giveUp() {
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
-    wx.navigateBack({
-      delta: 1
+    wx.redirectTo({
+      url: '../index/index',
     })
     clearInterval(time);
     wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])

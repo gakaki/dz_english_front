@@ -30,11 +30,9 @@ Page({
     let hasMap = map.every(v=>{
       return v != 'matchSuccess';
     })
-    console.log(hasMap,'hasMappppppppppppppppp')
     if(hasMap) {
       wsClose('matchSuccess')
       wsReceive('matchSuccess', res => {
-        console.log(res, 'rrrrrrrrrrrrrrr')
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
         })
