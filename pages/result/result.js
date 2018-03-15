@@ -112,7 +112,7 @@ Page({
       wx.navigateBack()
     } else {
       wx.navigateTo({
-        url: '../friendPK/friendPK?rid=' + this.data.rid,
+        url: '../friendPK/friendPK',
       })
     }
   },
