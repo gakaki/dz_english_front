@@ -243,6 +243,15 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2]
+    if (prevPage.data.starAnimation){
+      prevPage.setData({
+        fromIndex: true,
+        starAnimation: ''
+      })
+    }
+    
     clearInterval(time);
     clearTimeout(timer);
     clearInterval(time_p_lizi);

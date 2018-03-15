@@ -135,6 +135,14 @@ Page({
 
 
   onUnload() {
+    let pages = getCurrentPages()
+    let prevPage = pages[pages.length - 2]
+    if (prevPage.data.starAnimation) {
+      prevPage.setData({
+        fromIndex: true,
+        starAnimation: ''
+      })
+    }
     answerSend = true;
     this.tagRoundEnd(true);
     
