@@ -27,17 +27,17 @@ Page({
   onLoad: function (e) {
     console.log('===================result')
     console.log(e)
-    // let hasMap = map.every(v=>{
-    //   return v != 'matchSuccess';
-    // })
-    // if(hasMap) {
-    //   wsReceive('matchSuccess', res => {
-    //     wx.redirectTo({
-    //       url: '../duizhan/duizhan?rid=' + res.data.rid,
-    //     })
-    //   })
-    //   map.push('matchSuccess')
-    // }
+    let hasMap = map.every(v=>{
+      return v != 'matchSuccess';
+    })
+    if(hasMap) {
+      wsReceive('matchSuccess', res => {
+        wx.redirectTo({
+          url: '../duizhan/duizhan?rid=' + res.data.rid,
+        })
+      })
+      map.push('matchSuccess')
+    }
     if(e.otherLeave) {
       wx.showToast({
         title: '对方逃跑',

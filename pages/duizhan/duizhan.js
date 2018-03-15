@@ -169,9 +169,9 @@ Page({
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
 
-        wx.redirectTo({
-          url: '../result/result?' + url
-        })
+        // wx.redirectTo({
+        //   url: '../result/result?' + url
+        // })
         wsClose(['pkEndSettlement', 'matchInfo'])
       }
     })
@@ -226,10 +226,9 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
-        
       }, 3000)
     }
     
@@ -248,7 +247,7 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
-    wsClose(['pkEndSettlement','matchInfo'])
+    // wsClose(['pkEndSettlement','matchInfo'])
     // if (!this.data.pkEnd) {
     //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
     // }
