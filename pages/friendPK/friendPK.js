@@ -27,7 +27,8 @@ Page({
   onLoad: function (options) {
     console.log('======================onload')
     this.canJoinRoom(options)
-     
+
+   
   },
   canJoinRoom(options){
     if (app.globalData.logined) {
@@ -39,19 +40,23 @@ Page({
     }
   },
   joinRoom(options){
-    if (options.rid) {
-      wsSend('joinroom', { rid: options.rid })
-    } else {
-      wsSend('joinroom')
-
-    }
-    wsReceive('joinSuccess', (res) => {
-      console.log(res)
-      if (!res.data.isOwner) {
-        wsSend('joinroom', { rid: res.data.rid })
+    wsSend('roomisexist', { rid: options.rid })
+    wsReceive('roomExist', res => {
+      if (res.data.isExist) {
+        console.log('房间存在')
+        wsSend('joinroom', { rid: options.rid })
+        this.getInfo(options.rid)
+      } else {
+        console.log('房间不存在，创建一个新房间')
+        wsSend('joinroom')
+        wsReceive('joinSuccess', (res) => {
+          if (!res.data.isCreate) {
+            wsSend('joinroom', { rid: res.data.rid })
+          }
+          this.getInfo(res.data.rid)
+        })
       }
-      this.getInfo(res.data.rid)
-    })   
+    })
   },
   getInfo(rid){
     this.data.rid = rid

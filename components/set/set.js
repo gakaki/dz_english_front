@@ -70,6 +70,7 @@ Component({
     },
     musicOpen() {
       if (wx.getStorageSync('music')) {
+        console.log(555)
         this.setData({
           music: 'send-open',
           musicInner: 'send-hide'

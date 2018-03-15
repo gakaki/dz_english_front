@@ -535,11 +535,15 @@ Page({
         console.log(this.data.roundIsRight,'roundIsRight')
         this.tagRoundEnd(false);
       } else {
-        this.audioSelect.play();
+        this.selectPlay()
       }
     }
   },
-
+  selectPlay(){
+    if (!wx.getStorageSync('music')) {
+      this.audioSelect.play();
+    }
+  },
   chooseLetter(e) {
     if(!canClick) return;
     let obj = e.currentTarget.dataset;
@@ -595,7 +599,7 @@ Page({
         this.playResultAudio(isRight)
      
       } else {
-        this.audioSelect.play();
+        this.selectPlay();
       }
     }
     else {
@@ -629,9 +633,11 @@ Page({
     }
   },
   playResultAudio(isRight){
-    setTimeout(()=>{
-      isRight ? this.audioTrue.play() : this.audioFalse.play();
-    },200)
+    if (!wx.getStorageSync('music')) {
+      setTimeout(() => {
+        isRight ? this.audioTrue.play() : this.audioFalse.play();
+      }, 200)
+    }
   },
   chooseOption(v) {  //选列选项点击
     if (this.data.firstClick) {
