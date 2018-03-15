@@ -55,9 +55,10 @@ Page({
     }
     
     this.setData({
-      show: e.show,
+      show: e.show == "true"?true:false,
       rid: e.rid
     })
+    console.log(this.data.show,'showwwwwwwwwwwwwwww')
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{

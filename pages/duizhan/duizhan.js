@@ -94,7 +94,6 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
-      console.log(res, 11111111)
       this.getInfo(res)
     })
 
@@ -165,16 +164,15 @@ Page({
         if (isUp.awards) {
           let k = isUp.awards.k;
           let v = isUp.awards.v;
-          url = '&show=' + show + '&level=' + level + '&k=' + k + '&v' + v
-
+          url = '&show=' + show + '&level=' + level + '&k=' + k + '&v=' + v + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         } else {
-          url = '&show=' + show
+          url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
 
         wx.redirectTo({
           url: '../result/result?' + url
         })
-
+        wsClose(['pkEndSettlement', 'matchInfo'])
       }
     })
   },
@@ -228,10 +226,10 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
-        console.log('toCompetion', this.data.rid, 1111)
+        
       }, 3000)
     }
     
@@ -251,6 +249,9 @@ Page({
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
     wsClose(['pkEndSettlement','matchInfo'])
+    // if (!this.data.pkEnd) {
+    //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
+    // }
   },
   onShareAppMessage: function (res) {
     return {
