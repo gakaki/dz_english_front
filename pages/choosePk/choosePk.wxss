@@ -210,7 +210,6 @@
   top:-12rpx;
   left: -25rpx;
   transform: scale(0.77);
-  z-index: 10;
 }
 
 .kuang image{
@@ -276,10 +275,10 @@
 
 .item-rgt-top {
   text-align: right;
-  width: 112rpx;
   height: 50rpx;
   border-radius: 25rpx;
   margin-top: 12rpx;
+  align-self: flex-end;
 }
 
 .gold-mid {

@@ -15,6 +15,7 @@ Page({
     star: 0,
     toView:0,
     season:{},
+    rank:0,
     canMatch:true,
     starAnimation:'', //控制星星的动画
     fromIndex:false,  //是否从主页面跳转过来的
@@ -120,7 +121,8 @@ Page({
           backuserInfo: res.data.userInfo,
           star: rankInfo.star,
           stage: stage,
-          toView: rankInfo.rank - 3
+          toView: rankInfo.rank - 3,
+          rank:15
         })
 
       }
