@@ -94,7 +94,6 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
-      console.log(res, 11111111)
       this.getInfo(res)
     })
 
@@ -250,9 +249,9 @@ Page({
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
     wsClose(['pkEndSettlement','matchInfo'])
-    if (!this.data.pkEnd) {
-      wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
-    }
+    // if (!this.data.pkEnd) {
+    //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
+    // }
   },
   onShareAppMessage: function (res) {
     return {
