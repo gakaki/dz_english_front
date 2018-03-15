@@ -6,15 +6,17 @@ const io = require('./index.js');
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
+const APP= getApp();
 let sid, uid, app, isAuth = false;   
 let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
+let allActions = [];
 
 
-function doFetch(action, data, suc, err) {
+function doFetch(action, data, suc, err,_app) {
+  _fetchIntercept(action,_app)
   data = data || {};
-  console.log(isAuth, action)
   if (isAuth) {
     if (!sid) {
       sid = wx.getStorageSync('_sid');
@@ -39,6 +41,32 @@ function doFetch(action, data, suc, err) {
     },
     fail: err
   })
+}
+
+function _fetchIntercept(action, _app){
+  let idx = null;
+  let actionExisted = allActions.find((v, idx) => {
+    if (v.action == action && _app) {
+      _app.globalData.fetchIndex = idx
+    }
+    return v.action == action
+  })
+
+  if (actionExisted && _app) {
+    let obj = allActions[_app.globalData.fetchIndex]
+    let oldTime = obj.time;
+    let diffTime = new Date() - oldTime;
+    obj.time = new Date();
+    console.log(diffTime, 'diffTime')
+    if (diffTime < 2000) {
+      return 
+    }
+  } else {
+    allActions.push({
+      action:action,
+      time: new Date()
+    })
+  }
 }
 
 function sdkAuth(code, suc) {

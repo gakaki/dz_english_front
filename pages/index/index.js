@@ -186,7 +186,7 @@ Page({
             return
           }
         }
-      })
+      },()=>{},app)
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
       // if(!this.data.shareIn){
@@ -214,7 +214,7 @@ Page({
             landing: res.data.isFirst,
             landingDay: res.data.day
           })
-        })
+        }, () => { }, app)
       }
     })
 
@@ -275,7 +275,7 @@ Page({
           duration: 2000
         })
       }
-    })
+      }, () => { }, app)
   },
   shareTo(options) {
     if (options && options.friendPK) {
@@ -343,7 +343,7 @@ Page({
         this.setData({
           rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
-      })
+      }, () => { }, app)
     }
 
 

@@ -16,7 +16,7 @@ Page({
     doFetch('english.showpersonal', {}, (res) => {
       app.globalData.personalInfo = res.data;
       this.init()
-    })
+    }, () => { }, app)
   },
   init() {
     let items = app.globalData.personalInfo.userInfo.items
@@ -99,9 +99,9 @@ Page({
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data
         this.init()
-      })
+      }, () => { }, app)
 
-    })
+    }, () => { }, app)
   },
   onShareAppMessage: function (res) {
     return {

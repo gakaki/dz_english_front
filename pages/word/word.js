@@ -46,7 +46,7 @@ Page({
       this.setData({
         knowInfo: res.data
       })
-    })
+    }, () => { }, app)
   },
 
   /**
@@ -125,7 +125,7 @@ Page({
         this.setData({
           knowInfo:upKnowInfo
         })
-      })
+        }, () => { }, app)
     }
     else{
 
@@ -151,7 +151,7 @@ Page({
       this.setData({
         knowInfo: res.data
       })
-    })
+    }, () => { }, app)
     this.setData({
       show: false
     })
@@ -182,7 +182,7 @@ Page({
         this.setData({
           knowInfo: res.data
         })
-      })
+      }, () => { }, app)
       this.setData({
         show:false
       })

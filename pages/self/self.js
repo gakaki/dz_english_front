@@ -80,9 +80,9 @@ Page({
             shareGold: 0
           })
         }
-      })
+      }, () => { }, app)
       
-    })
+    }, () => { }, app)
 
     if (app.globalData.userInfo) {
       this.setData({

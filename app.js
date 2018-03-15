@@ -20,6 +20,7 @@ App({
     
   },
   globalData: {
+    fetchIndex: null, //_fetchIntercept里面的idx
     audio:true, //音效开关。默认打开
     logined: false,
     userInfo: null,
@@ -45,5 +46,6 @@ App({
       this.globalLastTapTime = time;
       return false;
     }
-  }
+  },
+  
 })
