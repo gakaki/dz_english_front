@@ -334,7 +334,7 @@ Page({
           url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         }
         
-        wx.redirectTo({
+        wx.reLaunch({
           url: '../result/result?' + url
         })
       }
