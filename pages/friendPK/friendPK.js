@@ -134,7 +134,7 @@ Page({
   },
 
   giveUp() {
-    wsSend('leaveroom', { rid: this.data.rid})
+    wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
     wx.navigateBack({
       delta: 1
     })

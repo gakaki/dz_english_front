@@ -20,6 +20,7 @@ App({
     
   },
   globalData: {
+    audio:true, //音效开关。默认打开
     logined: false,
     userInfo: null,
     personalInfo: null ,

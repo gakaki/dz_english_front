@@ -84,10 +84,10 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
           wsInit();
-          app.globalData.logined = true
+          app.globalData.logined = true;
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-            shareTo()
+            // shareTo()
             
           })
         }
@@ -120,7 +120,7 @@ function shareTo() {
       }
       else {
         wx.showToast({
-          title: '房间不存在',
+          title: '房间不存在' + res.code,
           icon: 'none',
           duration: 2000
         })

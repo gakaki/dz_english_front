@@ -25,6 +25,10 @@ Component({
       type:Object,
       value: null
     },
+    showMask: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

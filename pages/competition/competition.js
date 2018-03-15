@@ -329,10 +329,10 @@ Page({
         if (isUp.awards) {
           let k = isUp.awards.k;
           let v = isUp.awards.v;
-          url = '&show=' + show + '&level=' + level  + '&k=' + k + '&v' + v
+          url = '&show=' + show + '&level=' + level  + '&k=' + k + '&v=' + v + '&rid=' + rid
 
         } else {
-          url = '&show=' + show
+          url = '&show=' + show + '&rid=' + rid
         }
 
         wx.redirectTo({
@@ -674,7 +674,6 @@ Page({
 
   },
   failSelect(){
-    console.log('dataaaaaaaaaaaaaaa')
     this.setData({
       showMask: true
     });
@@ -682,7 +681,7 @@ Page({
       this.setData({
         showMask: false
       });
-    },2000)
+    },100)
   },
   countClockTime(){
     canClick = true;

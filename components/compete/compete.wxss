@@ -6,6 +6,12 @@
   background-size: cover;
   overflow: hidden;
 }
+.move {
+  transition: 0.1s;
+}
+.move-large {
+  transform: translate(-5rpx,2rpx);
+}
 .top-content {
   position: relative;
   height: 474rpx;
@@ -85,4 +91,13 @@
   margin-top: 25rpx;
   padding: 0 15rpx;
   height: 652rpx;
+}
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 0, 0, 0.6);
+  z-index: 10;
 }

@@ -228,39 +228,48 @@ Page({
    
 
   },
+  loginedShare(options){
+    doFetch('english.roomisexist', {
+      rid: options.rid
+    }, (res) => {
+      console.log(res.data, 'res.data.roomStatus')
+      let rid = options.rid;
+      if (res.code == 0) {
+        if (res.data && res.data.roomStatus == 1) {
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid=' + rid,
+          })
+        }
+        else if (res.data && res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
+          })
+        }
+      }
+      else {
+        console.log(res.code)
+
+        wx.showToast({
+          title: '房主离开房间',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
   shareTo(options) {
     if (options && options.friendPK) {
       this.data.shareIn = true
       if (app.globalData.logined) {
-        doFetch('english.roomisexist', {
-          rid: options.rid
-        }, (res) => {
-          console.log(res.data,'res.data.roomStatus')
-          let rid = options.rid;
-          if (res.code == 0) {
-            if (res.data && res.data.roomStatus == 1) {
-              wx.navigateTo({
-                url: '../friendPK/friendPK?rid=' + rid,
-              })
-            }
-            else if (res.data && res.data.roomStatus == 2) {
-              wx.navigateTo({
-                url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
-              })
-            }
-          }
-          else {
-            wx.showToast({
-              title: '房间不存在',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        })
+        this.loginedShare(options);
       }
       else {
         app.globalData.toFriend = true
         app.globalData.friendRid = options.rid
+        setTimeout(()=>{
+          this.loginedShare(options);
+        },2000)
+        
       }
     }
     else if (options && options.rank) {

@@ -1,5 +1,5 @@
 <!--pages/competition/competition.wxml-->
- <wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}'> 
+ <wrap clockStart ='{{clockStart}}' clockTime='{{clockTime}}' userLeft='{{userLeft}}' userRight='{{userRight}}' showMask='{{showMask}}'> 
    
    <view class='now-word' slot="word">
     <view class='round-title {{title ? "show" : "none"}}'>{{title}}</view>
@@ -29,7 +29,6 @@
   </view>
 
   <view class='multi-wrap' slot='select'>
-    <view class='mask {{showMask?"mask-big":""}}' wx:if='{{showMask}}'></view>
     <bar class="bar" scoreA='{{totalScore}}' type='A'></bar>
 
     <view class='multi-words'> 

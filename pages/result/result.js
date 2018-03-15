@@ -21,9 +21,12 @@ Page({
     num:5,
     iconName:'',
     level:0,
-    show:false
+    show:false,
+    rid: null
   },
   onLoad: function (e) {
+    console.log('===================result')
+    console.log(e)
     // let hasMap = map.every(v=>{
     //   return v != 'matchSuccess';
     // })
@@ -51,7 +54,8 @@ Page({
     }
     
     this.setData({
-      show: e.show
+      show: e.show,
+      rid: e.rid
     })
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
@@ -100,8 +104,12 @@ Page({
     //是否为好友局
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
+      wx.navigateBack()
+    } else {
+      wx.navigateTo({
+        url: '../friendPK/friendPK?rid=' + this.data.rid,
+      })
     }
-    wx.navigateBack()
   },
   onShareAppMessage: function (res) {
     return {
