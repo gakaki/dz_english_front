@@ -78,7 +78,8 @@ Page({
     rid: '',
     pkEnd: false,
     frameSelf:'',//我的段位头像框
-    frameOther:''//对战玩家的段位头像框
+    frameOther:'',//对战玩家的段位头像框
+    isFriend:false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -87,7 +88,13 @@ Page({
     })
   },
   onLoad: function (options) {
-
+    console.log(options, '对战页面的isFriend--onload')
+    if(options.isFriend) {
+      this.setData({
+        isFriend: options.isFriend
+      })
+    }
+    
     console.log('send', options.rid)
     wsSend('getmatchinfo', {
       rid: options.rid
@@ -168,7 +175,7 @@ Page({
         } else {
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
-
+       
         wx.redirectTo({
           url: '../result/result?' + url
         })
@@ -224,10 +231,11 @@ Page({
     }, 150)
 
     if(!this.data.pkEnd){
+      console.log(this.data.isFriend,'对战页面的isFriend')
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
         wx.redirectTo({
-          url: '../competition/competition?rid=' + this.data.rid,
+          url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
         })
       }, 3000)
     }

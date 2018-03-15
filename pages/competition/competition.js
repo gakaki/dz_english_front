@@ -65,7 +65,8 @@ Page({
     starMcWd2: 749,
     starMcHt2: 275,
     showMask: false,
-    maskPos:0
+    maskPos:0,
+    isFriend:false
 
   },
   onLoad(options) {
@@ -74,7 +75,12 @@ Page({
     rid = options.rid;
     round = 1;
     totalScore = 0;
-    
+    console.log(options.isFriend,'competition页面onload')
+    if(options.isFriend) {
+      this.setData({
+        isFriend: options.isFriend
+      })
+    }
 
     getRoomInfo(rid, res => {
       if (res.code) {
@@ -146,7 +152,7 @@ Page({
     answerSend = true;
     this.tagRoundEnd(true);
     
-    if (!pkEnd) { 
+    if (!pkEnd) {
       wsSend('leaveroom', { rid: rid })
     }
    

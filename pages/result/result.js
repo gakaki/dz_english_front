@@ -27,6 +27,7 @@ Page({
   onLoad: function (e) {
     console.log('===================load')
     console.log(e)
+
     let hasMap = map.every(v=>{
       return v != 'matchSuccess';
     })

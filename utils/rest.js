@@ -15,6 +15,7 @@ let allActions = [];
 
 
 function doFetch(action, data, suc, err,_app) {
+  console.log(action,'fetch')
   _fetchIntercept(action,_app)
   data = data || {};
   if (isAuth) {
@@ -163,6 +164,7 @@ function wsInit() {
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {
+    app.globalData.wsConnect = true;
     console.log('#connect');
     //wsSend('ranking')
     // wsReceive('roomInfo', res => {
@@ -184,6 +186,7 @@ function wsInit() {
     // })
     socket.on('disconnect', msg => {
       console.log('#disconnect', msg);
+      app.globalData.wsConnect = false;
     });
 
     socket.on('disconnecting', () => {
