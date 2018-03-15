@@ -4,7 +4,7 @@ import { doFetch, wsSend, wsReceive } from '../../utils/rest.js';
 
  //加载英文单词
 function loadEnglishWords(words) { 
-
+    if(!words) {return}
     let englishWords = [];
     englishWords = words.map((v) => {
       let obj = Word.Get(v.id);

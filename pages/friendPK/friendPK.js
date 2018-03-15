@@ -30,6 +30,7 @@ Page({
 
     wsReceive('join', res => {
       this.getInfo(res.data.rid)
+      console.log(res, 'join收到的数据')
     })
    
   },
@@ -54,6 +55,8 @@ Page({
       console.log('房间不存在，创建一个新房间')
       wsSend('joinroom')
       wsReceive('joinSuccess', (res) => {
+        console.log(res,'房间不存在，收到的数据')
+        console.log(JSON.stringify(res))
         this.getInfo(res.data.rid)
       })
     }

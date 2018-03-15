@@ -94,10 +94,15 @@ Page({
         //进这个页面时，自己是对战方之一
         if (u1.info.uid == getUid()) {
           userLeft = u1.info;
-          userRight = u2.info;
+          if(u2 && u2.info) {
+            userRight = u2.info;
+          }
+          
         }
         else {
-          userLeft = u2.info;
+          if (u2 && u2.info) {
+            userLeft = u2.info;
+          }
           userRight = u1.info;
         }
         app.globalData.userInfo = userLeft;
@@ -262,6 +267,7 @@ Page({
 
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
+      if(pkEnd) {return}
       if (res.code) {
         wx.showToast({
           title: '本题结算出错'
@@ -292,6 +298,7 @@ Page({
     //开始下一题
     wsReceive('nextRound', res => {
       console.log(res.data)
+      if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
       }
@@ -348,6 +355,7 @@ Page({
           url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         }
         wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo', 'pkInfo']);
+        this.tagRoundEnd(true);
         wx.redirectTo({
           url: '../result/result?' + url
         })
