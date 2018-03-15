@@ -33,7 +33,7 @@ Page({
           mask: true
         })
       }
-    })
+    }, () => { }, app)
   },
   getSegment: function (item) {
     item.rank = sheet.Stage.Get(item.rank).stage
@@ -75,7 +75,7 @@ Page({
             rankData: []
           })
         }
-      })
+      }, () => { }, app)
     } else {
       this.setData({
         tabAct: false
@@ -102,7 +102,7 @@ Page({
             rankData: []
           })
         }
-      })
+      }, () => { }, app)
     }
   },
   preSeason() {
@@ -127,7 +127,7 @@ Page({
             mask: true
           })
         }
-      })
+      }, () => { }, app)
     } else {
       rankFrame: res.data.map(o => {
         return getPersonFrame(o.rank)

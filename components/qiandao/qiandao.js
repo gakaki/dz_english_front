@@ -56,7 +56,7 @@ Component({
             this.triggerEvent("hide")
           }, 1000)
         }
-      })
+      }, () => { }, app)
     },
 
     _cancelEvent() {

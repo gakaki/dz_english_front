@@ -43,7 +43,7 @@ Page({
       wx.setNavigationBarTitle({
         title: this.data.season.cfg.name
       })
-    })
+    }, () => { }, app)
     if (options && options.fromIndex){
       this.data.fromIndex = true
     }
@@ -139,7 +139,7 @@ Page({
           this.starAnimation(res, stage, rankInfo)
         }
       }
-    })
+    }, () => { }, app)
     // 显示段位框
     this.setData({
       frame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)

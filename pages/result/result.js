@@ -68,7 +68,7 @@ Page({
           shareGold:res.data.num
         })
       }
-    })
+    }, () => { }, app)
 
     if(pkResult.resultLeft.info.uid == getUid()){
       this.setData({
