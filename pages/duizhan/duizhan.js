@@ -169,9 +169,9 @@ Page({
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
 
-        // wx.redirectTo({
-        //   url: '../result/result?' + url
-        // })
+        wx.redirectTo({
+          url: '../result/result?' + url
+        })
         wsClose(['pkEndSettlement', 'matchInfo'])
       }
     })
@@ -226,7 +226,7 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
       }, 3000)
