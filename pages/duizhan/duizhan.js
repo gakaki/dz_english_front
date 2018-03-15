@@ -226,7 +226,7 @@ Page({
     if(!this.data.pkEnd){
       timer = setTimeout(() => {
         console.log('toCompetion', this.data.rid)
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
       }, 3000)

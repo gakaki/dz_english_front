@@ -2,8 +2,9 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc, wsClose } from '../../utils/rest.js';
-import { care, getRankFrame } from '../../utils/util.js'
+import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc, wsClose, hashMap  } from '../../utils/rest.js';
+import { care, getRankFrame } from '../../utils/util.js';
+let map = [];
 Page({
   data: {
     time: 10,
@@ -134,12 +135,31 @@ Page({
       }
     })
   },
+  onUnload(){
+    wsClose(['matchSuccess'])
+  },
+  onReady(){
+    setTimeout(()=>{
+      let noMap = map.every(v => {
+        return v != 'matchSuccess';
+      })
+      if (noMap) {
+        wsReceive('matchSuccess', res => {
+          wx.redirectTo({
+            url: '../duizhan/duizhan?rid=' + res.data.rid,
+          })
+        })
+        map.push('matchSuccess')
+      }
+    },2000)
+  },
   onLoad: function (options) {
     if(options.ownerLeave) {
       wx.showToast({
         title: '房主已离开'
       })
     }
+    
     care(app.globalData, 'personalInfo', v => {
       this.setData({
         lvl: v.userInfo.character.level || 0,

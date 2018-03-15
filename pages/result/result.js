@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, getUid, shareSuc, wsReceive } from '../../utils/rest.js';
+import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.js';
 import { Item } from '../../sheets.js'
 let map = [];
 
@@ -38,7 +38,7 @@ Page({
       })
       map.push('matchSuccess')
     }
-    if(e.otherLeave) {
+    if(e.otherLeave == "true") {
       wx.showToast({
         title: '对方逃跑',
         icon:'none'
@@ -92,6 +92,7 @@ Page({
     if (!app.globalData.pkResult.isFriend) {
       this.setPageInfo()
     }
+    wsClose('matchSuccess')
   },
   setPageInfo() {
     let pages = getCurrentPages()
