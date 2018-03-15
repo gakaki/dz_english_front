@@ -207,7 +207,7 @@
   width: 227rpx;
   height: 181rpx;
   position: absolute;
-  top:-17rpx;
+  top:-12rpx;
   left: -25rpx;
   transform: scale(0.77);
   z-index: 10;
