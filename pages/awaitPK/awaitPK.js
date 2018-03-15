@@ -50,78 +50,11 @@ Page({
 
     this.setData({
       gold: option.gold
-    })
-    //实例化百度地图API核心类
-    // bmap = new Bmap.BMapWX({
-    //   ak: this.data.ak
-    // }); 
+    }) 
     
     wsSend('ranking', {
       rankType: option.type
     })
-
-    // let that = this;
-    // wx.getLocation({
-    //   type: 'wgs84',
-    //   success: function (res) {
-    //     console.log(res)
-    //     that.setData({
-    //       latitude: res.latitude,
-    //       longitude: res.longitude,
-    //     })
-
-    //     //发起逆向解析地址请求
-    //     bmap.regeocoding({
-    //       location: that.data.latitude + ',' + that.data.longitude,
-    //       success: function (res) {
-    //         console.log(res.originalData.result.addressComponent.city)
-    //         doFetch('english.updateposition', {
-    //           position: res.originalData.result.addressComponent.city
-    //         }, (res) => {
-    //           console.log(res)
-    //           // that.setData({
-    //           //   userInfo: res.data
-    //           // })
-    //           //获取位置之后开始匹配
-              
-    //         })
-    //       },
-    //       fail: function (res) {
-    //         console.log(res,'regeocodingFail')
-    //         wx.showToast({
-    //           title: '获取位置失败，请开启位置权限服务并重试',
-    //           duration: 2000
-    //         })
-    //         doFetch('english.updateposition', { position: ' ' }, (res) => {
-    //           console.log(res)
-    //           that.setData({
-    //             userInfo: res.data
-    //           })
-    //           //获取位置之后开始匹配
-    //           wsSend('ranking', {
-    //             rankType: option.type
-    //           })
-    //         })
-    //       }
-    //     });
-    //   },
-    //   fail: function (res) {
-    //     console.log(res, 'getLocationFail')
-    //     let location = sheet.Constant.Get(3).value.split(',')
-    //     let index = Math.floor(Math.random()*location.length)
-    //     let choosePoa = location[index]
-    //     doFetch('english.updateposition', { position:choosePoa}, (res) => {
-    //       console.log(res)
-    //       that.setData({
-    //         userInfo: res.data
-    //       })
-    //       //获取位置之后开始匹配
-    //       wsSend('ranking', {
-    //         rankType: option.type
-    //       })
-    //     })
-    //   }
-    // })
     
   },
   onReady: function() {

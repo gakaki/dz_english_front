@@ -22,7 +22,7 @@ Component({
     },
     show: {
       type: Boolean,
-      value: true
+      value: false
     }
     
   },
