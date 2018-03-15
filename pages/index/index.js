@@ -139,19 +139,19 @@ Page({
     wsClose(['matchSuccess'])
   },
   onReady(){
-    setTimeout(()=>{
-      let noMap = map.every(v => {
-        return v != 'matchSuccess';
-      })
-      if (noMap) {
-        wsReceive('matchSuccess', res => {
-          wx.redirectTo({
-            url: '../duizhan/duizhan?rid=' + res.data.rid,
-          })
-        })
-        map.push('matchSuccess')
-      }
-    },2000)
+    // setTimeout(()=>{
+    //   let noMap = map.every(v => {
+    //     return v != 'matchSuccess';
+    //   })
+    //   if (noMap) {
+    //     wsReceive('matchSuccess', res => {
+    //       wx.redirectTo({
+    //         url: '../duizhan/duizhan?rid=' + res.data.rid,
+    //       })
+    //     })
+    //     map.push('matchSuccess')
+    //   }
+    // },2000)
   },
   onLoad: function (options) {
     if(options.ownerLeave) {

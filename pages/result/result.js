@@ -25,13 +25,16 @@ Page({
     rid: null
   },
   onLoad: function (e) {
-    console.log('===================result')
+    console.log('===================load')
     console.log(e)
     let hasMap = map.every(v=>{
       return v != 'matchSuccess';
     })
+    console.log(hasMap,'hasMappppppppppppppppp')
     if(hasMap) {
+      wsClose('matchSuccess')
       wsReceive('matchSuccess', res => {
+        console.log(res, 'rrrrrrrrrrrrrrr')
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
         })
@@ -92,7 +95,6 @@ Page({
     if (!app.globalData.pkResult.isFriend) {
       this.setPageInfo()
     }
-    wsClose('matchSuccess')
   },
   setPageInfo() {
     let pages = getCurrentPages()

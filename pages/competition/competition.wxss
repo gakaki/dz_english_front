@@ -56,11 +56,10 @@
   transform: translateX(-15rpx)
 }
 .zhongwen {
-  padding-top: 39rpx;
+  padding: 39rpx 0 26rpx;
   overflow: hidden;
 }
 .yinbiao {
-  padding-top: 26rpx;
   font: 32rpx/1 'Arial';
 }
 .quelou {
