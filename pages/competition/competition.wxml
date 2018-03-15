@@ -4,7 +4,7 @@
    <view class='now-word' slot="word">
     <view class='round-title {{title ? "show" : "none"}}'>
       <view>{{title}}</view>
-      <view class='quelou'  wx:if='{{title == "第五题"}}'>最后一题，分数翻倍</view>
+      <view class='tip' wx:if='{{title == "第五题"}}'>最后一题，分数翻倍</view>
     </view>
     <view class='word-wrap  {{word ? "show" : "none"}}'>
       <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
