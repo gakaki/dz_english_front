@@ -180,6 +180,7 @@
 .button{
   width: 650rpx;
   margin-top: 145rpx;
+  justify-content: space-around;
 }
 
 .give-up{
@@ -197,6 +198,7 @@
   background-size: cover;
   text-align: center;
 }
+
 
 .btn text{
   color: #fff;

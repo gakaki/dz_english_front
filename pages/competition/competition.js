@@ -345,6 +345,7 @@ Page({
     this.setData({title: getRoundName(round)})
   },
   audioPlay(){
+    console.log('播放英语')
     this.audioCtx.play()
   },
   //显示题目
