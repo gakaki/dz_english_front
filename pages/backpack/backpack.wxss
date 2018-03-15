@@ -54,18 +54,19 @@
    transform: scale(.8,.8) 
 }
 
-.x, .count {
+
+.x {
+  font: bold 60rpx/1 'Microsoft YaHei';
   color: #526ec6;
-  font-size: 60rpx;
-  font-weight: bold;
-  height: 40rpx;
-  line-height: 34rpx;
+  vertical-align: middle;
+  margin-top: -3rpx;
 }
 
 .count {
-  line-height: 40rpx;
-  font-size: 40rpx;
+  color: #526ec6;
+  font: bold 40rpx/1 'Microsoft YaHei';
   margin-left: -4rpx;
+  vertical-align: middle;
 }
 
 .goods {

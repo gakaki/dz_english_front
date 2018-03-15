@@ -2,8 +2,9 @@
 //获取应用实例
 const app = getApp()
 const sheet = require('../../sheets.js');
-import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc } from '../../utils/rest.js';
-import { care, getRankFrame } from '../../utils/util.js'
+import { doFetch, wsSend, wsReceive, start, firstStart, shareSuc, wsClose, hashMap  } from '../../utils/rest.js';
+import { care, getRankFrame } from '../../utils/util.js';
+let map = [];
 Page({
   data: {
     time: 10,
@@ -20,7 +21,8 @@ Page({
     rankFrame: '',
     landing: false,   //是否弹出签到窗口
     landingDay: 0,
-    shareIn:false
+    shareIn:false,
+    canUp: false
   },
   //事件处理函数
   hi() {
@@ -74,12 +76,18 @@ Page({
   },
   toFriPk: function (e) {
     if (app.preventMoreTap(e)) { return; }
-    start(() => {
-      this.hi()
-      wx.navigateTo({
-        url: '../friendPK/friendPK'
-      })
-    })
+    // start(() => {
+      this.hi();
+      
+      // wsReceive('joinSuccess',(res)=>{
+      //   console.log('joinSuccessssssssssssss')
+      //   if (app.preventMoreTap(e, 1000)) { return; }
+        wx.navigateTo({
+          url: '../friendPK/friendPK'
+        })
+      // })
+     
+    // })
   },
   toZsd(e) {
     if (app.preventMoreTap(e)) { return; }
@@ -127,9 +135,32 @@ Page({
       }
     })
   },
+  onUnload(){
+    // wsClose(['matchSuccess'])
+  },
+  onReady(){
+    // setTimeout(()=>{
+    //   let noMap = map.every(v => {
+    //     return v != 'matchSuccess';
+    //   })
+    //   if (noMap) {
+    //     wsReceive('matchSuccess', res => {
+    //       wx.redirectTo({
+    //         url: '../duizhan/duizhan?rid=' + res.data.rid,
+    //       })
+    //     })
+    //     map.push('matchSuccess')
+    //   }
+    // },2000)
+  },
   onLoad: function (options) {
+    if(options.ownerLeave) {
+      wx.showToast({
+        title: '房主已离开'
+      })
+    }
+    
     care(app.globalData, 'personalInfo', v => {
-      console.log(v)
       this.setData({
         lvl: v.userInfo.character.level || 0,
         exp: v.userInfo.character.experience.exp || 0,
@@ -146,6 +177,17 @@ Page({
         })
       }
 
+      doFetch('english.develop', {}, (res) => {
+        for (let k in res.data) {
+          if (res.data[k].canUp) {
+            this.setData({
+              canUp: true
+            })
+            return
+          }
+        }
+      })
+
       //如果是通过分享并且需要跳转时则暂时不显示签到
       // if(!this.data.shareIn){
       //   doFetch('english.isfirstsign', {}, res => {
@@ -160,6 +202,9 @@ Page({
     })
     this.shareTo(options)
     
+
+  
+
     firstStart(()=> {
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
@@ -172,8 +217,6 @@ Page({
         })
       }
     })
-
-
 
 
     if (app.globalData.userInfo) {
@@ -205,37 +248,48 @@ Page({
    
 
   },
+  loginedShare(options){
+    doFetch('english.roomisexist', {
+      rid: options.rid
+    }, (res) => {
+      console.log(res.data, 'res.data.roomStatus')
+      let rid = options.rid;
+      if (res.code == 0) {
+        if (res.data && res.data.roomStatus == 1) {
+          wx.navigateTo({
+            url: '../friendPK/friendPK?rid=' + rid,
+          })
+        }
+        else if (res.data && res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
+          })
+        }
+      }
+      else {
+        console.log(res.code)
+
+        wx.showToast({
+          title: '房主离开房间',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
   shareTo(options) {
     if (options && options.friendPK) {
       this.data.shareIn = true
       if (app.globalData.logined) {
-        doFetch('english.roomisexist', {
-          rid: options.rid
-        }, (res) => {
-          if (res.code == 0) {
-            if (res.data.roomStatus == 1) {
-              wx.navigateTo({
-                url: '../friendPK/friendPK?rid=' + options.rid,
-              })
-            }
-            else if (res.data.roomStatus == 2) {
-              wx.navigateTo({
-                url: '../competition/competition?rid=' + options.rid,
-              })
-            }
-          }
-          else {
-            wx.showToast({
-              title: '房间不存在',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        })
+        this.loginedShare(options);
       }
       else {
         app.globalData.toFriend = true
         app.globalData.friendRid = options.rid
+        setTimeout(()=>{
+          this.loginedShare(options);
+        },2000)
+        
       }
     }
     else if (options && options.rank) {
@@ -291,6 +345,8 @@ Page({
         })
       })
     }
+
+
   },
   // getRankFrame(season) {
   //   let idx = 0

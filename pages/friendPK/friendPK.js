@@ -10,9 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     animation: ['https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_00.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_01.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_02.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_03.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_04.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_05.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_06.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_07.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_08.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_09.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_10.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_11.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_12.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_13.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_14.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_15.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_16.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_17.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_18.png',],
     index: 0,
     bystander:0,
@@ -28,31 +25,63 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    if(options && !options.rid){
-      console.log('creatroom')
-      wsSend('createroom')
-      wsReceive('createSuccess', res => {
-        console.log(res, 'creatSuc')
+    console.log('======================onload')
+    this.canJoinRoom(options)
+
+   
+  },
+  canJoinRoom(options){
+    if (app.globalData.logined) {
+      this.joinRoom(options)
+    } else {
+      setTimeout(() => {
+        this.canJoinRoom(options);
+      }, 500)
+    }
+  },
+  joinRoom(options){
+    wsSend('roomisexist', { rid: options.rid })
+    if (options.rid) {
+      console.log('房间存在')
+      wsSend('joinroom', { rid: options.rid })
+      this.getInfo(options.rid)
+      
+    } else {
+      console.log('房间不存在，创建一个新房间')
+      wsSend('joinroom')
+      wsReceive('joinSuccess', (res) => {
         this.getInfo(res.data.rid)
       })
     }
-    else{
-      wsSend('joinroom', { rid: options.rid})
-      this.getInfo(options.rid)
-    } 
-    console.log(this.data.rid,'rid')
-    
+
+
+    // wsReceive('roomExist', res => {
+    //   if (res.data.isExist) {
+    //     console.log('房间存在')
+    //     wsSend('joinroom', { rid: options.rid })
+    //     this.getInfo(options.rid)
+    //   } else {
+    //     console.log('房间不存在，创建一个新房间')
+    //     wsSend('joinroom')
+    //     wsReceive('joinSuccess', (res) => {
+    //       if (!res.data.isCreate) {
+    //         wsSend('joinroom', { rid: res.data.rid })
+    //       }
+    //       this.getInfo(res.data.rid)
+    //     })
+    //   }
+    // })
   },
   getInfo(rid){
     this.data.rid = rid
     wsSend('getroominfo', {
       rid: this.data.rid
     })
+    console.log(this.data.rid,'roomInfooooooooooo')
     wsReceive('roomInfo', res => {
-      console.log(res, 'frienPK')
+      console.log(res, 'roomInfo')
       if (res.data.roomStatus == 2) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../competition/competition?rid=' + this.data.rid,
         })
       }
@@ -78,18 +107,23 @@ Page({
         list: res.data.userList
       })
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function (options) {
-    console.log(app.globalData.str1)
-  },
 
+    wsReceive('dissolve', res => {  //房主离开
+      console.log(res, 'dissolve')
+      wx.redirectTo({
+        url: '../index/index?ownerLeave=true',
+      })
+    })
+  },
+  onReady(){
+    console.log('==============onReady')
+  },
+  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log('==============onShow')
     let i = 0;
     time = setInterval(()=>{
       i++
@@ -110,7 +144,9 @@ Page({
     })
      
   },
-
+  onUnload() {
+    wsClose('joinSuccess')
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -121,34 +157,19 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    if(this.data.isOwner && !this.data.startGame){
-      wsSend('leaveroom')
-      wsReceive('dissolve', res => {
-        console.log(res, 'dissolve')
-      })
-    }
-    clearInterval(time);
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess','roomInfo'])
-  },
-
   start: function() {
-    console.log(111)
     wsSend('startgame',{
       rid: this.data.rid
     })
   },
 
   giveUp() {
-    if(this.data.isOwner){
-      wsSend('leaveroom')
-      wsReceive('dissolve',res=>{
-        console.log(res,'dissolve')
-      })
-    }
-    wx.navigateBack({
-      delta: 1
+    wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
+    wx.redirectTo({
+      url: '../index/index',
     })
+    clearInterval(time);
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
 
   /**

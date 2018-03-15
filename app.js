@@ -20,13 +20,14 @@ App({
     
   },
   globalData: {
+    audio:true, //音效开关。默认打开
     logined: false,
     userInfo: null,
     personalInfo: null ,
-    str1: sheet.Share.Get(1).title,
-    str2: sheet.Share.Get(2).title,
-    str3: sheet.Share.Get(3).title,
-    str4: sheet.Share.Get(4).title,
+    str1: sheet.Share.Get(1).desc,
+    str2: sheet.Share.Get(2).desc,
+    str3: sheet.Share.Get(3).desc,
+    str4: sheet.Share.Get(4).desc,
     toFriend: false,
     friendRid: '',
     toRank: false,

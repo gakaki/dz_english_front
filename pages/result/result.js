@@ -1,6 +1,8 @@
 //获取应用实例
 const app = getApp()
-import { doFetch, getUid,shareSuc } from '../../utils/rest.js';
+import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.js';
+import { Item } from '../../sheets.js'
+let map = [];
 
 Page({
   data: {
@@ -14,10 +16,50 @@ Page({
     exp:0,
     shareGold:0,
     isSelf:{},
-    notSelf:{}
+    notSelf:{},
+    name:'',
+    num:5,
+    iconName:'',
+    level:0,
+    show:false,
+    rid: null
   },
   onLoad: function (e) {
+    console.log('===================load')
     console.log(e)
+    let hasMap = map.every(v=>{
+      return v != 'matchSuccess';
+    })
+    if(hasMap) {
+      // wsClose('matchSuccess')
+      wsReceive('matchSuccess', res => {
+        wx.redirectTo({
+          url: '../duizhan/duizhan?rid=' + res.data.rid,
+        })
+      })
+      map.push('matchSuccess')
+    }
+    if(e.otherLeave == "true") {
+      wx.showToast({
+        title: '对方逃跑',
+        icon:'none'
+      })
+    }
+    if(e.k) {
+      let item = Item.Get(e.k);
+      this.setData({
+        num: e.v,
+        level: e.level,
+        iconName: item.cfg.icon,
+        name: item.cfg.name
+      })
+    }
+    
+    this.setData({
+      show: e.show == "true"?true:false,
+      rid: e.rid
+    })
+    console.log(this.data.show,'showwwwwwwwwwwwwwww')
     let pkResult = app.globalData.pkResult
     console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{
@@ -48,6 +90,7 @@ Page({
     }
    },
   onUnload() {
+    console.log('onunloaddddddddddddddddddddd')
     if (!app.globalData.pkResult.isFriend) {
       this.setPageInfo()
     }
@@ -63,10 +106,15 @@ Page({
   },
   toMatch() {
     //是否为好友局
+    console.log(app.globalData.pkResult.isFriend,'app.globalData.pkResult.isFriend')
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
+      wx.navigateBack()
+    } else {
+      wx.navigateTo({
+        url: '../friendPK/friendPK',
+      })
     }
-    wx.navigateBack()
   },
   onShareAppMessage: function (res) {
     return {

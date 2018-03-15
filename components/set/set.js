@@ -1,4 +1,5 @@
 // components/set/set.js
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -39,9 +40,10 @@ Component({
         musicColor: 'bg-color',
         musicPoa: 'btn-poa'
       })
+      
     }
     else{
-
+      
     }
   },
 
@@ -68,6 +70,7 @@ Component({
     },
     musicOpen() {
       if (wx.getStorageSync('music')) {
+        console.log(555)
         this.setData({
           music: 'send-open',
           musicInner: 'send-hide'

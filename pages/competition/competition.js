@@ -19,6 +19,7 @@ let isRight;//当前题是否答对了
 let rid;//房间id
 let round, totalScore; //round第几回合，从1开始 //本人总分
 let canClick = false; //9宫格是否可以点击
+let pkEnd = false
 
 Page({
   /**
@@ -32,6 +33,7 @@ Page({
     nineLetters: [], //九宫格字母
     bgIndex: [false, false, false, false, false, false, false, false, false], //第几个点击，更改背景色
     word: {},
+    chinese:[],
     rightAnswer: '',//正确答案
     options:[],//答案选项
     letters: [],  //单词变成字母
@@ -62,10 +64,13 @@ Page({
     starMcHt1: 73,
     starMcWd2: 749,
     starMcHt2: 275,
+    showMask: false,
+    maskPos:0
 
   },
   onLoad(options) {
     console.log('======================load')
+    pkEnd = false;
     rid = options.rid;
     round = 1;
     totalScore = 0;
@@ -132,12 +137,19 @@ Page({
   onUnload() {
     answerSend = true;
     this.tagRoundEnd(true);
-    wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo','pkInfo']);
+    
+    if (!pkEnd) { 
+      wsSend('leaveroom', { rid: rid })
+    }
+   
   },
 
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioTrue = wx.createAudioContext('true')
+    this.audioFalse = wx.createAudioContext('false')
+    this.audioSelect = wx.createAudioContext('select')
     
   },
   roundInit(){
@@ -152,7 +164,7 @@ Page({
     this.setData({
       title:null,
       options:null,
-      word:{type:0},
+      word:{},
       letters:[],
       answer: 0,
       roundIsRight:false,
@@ -164,8 +176,10 @@ Page({
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
       roundAnswer:{},
-      clockTime: 10
+      clockTime: 10,
+      chinese:[]
     })
+    
 
     //开始对应玩法
     switch(question.type) {
@@ -182,8 +196,6 @@ Page({
         this.playFour();
         break;
     }
-    
-    
   },
 
   tagRoundEnd(stopClock = true) {
@@ -285,6 +297,7 @@ Page({
         })
       }
       else {
+        pkEnd = true;
         let data = res.data;
         let isFriend = data.isFriend;
         let final = data.final;
@@ -308,8 +321,21 @@ Page({
         console.log('全局结束',res)
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
+        let isUp = data.pkResult.isUp;
+        
+        let show = isUp.isUp;
+        let level = isUp.level;
+        let url = '';
+        if (isUp.awards) {
+          let k = isUp.awards.k;
+          let v = isUp.awards.v;
+          url = '&show=' + show + '&level=' + level + '&k=' + k + '&v=' + v + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
+        } else {
+          url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
+        }
+        wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo', 'pkInfo']);
         wx.redirectTo({
-          url: '../result/result?otherleave=' + data.isLeave + '&isUp=' + data.pkResult.isUp,
+          url: '../result/result?' + url
         })
       }
     })
@@ -319,6 +345,7 @@ Page({
     this.setData({title: getRoundName(round)})
   },
   audioPlay(){
+    console.log('播放英语')
     this.audioCtx.play()
   },
   //显示题目
@@ -330,6 +357,9 @@ Page({
       word: question,
       letters,
       rightAnswer: rightAnswer
+    })
+    this.setData({
+      chinese: this.data.word.China.split(';')
     })
   },
   hideQuestionLetter(hideAll = false){
@@ -442,7 +472,14 @@ Page({
   },
   showFront(v){  //点击翻牌
     if (!canClick) return;
-    if (app.preventMoreTap(v,300)) { return; }
+
+    let obj = v.currentTarget.dataset;
+    let bgIndex = this.data.bgIndex;
+    if (bgIndex[obj.index]) {
+      return;//已经点过这个键了
+    }
+    bgIndex[obj.index] = true;
+    
     let bcCount = this.data.backClickCount;
     let bcLimit = question.eliminate.length;
     let letters = this.data.letters;
@@ -457,7 +494,8 @@ Page({
       hideLetters[index] = false;  //将该位子的背面转成正面
       letters[index] = inner;   //正面的字母显示到上面
       let rotateList = this.data.rotateList;  //翻牌的列表
-      rotateList[i] = true
+      rotateList[i] = true;
+      isRight = false;
 
       this.setData({
         rotateList, 
@@ -470,18 +508,21 @@ Page({
         let word = letters.join('');
         answer = 0;
         let myScore = 0;
-        isRight = false;
 
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
           myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
           totalScore = totalScore + myScore;
+          this.playResultAudio(isRight)
         } 
         else {
           answer = 2;
-          isRight = true;
+          this.playResultAudio(isRight);
+          this.failSelect();
+          
         }
+
 
         let roundAnswer = {}
         roundAnswer[word] = isRight;
@@ -494,10 +535,16 @@ Page({
         })
         console.log(this.data.roundIsRight,'roundIsRight')
         this.tagRoundEnd(false);
+      } else {
+        this.selectPlay()
       }
     }
   },
-
+  selectPlay(){
+    if (!wx.getStorageSync('music')) {
+      this.audioSelect.play();
+    }
+  },
   chooseLetter(e) {
     if(!canClick) return;
     let obj = e.currentTarget.dataset;
@@ -508,7 +555,7 @@ Page({
       return;//已经点过这个键了
     }
     bgIndex[obj.index] = true;
-    
+
     let letters = this.data.letters;
     
     if (!letters.okCnt) {
@@ -549,13 +596,19 @@ Page({
         finished = true;
         myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
         totalScore = totalScore + myScore;
+
+        this.playResultAudio(isRight)
+     
+      } else {
+        this.selectPlay();
       }
     }
     else {
       //回答出错
       answer = 2;
-      isRight = false;
       finished = true;
+      this.playResultAudio(isRight);
+      this.failSelect();
     }
 
     let roundAnswer = {};
@@ -580,7 +633,13 @@ Page({
 
     }
   },
-
+  playResultAudio(isRight){
+    if (!wx.getStorageSync('music')) {
+      setTimeout(() => {
+        isRight ? this.audioTrue.play() : this.audioFalse.play();
+      }, 200)
+    }
+  },
   chooseOption(v) {  //选列选项点击
     if (this.data.firstClick) {
       let obj = v.currentTarget.dataset;
@@ -602,7 +661,10 @@ Page({
       } else {
         answer = 2;
         selectAnswer[obj.id] = 2;
+        this.failSelect();
       }
+
+      this.playResultAudio(isRight)
 
       let roundAnswer = {};
       roundAnswer[obj.answer] = isRight;
@@ -617,7 +679,16 @@ Page({
     }
 
   },
-  
+  failSelect(){
+    this.setData({
+      showMask: true
+    });
+    setTimeout(()=>{
+      this.setData({
+        showMask: false
+      });
+    },100)
+  },
   countClockTime(){
     canClick = true;
     if (timer) {

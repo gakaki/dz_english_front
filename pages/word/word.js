@@ -111,7 +111,6 @@ Page({
   },
 
   improve: function() {
-    console.log(this.data.knowInfo[this.data.point + 1])
     if (this.data.knowInfo[this.data.point + 1].canUp){
       doFetch('english.speechlevelup',{
         spid:this.data.point+1
@@ -148,9 +147,7 @@ Page({
 
   //隐藏知识点信息弹框
   hide: function() {
-    console.log(111)
     doFetch('english.develop', {}, (res) => {
-      console.log(res.data);
       this.setData({
         knowInfo: res.data
       })

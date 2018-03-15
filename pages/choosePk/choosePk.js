@@ -5,8 +5,12 @@ import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.
 let time = null
 Page({
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isFirstClick:true,
     rankFrame: '',
-    userInfo:{},
+    backuserInfo:{},
     stage: [],
     star: 0,
     toView:0,
@@ -43,10 +47,40 @@ Page({
     if (options && options.fromIndex){
       this.data.fromIndex = true
     }
+    this.setData({
+      isFirstClick:true
+    })
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  
   },
   onReady() {
     wsReceive('cancelSuccess', res => {
-      console.log(res)
       wsReceive('matchSuccess', res => {
         wx.showToast({
           title: '您已放弃对战',
@@ -79,23 +113,23 @@ Page({
         return obj
       })
 
-      console.log(this.data.fromIndex, 'asaf')
       //是否到达最高等级
       if (rankInfo.rank==15){
         stage.length = rankInfo.rank
         this.setData({
-          userInfo: res.data.userInfo,
+          backuserInfo: res.data.userInfo,
           star: rankInfo.star,
           stage: stage,
           toView: rankInfo.rank - 3
         })
+
       }
       else{
         //是否从主页面跳转过来的
         if (this.data.fromIndex) {
           stage.length = rankInfo.rank + 1
           this.setData({
-            userInfo: res.data.userInfo,
+            backuserInfo: res.data.userInfo,
             star: rankInfo.star,
             stage: stage,
             toView: rankInfo.rank - 3
@@ -112,7 +146,6 @@ Page({
     })
   },
   starAnimation(res,stage,rankInfo) {
-    console.log(1111, app.globalData.pkResult.changeInfo)
     let changeInfo = app.globalData.pkResult.changeInfo
     //判断是否提升段位
     if (changeInfo.isRank.isRank) {
@@ -121,7 +154,7 @@ Page({
       let oldStage = stage.slice(0, rankInfo.rank)
       this.setData({
         starAnimation: 'increase',
-        userInfo: res.data.userInfo,
+        backuserInfo: res.data.userInfo,
         star: stage[oldStage.length - 2].star,
         stage: oldStage,
         toView: rankInfo.rank - 4
@@ -139,7 +172,7 @@ Page({
       //判断是否加星
       stage.length = rankInfo.rank + 1
       this.setData({
-        userInfo: res.data.userInfo,
+        backuserInfo: res.data.userInfo,
         star: rankInfo.star,
         stage: stage,
         toView: rankInfo.rank - 3
@@ -156,37 +189,42 @@ Page({
       }
     }
   },
+  
   onUnload() {
     clearTimeout(time)
-    wsClose(['cancelSuccess', 'matchSuccess','needGold'])
+    wsClose(['cancelSuccess', 'matchSuccess'])
+    this.setData({
+      isFirstClick: true
+    })
+  },
+  onHide(){
+    this.setData({
+      isFirstClick: true
+    })
   },
   match(res) {
     console.log(res.currentTarget.dataset.rank,'match')
-    if (app.preventMoreTap(res,300)) { return; }
+    if(!this.data.isFirstClick) {
+      return
+    }
+    this.setData({
+      isFirstClick: false
+    })
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
     if (this.data.stage.length > type){
-      //通过后台和客户端一起判断来防止数据被篡改
-      wsSend('canmatch', {
-        rankType: type
-      })
-      wsReceive('needGold', res => {
-        console.log(res)
-        this.setData({
-          canMatch:false
+      if (this.data.backuserInfo.items[1] >= gold) {
+        wx.navigateTo({
+          url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
         })
+      } else {
         wx.showToast({
           title: '金币不足',
           icon: 'none',
           duration: 2000
         })
-      })
-      if (this.data.canMatch || this.data.userInfo.items[1] >= gold) {
-        wx.navigateTo({
-          url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
-        })
-      }
+      } 
     }
   },
   

@@ -1,13 +1,12 @@
 const io = require('./index.js');
-
-//  const srv = "https://h5t.ddz2018.com/";
-//  const wss = "wss://h5t.ddz2018.com/english";
-const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english";
+ const srv = "https://h5t.ddz2018.com/";
+ const wss = "wss://h5t.ddz2018.com/english";
+// const srv = "https://local.ddz2018.com/";
+// const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
-let sid, uid, app, isAuth = false;
+let sid, uid, app, isAuth = false;   
 let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
@@ -85,10 +84,10 @@ function userLogin(suc, err) {
           sid = res.sid;
           suc(res)
           wsInit();
-          app.globalData.logined = true
+          app.globalData.logined = true;
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-            shareTo()
+           
             
           })
         }
@@ -102,45 +101,6 @@ function userLogin(suc, err) {
   })
 }
 
-function shareTo() {
-  if (app.globalData.toFriend) {
-    doFetch('english.roomNotExist', {
-      rid: app.globalData.friendRid
-    }, (res) => {
-      if (res.code == 0) {
-        if (res.data.roomStatus == 1) {
-          wx.navigateTo({
-            url: '../friendPK/friendPK?rid=' + app.globalData.friendRid,
-          })
-        }
-        else if (res.data.roomStatus == 2) {
-          wx.navigateTo({
-            url: '../competition/competition?rid=' + app.globalData.friendRid,
-          })
-        }
-      }
-      else {
-        wx.showToast({
-          title: '房间不存在',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
-  }
-  else if (app.globalData.toRank) {
-    wx.navigateTo({
-      url: '../rank/rank',
-    })
-    app.globalData.toRank = false
-  }
-  else if (app.globalData.toSelf) {
-    wx.navigateTo({
-      url: '../self/self',
-    })
-    app.globalData.toSelf = false
-  }
-}
 
 function shareSuc() {
   doFetch('english.getshareaward',{},res=>{
@@ -328,6 +288,7 @@ const firstStart = suc => {
         })
   }
 }
+
 
 module.exports = {
   start,

@@ -1,7 +1,8 @@
 <!--components/compete/compete.wxml-->
 
 <view class='compete'>
-  <view class='top-content'>
+  <view class='move {{showMask?"move-large":""}}'>
+    <view class='top-content'>
     <view class='users'>
       <view class='user'>
         <image class="avatar" src="{{userLeft.avatarUrl}}"></image>
@@ -22,11 +23,16 @@
     <view class='blackboard'>
       <slot name='word'></slot>
     </view>
+    </view>
+    <view class='main-select'>
+      <slot name='select'></slot>
+    </view>
+    <view class='start-mcs'>
+      <slot name='mcs'></slot>
+    </view>
   </view>
-  <view class='main-select'>
-    <slot name='select'></slot>
-  </view>
-  <view class='start-mcs'>
-    <slot name='mcs'></slot>
-  </view>
+  
+  <view class='mask' wx:if='{{showMask}}'></view>
 </view>
+
+    

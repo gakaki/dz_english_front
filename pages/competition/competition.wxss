@@ -21,12 +21,21 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  font: bold 46rpx/210rpx 'Microsoft YaHei';
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font: bold 46rpx 'Microsoft YaHei';
+}
+.tip {
+  font: bold 30rpx 'Microsoft YaHei';
 }
 .word-wrap {
   position: absolute;
   width: 100%;
   height: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
 }
 .loudspeaker {
   vertical-align: middle;
@@ -47,10 +56,10 @@
   transform: translateX(-15rpx)
 }
 .zhongwen {
-  padding-top: 39rpx;
+  padding: 39rpx 0 26rpx;
+  overflow: hidden;
 }
 .yinbiao {
-  padding-top: 26rpx;
   font: 32rpx/1 'Arial';
 }
 .quelou {
@@ -190,9 +199,13 @@
   transition: 0;
 }
 
+
 .start-mc {
   position: absolute;
   top: 320rpx;
   left: 50vw;
   transform: translate(-50%, -50%);
 }
+
+
+

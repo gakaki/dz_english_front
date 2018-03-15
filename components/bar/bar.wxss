@@ -32,5 +32,5 @@
   width: 24rpx;
   border-radius: 50rpx;
   transition: 0.5s;
-  background: linear-gradient(#dbff37, #93e700)
+  background: #69e604;
 }
