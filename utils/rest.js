@@ -1,8 +1,8 @@
 const io = require('./index.js');
- const srv = "https://h5t.ddz2018.com/";
- const wss = "wss://h5t.ddz2018.com/english";
-// const srv = "https://local.ddz2018.com/";
-// const wss = "wss://local.ddz2018.com/english";
+//  const srv = "https://h5t.ddz2018.com/";
+//  const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -14,37 +14,40 @@ let socket;
 let allActions = [];
 
 
+
 function doFetch(action, data, suc, err,_app) {
+    // _fetchIntercept(action, _app)
+    data = data || {};
+    if (isAuth) {
+      if (!sid) {
+        sid = wx.getStorageSync('_sid');
+      }
+      if (sid) {
+        data._sid = sid;
+      }
+    }
+    if (!uid) {
+      uid = wx.getStorageSync('uid');
+    }
+    if (uid) {
+      data.uid = uid;
+    }
+    data.appName = APPNAME;
+    data.action = action;
+    wx.request({
+      url: srv,
+      data: data,
+      success: function (res) {
+        suc(res.data)
+      },
+      fail: err
+    })
   console.log(action,'fetch')
-  _fetchIntercept(action,_app)
-  data = data || {};
-  if (isAuth) {
-    if (!sid) {
-      sid = wx.getStorageSync('_sid');
-    }
-    if (sid) {
-      data._sid = sid;
-    }
-  }
-  if (!uid) {
-    uid = wx.getStorageSync('uid');
-  }
-  if (uid) {
-    data.uid = uid;
-  }
-  data.appName = APPNAME;
-  data.action = action;
-  wx.request({
-    url: srv,
-    data: data,
-    success: function (res) {
-      suc(res.data)
-    },
-    fail: err
-  })
+  
 }
 
 function _fetchIntercept(action, _app){
+  
   let idx = null;
   let actionExisted = allActions.find((v, idx) => {
     if (v.action == action && _app) {
@@ -116,6 +119,7 @@ function userLogin(suc, err) {
           suc(res)
           wsInit();
           app.globalData.logined = true;
+          console.log(app.globalData.logined,'app.globalData.logine')
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
            

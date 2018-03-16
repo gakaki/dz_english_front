@@ -45,12 +45,16 @@ Page({
         title: this.data.season.cfg.name
       })
     }, () => { }, app)
+
+   
+
     if (options && options.fromIndex){
       this.data.fromIndex = true
     }
     this.setData({
       isFirstClick:true
     })
+    
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -204,17 +208,24 @@ Page({
       isFirstClick: true
     })
   },
-  match(res) {
-    console.log(res.currentTarget.dataset.rank,'match')
-    if(!this.data.isFirstClick) {
-      return
-    }
-    this.setData({
-      isFirstClick: false
-    })
-    let type = res.currentTarget.dataset.rank
+  match(v) {
+
+    let type = v.currentTarget.dataset.rank
+      console.log(v)
+      doFetch('english.canmatch', 
+        { rankType: type},
+        res=>{
+          console.log(res)
+        }
+      )
+  return 
+    console.log(v.currentTarget.dataset.rank,'match')
+
+    if (app.preventMoreTap(e)) { return; }
+
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
+    
     if (this.data.stage.length > type || this.data.rank==15){
       if (this.data.backuserInfo.items[1] >= gold) {
         wx.navigateTo({
