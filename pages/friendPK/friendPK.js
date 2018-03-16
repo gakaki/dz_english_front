@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -149,9 +149,11 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.setData({
-      cancelJoin: true
-    })
+    console.log('=============>onhide')
+    // this.setData({
+    //   cancelJoin: true
+    // })
+    checkoutIsRoom(this.data.rid)
     clearInterval(time);
   },
 
