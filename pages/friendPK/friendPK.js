@@ -151,7 +151,7 @@ Page({
   },
 
   giveUp() {
-    console.log(this.data.rid)
+    console.log(this.data.rid,'riddddddddddddddd')
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
     wx.reLaunch({
       url: '../index/index',

@@ -113,33 +113,47 @@ function changeArrAllValue(arr,v) {
 }
 
 
-function getOptions(question, key){
-  let cnt = 0;
-  let limit = 4;
-  let start = Math.max(0, question.id - limit - limit);
-  let end = Math.min(words.length, question.id + limit + limit);
-
-  let arr = [question[key]];
-  let ascend = Math.random() < 0.5;
-  for(let i = ascend ? start:end; ascend ? i < end : i > start; ascend ? i++ : i--) {
-    if (arr.length >= limit) {
-      break;
-    }
-    let cfg = words[i];
-    if (cfg.id == question.id) {
-      continue;
-    }
-
-    if (cfg.difficult == question.difficult) {
-      arr.push(cfg[key]);
-    }
+function getOptions(question, type){
+  let v = [];
+  if(type == 'chinese') {
+    v = question.errorWords.map(v=>{
+      return v.chinese
+    })
+    v.push(question.chinese)
+  } else {
+    v = question.errorWords.map(v => {
+      return v.english
+    })
+    v.push(question.english)
   }
+  console.log(v)
+  return v
+  // let cnt = 0;
+  // let limit = 4;
+  // let start = Math.max(0, question.id - limit - limit);
+  // let end = Math.min(words.length, question.id + limit + limit);
 
-  return arr.sort((a,b)=>{return Math.random() - 0.5});
+  // let arr = [question[key]];
+  // let ascend = Math.random() < 0.5;
+  // for(let i = ascend ? start:end; ascend ? i < end : i > start; ascend ? i++ : i--) {
+  //   if (arr.length >= limit) {
+  //     break;
+  //   }
+  //   let cfg = words[i];
+  //   if (cfg.id == question.id) {
+  //     continue;
+  //   }
+
+  //   if (cfg.difficult == question.difficult) {
+  //     arr.push(cfg[key]);
+  //   }
+  // }
+
+  // return arr.sort((a,b)=>{return Math.random() - 0.5});
 }
 
 function getChineneOptions(question) {
-  return getOptions(question, 'China')
+  return getOptions(question, 'chinese')
 }
 
 function getEnglishOptions(question) {
