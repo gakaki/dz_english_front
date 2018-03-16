@@ -255,3 +255,14 @@
   top: 8rpx;
   right: 8rpx;
 }
+.test {
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  width: 300rpx;
+  height: 100rpx;
+  background-color: #fff;
+  border-radius: 50rpx;
+  box-shadow:0 -4rpx 0 rgba(98, 147, 196, 0.6) inset,  0 4rpx  rgba(98, 147, 196, 0.6);
+}

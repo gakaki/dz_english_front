@@ -64,4 +64,5 @@
   </view>
   <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
   <qiandao id="qiandao-bor" tian="{{landingDay}}" wx:if="{{landing}}" bind:hide="_hide"></qiandao>
+   <view class="test"></view> 
 </view>

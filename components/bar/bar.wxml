@@ -4,7 +4,7 @@
     <view class='score-content'>{{nowScoreA}}</view>
     <view class='progress-wrap'>
       <view class='progress'>
-        <view class='score'  style="height:{{percent}};"></view>
+        <view class='score'  style="height:{{percent}}"></view>
       </view>
     </view>  
   </view>
@@ -12,7 +12,7 @@
     <view class='score-content'>{{nowScoreB}}</view>
     <view class='progress-wrap'>
       <view class='progress'>
-        <view class='score'  style="height:{{percent}};"></view>
+        <view class='score'  style="height:{{percent}}"></view>
       </view>
     </view>  
   </view>
