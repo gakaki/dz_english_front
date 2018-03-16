@@ -8,7 +8,7 @@
         </view>
 
         <view class="flex">
-          <text class="x">×</text>
+          <text class="x">X</text>
           <text class="count">{{item.cfg.num}}</text>
         </view>
 
@@ -25,7 +25,7 @@
             <image class=" {{(item.cfg.id==1||item.cfg.id >=12)?'bp-icon':'icon'}}" src="https://gengxin.odao.com/update/h5/yingyu/backpack/{{item.cfg.icon}}"></image>
           </view>
           <view class="flex num">
-            <text class="x">×</text>
+            <text class="x">X</text>
             <text class="count">{{item.cfg.count}}</text>
           </view>
         </view>

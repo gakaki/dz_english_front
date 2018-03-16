@@ -37,15 +37,11 @@
   justify-content: center;
   align-items: flex-end;
   animation: left 0.4s ease-in forwards;
-}
-
-.shu-lan{
-  -webkit-text-stroke: 4rpx #007be3;
+  color: #007be3;
 }
 
 .fen-lan{
-  -webkit-text-stroke: 2rpx #007be3;
-  margin-left: 10rpx;
+  margin-left: 5rpx;
 }
 
 .fenshu-hong{
@@ -58,15 +54,11 @@
   justify-content: center;
   align-items: flex-end;
   animation: right 0.4s ease-in forwards;
-}
-
-.shu-hong{
-  -webkit-text-stroke: 4rpx #c10727;
+  color: #dd1034;
 }
 
 .fen-hong{
-  -webkit-text-stroke: 2rpx #c10727;
-  margin-left: 10rpx;
+  margin-left: 5rpx;
 }
 
 .fen{
