@@ -88,7 +88,7 @@
 
 .lan-liansheng-wenzi{
   color: #fff;
-  -webkit-text-stroke: 4rpx #ff6183;
+  text-shadow: -2rpx 0 #ff6183,0 -2rpx #ff6183,2rpx 0 #ff6183,0 2rpx #ff6183; 
   font-size: 40rpx;
 }
 
@@ -254,7 +254,7 @@
 
 .hong-liansheng-wenzi{
   color: #fff;
-  -webkit-text-stroke: 4rpx #ff6183;
+  text-shadow: -2rpx 0 #ff6183,0 -2rpx #ff6183,2rpx 0 #ff6183,0 2rpx #ff6183;
   font-size: 40rpx;
 }
 

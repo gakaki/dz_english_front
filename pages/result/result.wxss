@@ -10,7 +10,7 @@
   width: 100vw;
   height: 175rpx;
   font-size: 80rpx;
-  font-style: italic;
+  /* font-style: italic; */
   letter-spacing: 2rpx;
   font-weight: 900;
 }
@@ -31,9 +31,7 @@
 .fenshu-lan{
   width: 220rpx;
   height: 77rpx;
-  position: absolute;
-  -webkit-text-stroke: 4rpx #007be3;
-  text-shadow: 0 4px #6293c4;
+  position: absolute; 
   top: 100rpx;
   display: flex;
   justify-content: center;
@@ -41,18 +39,34 @@
   animation: left 0.4s ease-in forwards;
 }
 
+.shu-lan{
+  -webkit-text-stroke: 4rpx #007be3;
+}
+
+.fen-lan{
+  -webkit-text-stroke: 2rpx #007be3;
+  margin-left: 10rpx;
+}
+
 .fenshu-hong{
   width: 220rpx;
   height: 77rpx;
   position: absolute;
-  right: 22rpx;
-  -webkit-text-stroke: 4rpx #c10727;
-  text-shadow: 0 4px #6293c4;
+  right: 22rpx; 
   top: 100rpx;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   animation: right 0.4s ease-in forwards;
+}
+
+.shu-hong{
+  -webkit-text-stroke: 4rpx #c10727;
+}
+
+.fen-hong{
+  -webkit-text-stroke: 2rpx #c10727;
+  margin-left: 10rpx;
 }
 
 .fen{
