@@ -1,10 +1,11 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose, checkoutIsRoom } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
+    rid:null,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -37,6 +38,9 @@ Page({
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/yasi.png"]
   },
   onLoad(options) {
+    console.log('==================================onLoaddddddddddddddd')
+    
+    
     doFetch('english.getseason',{},res=>{
       this.setData({
         season: sheet.Season.Get(res.data.season)
@@ -96,6 +100,10 @@ Page({
     })
   },
   onShow() {
+    console.log('============================onSHowwwwwwwwwwwww', this.data.rid)
+    if (this.data.rid) {
+      checkoutIsRoom(this.data.rid, false)
+    }
     doFetch('english.showpersonal', {}, (res) => {
       this.setData({
         rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
@@ -209,9 +217,7 @@ Page({
     })
   },
   match(v) {
-    console.log(444)
     if (app.preventMoreTap(v)) { return; }
-    console.log(555)
     let type = v.currentTarget.dataset.rank
       console.log(v)
       doFetch('english.canmatch', 
@@ -222,7 +228,7 @@ Page({
             wx.showToast({
               title: '您已在好友房间中,请先退出', 
               icon: 'none',
-              duration: 2000
+              duration: 1000
             })
             return 
           }
@@ -237,7 +243,7 @@ Page({
               wx.showToast({
                 title: '金币不足',
                 icon: 'none',
-                duration: 2000
+                duration: 1000
               })
             }
           }

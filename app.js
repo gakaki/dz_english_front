@@ -11,6 +11,14 @@ App({
         })
       } else {
         wx.hideLoading()
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 1000
+        })
+        wx.reLaunch({
+          url: 'index/index',
+        })
       }
     })
     // start((res) => {

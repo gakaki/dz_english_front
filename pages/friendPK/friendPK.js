@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -108,7 +108,7 @@ Page({
 
     wsReceive('dissolve', res => {  //房主离开
       console.log(res, 'dissolve')
-      wx.redirectTo({
+      wx.reLaunch({
         url: '../index/index?ownerLeave=true',
       })
     })
@@ -150,9 +150,11 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.setData({
-      cancelJoin: true
-    })
+    console.log('=============>onhide')
+    // this.setData({
+    //   cancelJoin: true
+    // })
+    checkoutIsRoom(this.data.rid)
     clearInterval(time);
   },
 
@@ -167,7 +169,7 @@ Page({
 
   giveUp() {
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
-    wx.redirectTo({
+    wx.reLaunch({
       url: '../index/index',
     })
     clearInterval(time);

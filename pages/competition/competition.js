@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
@@ -162,7 +162,9 @@ Page({
     }
    
   },
-
+  onHide(){
+    checkoutIsRoom(rid)
+  },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
@@ -247,6 +249,7 @@ Page({
       console.log('通知后端，一题完成')
       canClick = false;
       console.log(this.data.word.id,'==================>wid')
+      if(round > 5) {return}
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,

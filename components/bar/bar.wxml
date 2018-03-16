@@ -3,17 +3,17 @@
   <view wx:if='{{type=="A"}}'>
     <view class='score-content'>{{nowScoreA}}</view>
     <view class='progress-wrap'>
-      <view class='progress'>
-        <view class='score'  style="height:{{percent}};"></view>
-      </view>
+      <!-- <view class='progress'> -->
+        <view class='score'  style="height:{{percent}}"></view>
+      <!-- </view> -->
     </view>  
   </view>
   <view wx:if='{{type=="B"}}'>
     <view class='score-content'>{{nowScoreB}}</view>
     <view class='progress-wrap'>
-      <view class='progress'>
-        <view class='score'  style="height:{{percent}};"></view>
-      </view>
+      <!-- <view class='progress'> -->
+        <view class='score'  style="height:{{percent}}"></view>
+      <!-- </view> -->
     </view>  
   </view>
 </view>

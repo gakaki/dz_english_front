@@ -112,7 +112,7 @@ Page({
       this.setPageInfo()
       wx.navigateBack()
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../friendPK/friendPK',
       })
     }
