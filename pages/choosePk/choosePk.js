@@ -228,7 +228,7 @@ Page({
             wx.showToast({
               title: '您已在好友房间中,请先退出', 
               icon: 'none',
-              duration: 2000
+              duration: 1000
             })
             return 
           }
@@ -243,7 +243,7 @@ Page({
               wx.showToast({
                 title: '金币不足',
                 icon: 'none',
-                duration: 2000
+                duration: 1000
               })
             }
           }
