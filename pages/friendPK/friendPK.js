@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -80,7 +80,7 @@ Page({
 
       console.log(res,'获取用户房间数据')
       
-      if (res.data.userList[0].info.uid == getUid()) {
+      if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
         this.setData({
           isOwner: true
         })
@@ -118,7 +118,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('==============onShow')
+    console.log('==============onShow', this.data.rid)
+    
     let i = 0;
     time = setInterval(()=>{
       i++
@@ -150,9 +151,6 @@ Page({
    */
   onHide() {
     console.log('=============>onhide')
-    // this.setData({
-    //   cancelJoin: true
-    // })
     checkoutIsRoom(this.data.rid)
     clearInterval(time);
   },
@@ -174,7 +172,6 @@ Page({
     clearInterval(time);
     wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
-
   /**
    * 用户点击右上角分享
    */

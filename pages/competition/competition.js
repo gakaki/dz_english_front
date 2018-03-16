@@ -2,7 +2,7 @@
 const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
@@ -147,6 +147,7 @@ Page({
 
   onUnload() {
     let pages = getCurrentPages()
+    console.log(pages,'pagessssssssssssssssss')
     let prevPage = pages[pages.length - 2]
     if (prevPage.data.starAnimation) {
       prevPage.setData({
