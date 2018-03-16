@@ -140,6 +140,7 @@ Page({
      
   },
   onUnload() {
+    clearInterval(time);
     this.setData({
       cancelJoin: true
     })
