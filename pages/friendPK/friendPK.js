@@ -37,7 +37,7 @@ Page({
   },
   canJoinRoom(options){
     if (this.data.cancelJoin) { return }
-    console.log(app.globalData.logined,'检测用户是否登陆')
+    console.log('检测用户是否登陆')
     if (app.globalData.logined && app.globalData.wsConnect) {
       this.joinRoom(options)
     } else {
@@ -63,11 +63,7 @@ Page({
       })
     }
   },
-  onHide(){
-    this.setData({
-      cancelJoin: true
-    })
-  },
+ 
   getInfo(rid){
     this.data.rid = rid
     wsSend('getroominfo', {
@@ -117,9 +113,6 @@ Page({
       })
     })
   },
-  onReady(){
-    console.log('==============onReady')
-  },
   
   /**
    * 生命周期函数--监听页面显示
@@ -147,12 +140,18 @@ Page({
      
   },
   onUnload() {
+    this.setData({
+      cancelJoin: true
+    })
     wsClose('joinSuccess')
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    this.setData({
+      cancelJoin: true
+    })
     clearInterval(time);
   },
 

@@ -40,7 +40,7 @@ App({
   preventMoreTap: function (e) {
     var globaTime = this.globalLastTapTime;
     var time = e.timeStamp;
-    if (Math.abs(time - globaTime) < 1000 && globaTime != 0) {
+    if (Math.abs(time - globaTime) < 150 && globaTime != 0) {
       this.globalLastTapTime = time;
       return true;
     } else {
