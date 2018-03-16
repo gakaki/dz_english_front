@@ -45,12 +45,16 @@ Page({
         title: this.data.season.cfg.name
       })
     }, () => { }, app)
+
+   
+
     if (options && options.fromIndex){
       this.data.fromIndex = true
     }
     this.setData({
       isFirstClick:true
     })
+    
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -204,30 +208,42 @@ Page({
       isFirstClick: true
     })
   },
-  match(res) {
-    console.log(res.currentTarget.dataset.rank,'match')
-    if(!this.data.isFirstClick) {
-      return
-    }
-    this.setData({
-      isFirstClick: false
-    })
-    let type = res.currentTarget.dataset.rank
-    let gold = sheet.Stage.Get(type).goldcoins1
-    console.log(this.data.stage)
-    if (this.data.stage.length > type || this.data.rank==15){
-      if (this.data.backuserInfo.items[1] >= gold) {
-        wx.navigateTo({
-          url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
-        })
-      } else {
-        wx.showToast({
-          title: '金币不足',
-          icon: 'none',
-          duration: 2000
-        })
-      } 
-    }
+  match(v) {
+    console.log(444)
+    if (app.preventMoreTap(v)) { return; }
+    console.log(555)
+    let type = v.currentTarget.dataset.rank
+      console.log(v)
+      doFetch('english.canmatch', 
+        { rankType: type},
+        res=>{
+          console.log(res)
+          if(res.data.inRoom) {
+            wx.showToast({
+              title: '您已在好友房间中,请先退出', 
+              icon: 'none',
+              duration: 2000
+            })
+            return 
+          }
+
+          let gold = sheet.Stage.Get(type).goldcoins1
+          if (this.data.stage.length > type || this.data.rank == 15) {
+            if (this.data.backuserInfo.items[1] >= gold && !res.data.needGold) {
+              wx.navigateTo({
+                url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,
+              })
+            } else {
+              wx.showToast({
+                title: '金币不足',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          }
+        }
+      )
+    console.log(v.currentTarget.dataset.rank,'match')
   },
   
   toDes() {

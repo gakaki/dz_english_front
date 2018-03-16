@@ -18,7 +18,8 @@ Page({
     isOwner:false,
     startGame:false,
     frameSelf:'',
-    frameOther:''
+    frameOther:'',
+    cancelJoin:false
   },
 
   /**
@@ -35,7 +36,8 @@ Page({
    
   },
   canJoinRoom(options){
-    console.log(app.globalData.logined,'检测用户是否登陆')
+    if (this.data.cancelJoin) { return }
+    console.log('检测用户是否登陆')
     if (app.globalData.logined && app.globalData.wsConnect) {
       this.joinRoom(options)
     } else {
@@ -60,25 +62,8 @@ Page({
         this.getInfo(res.data.rid)
       })
     }
-
-
-    // wsReceive('roomExist', res => {
-    //   if (res.data.isExist) {
-    //     console.log('房间存在')
-    //     wsSend('joinroom', { rid: options.rid })
-    //     this.getInfo(options.rid)
-    //   } else {
-    //     console.log('房间不存在，创建一个新房间')
-    //     wsSend('joinroom')
-    //     wsReceive('joinSuccess', (res) => {
-    //       if (!res.data.isCreate) {
-    //         wsSend('joinroom', { rid: res.data.rid })
-    //       }
-    //       this.getInfo(res.data.rid)
-    //     })
-    //   }
-    // })
   },
+ 
   getInfo(rid){
     this.data.rid = rid
     wsSend('getroominfo', {
@@ -128,9 +113,6 @@ Page({
       })
     })
   },
-  onReady(){
-    console.log('==============onReady')
-  },
   
   /**
    * 生命周期函数--监听页面显示
@@ -158,12 +140,18 @@ Page({
      
   },
   onUnload() {
+    this.setData({
+      cancelJoin: true
+    })
     wsClose('joinSuccess')
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    this.setData({
+      cancelJoin: true
+    })
     clearInterval(time);
   },
 
