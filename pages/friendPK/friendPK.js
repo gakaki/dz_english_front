@@ -108,7 +108,7 @@ Page({
 
     wsReceive('dissolve', res => {  //房主离开
       console.log(res, 'dissolve')
-      wx.redirectTo({
+      wx.reLaunch({
         url: '../index/index?ownerLeave=true',
       })
     })
@@ -168,7 +168,7 @@ Page({
 
   giveUp() {
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
-    wx.redirectTo({
+    wx.reLaunch({
       url: '../index/index',
     })
     clearInterval(time);
