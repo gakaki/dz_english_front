@@ -20,6 +20,7 @@ App({
     
   },
   globalData: {
+    wsConnect: false,
     fetchIndex: null, //_fetchIntercept里面的idx
     audio:true, //音效开关。默认打开
     logined: false,

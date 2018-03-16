@@ -148,6 +148,7 @@
   margin-left: 10rpx;
   border-radius: 15rpx;
 }
+
 .percent-box {
   width: 176rpx;
   height: 26rpx;
@@ -156,13 +157,13 @@
   border-radius: 13rpx;
 }
  .lvl-box text {
-  position: absolute;
+   position: absolute;
   left: 50%;
-  top:0;
-  transform: translateX(-50%);
-  line-height: 32rpx;
-  height: 30rpx;
-  vertical-align: middle;
+  top:50%;
+  transform: translate(-50%,-50%); 
+  /* line-height: 30rpx;
+  height: 30rpx; */
+  /* vertical-align: middle; */
   font-size: 24rpx;
   font-weight: bold;
   color: #fff;

@@ -192,10 +192,6 @@ Page({
       
     })
     this.shareTo(options)
-    
-
-  
-
     firstStart(()=> {
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){

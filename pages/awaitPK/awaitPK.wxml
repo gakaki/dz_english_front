@@ -24,8 +24,8 @@
         <view class="wenzi">
           <text class="nicheng font">{{userInfo.nickName}}</text>
         </view>
-        <view class="nicheng wenzi" wx:if="{{userInfo.location}}">
-          <text class="wenzi font">来自:{{userInfo.location}}</text>
+        <view class="nicheng wenzi" wx:if="{{userInfo.city}}">
+          <text class="wenzi font">来自:{{userInfo.city}}</text>
         </view>
         <view class="jinbi wenzi">
           <image class="jinbi-tu" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/jinbi.png"></image>
