@@ -14,9 +14,9 @@
         <text class="lan-liansheng-shuzi lan-xinxi">{{isSelf.info.character.winningStreak}}</text>
         <text class="lan-liansheng-wenzi">连胜</text>
       </view>
-      <view class="lan-dizhi lan-xinxi" wx:if="{{isSelf.info.location}}">
+      <view class="lan-dizhi lan-xinxi" wx:if="{{isSelf.info.city}}">
         <image class="lan-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
-        <text class="lan-dizhi-wenzi">{{isSelf.info.location}}</text>
+        <text class="lan-dizhi-wenzi">{{isSelf.info.city}}</text>
       </view>
       <text class="lan-dengji lan-xinxi">LV.{{isSelf.info.character.level}}</text>
     </view>
@@ -54,9 +54,9 @@
         <text class="hong-liansheng-shuzi hong-xinxi">{{notSelf.info.character.winningStreak}}</text>
         <text class="hong-liansheng-wenzi">连胜</text>
       </view>
-      <view class="hong-dizhi hong-xinxi" wx:if="{{notSelf.info.location}}">
+      <view class="hong-dizhi hong-xinxi" wx:if="{{notSelf.info.city}}">
         <image class="hong-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
-        <text class="hong-dizhi-wenzi">{{notSelf.info.location}}</text>
+        <text class="hong-dizhi-wenzi">{{notSelf.info.city}}</text>
       </view>
       <text class="hong-dengji hong-xinxi">LV.{{notSelf.info.character.level}}</text>
     </view>

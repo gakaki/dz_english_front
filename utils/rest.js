@@ -86,9 +86,11 @@ function sdkAuth(code, suc) {
 
 function userLogin(suc, err) {
   wx.getUserInfo({
+    lang: 'zh_CN',
     success: info => {
       app = getApp();
       app.globalData.userInfo = info.userInfo;
+      console.log(info.userInfo)
       app.globalData.hasUserInfo = true;
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
