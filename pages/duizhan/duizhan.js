@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc ,checkoutIsRoom } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js'
 
 Page({
@@ -242,6 +242,7 @@ Page({
     
   },
   onHide() {
+    checkoutIsRoom(this.data.rid)
     clearInterval(time);
     clearTimeout(timer);
     clearInterval(time_p_lizi);
@@ -253,6 +254,14 @@ Page({
   onUnload: function () {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
+    console.log(pages,prevPage,'对战页面unload')
+
+    console.log(this.data.rid)
+    if (this.data.rid) {
+      prevPage.setData({
+        rid: this.data.rid
+      })
+    }
     if (prevPage.data.starAnimation){
       prevPage.setData({
         fromIndex: true,

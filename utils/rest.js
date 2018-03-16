@@ -327,6 +327,30 @@ const firstStart = suc => {
 }
 
 
+function checkoutIsRoom(rid,changePage=true){  
+  console.log('checkoutIsRoom')
+
+  doFetch('english.checkroom', { rid }, res => {
+    console.log('english.checkroom',res)
+    if (!changePage && res.data && res.data.inRoom) {  //退出房间，不切换页面
+      wsSend('leaveroom', { rid}) 
+    }
+    if (res.data && !res.data.inRoom && changePage) {
+      wx.showToast({
+        title:"该房间已不存在",
+        icon:"none",
+        duration:1000
+      })
+      setTimeout(()=>{
+        wx.reLaunch({
+          url: '../index/index',
+        })
+      },1000)
+    }
+  })
+}
+
+
 module.exports = {
   start,
   showErr,
@@ -337,5 +361,6 @@ module.exports = {
   wsReceive,
   wsClose,
   shareSuc,
-  firstStart
+  firstStart,
+  checkoutIsRoom
 }
