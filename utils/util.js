@@ -202,7 +202,7 @@ function getRankFrame(season) {
     idx++
   }
   if (idx == 1) {
-    console.log(season[idx].rank)
+    // console.log(season[idx].rank)
     return ''
   }
   if (idx > 1) {
