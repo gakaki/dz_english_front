@@ -12,8 +12,6 @@ Page({
     jiyilv: 0,
     shenglv: 0,
     segment: '',
-    sentenceEn: '',
-    sentenceCn: '',
     comment: '',
     rankFrame: '',
     newWordsPercent: 0,
@@ -55,16 +53,12 @@ Page({
       } else {
         tempSl = parseInt((res.data.userInfo.character.wins / res.data.userInfo.character.total) * 100)
       }
-      let idx = res.data.userInfo.character.cumulativeDays
       let wCount = sheet.landingessays.map(o=>{
         return o
       })
-       idx = idx % wCount.length
       this.setData({
         info: res.data,
         newWordsPercent: (res.data.newWord.totalWordCount != 0) ? parseInt(((res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount))*100) : 0,
-        sentenceCn: sheet.Landingessay.Get(idx + 1).Chinese,
-        sentenceEn: sheet.Landingessay.Get(idx + 1).English,
         jiyilv: temp,
         shenglv: tempSl,
         segment: sheet.Stage.Get(rank).stage
