@@ -215,7 +215,7 @@ Page({
     let type = res.currentTarget.dataset.rank
     let gold = sheet.Stage.Get(type).goldcoins1
     console.log(this.data.stage)
-    if (this.data.stage.length > type){
+    if (this.data.stage.length > type || this.data.rank==15){
       if (this.data.backuserInfo.items[1] >= gold) {
         wx.navigateTo({
           url: '../awaitPK/awaitPK?type=' + type + '&gold=' + gold,

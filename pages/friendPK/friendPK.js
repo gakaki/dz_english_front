@@ -28,10 +28,15 @@ Page({
     console.log('======================onload')
     this.canJoinRoom(options)
 
+    wsReceive('join', res => {
+      this.getInfo(res.data.rid)
+      console.log(res, 'join收到的数据')
+    })
    
   },
   canJoinRoom(options){
-    if (app.globalData.logined) {
+    console.log(app.globalData.logined,'检测用户是否登陆')
+    if (app.globalData.logined && app.globalData.wsConnect) {
       this.joinRoom(options)
     } else {
       setTimeout(() => {
@@ -40,16 +45,18 @@ Page({
     }
   },
   joinRoom(options){
+    console.log('检测房间是否存在')
     wsSend('roomisexist', { rid: options.rid })
     if (options.rid) {
       console.log('房间存在')
       wsSend('joinroom', { rid: options.rid })
-      this.getInfo(options.rid)
       
     } else {
       console.log('房间不存在，创建一个新房间')
       wsSend('joinroom')
       wsReceive('joinSuccess', (res) => {
+        console.log(res,'房间不存在，收到的数据')
+        console.log(JSON.stringify(res))
         this.getInfo(res.data.rid)
       })
     }
@@ -82,14 +89,18 @@ Page({
       console.log(res, 'roomInfo')
       if (res.data.roomStatus == 2) {
         wx.navigateTo({
-          url: '../competition/competition?rid=' + this.data.rid,
+          url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
         })
       }
+
+      console.log(res,'获取用户房间数据')
+      
       if (res.data.userList[0].info.uid == getUid()) {
         this.setData({
           isOwner: true
         })
       }
+      
       if (res.data.userList.length==1){
         // 显示段位框
         this.setData({
@@ -107,6 +118,8 @@ Page({
         list: res.data.userList
       })
     })
+
+    // console.log('数据分配成功')
 
     wsReceive('dissolve', res => {  //房主离开
       console.log(res, 'dissolve')
@@ -139,7 +152,7 @@ Page({
       console.log(res, 'startGame')
       this.data.startGame = true
       wx.redirectTo({
-        url: '../duizhan/duizhan?rid=' + res.data.rid,
+        url: '../duizhan/duizhan?rid=' + res.data.rid + '&isFriend=true',
       })
     })
      
