@@ -1,13 +1,13 @@
 const io = require('./index.js');
-//  const srv = "https://h5t.ddz2018.com/";
-//  const wss = "wss://h5t.ddz2018.com/english";
-const srv = "https://local.ddz2018.com/";
-const wss = "wss://local.ddz2018.com/english";
+const srv = "https://h5t.ddz2018.com/";
+const wss = "wss://h5t.ddz2018.com/english";
+//const srv = "https://local.ddz2018.com/";
+//const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
-const APP= getApp();
-let sid, uid, app, isAuth = false;   
+const APP = getApp();
+let sid, uid, app, isAuth = false;
 let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
@@ -15,39 +15,39 @@ let allActions = [];
 import { Constant } from '../sheets.js'
 
 
-function doFetch(action, data, suc, err,_app) {
-    // _fetchIntercept(action, _app)
-    data = data || {};
-    if (isAuth) {
-      if (!sid) {
-        sid = wx.getStorageSync('_sid');
-      }
-      if (sid) {
-        data._sid = sid;
-      }
+function doFetch(action, data, suc, err, _app) {
+  // _fetchIntercept(action, _app)
+  data = data || {};
+  if (isAuth) {
+    if (!sid) {
+      sid = wx.getStorageSync('_sid');
     }
-    if (!uid) {
-      uid = wx.getStorageSync('uid');
+    if (sid) {
+      data._sid = sid;
     }
-    if (uid) {
-      data.uid = uid;
-    }
-    data.appName = APPNAME;
-    data.action = action;
-    wx.request({
-      url: srv,
-      data: data,
-      success: function (res) {
-        suc(res.data)
-      },
-      fail: err
-    })
-  console.log(action,'fetch')
-  
+  }
+  if (!uid) {
+    uid = wx.getStorageSync('uid');
+  }
+  if (uid) {
+    data.uid = uid;
+  }
+  data.appName = APPNAME;
+  data.action = action;
+  wx.request({
+    url: srv,
+    data: data,
+    success: function (res) {
+      suc(res.data)
+    },
+    fail: err
+  })
+  console.log(action, 'fetch')
+
 }
 
-function _fetchIntercept(action, _app){
-  
+function _fetchIntercept(action, _app) {
+
   let idx = null;
   let actionExisted = allActions.find((v, idx) => {
     if (v.action == action && _app) {
@@ -63,11 +63,11 @@ function _fetchIntercept(action, _app){
     obj.time = new Date();
     console.log(diffTime, 'diffTime')
     if (diffTime < 2000) {
-      return 
+      return
     }
   } else {
     allActions.push({
-      action:action,
+      action: action,
       time: new Date()
     })
   }
@@ -128,11 +128,11 @@ function userLogin(suc, err) {
           suc(res)
           wsInit();
           app.globalData.logined = true;
-          console.log(app.globalData.logined,'app.globalData.logine')
+          console.log(app.globalData.logined, 'app.globalData.logine')
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-           
-            
+
+
           })
         }
       }, err);
@@ -147,32 +147,32 @@ function userLogin(suc, err) {
 
 
 function shareSuc() {
-  doFetch('english.getshareaward',{},res=>{
-    console.log(res.data,'分享成功')
+  doFetch('english.getshareaward', {}, res => {
+    console.log(res.data, '分享成功')
   })
 }
 
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
-    console.log('wsR',action)
+    console.log('wsR', action)
     suc(res)
   })
 }
 function wsSend(action, data) {
-  console.log('ws',action)
+  console.log('ws', action)
   socket.emit(action, data)
 }
 
 function wsClose(actions) {
-  if(Array.isArray(actions)) {
-    actions.forEach(v=>{
+  if (Array.isArray(actions)) {
+    actions.forEach(v => {
       socket.removeAllListeners(v)
     })
   } else {
     socket.removeAllListeners(actions)
   }
-  
+
 }
 
 function wsInit() {
@@ -210,7 +210,7 @@ function wsInit() {
 
     socket.on('error', () => {
       console.log('#error');
-    });    
+    });
 
   })
 
@@ -277,47 +277,23 @@ const start = suc => {
 
 
 
-   app = getApp()
-
-  if (app.globalData.hasUserInfo) {
-        suc();
-    } else {
-      // wx.getSetting({
-      //   success: res => {
-      //     if (res.authSetting) {
-      //       if (!res.authSetting.scope.userInfo) {
-
-      //       }
-            
-      //     }
-      //   }
-      // })
-        wx.openSetting({
-            success: res => {
-                wx.checkSession({
-                    success: () => {
-                        isAuth = true;
-                        userLogin(suc, showErr);
-                    },
-                    fail: res => {
-                        wx.login({
-                            success: res => {
-                                isAuth = false;
-                                sdkAuth(res.code, suc)
-                            }
-                        })
-                    }
-                })
-            }
-        })
-    }
-}
-const firstStart = suc => {
   app = getApp()
 
   if (app.globalData.hasUserInfo) {
     suc();
   } else {
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting) {
+    //       if (!res.authSetting.scope.userInfo) {
+
+    //       }
+
+    //     }
+    //   }
+    // })
+    wx.openSetting({
+      success: res => {
         wx.checkSession({
           success: () => {
             isAuth = true;
@@ -332,27 +308,51 @@ const firstStart = suc => {
             })
           }
         })
+      }
+    })
+  }
+}
+const firstStart = suc => {
+  app = getApp()
+
+  if (app.globalData.hasUserInfo) {
+    suc();
+  } else {
+    wx.checkSession({
+      success: () => {
+        isAuth = true;
+        userLogin(suc, showErr);
+      },
+      fail: res => {
+        wx.login({
+          success: res => {
+            isAuth = false;
+            sdkAuth(res.code, suc)
+          }
+        })
+      }
+    })
   }
 }
 
 
-function checkoutIsRoom(rid,changePage=true){  
+function checkoutIsRoom(rid, changePage = true) {
   doFetch('english.checkroom', { rid }, res => {
-    console.log('english.checkroom',res)
+    console.log('english.checkroom', res)
     if (!changePage && res.data && res.data.inRoom) {  //退出房间，不切换页面
-      wsSend('leaveroom', { rid}) 
+      wsSend('leaveroom', { rid })
     }
     if (res.data && !res.data.inRoom && changePage) {
       wx.showToast({
-        title:"该房间已不存在",
-        icon:"none",
-        duration:1000
+        title: "该房间已不存在",
+        icon: "none",
+        duration: 1000
       })
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.reLaunch({
           url: '../index/index',
         })
-      },1000)
+      }, 1000)
     }
   })
 }

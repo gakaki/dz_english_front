@@ -34,7 +34,7 @@
       </view>
       <view class="tj-box flex">
         <view class="tuijian f-c-fs">
-          <view class="eng"><text>{{sentenceEn}}</text><text>{{sentenceCn}}</text></view>
+          <view class="eng"><text>{{info.beautifulWord.english}}</text><text>{{info.beautifulWord.chinese}}</text></view>
           <view class="row flex">
             <text class="en"></text>
           </view>

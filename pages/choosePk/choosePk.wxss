@@ -53,7 +53,7 @@
 }
 
 .header {
-  z-index: 5;
+    z-index: 5;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,11 +61,11 @@
   border-radius: 50%;
   background-color: #0068c8;
   width: 105rpx;
-  height: 105rpx;
+  height: 105rpx;  
 }
 
 .userinfo-avatar {
-  background-color: #335bb8;
+  /* background-color: #335bb8; */
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;
