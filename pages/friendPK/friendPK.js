@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 

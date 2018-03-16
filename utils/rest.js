@@ -1,8 +1,8 @@
 const io = require('./index.js');
 const srv = "https://h5t.ddz2018.com/";
 const wss = "wss://h5t.ddz2018.com/english";
-//const srv = "https://local.ddz2018.com/";
-//const wss = "wss://local.ddz2018.com/english";
+// const srv = "https://local.ddz2018.com/";
+// const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -336,6 +336,27 @@ const firstStart = suc => {
 }
 
 
+  //断网重连
+function networkChange(){
+  console.log('hhhhhhhhhhhhhhhhhhhh')
+  wx.onNetworkStatusChange(function (res) {
+    console.log('断网====================================')
+    if (res.isConnected && changePage) {
+      wx.showToast({
+        title: "房间已不存在",
+        icon: "none",
+        duration: 1000
+      })
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '../index/index',
+        })
+      }, 1000)
+    }
+  })
+}
+
+//检测手机黑屏
 function checkoutIsRoom(rid, changePage = true) {
   doFetch('english.checkroom', { rid }, res => {
     console.log('english.checkroom', res)
@@ -344,7 +365,7 @@ function checkoutIsRoom(rid, changePage = true) {
     }
     if (res.data && !res.data.inRoom && changePage) {
       wx.showToast({
-        title: "该房间已不存在",
+        title: "房间已不存在",
         icon: "none",
         duration: 1000
       })
@@ -369,5 +390,6 @@ module.exports = {
   wsClose,
   shareSuc,
   firstStart,
-  checkoutIsRoom
+  checkoutIsRoom,
+  networkChange
 }
