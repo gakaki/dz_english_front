@@ -176,6 +176,7 @@
   text-align: center;
   width: 227rpx;
   height: 69rpx;
+  line-height: 55rpx;
   background: url('https://gengxin.odao.com/update/h5/yingyu/self/dress.png') 0 0 no-repeat;
   background-size: cover;
   z-index: 9;
@@ -193,7 +194,7 @@
 
 .eng {
   position: absolute;
-  bottom: 105rpx;
+  top: 19rpx;
   left: 0;
   font-size: 28rpx;
   color: #474747;
@@ -202,15 +203,8 @@
   line-height: 34rpx;
 }
 
-.cns {
-  position: absolute;
-  top: 125rpx;
-  left: 0;
-  font-size: 28rpx;
-  color: #474747;
-  font-weight: bold;
-  text-align: center;
-  line-height: 34rpx;
+.eng text{
+  display: block;
 }
 
 .row {
