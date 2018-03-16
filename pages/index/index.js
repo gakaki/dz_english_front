@@ -177,16 +177,7 @@ Page({
         })
       }
 
-      doFetch('english.develop', {}, (res) => {
-        for (let k in res.data) {
-          if (res.data[k].canUp) {
-            this.setData({
-              canUp: true
-            })
-            return
-          }
-        }
-      },()=>{},app)
+      
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
       // if(!this.data.shareIn){
@@ -336,7 +327,16 @@ Page({
     }
   },
   onShow: function () {
-   
+    doFetch('english.develop', {}, (res) => {
+      for (let k in res.data) {
+        if (res.data[k].canUp) {
+          this.setData({
+            canUp: true
+          })
+          return
+        }
+      }
+    }, () => { }, app)
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
