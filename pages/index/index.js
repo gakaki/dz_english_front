@@ -205,6 +205,8 @@ Page({
             landing: res.data.isFirst,
             landingDay: res.data.day
           })
+          console.log(1)
+          this.isRedPoint()
         }, () => { }, app)
       }
     })
@@ -326,7 +328,7 @@ Page({
       }
     }
   },
-  onShow: function () {
+  isRedPoint() {
     doFetch('english.develop', {}, (res) => {
       for (let k in res.data) {
         if (res.data[k].canUp) {
@@ -337,6 +339,8 @@ Page({
         }
       }
     }, () => { }, app)
+  },
+  onShow: function () {
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
@@ -344,6 +348,8 @@ Page({
           rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
       }, () => { }, app)
+      console.log(2)
+      this.isRedPoint()
     }
 
 
