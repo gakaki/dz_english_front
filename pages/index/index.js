@@ -177,16 +177,7 @@ Page({
         })
       }
 
-      doFetch('english.develop', {}, (res) => {
-        for (let k in res.data) {
-          if (res.data[k].canUp) {
-            this.setData({
-              canUp: true
-            })
-            return
-          }
-        }
-      },()=>{},app)
+      
 
       //如果是通过分享并且需要跳转时则暂时不显示签到
       // if(!this.data.shareIn){
@@ -214,6 +205,8 @@ Page({
             landing: res.data.isFirst,
             landingDay: res.data.day
           })
+          console.log(1)
+          this.isRedPoint()
         }, () => { }, app)
       }
     })
@@ -335,8 +328,19 @@ Page({
       }
     }
   },
+  isRedPoint() {
+    doFetch('english.develop', {}, (res) => {
+      for (let k in res.data) {
+        if (res.data[k].canUp) {
+          this.setData({
+            canUp: true
+          })
+          return
+        }
+      }
+    }, () => { }, app)
+  },
   onShow: function () {
-   
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
@@ -344,6 +348,8 @@ Page({
           rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
       }, () => { }, app)
+      console.log(2)
+      this.isRedPoint()
     }
 
 
