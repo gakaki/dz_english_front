@@ -58,7 +58,6 @@ Page({
       wsSend('joinroom')
       wsReceive('joinSuccess', (res) => {
         console.log(res,'房间不存在，收到的数据')
-        console.log(JSON.stringify(res))
         this.getInfo(res.data.rid)
       })
     }
@@ -144,7 +143,7 @@ Page({
     this.setData({
       cancelJoin: true
     })
-    wsClose('joinSuccess')
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -165,6 +164,7 @@ Page({
   },
 
   giveUp() {
+    console.log(this.data.rid)
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
     wx.reLaunch({
       url: '../index/index',
