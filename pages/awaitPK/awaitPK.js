@@ -3,8 +3,7 @@ const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
-let Bmap = require('../../libs/bmap/bmap-wx.min.js')
-let bmap,time=null
+let time=null
 
 Page({
   data: {
