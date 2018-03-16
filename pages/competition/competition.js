@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
+import {  getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -108,9 +108,6 @@ Page({
         }
         app.globalData.userInfo = userLeft;
         
-
-        // let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
-
         //更新数据 
         this.setData({
           userLeft,
