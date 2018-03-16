@@ -56,17 +56,15 @@
 
 
 .x {
-  font: bold 60rpx/1 'Microsoft YaHei';
+  font: bold 38rpx/1 'Microsoft YaHei';
   color: #526ec6;
-  vertical-align: middle;
-  margin-top: -3rpx;
+  line-height: 1.5;
 }
 
 .count {
   color: #526ec6;
   font: bold 40rpx/1 'Microsoft YaHei';
-  margin-left: -4rpx;
-  vertical-align: middle;
+  margin-left: 4rpx;
 }
 
 .goods {
