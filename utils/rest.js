@@ -12,7 +12,7 @@ let socketOpen = false;
 let socketMsgQueue = [];
 let socket;
 let allActions = [];
-
+import { Constant } from '../sheets.js'
 
 
 function doFetch(action, data, suc, err, _app) {
@@ -92,6 +92,15 @@ function userLogin(suc, err) {
     lang: 'zh_CN',
     success: info => {
       app = getApp();
+
+      //如果用户城市不存在，就给其虚拟位置
+      if (!info.userInfo.city) {
+        let allPos = Constant.Get(3).value.split(',');
+        let v = parseInt(Math.random() * allPos.length);
+        console.log(v, allPos)
+        info.userInfo.city = allPos[v]
+      }
+      
       app.globalData.userInfo = info.userInfo;
       console.log(info.userInfo)
       app.globalData.hasUserInfo = true;
@@ -327,9 +336,28 @@ const firstStart = suc => {
 }
 
 
-function checkoutIsRoom(rid, changePage = true) {
-  console.log('checkoutIsRoom')
+  //断网重连
+function networkChange(){
+  // console.log('hhhhhhhhhhhhhhhhhhhh')
+  // wx.onNetworkStatusChange(function (res) {
+  //   console.log('断网====================================')
+  //   if (res.isConnected && changePage) {
+  //     wx.showToast({
+  //       title: "房间已不存在",
+  //       icon: "none",
+  //       duration: 1000
+  //     })
+  //     setTimeout(() => {
+  //       wx.reLaunch({
+  //         url: '../index/index',
+  //       })
+  //     }, 1000)
+  //   }
+  // })
+}
 
+//检测手机黑屏
+function checkoutIsRoom(rid, changePage = true) {
   doFetch('english.checkroom', { rid }, res => {
     console.log('english.checkroom', res)
     if (!changePage && res.data && res.data.inRoom) {  //退出房间，不切换页面
@@ -337,14 +365,12 @@ function checkoutIsRoom(rid, changePage = true) {
     }
     if (res.data && !res.data.inRoom && changePage) {
       wx.showToast({
-        title: "该房间已不存在",
+        title: "房间已不存在",
         icon: "none",
         duration: 1000
       })
       setTimeout(() => {
-        wx.reLaunch({
-          url: '../index/index',
-        })
+        wx.navigateBack()
       }, 1000)
     }
   })
@@ -362,5 +388,6 @@ module.exports = {
   wsClose,
   shareSuc,
   firstStart,
-  checkoutIsRoom
+  checkoutIsRoom,
+  networkChange
 }

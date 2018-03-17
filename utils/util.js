@@ -139,9 +139,12 @@ class Timeline {
       clearTimeout(this.tmr);
       this.tmr = null;
     }
-    if (!this.finished && callFinishCb ) {
+    if (!this.finished && callFinishCb && this.cb ) {
       this.ctx ? this.cb.call(this.ctx) : this.cb();
+      this.cb = null;
+      this.ctx = null;
     }
+
 
     this.finished = true;
 

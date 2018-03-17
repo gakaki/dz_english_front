@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let time = null, timer = null, time_dianiu = null, time_p_lizi = null, time_k_lizi = null
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc ,checkoutIsRoom } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js'
 
 Page({
@@ -88,7 +88,6 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log(options, '对战页面的isFriend--onload')
     if(options.isFriend) {
       this.setData({
         isFriend: options.isFriend
@@ -104,7 +103,7 @@ Page({
       this.getInfo(res)
     })
 
-    // this.onPkEndInfo()
+    this.onPkEndInfo()
 
   },
 
@@ -274,9 +273,6 @@ Page({
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
     wsClose(['pkEndSettlement','matchInfo'])
-    // if (!this.data.pkEnd) {
-    //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroom对战页面' })
-    // }
   },
   onShareAppMessage: function (res) {
     return {

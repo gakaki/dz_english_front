@@ -11,7 +11,7 @@
     <image class="zhejiao" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="lan-tankuang font">
       <view class="lan-liansheng" wx:if="{{isSelf.info.character.winningStreak}}">
-        <text class="lan-liansheng-shuzi lan-xinxi">{{isSelf.info.character.winningStreak}}</text>
+        <text class="lan-liansheng-wenzi lan-xinxi">{{isSelf.info.character.winningStreak}}</text>
         <text class="lan-liansheng-wenzi">连胜</text>
       </view>
       <view class="lan-dizhi lan-xinxi" wx:if="{{isSelf.info.city}}">
@@ -51,7 +51,7 @@
   <view class="hong">
     <view class="hong-tankuang font">
       <view class="hong-liansheng" wx:if="{{notSelf.info.character.winningStreak}}">
-        <text class="hong-liansheng-shuzi hong-xinxi">{{notSelf.info.character.winningStreak}}</text>
+        <text class="hong-liansheng-wenzi hong-xinxi">{{notSelf.info.character.winningStreak}}</text>
         <text class="hong-liansheng-wenzi">连胜</text>
       </view>
       <view class="hong-dizhi hong-xinxi" wx:if="{{notSelf.info.city}}">
