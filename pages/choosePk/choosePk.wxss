@@ -188,7 +188,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   width: 690rpx;
   height: 153rpx;
-  z-index: 3;
+  z-index: 10;
 }
 
 .segment-list::before {
@@ -209,6 +209,7 @@
   top:-12rpx;
   left: -25rpx;
   transform: scale(0.77);
+  z-index: 5;
 }
 
 .kuang image{
