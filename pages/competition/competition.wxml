@@ -14,7 +14,7 @@
       </view>
       <view class='yinbiao'>
         <text>{{word.symbol}}</text>
-        <audio class='loudspeaker {{title ? "none" :"show"}}' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
+        <audio class='loudspeaker' id="myAudio" src='https://fanyi.baidu.com/gettts?lan=uk&spd=3&source=web&text={{word.english}}' bindtap="audioPlay"></audio>
       </view>
       <view class='quelou' wx:if='{{word.type===3 || word.type===4}}'>
           <view class='question {{answer === 2 ? "question-large":""}}' >
