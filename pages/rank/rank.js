@@ -8,8 +8,8 @@ Page({
   data: {
     tabAct: true,
     rankData: [],
-    preSeasonData: [],
-    rankFrame: ''
+    rankFrame: '',
+    tebSeason: '查看上赛季排行榜'
   },
   onLoad() {
     doFetch('english.getfriendrankinglist', {}, (res) => {
@@ -40,6 +40,7 @@ Page({
     if (item.hasOwnProperty('location') == false || item.location == ' ') {
       item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
+    console.log(item)
     return item
   },
   toDes(e) {
@@ -77,66 +78,70 @@ Page({
         }
       }, () => { }, app)
     } else {
-      this.setData({
-        tabAct: false
-      })
-      doFetch('english.getworldrankinglist', { "season": 0 }, (res) => {
-        if (res.data.length > 0) {
-          this.setData({
-            rankFrame: res.data.map(o => {
-              return getPersonFrame(o.rank)
-            })
-          })
-          this.setData({
-            rankData: res.data.map(this.getSegment)
-          })
-
-        } else {
-          wx.showToast({
-            title: '暂无数据',
-            icon: 'none',
-            duration: 500,
-            mask: true
-          })
-          this.setData({
-            rankData: []
-          })
-        }
-      }, () => { }, app)
+      this.getWordData()
     }
   },
-  preSeason() {
-    if (this.data.preSeasonData.length == 0) {
-      doFetch('english.getworldrankinglist', { "season": 1 }, (res) => {
-        if (typeof (res.data) != 'undefined' && res.data.length > 0) {
-          this.setData({
-            rankFrame: res.data.map(o => {
-              return getPersonFrame(o.rank)
-            })
+  getWordData() {
+    this.setData({
+      tabAct: false,
+      tebSeason: '查看上赛季排行榜'
+    })
+    doFetch('english.getworldrankinglist', { "season": 0 }, (res) => {
+      if (res.data.length > 0) {
+        this.setData({
+          rankFrame: res.data.map(o => {
+            return getPersonFrame(o.rank)
           })
-          this.setData({
-            preSeasonData: res.data.map(this.getSegment),
-            rankData: res.data.map(this.getSegment)
-          })
+        })
+        this.setData({
+          rankData: res.data.map(this.getSegment)
+        })
 
-        } else {
-          wx.showToast({
-            title: '暂无数据',
-            icon: 'none',
-            duration: 500,
-            mask: true
+      } else {
+        wx.showToast({
+          title: '暂无数据',
+          icon: 'none',
+          duration: 500,
+          mask: true
+        })
+        this.setData({
+          rankData: []
+        })
+      }
+    }, () => { }, app)
+  },
+  preSeason() {
+    if (this.data.tebSeason == '查看上赛季排行榜') {
+        doFetch('english.getworldrankinglist', { "season": 1 }, (res) => {
+          this.setData({
+            tebSeason: '查看本赛季排行榜'
           })
-        }
-      }, () => { }, app)
-    } else {
-      rankFrame: res.data.map(o => {
-        return getPersonFrame(o.rank)
-      })
-      this.setData({
-        rankData: this.data.preSeasonData
-      })
-     
+          if (typeof (res.data) != 'undefined' && res.data.length > 0) {
+            this.setData({
+              rankFrame: res.data.map(o => {
+                return getPersonFrame(o.rank)
+              })
+            })
+            this.setData({
+              rankData: res.data.map(this.getSegment)
+            })
+            console.log(this.data.rankData)
+          } else {
+            this.setData({
+              rankData: []
+            })
+            wx.showToast({
+              title: '暂无数据',
+              icon: 'none',
+              duration: 500,
+              mask: true
+            })
+          }
+        }, () => { }, app)
+    }else {
+      this.getWordData()
     }
+    
 
   },
   onShareAppMessage: function (res) {
