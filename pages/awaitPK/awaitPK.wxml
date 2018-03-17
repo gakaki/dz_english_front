@@ -17,7 +17,7 @@
       <image class="feichuan" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/feichuan.png"></image>
     </view>
     <view class="touxiangkuang">
-      <image class="touxiangkuang-tu" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}.png" wx:if="{{frame}}"></image>
+      <image class="touxiangkuang-tu" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}" wx:if="{{frame}}"></image>
       <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
     </view>  
     <view class="ziliao">
