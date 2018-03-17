@@ -20,7 +20,11 @@
         <view class="nicheng-lan font">
           <text class="wenzi-lan">{{isSelf.info.nickName}}</text>
         </view>
-        <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
+        <view>
+          <image class="touxiangkuang touxiangkuang-lan" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}"></image>
+          <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
+        </view>
+        
       </view>
       <view class="liandui-lan font" wx:if="{{isSelf.continuousRight>1}}">
         <text class="liandui-wenzi-lan">连对{{isSelf.continuousRight}}题</text>
@@ -34,7 +38,11 @@
         <view class="nicheng-hong font">
           <text class="wenzi-hong">{{notSelf.info.nickName}}</text>
         </view>
-        <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
+        <view>
+          <image class="touxiangkuang touxiangkuang-hong" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}"></image>
+          <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
+        </view>
+        
       </view>
       <view class="liandui-hong font" wx:if="{{notSelf.continuousRight>1}}">
         <text class="liandui-wenzi-hong">连对{{notSelf.continuousRight}}题</text>
