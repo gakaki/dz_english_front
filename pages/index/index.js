@@ -38,7 +38,6 @@ Page({
 
   },
   toSelf(e) {
-    console.log(app)
     if (app.preventMoreTap(e)) { return; }
     start(() => {
       this.hi()
@@ -76,18 +75,12 @@ Page({
   },
   toFriPk: function (e) {
     if (app.preventMoreTap(e)) { return; }
-    // start(() => {
+    start(() => {
       this.hi();
-      
-      // wsReceive('joinSuccess',(res)=>{
-      //   console.log('joinSuccessssssssssssss')
-      //   if (app.preventMoreTap(e, 1000)) { return; }
         wx.navigateTo({
           url: '../friendPK/friendPK'
-        })
-      // })
-     
-    // })
+        })     
+    })
   },
   toZsd(e) {
     if (app.preventMoreTap(e)) { return; }
@@ -176,32 +169,16 @@ Page({
           wid: Math.round(this.data.exp / this.data.needExp * 100)
         })
       }
-
-      
-
-      //如果是通过分享并且需要跳转时则暂时不显示签到
-      // if(!this.data.shareIn){
-      //   doFetch('english.isfirstsign', {}, res => {
-      //     console.log(res)
-      //     this.setData({
-      //       landing: res.data.isFirst,
-      //       landingDay: res.data.day
-      //     })
-      //   })
-      // }
-      
     })
     this.shareTo(options)
     firstStart(()=> {
       //如果是通过分享并且需要跳转时则暂时不显示签到
       if(!this.data.shareIn){
         doFetch('english.isfirstsign', {}, res => {
-          console.log(res,'isfirst')
           this.setData({
             landing: res.data.isFirst,
             landingDay: res.data.day
           })
-          console.log(1)
           this.isRedPoint()
         }, () => { }, app)
       }
@@ -241,7 +218,6 @@ Page({
     doFetch('english.roomisexist', {
       rid: options.rid
     }, (res) => {
-      console.log(res.data, 'res.data.roomStatus')
       let rid = options.rid;
       if (res.code == 0) {
         if (res.data && res.data.roomStatus == 1) {
@@ -256,8 +232,6 @@ Page({
         }
       }
       else {
-        console.log(res.code)
-
         wx.showToast({
           title: '房主离开房间',
           icon: 'none',
@@ -348,26 +322,9 @@ Page({
           rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
         })
       }, () => { }, app)
-      console.log(2)
       this.isRedPoint()
     }
 
 
-  },
-  // getRankFrame(season) {
-  //   let idx = 0
-  //   for(let i in season) {
-  //     idx++
-  //   }
-  //   if(idx ==1) {
-  //     console.log(season[idx].rank)
-  //     return ''
-  //   }
-  //   if(idx >1) {
-  //     let i = idx-1
-  //     if (parseInt(season[i].rank) <= 6) {
-  //       return ''
-  //     }else return sheet.Stage.Get(season[i].rank).frame
-  //   }
-  // }
+  }
 })
