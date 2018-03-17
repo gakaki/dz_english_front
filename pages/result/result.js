@@ -67,7 +67,6 @@ Page({
         })
       }
     }, () => { }, app)
-
     if(pkResult.resultLeft.info.uid == getUid()){
       this.setData({
         final: pkResult.final,
