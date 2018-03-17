@@ -36,12 +36,14 @@ Page({
     }, () => { }, app)
   },
   getSegment: function (item) {
-    item.rank = sheet.Stage.Get(item.rank).stage
-    if (item.hasOwnProperty('location') == false || item.location == ' ') {
-      item.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
+    let obj = {}
+    obj = item
+    obj.rank = sheet.Stage.Get(obj.rank).stage
+    if (obj.hasOwnProperty('location') == false || obj.location == ' ') {
+      obj.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
-    console.log(item)
-    return item
+    console.log(obj)
+    return obj
   },
   toDes(e) {
     if (app.preventMoreTap(e)) { return; }
