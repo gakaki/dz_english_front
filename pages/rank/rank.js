@@ -42,7 +42,6 @@ Page({
     if (obj.hasOwnProperty('location') == false || obj.location == ' ') {
       obj.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
-    console.log(obj)
     return obj
   },
   toDes(e) {
