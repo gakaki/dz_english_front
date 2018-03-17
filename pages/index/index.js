@@ -169,6 +169,9 @@ Page({
           wid: Math.round(this.data.exp / this.data.needExp * 100)
         })
       }
+      this.setData({
+        rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+      })
     })
     this.shareTo(options)
     firstStart(()=> {

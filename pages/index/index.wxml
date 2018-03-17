@@ -2,7 +2,7 @@
 <view class="container">
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
-    <view wx:if="{{rankFrame.length>0}}" class="frame">
+    <view wx:if="{{rankFrame.length>0}}" class="frame" bindtap='toSelf'>
       <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
       <view class="header flex">
         <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>

@@ -20,7 +20,6 @@ Page({
     canMatch:true,
     starAnimation:'', //控制星星的动画
     fromIndex:false,  //是否从主页面跳转过来的
-    frame:'',//段位头像框
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -104,6 +103,7 @@ Page({
       this.setData({
         rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
       })
+      console.log(this.data.rankFrame)
       //获取用户当前赛季信息
       let season = res.data.userInfo.character.season
       let rankInfo
@@ -150,10 +150,6 @@ Page({
         }
       }
     }, () => { }, app)
-    // 显示段位框
-    this.setData({
-      frame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
-    })
   },
   starAnimation(res,stage,rankInfo) {
     let changeInfo = app.globalData.pkResult.changeInfo
