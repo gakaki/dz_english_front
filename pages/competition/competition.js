@@ -116,9 +116,6 @@ Page({
           englishWords
         })
 
-        //开始对战
-        // this.roundInit()
-
         //监听每局结束
         this.onRoundEndInfo();        
 
