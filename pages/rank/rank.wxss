@@ -312,6 +312,7 @@
 .pre-season {
   font-size: 30rpx;
   font-weight: bold;
+  text-decoration: underline;
   color: #fff;
-  transform: translateY(20rpx);
+  transform: translateY(30rpx);
 }
