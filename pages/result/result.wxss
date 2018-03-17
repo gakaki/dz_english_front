@@ -299,6 +299,25 @@
   opacity: 0;
 }
 
+
+.touxiangkuang{
+  width: 227rpx;
+  height: 181rpx;
+  position: absolute;
+  transform: scale(0.77);
+  z-index: 10;
+}
+
+.touxiangkuang-lan{
+  left: 152rpx;
+  top: -25rpx;
+}
+
+.touxiangkuang-hong{
+  right: 157rpx;
+  top: -25rpx;
+}
+
 /*以下是动画设置····  */
 
 @keyframes left {
