@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, networkChange} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 let time = null
 
@@ -29,10 +29,51 @@ Page({
     console.log('======================onload')
     this.canJoinRoom(options)
 
-    wsReceive('join', res => {
-      this.getInfo(res.data.rid)
-      console.log(res, 'join收到的数据')
-    })
+    
+    
+      console.log(this.data.rid, 'roomInfooooooooooo')
+      wsReceive('roomInfo', res => {
+        console.log(res, 'roomInfo')
+        if (res.data.roomStatus == 2) {
+          wx.navigateTo({
+            url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
+          })
+        }
+
+        console.log(res, '获取用户房间数据')
+
+        if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
+          this.setData({
+            isOwner: true
+          })
+        }
+
+        if (res.data.userList.length == 1) {
+          // 显示段位框
+          this.setData({
+            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
+          })
+        }
+        else if (res.data.userList.length == 2) {
+          this.setData({
+            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
+            frameOther: getRankFrame(res.data.userList[1].info.character.season),
+          })
+        }
+        this.setData({
+          bystander: res.data.roomInfo.bystanderCount,
+          list: res.data.userList
+        })
+      })
+
+      // console.log('数据分配成功')
+
+      wsReceive('dissolve', res => {  //房主离开
+        console.log(res, 'dissolve')
+        wx.reLaunch({
+          url: '../index/index?ownerLeave=true',
+        })
+      })
    
   },
   canJoinRoom(options){
@@ -47,78 +88,23 @@ Page({
     }
   },
   joinRoom(options){
-    console.log('检测房间是否存在')
-    wsSend('roomisexist', { rid: options.rid })
-    if (options.rid) {
-      console.log('房间存在')
       wsSend('joinroom', { rid: options.rid })
-      
-    } else {
-      console.log('房间不存在，创建一个新房间')
-      wsSend('joinroom')
       wsReceive('joinSuccess', (res) => {
         console.log(res,'房间不存在，收到的数据')
-        console.log(JSON.stringify(res))
-        this.getInfo(res.data.rid)
+        this.setData({
+          rid: res.data.rid
+        })
       })
-    }
   },
  
-  getInfo(rid){
-    this.data.rid = rid
-    wsSend('getroominfo', {
-      rid: this.data.rid
-    })
-    console.log(this.data.rid,'roomInfooooooooooo')
-    wsReceive('roomInfo', res => {
-      console.log(res, 'roomInfo')
-      if (res.data.roomStatus == 2) {
-        wx.navigateTo({
-          url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
-        })
-      }
-
-      console.log(res,'获取用户房间数据')
-      
-      if (res.data.userList[0].info.uid == getUid()) {
-        this.setData({
-          isOwner: true
-        })
-      }
-      
-      if (res.data.userList.length==1){
-        // 显示段位框
-        this.setData({
-          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
-        })
-      }
-      else if (res.data.userList.length == 2){
-        this.setData({
-          frameSelf: getRankFrame(res.data.userList[0].info.character.season),
-          frameOther: getRankFrame(res.data.userList[1].info.character.season),
-        })
-      }
-      this.setData({
-        bystander: res.data.roomInfo.bystanderCount,
-        list: res.data.userList
-      })
-    })
-
-    // console.log('数据分配成功')
-
-    wsReceive('dissolve', res => {  //房主离开
-      console.log(res, 'dissolve')
-      wx.reLaunch({
-        url: '../index/index?ownerLeave=true',
-      })
-    })
-  },
+  
   
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('==============onShow')
+    console.log('==============onShow', this.data.rid)
+    
     let i = 0;
     time = setInterval(()=>{
       i++
@@ -144,16 +130,13 @@ Page({
     this.setData({
       cancelJoin: true
     })
-    wsClose('joinSuccess')
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo','joinSuccess'])
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
     console.log('=============>onhide')
-    // this.setData({
-    //   cancelJoin: true
-    // })
     checkoutIsRoom(this.data.rid)
     clearInterval(time);
   },
@@ -168,6 +151,7 @@ Page({
   },
 
   giveUp() {
+    console.log(this.data.rid,'riddddddddddddddd')
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
     wx.reLaunch({
       url: '../index/index',
@@ -175,7 +159,6 @@ Page({
     clearInterval(time);
     wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
-
   /**
    * 用户点击右上角分享
    */

@@ -338,22 +338,22 @@ const firstStart = suc => {
 
   //断网重连
 function networkChange(){
-  console.log('hhhhhhhhhhhhhhhhhhhh')
-  wx.onNetworkStatusChange(function (res) {
-    console.log('断网====================================')
-    if (res.isConnected && changePage) {
-      wx.showToast({
-        title: "房间已不存在",
-        icon: "none",
-        duration: 1000
-      })
-      setTimeout(() => {
-        wx.reLaunch({
-          url: '../index/index',
-        })
-      }, 1000)
-    }
-  })
+  // console.log('hhhhhhhhhhhhhhhhhhhh')
+  // wx.onNetworkStatusChange(function (res) {
+  //   console.log('断网====================================')
+  //   if (res.isConnected && changePage) {
+  //     wx.showToast({
+  //       title: "房间已不存在",
+  //       icon: "none",
+  //       duration: 1000
+  //     })
+  //     setTimeout(() => {
+  //       wx.reLaunch({
+  //         url: '../index/index',
+  //       })
+  //     }, 1000)
+  //   }
+  // })
 }
 
 //检测手机黑屏
@@ -370,9 +370,7 @@ function checkoutIsRoom(rid, changePage = true) {
         duration: 1000
       })
       setTimeout(() => {
-        wx.reLaunch({
-          url: '../index/index',
-        })
+        wx.navigateBack()
       }, 1000)
     }
   })

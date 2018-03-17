@@ -52,13 +52,19 @@ Component({
     tm:null,
     curIdx:0,
     res: '',
+    delayPlayTm:null,
   },
 
   attached: function(){
     this.triggerEvent('mcAttached');
+    console.log('mc attached', Date.now())
 
     if (this.data.autoPlay) {
-      this.play(this.data.autoPlayCount);
+      let delayPlayTm = setTimeout(()=>{
+        this.play(this.data.autoPlayCount);
+      }, 800);
+
+      this.setData({delayPlayTm});
     }
   },
   moved: function(){
@@ -130,19 +136,24 @@ Component({
         let res = this.data.resPrefix + this._prefillZero(curIdx, this.data.resPreZeroCount);
         this.setData({res, curIdx, tm});
 
-      }, 125);//约8帧/秒
+      }, 150);//约8帧/秒
 
       this.setData({tm});
     },
 
     stop() {
+      let dtm = this.data.delayPlayTm;
       let tm = this.data.tm;
+      this.setData({tm:null, delayPlayTm:null})
+      if (dtm) {
+        clearTimeout(dtm);
+      }
       if (tm) {
         clearInterval(tm);
-        this.setData({tm:null})
-        this.triggerEvent('mcStopped',{})
+        this.triggerEvent('mcStopped')
         console.log(`${this.data.resPrefix} movieclip stoped`)
       }
+
     }
   }
 })
