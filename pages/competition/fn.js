@@ -30,6 +30,14 @@ function getRoomInfo(rid, cb) {
 
 //设置九宫格键盘
 function keyboard(letterPos, english){  
+  if (!letterPos) {
+    console.log('letterPos传入值为空');
+    return
+  }
+  if (!english) {
+    console.log('获取翻牌键盘时english传入值为空');
+    return
+  }
   let st = new Set();
   let cnt = 9 - letterPos.length;
 
@@ -48,6 +56,10 @@ function keyboard(letterPos, english){
 }
 
 function quanpinKeyboard(english) {
+  if (!english) {
+    console.log('获取全拼键盘时english传入值为空');
+    return
+  }
   let pos = [];
   let idx = english.length;
   while(--idx > -1) {

@@ -53,9 +53,7 @@ Page({
       } else {
         tempSl = parseInt((res.data.userInfo.character.wins / res.data.userInfo.character.total) * 100)
       }
-      let wCount = sheet.landingessays.map(o=>{
-        return o
-      })
+      
       this.setData({
         info: res.data,
         newWordsPercent: (res.data.newWord.totalWordCount != 0) ? parseInt(((res.data.newWord.newWordCount) /(res.data.newWord.totalWordCount))*100) : 0,
