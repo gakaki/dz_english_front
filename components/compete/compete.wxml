@@ -5,6 +5,7 @@
     <view class='top-content'>
     <view class='users'>
       <view class='user'>
+        <image class="frame-icon" wx:if='{{userLeftImg}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{userLeftImg}}"></image>
         <image class="avatar" src="{{userLeft.avatarUrl}}"></image>
         <view class='content'>{{userLeft.nickName}}</view>
       </view>
@@ -12,6 +13,7 @@
          <clock clockStart='{{clockStart}}' clockTime='{{clockTime}}'></clock> 
       </view>
       <view class='user user-r'>
+        <image class="frame-icon frame-icon-r" wx:if='{{userRightImg}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{userRightImg}}"></image>
         <image class="avatar avatar-r" src="{{userRight.avatarUrl}}"></image>
         <view class='content'>{{userRight.nickName}}</view>
       </view>
