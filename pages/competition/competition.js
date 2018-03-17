@@ -143,7 +143,6 @@ Page({
 
   onUnload() {
     let pages = getCurrentPages()
-    console.log(pages,'pagessssssssssssssssss')
     let prevPage = pages[pages.length - 2]
     if (prevPage.data.starAnimation) {
       prevPage.setData({
