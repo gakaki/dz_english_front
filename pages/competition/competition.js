@@ -43,7 +43,6 @@ Page({
     backClickCount:0,
     answer:0, //0不显示正确和错误按钮，1表示正确，2表示错误
     selectAnswer:[0,0,0,0],  //0为未选择，1为正确，2为错误
-    firstClick:true,
     clockStart: false,
     clockTime: totalCountTime, //倒计时时间
     myScore:0,  //当前自己本轮得分
@@ -70,12 +69,10 @@ Page({
 
   },
   onLoad(options) {
-    console.log('======================load')
     pkEnd = false;
     rid = options.rid;
     round = 1;
     totalScore = 0;
-    console.log(options.isFriend,'competition页面onload')
     if(options.isFriend) {
       this.setData({
         isFriend: options.isFriend
@@ -83,7 +80,6 @@ Page({
     }
 
     getRoomInfo(rid, res => {
-      console.log(res,'获取题目信息嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -190,14 +186,14 @@ Page({
       nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
       bgIndex: changeArrAllValue(this.data.bgIndex, false),
-      firstClick:true,
+      
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
       roundAnswer:{},
       clockTime: 10,
       chinese:[]
     })
-    
+
 
     //开始对应玩法
     switch(question.type) {
@@ -245,6 +241,7 @@ Page({
       //通知后端，一题完成
       canClick = false;
       if(round > 5) {return}
+      if(!this.data.word) {return}
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -295,7 +292,6 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
-      console.log(res.data)
       if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
@@ -309,7 +305,6 @@ Page({
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
-      console.log(res)
       if (res.code) {
         wx.showToast({
           title: '结算出错了'
@@ -336,8 +331,6 @@ Page({
           resultLeft = u2;
           resultRight = u1;
         }
-
-        console.log('全局结束',res)
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = {resultLeft,resultRight, changeInfo:data.pkResult, final, isFriend, exp, gold};
         let isUp = data.pkResult.isUp;
@@ -364,13 +357,12 @@ Page({
     this.setData({title: getRoundName(round)})
   },
   audioPlay(){
-    console.log('播放英语')
     this.audioCtx.play()
   },
   //显示题目
   showQuestion(){
     let title = null;//隐藏‘第X题’
-    let letters = question.english.split('')
+    let letters = question.english.split('');
     this.setData({
       title: title,
       word: question,
@@ -428,7 +420,7 @@ Page({
   },
   playtoQuestion(answerKey){
     rightAnswer = question[answerKey];//设置正确答案内容
-    tm = Timeline.add(0, this.showQuestionIdx, this)//显示第几题
+    tm = Timeline.add(200, this.showQuestionIdx, this)//显示第几题
     .add(2000, this.showQuestion, this)//显示题目单词
     return tm;
   },
@@ -551,7 +543,6 @@ Page({
           totalScore,
           roundAnswer
         })
-        console.log(this.data.roundIsRight,'roundIsRight')
         this.tagRoundEnd(false);
       } else {
         this.selectPlay()
@@ -659,7 +650,7 @@ Page({
     }
   },
   chooseOption(v) {  //选列选项点击
-    if (this.data.firstClick) {
+    if (!canClick) return;
       let obj = v.currentTarget.dataset;
       let myScore = 0;
       isRight = false;
@@ -690,11 +681,11 @@ Page({
         answer,
         roundIsRight: isRight,
         selectAnswer,
-        roundAnswer,
-        firstClick: false
+        roundAnswer
       })
+      canClick = false
       this.tagRoundEnd(false)
-    }
+    
 
   },
   failSelect(){

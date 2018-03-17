@@ -20,7 +20,6 @@ Page({
     canMatch:true,
     starAnimation:'', //控制星星的动画
     fromIndex:false,  //是否从主页面跳转过来的
-    frame:'',//段位头像框
     level: ["https://gengxin.odao.com/update/h5/yingyu/choosePK/xiaoxue.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuyi.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/chuer.png",
@@ -37,11 +36,8 @@ Page({
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/tuofu.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/yasi.png"]
   },
-  onLoad(options) {
-    console.log('==================================onLoaddddddddddddddd')
-    
-    
-    doFetch('english.getseason',{},res=>{
+  onLoad(options) {   
+      doFetch('english.getseason',{},res=>{
       this.setData({
         season: sheet.Season.Get(res.data.season)
       })
@@ -100,7 +96,6 @@ Page({
     })
   },
   onShow() {
-    console.log('============================onSHowwwwwwwwwwwww', this.data.rid)
     if (this.data.rid) {
       checkoutIsRoom(this.data.rid, false)
     }
@@ -154,10 +149,6 @@ Page({
         }
       }
     }, () => { }, app)
-    // 显示段位框
-    this.setData({
-      frame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
-    })
   },
   starAnimation(res,stage,rankInfo) {
     let changeInfo = app.globalData.pkResult.changeInfo
@@ -182,7 +173,6 @@ Page({
       }, 2100)
     }
     else {
-      console.log(changeInfo.isStarUp,'星星')
       //判断是否加星
       stage.length = rankInfo.rank + 1
       this.setData({
@@ -219,11 +209,9 @@ Page({
   match(v) {
     if (app.preventMoreTap(v)) { return; }
     let type = v.currentTarget.dataset.rank
-      console.log(v)
       doFetch('english.canmatch', 
         { rankType: type},
         res=>{
-          console.log(res)
           if(res.data.inRoom) {
             wx.showToast({
               title: '您已在好友房间中,请先退出', 
@@ -249,7 +237,6 @@ Page({
           }
         }
       )
-    console.log(v.currentTarget.dataset.rank,'match')
   },
   
   toDes() {

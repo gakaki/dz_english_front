@@ -94,7 +94,6 @@ Page({
       })
     }
     
-    console.log('send', options.rid)
     wsSend('getmatchinfo', {
       rid: options.rid
     })
@@ -110,7 +109,6 @@ Page({
   getInfo(res) {
     let userList = res.data.userList
     this.data.rid = res.data.rid
-    console.log(this.data.rid, res.data, 'toComRid')
     if (userList[0].info.uid == getUid()) {
       this.setData({
         isSelf: userList[0],
@@ -138,7 +136,6 @@ Page({
         })
       }
       else {
-        console.log(res.data,'pkEnd')
         let data = res.data;
         let isFriend = data.isFriend;
         let final = data.final;
@@ -159,11 +156,9 @@ Page({
           resultRight = u1;
         }
 
-        console.log('全局结束')
         //resultLeft/resultRight: {info:player, score:number, continuousRight:number}, final:number//0:失败，1平局 2胜利, changeInfo: isRank: {isRank:isRank,rank:rank},isStarUp: {isStarUp:isStarUp,},isUp: {isUp:isUp,level:level}}
         app.globalData.pkResult = { resultLeft, resultRight, changeInfo: data.pkResult, final, isFriend, exp, gold };
         let isUp = data.pkResult.isUp;
-        console.log(isUp)
         let show = isUp.isUp;
         let level = isUp.level;
         let url = '';
@@ -230,9 +225,7 @@ Page({
     }, 150)
 
     if(!this.data.pkEnd){
-      console.log(this.data.isFriend,'对战页面的isFriend')
       timer = setTimeout(() => {
-        console.log('toCompetion', this.data.rid)
         wx.redirectTo({
           url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
         })
@@ -253,9 +246,7 @@ Page({
   onUnload: function () {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    console.log(pages,prevPage,'对战页面unload')
 
-    console.log(this.data.rid)
     if (this.data.rid) {
       prevPage.setData({
         rid: this.data.rid

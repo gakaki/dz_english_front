@@ -29,21 +29,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('======================onload')
     this.canJoinRoom(options)
 
-    
-    
-      console.log(this.data.rid, 'roomInfooooooooooo')
       wsReceive('roomInfo', res => {
-        console.log(res, 'roomInfo')
         if (res.data.roomStatus == 2) {
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
           })
         }
 
-        console.log(res, '获取用户房间数据')
 
         if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
           this.setData({
@@ -69,10 +63,7 @@ Page({
         })
       })
 
-      // console.log('数据分配成功')
-
       wsReceive('dissolve', res => {  //房主离开
-        console.log(res, 'dissolve')
         wx.reLaunch({
           url: '../index/index?ownerLeave=true',
         })
@@ -81,7 +72,6 @@ Page({
   },
   canJoinRoom(options){
     if (this.data.cancelJoin) { return }
-    console.log('检测用户是否登陆')
     if (app.globalData.logined && app.globalData.wsConnect) {
       this.joinRoom(options)
     } else {
@@ -93,7 +83,6 @@ Page({
   joinRoom(options){
       wsSend('joinroom', { rid: options.rid })
       wsReceive('joinSuccess', (res) => {
-        console.log(res,'房间不存在，收到的数据')
         this.setData({
           rid: res.data.rid
         })
@@ -106,11 +95,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('==============onShow', this.data.rid)
     
     //监听游戏开始
     wsReceive('matchSuccess', res => {
-      console.log(res, 'startGame')
       this.data.startGame = true
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid + '&isFriend=true',
@@ -128,7 +115,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    console.log('=============>onhide')
     checkoutIsRoom(this.data.rid)
   },
 
@@ -142,7 +128,6 @@ Page({
   },
 
   giveUp() {
-    console.log(this.data.rid,'riddddddddddddddd')
     wsSend('leaveroom', { rid: this.data.rid,a: 'leaveroom好友PK页面' })
     wx.reLaunch({
       url: '../index/index',

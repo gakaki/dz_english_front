@@ -42,8 +42,6 @@ function doFetch(action, data, suc, err, _app) {
     },
     fail: err
   })
-  console.log(action, 'fetch')
-
 }
 
 function _fetchIntercept(action, _app) {
@@ -61,7 +59,6 @@ function _fetchIntercept(action, _app) {
     let oldTime = obj.time;
     let diffTime = new Date() - oldTime;
     obj.time = new Date();
-    console.log(diffTime, 'diffTime')
     if (diffTime < 2000) {
       return
     }
@@ -83,7 +80,6 @@ function sdkAuth(code, suc) {
     userLogin(suc, showErr);
   },
     res => {
-      console.log('error', res)
     })
 }
 
@@ -97,12 +93,10 @@ function userLogin(suc, err) {
       if (!info.userInfo.city) {
         let allPos = Constant.Get(3).value.split(',');
         let v = parseInt(Math.random() * allPos.length);
-        console.log(v, allPos)
         info.userInfo.city = allPos[v]
       }
       
       app.globalData.userInfo = info.userInfo;
-      console.log(info.userInfo)
       app.globalData.hasUserInfo = true;
       if (app.userInfoReadyCallback) {
         app.userInfoReadyCallback(info)
@@ -128,7 +122,6 @@ function userLogin(suc, err) {
           suc(res)
           wsInit();
           app.globalData.logined = true;
-          console.log(app.globalData.logined, 'app.globalData.logine')
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
 
@@ -148,19 +141,16 @@ function userLogin(suc, err) {
 
 function shareSuc() {
   doFetch('english.getshareaward', {}, res => {
-    console.log(res.data, '分享成功')
   })
 }
 
 
 function wsReceive(action, suc) {
   socket.on(action, res => {
-    console.log('wsR', action)
     suc(res)
   })
 }
 function wsSend(action, data) {
-  console.log('ws', action)
   socket.emit(action, data)
 }
 
@@ -180,18 +170,14 @@ function wsInit() {
   socket = io(url);
   socket.on('connect', () => {
     app.globalData.wsConnect = true;
-    console.log('#connect');
     socket.on('disconnect', msg => {
-      console.log('#disconnect', msg);
       app.globalData.wsConnect = false;
     });
 
     socket.on('disconnecting', () => {
-      console.log('#disconnecting');
     });
 
     socket.on('error', () => {
-      console.log('#error');
     });
 
   })
@@ -341,7 +327,6 @@ function networkChange(){
 //检测手机黑屏
 function checkoutIsRoom(rid, changePage = true) {
   doFetch('english.checkroom', { rid }, res => {
-    console.log('english.checkroom', res)
     if (!changePage && res.data && res.data.inRoom) {  //退出房间，不切换页面
       wsSend('leaveroom', { rid })
     }

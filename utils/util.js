@@ -205,14 +205,15 @@ function getRankFrame(season) {
     idx++
   }
   if (idx == 1) {
-    // console.log(season[idx].rank)
     return ''
   }
   if (idx > 1) {
     let i = idx - 1
     if (parseInt(season[i].rank) <= 6) {
       return ''
-    } else return sheet.Stage.Get(season[i].rank).frame
+    } else {
+      return sheet.Stage.Get(season[i].rank).frame+'.png'
+    }
   }
 }
 function getPersonFrame(rank) {

@@ -57,8 +57,6 @@ Component({
 
   attached: function(){
     this.triggerEvent('mcAttached');
-    console.log('mc attached', Date.now())
-
     if (this.data.autoPlay) {
       let delayPlayTm = setTimeout(()=>{
         this.play(this.data.autoPlayCount);
@@ -152,7 +150,6 @@ Component({
       if (tm) {
         clearInterval(tm);
         this.triggerEvent('mcStopped')
-        console.log(`${this.data.resPrefix} movieclip stoped`)
       }
 
     }
