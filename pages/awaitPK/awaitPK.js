@@ -72,7 +72,9 @@ Page({
     })
     wsReceive('matchFailed',res=>{
       console.log(res,'fail')
-      this.data.awaiting = true
+      this.setData({
+        awaiting:true
+      })
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
@@ -87,8 +89,9 @@ Page({
     })
     wsReceive('matchSuccess',res=>{
       console.log(res,'suc')
-      
-      this.data.matchSuc = true
+      this.setData({
+        matchSuc:true
+      })
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
