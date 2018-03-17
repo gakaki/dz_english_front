@@ -39,10 +39,9 @@ Page({
     let obj = {}
     obj = item
     obj.rank = sheet.Stage.Get(obj.rank).stage
-    if (obj.hasOwnProperty('location') == false || obj.location == ' ') {
-      obj.location = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
+    if (obj.hasOwnProperty('city') == false || obj.city == ' ') {
+      obj.city = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
-    console.log(obj)
     return obj
   },
   toDes(e) {
@@ -127,7 +126,6 @@ Page({
             this.setData({
               rankData: res.data.map(this.getSegment)
             })
-            console.log(this.data.rankData)
           } else {
             this.setData({
               rankData: []

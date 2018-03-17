@@ -21,7 +21,7 @@
         </image>
       </view> -->
       <view wx:if="{{rankFrame[index].length > 0}}" class="frame">
-        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}.png"></image>
+        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}"></image>
         <view class="header flex">
           <image bindtap='toSelf' class="userinfo-avatar" src="{{item.avatarUrl}}"></image>
         </view>
@@ -35,7 +35,7 @@
         <view class='info-top f-r-fs'>
           <text class='nn text-of'>{{item.nickName}}</text>
           <image class="gps-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/gps-icon.png"></image>
-          <text class="adress">{{item.location?item.location:''}}</text>
+          <text class="adress">{{item.city?item.city:''}}</text>
         </view>
         <view class='info-bot f-r-sb'>
           <text class="ch">{{item.rank}}</text>
