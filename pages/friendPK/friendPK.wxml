@@ -7,7 +7,7 @@
     <movieclip class="animate animate-right" resWidth='{{starMcWd}}' resHeight='{{starMcHt}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
-        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}.png" wx:if="{{frameSelf}}"></image>
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}" wx:if="{{frameSelf}}"></image>
         <view class="avatar">
           <image class="touxiang" src="{{list[0].info.avatarUrl}}"></image>
         </view>
@@ -25,7 +25,7 @@
         </view>
       </view>
       <view class="invitee bg">
-        <image class="touxiangkuang-2" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}.png" wx:if="{{frameOther}}"></image>
+        <image class="touxiangkuang-2" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}" wx:if="{{frameOther}}"></image>
         <view class="avatar rotate">
           <image class="touxiang" src="{{list[1].info.avatarUrl}}"></image>
         </view>

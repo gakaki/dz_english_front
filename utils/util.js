@@ -219,7 +219,7 @@ function getRankFrame(season) {
 function getPersonFrame(rank) {
     if (parseInt(rank) <= 6) {
       return ''
-    } else return sheet.Stage.Get(parseInt(rank)).frame
+    } else return sheet.Stage.Get(parseInt(rank)).frame+'.png'
 }
 module.exports = {
   getRankFrame: getRankFrame,
