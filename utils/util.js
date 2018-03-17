@@ -212,7 +212,6 @@ function getRankFrame(season) {
     if (parseInt(season[i].rank) <= 6) {
       return ''
     } else {
-      console.log(sheet.Stage.Get(season[i].rank).frame + '.png')
       return sheet.Stage.Get(season[i].rank).frame+'.png'
     }
   }

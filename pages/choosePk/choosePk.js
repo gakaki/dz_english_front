@@ -103,7 +103,6 @@ Page({
       this.setData({
         rankFrame: getRankFrame(app.globalData.personalInfo.userInfo.character.season)
       })
-      console.log(this.data.rankFrame)
       //获取用户当前赛季信息
       let season = res.data.userInfo.character.season
       let rankInfo
