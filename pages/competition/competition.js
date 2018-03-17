@@ -157,6 +157,7 @@ Page({
     if (!pkEnd) {
       wsSend('leaveroom', { rid: rid })
     }
+    wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo', 'pkInfo']);
    
   },
   onHide(){
@@ -354,7 +355,6 @@ Page({
         } else {
           url = '&show=' + show + '&rid=' + rid + '&otherLeave=' + res.data.isLeave
         }
-        wsClose(['roundEndSettlement', 'nextRound', 'pkEndSettlement', 'roomInfo', 'pkInfo']);
         this.tagRoundEnd(true);
         wx.redirectTo({
           url: '../result/result?' + url
