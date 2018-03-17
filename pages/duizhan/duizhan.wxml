@@ -2,7 +2,7 @@
   <view class="lan">
     <view class="lan-shouji">
       <view class="lan-ziliao">
-        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}.png" wx:if="{{frameSelf}}"></image>
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}" wx:if="{{frameSelf}}"></image>
         <image class="lan-touxiang" src="{{isSelf.info.avatarUrl}}"></image>
         <text class="lan-nicheng font">{{isSelf.info.nickName}}</text>
       </view>
@@ -64,7 +64,7 @@
     <image class="zhejiao-2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="hong-shouji">
       <view class="hong-ziliao">
-        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}.png" wx:if="{{frameOther}}"></image>
+        <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}" wx:if="{{frameOther}}"></image>
         <image class="hong-touxiang" src="{{notSelf.info.avatarUrl}}"></image>
         <text class="hong-nicheng font">{{notSelf.info.nickName}}</text>
       </view>
