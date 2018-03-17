@@ -29,9 +29,9 @@ Component({
       type: Number,
       value: 2
     },
-    resPreZeroCount: {
-      type: Number,//资源idx前置几个0。如：xxx_png_001.png这种出图命名方式下，可以看出"001.png"是前置两个0，此值需要设置为2
-      value: 1
+    resRuleLen: {
+      type: Number,//资源名序列的位数。如：xxx_png_001.png这种出图命名方式下，可以看出"001.png"序列位数是3（不足的前置补0），此值需要设置为3
+      value: 2
     },
     autoPlay: {
       type:Boolean,//是否在挂载后自动播放
@@ -80,7 +80,8 @@ Component({
    */
   methods: {
     //对数字前置补0，如
-    _prefillZero(num, cnt = 1) {
+    fixResLen(num, len = 1) {
+      let cnt = len - (num + '').trim().length
       let prefix = '';
       while(cnt-- > 0) {
         prefix += '0';
@@ -96,7 +97,7 @@ Component({
         needLoopTime: loopTime,
         leftLoop: loopTime,
         curIdx: this.data.resStartIdx,
-        res: this.data.resPrefix + this._prefillZero(this.data.resStartIdx, this.data.resPreZeroCount)
+        res: this.data.resPrefix + this.fixResLen(this.data.resStartIdx, this.data.resRuleLen)
       });
 
       let tm = this.data.tm;
@@ -133,7 +134,7 @@ Component({
           }
         }
 
-        let res = this.data.resPrefix + this._prefillZero(curIdx, this.data.resPreZeroCount);
+        let res = this.data.resPrefix + this.fixResLen(curIdx, this.data.resRuleLen);
         this.setData({res, curIdx, tm});
 
       }, 150);//约8帧/秒

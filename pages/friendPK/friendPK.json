@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "好友对战",
-  "disableScroll": true
+  "disableScroll": true,
+  "usingComponents": {
+    "movieclip": "../../components/movieclip/movieclip"
+  }
 }

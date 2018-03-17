@@ -2,7 +2,6 @@
 const app = getApp()
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
-let time = null
 
 Page({
 
@@ -10,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    animation: ['https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_00.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_01.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_02.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_03.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_04.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_05.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_06.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_07.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_08.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_09.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_10.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_11.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_12.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_13.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_14.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_15.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_16.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_17.png', 'https://gengxin.odao.com/update/h5/yingyu/xuliezhen/anima01_18.png',],
     index: 0,
     bystander:0,
     list:[],
@@ -19,7 +17,12 @@ Page({
     startGame:false,
     frameSelf:'',
     frameOther:'',
-    cancelJoin:false
+    cancelJoin:false,
+    starMcWd:200,
+    starMcHt:122,
+    startMcResPrefix: 'anima01_',
+    startMcResStartIdx: 1,
+    startMcResEndIdx: 18,
   },
 
   /**
@@ -105,16 +108,6 @@ Page({
   onShow: function () {
     console.log('==============onShow', this.data.rid)
     
-    let i = 0;
-    time = setInterval(()=>{
-      i++
-      if(i>=19){
-        i=0
-      }
-      this.setData({
-        index:i
-      })
-    },150)
     //监听游戏开始
     wsReceive('matchSuccess', res => {
       console.log(res, 'startGame')
@@ -126,7 +119,6 @@ Page({
      
   },
   onUnload() {
-    clearInterval(time);
     this.setData({
       cancelJoin: true
     })
@@ -138,7 +130,6 @@ Page({
   onHide() {
     console.log('=============>onhide')
     checkoutIsRoom(this.data.rid)
-    clearInterval(time);
   },
 
   /**
@@ -156,7 +147,6 @@ Page({
     wx.reLaunch({
       url: '../index/index',
     })
-    clearInterval(time);
     wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo'])
   },
   /**

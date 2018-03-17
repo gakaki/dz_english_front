@@ -219,8 +219,6 @@
 }
 
 .animate{
-  width: 200rpx;
-  height: 122rpx;
   position: absolute;
   z-index: 0;
 }
