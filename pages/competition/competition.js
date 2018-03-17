@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
-import { loadEnglishWords, getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
+import {  getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -83,6 +83,7 @@ Page({
     }
 
     getRoomInfo(rid, res => {
+      console.log(res,'获取题目信息嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -107,13 +108,11 @@ Page({
         }
         app.globalData.userInfo = userLeft;
         
-
-        let englishWords = loadEnglishWords(res.data.roomInfo.wordList);
         //更新数据 
         this.setData({
           userLeft,
           userRight,
-          englishWords
+          englishWords: res.data.roomInfo.wordList
         })
 
         //监听每局结束
@@ -144,6 +143,7 @@ Page({
 
   onUnload() {
     let pages = getCurrentPages()
+    console.log(pages,'pagessssssssssssssssss')
     let prevPage = pages[pages.length - 2]
     if (prevPage.data.starAnimation) {
       prevPage.setData({
@@ -246,6 +246,7 @@ Page({
       console.log('通知后端，一题完成')
       canClick = false;
       console.log(this.data.word.id,'==================>wid')
+      if(round > 5) {return}
       wsSend('roundend', {
         rid: rid,
         wid: this.data.word.id,
@@ -380,7 +381,7 @@ Page({
       rightAnswer: rightAnswer
     })
     this.setData({
-      chinese: this.data.word.China.split(';')
+      chinese: this.data.word.chinese.split(';')
     })
   },
   hideQuestionLetter(hideAll = false){
@@ -422,7 +423,6 @@ Page({
   }, 
   showChineseOptions(){
     options = getChineneOptions(question);
-    
     this.setData({options})
   },
   showEnglishOptions(){
@@ -438,7 +438,7 @@ Page({
   //英译中，选项方式
   playOne() { 
     //new----------------
-    this.playtoQuestion('China')
+    this.playtoQuestion('chinese')
     .add(1000, this.audioPlay, this)
     .add(500, this.showChineseOptions, this)
     .add(0, this.countClockTime, this)
