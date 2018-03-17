@@ -71,7 +71,6 @@ Page({
       }, 2500)
     })
     wsReceive('matchFailed',res=>{
-      console.log(res,'fail')
       this.setData({
         awaiting:true
       })
@@ -81,14 +80,13 @@ Page({
         duration: 2000
       })
       time = setTimeout(function(){
-        console.log('matchFailed back')
+        
         wx.navigateBack({
           delta: 1
         })
       },2100)
     })
     wsReceive('matchSuccess',res=>{
-      console.log(res,'suc')
       this.setData({
         matchSuc:true
       })
