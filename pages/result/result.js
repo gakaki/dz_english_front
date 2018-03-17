@@ -25,14 +25,10 @@ Page({
     rid: null
   },
   onLoad: function (e) {
-    console.log('===================load')
-    console.log(e)
-
     let hasMap = map.every(v=>{
       return v != 'matchSuccess';
     })
     if(hasMap) {
-      // wsClose('matchSuccess')
       wsReceive('matchSuccess', res => {
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
@@ -60,9 +56,7 @@ Page({
       show: e.show == "true"?true:false,
       rid: e.rid
     })
-    console.log(this.data.show,'showwwwwwwwwwwwwwww')
     let pkResult = app.globalData.pkResult
-    console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{
       if(res.data.canShare){
         this.setData({
@@ -91,7 +85,6 @@ Page({
     }
    },
   onUnload() {
-    console.log('onunloaddddddddddddddddddddd')
     if (!app.globalData.pkResult.isFriend) {
       this.setPageInfo()
     }
@@ -99,7 +92,6 @@ Page({
   setPageInfo() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    console.log(pages, 'pages')
     prevPage.setData({
       fromIndex: false,
       starAnimation: ''
@@ -107,7 +99,6 @@ Page({
   },
   toMatch() {
     //是否为好友局
-    console.log(app.globalData.pkResult.isFriend,'app.globalData.pkResult.isFriend')
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
       wx.navigateBack()

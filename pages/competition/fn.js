@@ -31,11 +31,9 @@ function getRoomInfo(rid, cb) {
 //设置九宫格键盘
 function keyboard(letterPos, english){  
   if (!letterPos) {
-    console.log('letterPos传入值为空');
     return
   }
   if (!english) {
-    console.log('获取翻牌键盘时english传入值为空');
     return
   }
   let st = new Set();
@@ -57,7 +55,6 @@ function keyboard(letterPos, english){
 
 function quanpinKeyboard(english) {
   if (!english) {
-    console.log('获取全拼键盘时english传入值为空');
     return
   }
   let pos = [];
@@ -65,7 +62,6 @@ function quanpinKeyboard(english) {
   while(--idx > -1) {
     pos.push(idx);
   }
-  console.log(english, pos, 'quanpinKeyboard_pos')
   return keyboard(pos, english);
 }  
  //每回合的中文名字
@@ -138,7 +134,6 @@ function getOptions(question, type){
     })
     v.push(question.english)
   }
-  console.log(v)
   return v.sort((a, b) => { return Math.random() - 0.5 });
 }
 

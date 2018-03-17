@@ -84,7 +84,6 @@ Page({
   },
 
   buy: function () {
-    console.log(345)
     doFetch('weChat.minapppay', 
     { 
       payCount: this.data.shopData[this.data.point],
@@ -99,7 +98,6 @@ Page({
         signType: r.data.payload.signType,
         paySign: r.data.payload.paySign,
         success(res) {
-          console.log(res)
           app.globalData.personalInfo.userInfo.items = res.data
           
           wx.showToast({

@@ -33,7 +33,6 @@ Component({
       obj.day = '第'+(i+1)+'天'
       reward[i] = obj
     }
-    console.log(reward)
     this.setData({
       reward:reward
     })
@@ -46,13 +45,11 @@ Component({
   methods: {
     getReward() {
       doFetch('english.signin', {}, res => {
-        console.log(res,'landingSuc')
         if(res.code==0){
           this.setData({
             getReward:true
           })
           time = setTimeout(() => {
-            console.log(111)
             this.triggerEvent("hide")
           }, 1000)
         }

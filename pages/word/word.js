@@ -42,7 +42,6 @@ Page({
       descript: dsc
     })
     doFetch('english.develop',{},(res)=>{
-      console.log(res.data);
       this.setData({
         knowInfo: res.data
       })
@@ -178,7 +177,6 @@ Page({
     }
     else{
       doFetch('english.develop', {}, (res) => {
-        console.log(res.data);
         this.setData({
           knowInfo: res.data
         })
