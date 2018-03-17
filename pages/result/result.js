@@ -2,6 +2,7 @@
 const app = getApp()
 import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.js';
 import { Item } from '../../sheets.js'
+import { getRankFrame } from '../../utils/util.js'
 let map = [];
 
 Page({
@@ -22,7 +23,9 @@ Page({
     iconName:'',
     level:0,
     show:false,
-    rid: null
+    rid: null,
+    frameSelf: '',//我的段位头像框
+    frameOther: '',//对战玩家的段位头像框
   },
   onLoad: function (e) {
     let hasMap = map.every(v=>{
@@ -71,7 +74,9 @@ Page({
         gold: pkResult.gold,
         exp: pkResult.exp,
         isSelf: pkResult.resultLeft,
-        notSelf: pkResult.resultRight
+        notSelf: pkResult.resultRight,
+        frameSelf: getRankFrame(pkResult.resultLeft.info.character.season),
+        frameOther: getRankFrame(pkResult.resultRight.info.character.season)
       })
     }
     else{
@@ -80,7 +85,9 @@ Page({
         gold: pkResult.gold,
         exp: pkResult.exp,
         isSelf: pkResult.resultRight,
-        notSelf: pkResult.resultLeft
+        notSelf: pkResult.resultLeft,
+        frameSelf: getRankFrame(pkResult.resultRight.info.character.season),
+        frameOther: getRankFrame(pkResult.resultLeft.info.character.season)
       })
     }
    },
