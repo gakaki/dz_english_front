@@ -23,6 +23,7 @@
   padding: 32rpx;
 }
 .user {
+  position: relative;
   display: flex;
   margin-top: 6rpx; 
   height: 172rpx;
@@ -30,6 +31,17 @@
   color: #fff;
   background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-blue.png') no-repeat;
   background-size: 334rpx 172rpx;
+}
+.frame-icon {
+   position: absolute;
+  left: -22rpx;
+  top: -8rpx; 
+  width: 176rpx;
+  height: 141rpx;
+}
+.frame-icon-r {
+  left: auto;
+  right: -22rpx;
 }
 .avatar {
   margin: 9rpx 4rpx 0 10rpx; 
@@ -50,6 +62,7 @@
   width: 110rpx;
 }
 .user-r {
+  position: relative;
   flex-direction: row-reverse;
   background: url('https://gengxin.odao.com/update/h5/yingyu/competition/ava-red.png') no-repeat;
   background-size: 334rpx 172rpx;

@@ -100,7 +100,6 @@ Page({
     this.setData({
       frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
-    console.log(this.data.frame,'frame')
   },
   /**
    * 生命周期函数--监听页面卸载

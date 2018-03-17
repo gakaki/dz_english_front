@@ -14,7 +14,7 @@
   font: bold 32rpx/1 'Microsoft YaHei';
   color: #4b65b7;
   text-align: center;
-  box-shadow: 0 -4rpx 0 #dedede inset, 0 6rpx 3rpx rgba(98, 147, 196, 0.6);
+  /* box-shadow: 0 -4rpx 0 #dedede inset, 0 6rpx 3rpx rgba(98, 147, 196, 0.6); */
   background: #fff;
 }
 .round-title {
@@ -178,7 +178,8 @@
   line-height: 123rpx;
   font: bold 44rpx/123rpx 'Microsoft YaHei';
   background: #fff;
-  box-shadow: 0 -4rpx 0 #dedede inset, 0 4rpx 3rpx rgba(98, 147, 196, 0.6);
+  /* box-shadow: 0 -4rpx 0 #dedede inset, 0 4rpx 3rpx rgba(98, 147, 196, 0.6); */
+    box-shadow:  0 4rpx 3rpx rgba(98, 147, 196, 0.6);
 }
 
 .true {

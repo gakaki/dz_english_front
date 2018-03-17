@@ -1,5 +1,5 @@
 // components/compete/compete.js
-
+import { getRankFrame } from '../../utils/util.js'
 const app = getApp()
 Component({
   /**
@@ -19,11 +19,26 @@ Component({
     },
     userLeft: {
       type:Object,
-      value:null
+      value:null,
+      observer: function (v) {
+        if (v && v.character) {
+          this.setData({
+            userLeftImg: getRankFrame(v.character.season)
+          })
+        }
+      }
     },
     userRight: {
       type:Object,
-      value: null
+      value: null,
+      observer: function (v) {
+        if (v && v.character) {
+          this.setData({
+            userRightImg: getRankFrame(v.character.season)
+          })
+        }
+        
+      }
     },
     showMask: {
       type: Boolean,
@@ -37,7 +52,9 @@ Component({
   data: {
     userInfo:{},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userLeftImg:'',
+    userRightImg:''
   },
   attached(){
     if (app.globalData.userInfo) {
