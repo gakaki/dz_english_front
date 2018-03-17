@@ -243,9 +243,7 @@ Page({
 
     if (!answerSend) {
       //通知后端，一题完成
-      console.log('通知后端，一题完成')
       canClick = false;
-      console.log(this.data.word.id,'==================>wid')
       if(round > 5) {return}
       wsSend('roundend', {
         rid: rid,

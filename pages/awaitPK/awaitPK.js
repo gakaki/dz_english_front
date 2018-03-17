@@ -92,7 +92,7 @@ Page({
       this.setData({
         matchSuc:true
       })
-      console.log('收到匹配成功消息，下面转入对战页面')
+      // console.log('收到匹配成功消息，下面转入对战页面')
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
@@ -109,7 +109,6 @@ Page({
   onUnload: function () {
     //如果匹配未成功离开此页面则认为取消匹配
     if (!this.data.matchSuc && !this.data.awaiting){
-      console.log('cancel')
       wsSend('cancelmatch')
       let pages = getCurrentPages()
       let prevPage = pages[pages.length - 2]
