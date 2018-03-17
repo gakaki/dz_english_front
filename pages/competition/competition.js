@@ -65,8 +65,7 @@ Page({
     starMcHt2: 275,
     showMask: false,
     maskPos:0,
-    isFriend:false
-
+    isFriend:false,
   },
   onLoad(options) {
     pkEnd = false;

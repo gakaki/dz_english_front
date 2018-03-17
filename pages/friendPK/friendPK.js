@@ -44,7 +44,7 @@ Page({
             isOwner: true
           })
         }
-
+        
         if (res.data.userList.length == 1) {
           // 显示段位框
           this.setData({
