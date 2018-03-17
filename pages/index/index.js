@@ -332,6 +332,10 @@ Page({
             canUp: true
           })
           return
+        }else {
+          this.setData({
+            canUp: false
+          })
         }
       }
     }, () => { }, app)
