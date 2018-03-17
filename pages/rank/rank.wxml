@@ -21,7 +21,7 @@
         </image>
       </view> -->
       <view wx:if="{{rankFrame[index].length > 0}}" class="frame">
-        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}"></image>
+        <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}.png"></image>
         <view class="header flex">
           <image bindtap='toSelf' class="userinfo-avatar" src="{{item.avatarUrl}}"></image>
         </view>
@@ -49,7 +49,7 @@
   </scroll-view>
 
   <view class="bot-bg flex">
-    <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>查看上赛季排行榜</text>
+    <text class="pre-season" hidden='{{tabAct}}' bindtap='preSeason'>{{tebSeason}}</text>
     <image class="hxb" src="https://gengxin.odao.com/update/h5/yingyu/rank/hengxian.png"></image>
   </view>
 
