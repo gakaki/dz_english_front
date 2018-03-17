@@ -58,7 +58,6 @@ Page({
       show: false
     })
     doFetch('english.makesurprise', { itemId: this.data.itemId }, (res) => {
-      console.log(res.data)
       let tempArr = []
       let data = res.data
       let arrr = []
@@ -74,22 +73,16 @@ Page({
           }
           return o
         })
-
-       
       }
-      console.log(arrr)
       this.setData({
         backData: arrr
       })
-
-      console.log(tempArr)
       let aa = tempArr.map(o => {
         let iInfo
         for (let k in o) {
           iInfo = sheet.Item.Get(k)
           iInfo.cfg['count'] = o[k]///need copy
         } 
-        console.log(iInfo)
         return iInfo
       })
       this.setData({
