@@ -215,30 +215,33 @@ Page({
 
   },
   loginedShare(options){
-    doFetch('english.roomisexist', {
-      rid: options.rid
-    }, (res) => {
-      let rid = options.rid;
-      if (res.code == 0) {
-        if (res.data && res.data.roomStatus == 1) {
-          wx.navigateTo({
-            url: '../friendPK/friendPK?rid=' + rid,
+    setTimeout(()=>{
+      doFetch('english.roomisexist', {
+        rid: options.rid
+      }, (res) => {
+        console.log(res,'好友PK')
+        let rid = options.rid;
+        if (res.code == 0) {
+          if (res.data && res.data.roomStatus == 1) {
+            wx.navigateTo({
+              url: '../friendPK/friendPK?rid=' + rid,
+            })
+          }
+          else if (res.data && res.data.roomStatus == 2) {
+            wx.navigateTo({
+              url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
+            })
+          }
+        }
+        else {
+          wx.showToast({
+            title: '房主离开房间',
+            icon: 'none',
+            duration: 2000
           })
         }
-        else if (res.data && res.data.roomStatus == 2) {
-          wx.navigateTo({
-            url: '../competition/competition?rid=' + options.rid + '&a=' + res.data.roomStatus,
-          })
-        }
-      }
-      else {
-        wx.showToast({
-          title: '房主离开房间',
-          icon: 'none',
-          duration: 2000
-        })
-      }
       }, () => { }, app)
+    },500)
   },
   shareTo(options) {
     if (options && options.friendPK) {
