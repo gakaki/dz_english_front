@@ -38,7 +38,7 @@
           <text class="adress">{{item.city?item.city:''}}</text>
         </view>
         <view class='info-bot f-r-sb'>
-          <text class="ch">{{item.rank}}</text>
+          <text class="ch">{{item.lRank}}</text>
           <view class="star-box f-r-fs">
             <image class="star-icon" src="https://gengxin.odao.com/update/h5/yingyu/rank/star-icon.png"></image>
             <text class="star-num">{{item.star}}</text>

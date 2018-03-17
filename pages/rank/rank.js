@@ -16,7 +16,7 @@ Page({
       if (res.data.length > 0) {
         this.setData({
           rankFrame: res.data.map(o => {
-            return getPersonFrame(o.rank)
+            return getPersonFrame(o.lastRank)
           })
         })
 
@@ -36,13 +36,11 @@ Page({
     }, () => { }, app)
   },
   getSegment: function (item) {
-    let obj = {}
-    obj = item
-    obj.rank = sheet.Stage.Get(obj.rank).stage
-    if (obj.hasOwnProperty('city') == false || obj.city == ' ') {
-      obj.city = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
+    item.lRank = sheet.Stage.Get(item.rank).stage
+    if (item.hasOwnProperty('city') == false || item.city == ' ') {
+      item.city = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
     }
-    return obj
+    return item
   },
   toDes(e) {
     if (app.preventMoreTap(e)) { return; }
@@ -59,7 +57,7 @@ Page({
         if (res.data.length > 0) {
           this.setData({
             rankFrame: res.data.map(o => {
-              return getPersonFrame(o.rank)
+              return getPersonFrame(o.lastRank)
             })
           })
           this.setData({
@@ -91,7 +89,7 @@ Page({
       if (res.data.length > 0) {
         this.setData({
           rankFrame: res.data.map(o => {
-            return getPersonFrame(o.rank)
+            return getPersonFrame(o.lastRank)
           })
         })
         this.setData({
@@ -120,7 +118,7 @@ Page({
           if (typeof (res.data) != 'undefined' && res.data.length > 0) {
             this.setData({
               rankFrame: res.data.map(o => {
-                return getPersonFrame(o.rank)
+                return getPersonFrame(o.lastRank)
               })
             })
             this.setData({
