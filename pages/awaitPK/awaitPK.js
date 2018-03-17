@@ -92,7 +92,7 @@ Page({
       this.setData({
         matchSuc:true
       })
-      // console.log('收到匹配成功消息，下面转入对战页面')
+      console.log('收到匹配成功消息，下面转入对战页面')
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid,
       })
