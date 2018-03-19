@@ -10,7 +10,8 @@ Page({
     desc: '',
     src: '',
     itemId: 0,
-    awardData: []
+    awardData: [],
+    noProp:true
   },
   onLoad() {
     doFetch('english.showpersonal', {}, (res) => {
@@ -33,6 +34,12 @@ Page({
         o.cfg['num'] = items[id] ? items[id] : 0
         return o
       })
+    })
+    let noProp = this.data.backData.every(o => {
+      return o.cfg['num'] == 0 
+    })
+    this.setData({
+      noProp
     })
   },
   filter(item) {
