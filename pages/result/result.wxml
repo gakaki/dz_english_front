@@ -21,7 +21,7 @@
           <text class="wenzi-lan">{{isSelf.info.nickName}}</text>
         </view>
         <view>
-          <image class="touxiangkuang touxiangkuang-lan" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}"></image>
+          <image class="touxiangkuang touxiangkuang-lan" wx:if='{{frameSelf}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}"></image>
           <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
         </view>
         
@@ -39,7 +39,7 @@
           <text class="wenzi-hong">{{notSelf.info.nickName}}</text>
         </view>
         <view>
-          <image class="touxiangkuang touxiangkuang-hong" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}"></image>
+          <image class="touxiangkuang touxiangkuang-hong" wx:if='{{frameOther}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}"></image>
           <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
         </view>
         
