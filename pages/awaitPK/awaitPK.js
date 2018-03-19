@@ -2,7 +2,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start  } from '../../utils/rest.js';
 let time=null
 
 Page({
@@ -100,6 +100,9 @@ Page({
     this.setData({
       frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
+  },
+  reConnect() {
+    start()
   },
   /**
    * 生命周期函数--监听页面卸载

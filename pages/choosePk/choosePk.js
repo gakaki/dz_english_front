@@ -150,6 +150,12 @@ Page({
       }
     }, () => { }, app)
   },
+  showTip(){
+    wx.showToast({
+      title: '该段位未解锁',
+      icon: 'none'
+    })
+  },
   starAnimation(res,stage,rankInfo) {
     let changeInfo = app.globalData.pkResult.changeInfo
     //判断是否提升段位

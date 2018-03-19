@@ -36,7 +36,7 @@
     </view>
     <view class="button f-r-sb">
       <view class="btn give-up}}" bindtap='giveUp'>
-        <text>放弃</text>
+        <text>退出房间</text>
       </view>
       <view class="btn invite" bindtap='start' wx:if="{{list.length>=2 && isOwner}}">
         <text>开始</text>
