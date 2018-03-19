@@ -1,6 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { doFetch } from '../../utils/rest.js';
+import { Item } from '../../sheets.js'
 let time = null
 
 Component({
@@ -49,8 +50,15 @@ Component({
           this.setData({
             getReward:true
           })
+          let title = '获得';
+          res.data.reward.forEach(v=>{
+            title += Item.Get(v.k).name + '×' + v.v + ' '
+          })
+          wx.showToast({
+            title: title
+          })
           time = setTimeout(() => {
-            this.triggerEvent("hide")
+            this.triggerEvent("hide");
           }, 1000)
         }
       }, () => { }, app)

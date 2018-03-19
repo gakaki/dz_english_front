@@ -84,10 +84,11 @@ Page({
   },
 
   buy: function () {
+    let _that = this;
     doFetch('weChat.minapppay', 
     { 
-      payCount: this.data.shopData[this.data.point],
-      payCount:1,
+      // payCount: this.data.shopData[this.data.point],
+      payCount: 1,
       good: this.data.point+1
     }, (r) => {
       this.hide()
@@ -99,9 +100,13 @@ Page({
         paySign: r.data.payload.paySign,
         success(res) {
           app.globalData.personalInfo.userInfo.items = res.data
-          
+          let title = '获得'
+          console.log(_that.data.itemInfo[_that.data.point],'购买成功,获得')
+          let name = _that.data.itemInfo[_that.data.point].cfg.name
+          title += name + '×' + _that.data.shopNum[_that.data.point] + ' ';
+          console.log(title)
           wx.showToast({
-            title: '购买成功',
+            title: title,
             icon: 'success',
             duration: 2000,
             mask: true

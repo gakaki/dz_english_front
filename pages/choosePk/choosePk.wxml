@@ -32,7 +32,7 @@
   <scroll-view scroll-y class="segment-box" scroll-into-view="rank{{toView}}" scroll-with-animation="true">
 
     <view id="rank{{index}}" wx:for="{{stage}}" wx:key="{{index}}" class="segment-list f-r-fs" data-rank="{{index+1}}" bindtap='match'>
-      <view class="lock flex" hidden='{{index<stage.length-1 || rank==15 }}'>
+      <view class="lock flex" hidden='{{index<stage.length-1 || rank==15 }}' bindtap='showTip'>
         <image class="lock-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/lock.png"></image>
       </view>
       <view class="kuang" wx:if="{{index>5}}">
@@ -70,10 +70,10 @@
       </view>
     </view>
 
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
-    <image class="point" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
-    <image class="wenhao-icon" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png" hidden="{{rank==15}}"></image>
+    <image class="point"  bindtap='showTip' src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
+    <image class="point"  bindtap='showTip' src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
+    <image class="point"  bindtap='showTip' src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/point.png" hidden="{{rank==15}}"></image>
+    <image class="wenhao-icon"  bindtap='showTip' src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/wenhao.png" hidden="{{rank==15}}"></image>
   </scroll-view>
 
 

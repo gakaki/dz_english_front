@@ -23,12 +23,12 @@
       <view wx:if="{{rankFrame[index].length > 0}}" class="frame">
         <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame[index]}}"></image>
         <view class="header flex">
-          <image bindtap='toSelf' class="userinfo-avatar" src="{{item.avatarUrl}}"></image>
+          <image class="userinfo-avatar" src="{{item.avatarUrl}}"></image>
         </view>
       </view>
 
       <view wx:if="{{rankFrame[index].length == 0}}" class="header1 flex">
-        <image bindtap='toSelf' class="userinfo-avatar1" src="{{item.avatarUrl}}"></image>
+        <image class="userinfo-avatar1" src="{{item.avatarUrl}}"></image>
       </view>
 
       <view class="info f-c-sb">

@@ -1,4 +1,4 @@
-<view class="awaitPK">
+<view class="awaitPK" bindtap='reConnect'>
   <view class="chuangkou">
     <view class="duihuakuang">
       <text class="duihuakuang-wenzi font">等待玩家链接···</text>
