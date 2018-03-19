@@ -5,7 +5,7 @@ import { doFetch, shareSuc } from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js'
 Page({
   data: {
-    userInfo: {},
+    ava: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     info: {},
@@ -78,7 +78,7 @@ Page({
 
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        ava: app.globalData.userInfo.avatarUrl,
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {
@@ -86,7 +86,7 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
+          ava: res.userInfo.avatarUrl,
           hasUserInfo: true
         })
       }
@@ -96,7 +96,7 @@ Page({
         success: res => {
           app.globalData.userInfo = res.userInfo
           this.setData({
-            userInfo: res.userInfo,
+            ava: res.userInfo.avatarUrl,
             hasUserInfo: true
           })
         }
@@ -106,7 +106,7 @@ Page({
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      ava: e.detail.userInfo.avatarUrl,
       hasUserInfo: true
     })
   },
