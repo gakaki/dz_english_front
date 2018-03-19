@@ -51,14 +51,8 @@ Page({
       gold: option.gold
     }) 
     
-    wsSend('ranking', {
-      rankType: option.type
-    })
-    
-  },
-  onReady: function() {
     //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
-    wsReceive('needGold',res=>{
+    wsReceive('needGold', res => {
       wx.showToast({
         title: '金币不足',
         icon: 'none',
@@ -70,40 +64,42 @@ Page({
         })
       }, 2500)
     })
-    wsReceive('matchFailed',res=>{
+    wsReceive('matchFailed', res => {
       this.setData({
-        awaiting:true
+        awaiting: true
       })
       wx.showToast({
         title: '暂未匹配到对手，请稍后再试',
         icon: 'none',
         duration: 2000
       })
-      time = setTimeout(function(){
+      time = setTimeout(function () {
         wx.navigateBack({
           delta: 1
         })
-      },2100)
+      }, 2100)
     })
-    wsReceive('matchSuccess',res=>{
+    wsReceive('matchSuccess', res => {
       this.setData({
-        matchSuc:true
+        matchSuc: true
       })
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
         })
-      },500)
+      }, 500)
     })
+    wsSend('ranking', {
+      rankType: option.type
+    })
+    
   },
   onShow() {
     this.setData({
       frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
   },
-  reConnect() {
-    start()
-  },
+
   /**
    * 生命周期函数--监听页面卸载
    */

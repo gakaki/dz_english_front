@@ -12,6 +12,7 @@
 }
 
 .bp-box {
+  position: relative;
   width: 690rpx;
   height: 906rpx;
   padding: 26rpx 0 0 0;
@@ -212,4 +213,13 @@
   padding: 26rpx 0 0 0;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+.tip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  text-align: center;
+  color: #ccc;
 }

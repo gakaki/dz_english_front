@@ -1,6 +1,6 @@
 <view class="con-bg f-c-fs con">
   <scroll-view scroll-y class="sv">
-    <view class="bp-box f-r-fs">
+    <view class="bp-box f-r-fs" wx:if='{{item.cfg.num}}'>
       <view wx:for="{{backData}}" wx:key="{{index}}" wx:if='{{item.cfg.num}}' class="item f-c-fs" data-name="{{item.cfg.name}}" data-desc="{{item.cfg.description}}" data-id="{{item.cfg.id}}" data-src="{{item.cfg.icon}}" bindtap='showPop'>
         <text class="desc">{{item.cfg.name}}</text>
         <view class="img-box flex">
@@ -11,10 +11,9 @@
           <text class="x">X</text>
           <text class="count">{{item.cfg.num}}</text>
         </view>
-
       </view>
-
     </view>
+    <view class='tip' wx:else=''>暂时无可用道具</view>
   </scroll-view>
   <view wx:if="{{awardShow}}" class="award-pop f-r-fs">
     <scroll-view scroll-y class="pop-sv">
