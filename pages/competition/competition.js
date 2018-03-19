@@ -155,14 +155,22 @@ Page({
    
   },
   onHide(){
-    checkoutIsRoom(rid)
+    checkoutIsRoom(rid);
+    this.audioCtx && this.audioCtx.destroy();
+    this.audioCtx = null;
+    this.audioTrue && this.audioTrue.destroy();
+    this.audioTrue = null;
+    this.audioFalse && this.audioFalse.destroy();
+    this.audioFalse = null;
+    this.audioSelect && this.audioSelect.destroy();
+    this.audioSelect = null;
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
-    this.audioTrue = wx.createAudioContext('true')
-    this.audioFalse = wx.createAudioContext('false')
-    this.audioSelect = wx.createAudioContext('select')
+    this.audioCtx = wx.createInnerAudioContext('myAudio')
+    this.audioTrue = wx.createInnerAudioContext('true')
+    this.audioFalse = wx.createInnerAudioContext('false')
+    this.audioSelect = wx.createInnerAudioContext('select')
     
   },
   roundInit(){
