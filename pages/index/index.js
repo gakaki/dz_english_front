@@ -8,7 +8,8 @@ let map = [];
 Page({
   data: {
     time: 10,
-    userInfo: {},
+    nn: '',
+    ava: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     lvl: 0,
@@ -190,7 +191,8 @@ Page({
 
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        ava: app.globalData.userInfo.avatarUrl,
+        nn: app.globalData.userInfo.nickName,
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {
@@ -198,7 +200,8 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
+          ava: res.userInfo.avatarUrl,
+          nn: res.userInfo.nickName,
           hasUserInfo: true
         })
       }
@@ -208,7 +211,8 @@ Page({
         success: res => {
           app.globalData.userInfo = res.userInfo
           this.setData({
-            userInfo: res.userInfo,
+            ava: res.userInfo.avatarUrl,
+            nn: res.userInfo.nickName,
             hasUserInfo: true
           })
         }
@@ -287,7 +291,8 @@ Page({
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      ava: e.detail.userInfo.avatarUrl,
+      nn: e.detail.userInfo.nickName,
       hasUserInfo: true
     })
   },

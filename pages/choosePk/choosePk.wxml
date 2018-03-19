@@ -8,16 +8,16 @@
       <view wx:if="{{rankFrame.length > 0}}" class="frame">
         <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
         <view class="header flex">
-          <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+          <image bindtap='toSelf' class="userinfo-avatar" src="{{ava}}"></image>
         </view>
       </view>
 
       <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
       
-        <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
+        <image bindtap='toSelf' class="userinfo-avatar1" src="{{ava}}"></image>
       </view>
       <view class="top-mid f-c-sb">
-        <text class="nn">{{userInfo.nickName}}</text>
+        <text class="nn">{{nn}}</text>
         <view class="gold-box f-r-fs">
           <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
           <text class="gold-count">{{backuserInfo.items[1] || 0}}</text>

@@ -6,7 +6,8 @@ let time = null
 Page({
   data: {
     rid:null,
-    userInfo: {},
+    ava: '', //头像
+    nn: '', //昵称
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isFirstClick:true,
@@ -58,7 +59,8 @@ Page({
 
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        ava: app.globalData.userInfo.avatarUrl,
+        nn: app.globalData.userInfo.nickName,
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {
@@ -66,7 +68,8 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
+          ava: app.globalData.userInfo.avatarUrl,
+          nn: app.globalData.userInfo.nickName,
           hasUserInfo: true
         })
       }
@@ -76,7 +79,8 @@ Page({
         success: res => {
           app.globalData.userInfo = res.userInfo
           this.setData({
-            userInfo: res.userInfo,
+            ava: app.globalData.userInfo.avatarUrl,
+            nn: app.globalData.userInfo.nickName,
             hasUserInfo: true
           })
         }

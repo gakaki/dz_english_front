@@ -5,15 +5,15 @@
     <view wx:if="{{rankFrame.length>0}}" class="frame" bindtap='toSelf'>
       <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
       <view class="header flex">
-        <image bindtap='toSelf' class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <image bindtap='toSelf' class="userinfo-avatar" src="{{ava}}"></image>
       </view>
     </view>
     <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
-      <image bindtap='toSelf' class="userinfo-avatar1" src="{{userInfo.avatarUrl}}"></image>
+      <image bindtap='toSelf' class="userinfo-avatar1" src="{{ava}}"></image>
     </view>
 
     <view class="info f-c-sa">
-      <text class="nn">{{userInfo.nickName}}</text>
+      <text class="nn">{{nn}}</text>
       <view class="sec f-r-fs">
         <view class="gold-box f-r-fs">
           <image class="gold-big " src="https://gengxin.odao.com/update/h5/yingyu/common/gold-big.png"></image>
