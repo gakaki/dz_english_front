@@ -193,7 +193,6 @@ Page({
       nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
       bgIndex: changeArrAllValue(this.data.bgIndex, false),
-      
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
       roundAnswer:{},
