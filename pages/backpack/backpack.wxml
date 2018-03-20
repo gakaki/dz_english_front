@@ -13,7 +13,7 @@
         </view>
       </view>
     </view>
-    <view class='tip' wx:if='{{noProp}}'>暂时无可用道具{{backData.length }}</view>
+    <view class='tip' wx:if='{{noProp}}'>暂时无可用道具</view>
   </scroll-view>
   <view wx:if="{{awardShow}}" class="award-pop f-r-fs">
     <scroll-view scroll-y class="pop-sv">
