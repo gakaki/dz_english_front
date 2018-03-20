@@ -129,18 +129,6 @@
   height:239rpx;
 }
 
-/* .point{
-  width: 8rpx;
-  height: 8rpx;
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 77rpx;
-  left: 0;
-  animation: lpoint 1s linear infinite; 
-  box-shadow: 0 0 2rpx #f00;
-} */
-
 .pk-hong{
   width:405rpx;
   height:239rpx;
@@ -312,70 +300,13 @@
   overflow: hidden;
 }
 
-.animate{
-  width: 200rpx;
-  height: 122rpx;
-  position: absolute;
-  z-index: 0;
-}
-
-.animate-left{
-  top: 92rpx;
-  left: 298rpx;
-  transform: scalex(-1);
-}
-
-.animate-right{
-  top: 871rpx;
-  right: 320rpx;
-}
-
 .shandian{
   opacity: 0;
   animation: opa .5s linear .5s infinite forwards;
 }
 
-.animation-dianliu-lan{
-  position: absolute;
-  top: 520rpx;
-}
-
 .dianliu-yincang{
   opacity: 0;
-}
-
-.animation-dianliuL{
-  width: 232rpx;
-  height: 142rpx;
-}
-
-.animation-dianliu-hong{
-  position: absolute;
-  top: 520rpx;
-  right: 0rpx;
-}
-
-.animation-dianliuR{
-  width: 232rpx;
-  height: 142rpx;
-}
-
-.p-lizi{
-  width: 44rpx;
-  height: 49rpx;
-  margin-left: 270rpx;
-  margin-top: 12rpx;
-  position: absolute;
-  animation: pk .5s ease-in .5s forwards; 
-}
-
-.k-lizi{
-  width: 94rpx;
-  height: 46rpx;
-  margin-left: 400rpx;
-  margin-top: -25rpx;
-  position: absolute;
-  animation: pk .5s ease-in .5s forwards; 
 }
 
 
@@ -417,36 +348,3 @@
     opacity: 1;
   }
 }
-
-
-
-/* @keyframes lpoint{
-  0%{
-    left:0;
-    top: 77rpx;
-  }
-  45%{
-    left: 135rpx;
-    top: 42rpx;
-  }
-  55%{
-    left: 160rpx;
-    top: 54rpx;
-  }
-  65%{
-    left: 176rpx;
-    top: 80rpx;
-  }
-  90%{
-    left: 190rpx;
-    top:124rpx;
-  }
-  95%{
-    left: 210rpx;
-    top: 140rpx;
-  }
-  100%{
-    left: 224rpx;
-    top: 145rpx;
-  } 
-} */

@@ -7,7 +7,6 @@
         <text class="lan-nicheng font">{{isSelf.info.nickName}}</text>
       </view>
     </view>
-    <!-- <image class="animate animate-left" src="{{animation[index]}}"></image> -->
     <image class="zhejiao" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="lan-tankuang font">
       <view class="lan-liansheng" wx:if="{{isSelf.info.character.winningStreak}}">
@@ -23,18 +22,11 @@
   </view>
   <view class="pk">
     <view class="pk-lan">
-      <!-- <view class="point"></view> -->
       <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-lan.png"></image>
     </view>
     <view class="pk-hong">
       <image src="https://gengxin.odao.com/update/h5/yingyu/duizhan/chatou-hong.png"></image>
     </view>
-    <!-- <view class="animation-dianliu-lan {{yincang}}">
-      <image class="animation-dianliuL" src="{{animation_dianliu_left[index_dianliu]}}"></image>
-    </view>
-    <view class="animation-dianliu-hong {{yincang}}">
-      <image class="animation-dianliuR" src="{{animation_dianliu_right[index_dianliu]}}"></image>
-    </view> -->
     <view class="shandian">
       <image class="dianliu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu.png"></image>
       <image class="dianliu2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dianliu2.png"></image>
@@ -44,8 +36,6 @@
     </view>
     <view class="pk-donghua">
       <image class="pk-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/PK.png"></image>
-      <!-- <image class="p-lizi" src="{{animation_p_lizi[index_p_lizi]}}"></image>
-      <image class="k-lizi" src="{{animation_k_lizi[index_k_lizi]}}"></image> -->
     </view>
   </view>
   <view class="hong">
@@ -60,7 +50,6 @@
       </view>
       <text class="hong-dengji hong-xinxi">LV.{{notSelf.info.character.level}}</text>
     </view>
-    <!-- <image class="animate animate-right" src="{{animation[index]}}"></image> -->
     <image class="zhejiao-2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="hong-shouji">
       <view class="hong-ziliao">
