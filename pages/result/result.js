@@ -116,7 +116,7 @@ Page({
   },
   onShareAppMessage: function (res) {
     return {
-      title: app.globalData.str4,
+      title: '我在英文乐翻天对战中获得了' + this.data.isSelf.score + '分，来试试你能的多少分？',
       path: '/pages/index/index',
       imageUrl: 'https://gengxin.odao.com/update/h5/yingyu/share/share.png',
       success: function () {
