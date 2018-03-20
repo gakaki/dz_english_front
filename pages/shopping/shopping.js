@@ -91,6 +91,7 @@ Page({
       payCount: 1,
       good: this.data.point+1
     }, (r) => {
+      console.log(r.data.payload)
       this.hide()
       wx.requestPayment({
         timeStamp: r.data.payload.timeStamp,
