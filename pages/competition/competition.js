@@ -35,7 +35,7 @@ Page({
     word: {},
     chinese:[],
     rightAnswer: '',//正确答案
-    options:[],//答案选项
+    options: [],//答案选项
     letters: [],  //单词变成字母
     hideLetters: [false,false,false,false,false], //要隐藏的字母
     englishWords: [],

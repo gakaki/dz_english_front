@@ -186,11 +186,12 @@
 
 .one-select {
   position: relative;
-  width: 500rpx;
+  width: 494rpx;
   height: 124rpx;
+  box-sizing: border-box;
+  padding: 0 62rpx;
   border-radius: 20rpx;
   text-align: center;
-  line-height: 123rpx;
   font: 52rpx/124rpx 'Arial';
   background: #fff;
   /* box-shadow: 0 -4rpx 0 #dedede inset, 0 4rpx 3rpx rgba(98, 147, 196, 0.6); */
@@ -198,6 +199,16 @@
 }
 .one-select-chinese {
   font: bold 32rpx/124rpx 'Microsoft YaHei';
+}
+.list-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* display: inline-block; */
+  width: 364rpx;
+  height: 124rpx;
+  overflow: hidden;
+  color: #000;
 }
 .circle {
   position: absolute;
