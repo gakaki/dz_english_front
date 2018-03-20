@@ -3,7 +3,8 @@ require('./polyfill.js')();
 import { start } from 'utils/rest.js';
 const sheet = require('sheets.js')
 App({
-  onLaunch: function () {
+  onLaunch: function (e) {
+    this.globalData.referrerInfo = e;
     wx.onNetworkStatusChange(function (res) {
       if (res.networkType == 'none') {
         wx.showLoading({
@@ -20,6 +21,7 @@ App({
     
   },
   globalData: {
+    referrerInfo: null,
     wsConnect: false,
     fetchIndex: null, //_fetchIntercept里面的idx
     audio:true, //音效开关。默认打开

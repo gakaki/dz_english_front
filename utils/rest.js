@@ -124,9 +124,10 @@ function userLogin(suc, err) {
           app.globalData.logined = true;
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
-
-
           })
+          doFetch('weChat.minappreferrer', {
+            referrerInfo: app.globalData.referrerInfo
+          }, () => {  })
         }
       }, err);
 
