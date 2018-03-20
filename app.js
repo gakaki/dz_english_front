@@ -3,8 +3,7 @@ require('./polyfill.js')();
 import { start } from 'utils/rest.js';
 const sheet = require('sheets.js')
 App({
-  onLaunch: function (e) {
-    console.log(e,'onLaunchhhhhhhhhhhhhhhhhhhh')
+  onLaunch: function () {
     wx.onNetworkStatusChange(function (res) {
       if (res.networkType == 'none') {
         wx.showLoading({

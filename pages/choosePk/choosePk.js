@@ -37,17 +37,7 @@ Page({
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/tuofu.png",
       "https://gengxin.odao.com/update/h5/yingyu/choosePK/yasi.png"]
   },
-  onLoad(options) {
-      wsReceive('matchFailed', res => {
-        if (res.data.isGiveUp) {  //用户匹配到，放弃了战斗
-          wx.showToast({
-            title: '你放弃了战斗',
-            icon: 'none',
-            duration: 2000
-          })
-        } 
-      })
-
+  onLoad(options) {   
       doFetch('english.getseason',{},res=>{
       this.setData({
         season: sheet.Season.Get(res.data.season)
@@ -97,6 +87,17 @@ Page({
       })
     }
   
+  },
+  onReady() {
+    wsReceive('cancelSuccess', res => {
+      wsReceive('matchSuccess', res => {
+        wx.showToast({
+          title: '您已放弃对战',
+          icon: 'none',
+          duration: 2000
+        })
+      })
+    })
   },
   onShow() {
     if (this.data.rid) {
@@ -205,7 +206,7 @@ Page({
   
   onUnload() {
     clearTimeout(time)
-    wsClose(['matchFailed'])
+    wsClose(['cancelSuccess', 'matchSuccess'])
     this.setData({
       isFirstClick: true
     })

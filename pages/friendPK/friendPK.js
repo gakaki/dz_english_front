@@ -2,7 +2,7 @@
 const app = getApp()
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
-let exitRoom = true;
+
 Page({
 
   /**
@@ -18,18 +18,17 @@ Page({
     frameSelf:'',
     frameOther:'',
     cancelJoin:false,
-    // starMcWd:200,
-    // starMcHt:122,
-    // startMcResPrefix: 'anima01_',
-    // startMcResStartIdx: 1,
-    // startMcResEndIdx: 18,
+    starMcWd:200,
+    starMcHt:122,
+    startMcResPrefix: 'anima01_',
+    startMcResStartIdx: 1,
+    startMcResEndIdx: 18,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    exitRoom = true;
     this.canJoinRoom(options)
 
       wsReceive('roomInfo', res => {
@@ -37,7 +36,6 @@ Page({
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
           })
-          exitRoom = false;
         }
 
 
@@ -100,11 +98,10 @@ Page({
     
     //监听游戏开始
     wsReceive('matchSuccess', res => {
-      this.data.startGame = true;
+      this.data.startGame = true
       wx.redirectTo({
         url: '../duizhan/duizhan?rid=' + res.data.rid + '&isFriend=true',
       })
-      exitRoom = false;
     })
      
   },
@@ -112,15 +109,6 @@ Page({
     this.setData({
       cancelJoin: true
     })
-    // if (exitRoom) {
-    //   let pages = getCurrentPages();
-    //   if(pages[0].route == 'pages/index/index') {
-    //     pages[0].setData({
-    //       exitRoom: true,
-    //       rid:this.data.rid
-    //     }) 
-    //   }
-    // }
     wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo','joinSuccess'])
   },
   /**

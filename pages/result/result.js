@@ -4,7 +4,6 @@ import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.
 import { Item } from '../../sheets.js'
 import { getRankFrame } from '../../utils/util.js'
 let map = [];
-let isFristClick = true;
 
 Page({
   data: {
@@ -26,11 +25,7 @@ Page({
     show:false,
     rid: null,
     frameSelf: '',//我的段位头像框
-    frameOther: ''//对战玩家的段位头像框
-    
-  },
-  onShow: function(e){
-    isFristClick = true
+    frameOther: '',//对战玩家的段位头像框
   },
   onLoad: function (e) {
     let hasMap = map.every(v=>{
@@ -101,27 +96,18 @@ Page({
     }
   },
   setPageInfo() {
-    if (!isFristClick) { return }
-    isFristClick = false;
     let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2];
-    if (prevPage) {
-      prevPage.setData({
-        fromIndex: false,
-        starAnimation: ''
-      })
-      wx.navigateBack()
-    } else {
-      wx.redirectTo({
-        url: '../index/index',
-      })
-    }    
+    let prevPage = pages[pages.length - 2]
+    prevPage.setData({
+      fromIndex: false,
+      starAnimation: ''
+    })
   },
   toMatch() {
     //是否为好友局
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
-      
+      wx.navigateBack()
     } else {
       wx.redirectTo({
         url: '../friendPK/friendPK',

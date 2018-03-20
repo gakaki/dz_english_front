@@ -139,7 +139,7 @@ Page({
   onUnload() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    if (prevPage && prevPage.data) {
+    if (prevPage.data.starAnimation) {
       prevPage.setData({
         fromIndex: true,
         starAnimation: ''
@@ -193,6 +193,7 @@ Page({
       nineLetters:[],
       rotateList: changeArrAllValue(this.data.rotateList, true),
       bgIndex: changeArrAllValue(this.data.bgIndex, false),
+      
       selectAnswer: [0, 0, 0, 0],
       backClickCount:0,
       roundAnswer:{},

@@ -23,9 +23,7 @@ Page({
     landing: false,   //是否弹出签到窗口
     landingDay: 0,
     shareIn:false,
-    canUp: false,
-    exitRoom:false,
-    rid:null
+    canUp: false
   },
   //事件处理函数
   hi() {
@@ -150,17 +148,11 @@ Page({
     // },2000)
   },
   onLoad: function (options) {
-    this.setData({
-      exitRoom : false
-    })
-    
-
     if(options.ownerLeave) {
       wx.showToast({
         title: '房主已离开'
       })
     }
-    
     
     care(app.globalData, 'personalInfo', v => {
       this.setData({
@@ -334,10 +326,6 @@ Page({
     }, () => { }, app)
   },
   onShow: function () {
-    console.log(this.data.exitRoom)
-    // if (this.data.exitRoom) {
-    //   wsSend('leaveroom', { rid: this.data.rid, a: 'leaveroomIndex页面' })
-    // }
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
@@ -347,5 +335,7 @@ Page({
       }, () => { }, app)
       this.isRedPoint()
     }
+
+
   }
 })

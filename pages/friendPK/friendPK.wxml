@@ -3,8 +3,8 @@
     <view class="waiting">
       <text>等待对手加入···</text>
     </view>
-    <!-- <movieclip class="animate animate-left" resWidth='{{starMcWd}}' resHeight='{{starMcHt}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
-    <movieclip class="animate animate-right" resWidth='{{starMcWd}}' resHeight='{{starMcHt}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip> -->
+    <movieclip class="animate animate-left" resWidth='{{starMcWd}}' resHeight='{{starMcHt}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
+    <movieclip class="animate animate-right" resWidth='{{starMcWd}}' resHeight='{{starMcHt}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
     <view class="pk-info f-r-sb">
       <view class="inviter bg">
         <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}" wx:if="{{frameSelf}}"></image>
