@@ -92,6 +92,7 @@ Page({
 
   //查看知识点具体信息
   check: function (res) {
+    if (app.preventMoreTap(res)) { return; }
     let ind = res.currentTarget.dataset.ind;
     if (this.data.knowInfo[ind+1].level == this.data.maxLevel){
       this.setData({

@@ -4,6 +4,7 @@ import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.
 import { Item } from '../../sheets.js'
 import { getRankFrame } from '../../utils/util.js'
 let map = [];
+let isFristClick = true;
 
 Page({
   data: {
@@ -25,7 +26,11 @@ Page({
     show:false,
     rid: null,
     frameSelf: '',//我的段位头像框
-    frameOther: '',//对战玩家的段位头像框
+    frameOther: ''//对战玩家的段位头像框
+    
+  },
+  onShow: function(e){
+    isFristClick = true
   },
   onLoad: function (e) {
     let hasMap = map.every(v=>{
@@ -96,9 +101,11 @@ Page({
     }
   },
   setPageInfo() {
+    if (!isFristClick) { return }
+    isFristClick = false;
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2];
-    if (prevPage && prevPage.setData) {
+    if (prevPage) {
       prevPage.setData({
         fromIndex: false,
         starAnimation: ''

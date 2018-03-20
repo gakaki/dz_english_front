@@ -90,9 +90,11 @@ Page({
       }
     })
     wsReceive('matchSuccess', res => {
+      console.log(res)
       this.setData({
         matchSuc: true
       })
+      console.log('跳转对战')
       setTimeout(() => {
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
@@ -100,13 +102,13 @@ Page({
       }, 500)
     })
 
-    wsReceive('matchInfo', res => {
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '../duizhan/duizhan?rid=' + res.data.rid,
-        })
-      }, 500)
-    })
+    // wsReceive('matchInfo', res => {
+    //   setTimeout(() => {
+    //     wx.redirectTo({
+    //       url: '../duizhan/duizhan?rid=' + res.data.rid,
+    //     })
+    //   }, 500)
+    // })
 
 
     cancelTime = setTimeout(()=>{
