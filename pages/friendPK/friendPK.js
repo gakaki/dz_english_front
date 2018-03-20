@@ -18,11 +18,6 @@ Page({
     frameSelf:'',
     frameOther:'',
     cancelJoin:false,
-    starMcWd:200,
-    starMcHt:122,
-    startMcResPrefix: 'anima01_',
-    startMcResStartIdx: 1,
-    startMcResEndIdx: 18,
   },
 
   /**
