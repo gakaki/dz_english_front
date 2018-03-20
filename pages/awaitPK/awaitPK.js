@@ -3,7 +3,8 @@ const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start  } from '../../utils/rest.js';
-let time=null
+let time=null;
+let cancelTime = null;
 
 Page({
   data: {
@@ -68,16 +69,25 @@ Page({
       this.setData({
         awaiting: true
       })
-      wx.showToast({
-        title: '暂未匹配到对手，请稍后再试',
-        icon: 'none',
-        duration: 2000
-      })
-      time = setTimeout(function () {
-        wx.navigateBack({
-          delta: 1
+      if(res.data.isGiveUp) {  //用户匹配到，放弃了战斗
+        wx.showToast({
+          title: '你放弃了战斗',
+          icon: 'none',
+          duration: 2000
         })
-      }, 2100)
+      } 
+      if (!res.data.isCancel) {  //超时
+        wx.showToast({
+          title: '暂未匹配到对手，请稍后再试',
+          icon: 'none',
+          duration: 2000
+        })
+        time = setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2100)
+      }
     })
     wsReceive('matchSuccess', res => {
       this.setData({
@@ -89,9 +99,21 @@ Page({
         })
       }, 500)
     })
-    wsSend('ranking', {
-      rankType: option.type
+
+    wsReceive('matchInfo', res => {
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '../duizhan/duizhan?rid=' + res.data.rid,
+        })
+      }, 500)
     })
+
+
+    cancelTime = setTimeout(()=>{
+      wsSend('ranking', {
+        rankType: option.type
+      })
+    },2000)
     
   },
   onShow() {
@@ -104,18 +126,21 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    clearTimeout(cancelTime)
+    clearTimeout(time)
+    wsClose(['matchSuccess', 'matchFailed', 'needGold'])
     //如果匹配未成功离开此页面则认为取消匹配
     if (!this.data.matchSuc && !this.data.awaiting){
       wsSend('cancelmatch')
       let pages = getCurrentPages()
       let prevPage = pages[pages.length - 2]
-      prevPage.setData({
-        fromIndex: true,
-        starAnimation: ''
-      })
+      if (prevPage && prevPage.setData) {
+        prevPage.setData({
+          fromIndex: true,
+          starAnimation: ''
+        })
+      }
     }
-    clearTimeout(time)
-    wsClose(['matchSuccess', 'matchFailed','needGold'])
   },
   onShareAppMessage: function (res) {
     return {

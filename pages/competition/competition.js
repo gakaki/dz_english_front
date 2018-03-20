@@ -139,7 +139,7 @@ Page({
   onUnload() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    if (prevPage.data.starAnimation) {
+    if (prevPage && prevPage.data) {
       prevPage.setData({
         fromIndex: true,
         starAnimation: ''

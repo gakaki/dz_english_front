@@ -97,17 +97,24 @@ Page({
   },
   setPageInfo() {
     let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2]
-    prevPage.setData({
-      fromIndex: false,
-      starAnimation: ''
-    })
+    let prevPage = pages[pages.length - 2];
+    if (prevPage && prevPage.setData) {
+      prevPage.setData({
+        fromIndex: false,
+        starAnimation: ''
+      })
+      wx.navigateBack()
+    } else {
+      wx.redirectTo({
+        url: '../index/index',
+      })
+    }    
   },
   toMatch() {
     //是否为好友局
     if (!app.globalData.pkResult.isFriend){
       this.setPageInfo()
-      wx.navigateBack()
+      
     } else {
       wx.redirectTo({
         url: '../friendPK/friendPK',

@@ -244,15 +244,16 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    wsClose(['pkEndSettlement', 'matchInfo'])
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
 
-    if (this.data.rid) {
+    if (prevPage && prevPage.setData && this.data.rid) {
       prevPage.setData({
         rid: this.data.rid
       })
     }
-    if (prevPage.data.starAnimation){
+    if (prevPage && prevPage.setData){
       prevPage.setData({
         fromIndex: true,
         starAnimation: ''
@@ -263,7 +264,6 @@ Page({
     clearTimeout(timer);
     clearInterval(time_p_lizi);
     clearInterval(time_k_lizi);
-    wsClose(['pkEndSettlement','matchInfo'])
   },
   onShareAppMessage: function (res) {
     return {
