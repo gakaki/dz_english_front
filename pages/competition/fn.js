@@ -87,6 +87,25 @@ function getRoundName(v) {
   return title
 }
 
+//每回合的中文名字
+function getRoundType(v) {
+  console.log(v)
+  let typeName = null;
+  switch (v) {
+    case 1:
+    case 2:
+      typeName = '翻译';
+      break;
+    case 3:
+      typeName = '翻牌';
+      break;
+    case 4:
+      typeName = '拼写';
+      break;
+  }
+  return typeName
+}
+
 //生成指定长度全部是false的数组
 function hideLettersArr(length){  
   let arr = [];
@@ -175,5 +194,6 @@ module.exports = {
   quanpinKeyboard,
   getChineneOptions,
   getEnglishOptions,
-  calculateScore
+  calculateScore,
+  getRoundType
 }

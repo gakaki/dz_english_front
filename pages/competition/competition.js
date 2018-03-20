@@ -3,7 +3,7 @@ const app = getApp()
 import { Word } from '../../sheets.js'
 import { Timeline } from '../../utils/util.js'
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
-import {  getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore} from './fn.js'
+import { getRoomInfo, keyboard, getRoundName, hideLettersArr, randomHideLetters, changeArrAllValue, getEnglishOptions, getChineneOptions, quanpinKeyboard, calculateScore, getRoundType} from './fn.js'
 
 let roundLimit = 5;
 const totalCountTime = 10;
@@ -198,7 +198,8 @@ Page({
       backClickCount:0,
       roundAnswer:{},
       clockTime: 10,
-      chinese:[]
+      chinese:[],
+      roundType:null
     })
 
 
@@ -361,7 +362,11 @@ Page({
   },
   //显示第几题
   showQuestionIdx(){
-    this.setData({title: getRoundName(round)})
+    let roundType = getRoundType(question.type);
+    this.setData({
+      title: getRoundName(round),
+      roundType: roundType
+      })
   },
   audioPlay(){
     this.audioCtx.play()
@@ -420,6 +425,7 @@ Page({
   showChineseOptions(){
     options = getChineneOptions(question);
     this.setData({options})
+    console.log(options)
   },
   showEnglishOptions(){
     options = getEnglishOptions(question);
@@ -664,8 +670,14 @@ Page({
       let answer = this.data.answer;
       let selectAnswer = this.data.selectAnswer;
 
+      
+      this.data.options.forEach((v,i)=>{
+        if (v == this.data.rightAnswer) {
+          selectAnswer[i] = 1;
+        }
+      })
+
       if (obj.answer == rightAnswer) {
-        selectAnswer[obj.id] = 1;
         isRight = true;
         answer = 1;
         myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
@@ -678,6 +690,9 @@ Page({
         answer = 2;
         selectAnswer[obj.id] = 2;
         this.failSelect();
+        console.log(this.data.rightAnswer)
+
+        //ff4263
       }
 
       this.playResultAudio(isRight)
