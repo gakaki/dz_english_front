@@ -217,20 +217,3 @@
   top: 0;
   opacity: 0;
 }
-
-.animate{
-  position: absolute;
-  z-index: 0;
-}
-
-.animate-left{
-  top: 40rpx;
-  left: 76rpx;
-  transform: scaleX(-1) rotateZ(60deg);
-}
-
-.animate-right{
-  top: 40rpx;
-  right: 76rpx;
-  transform: rotate(60deg);
-}
