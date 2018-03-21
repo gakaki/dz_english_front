@@ -175,7 +175,7 @@ function wsConnect(){
     socket = io(url);
   }else{
     console.log("again")
-    socket.open();
+    socket.onconnect();
   }
  
   socket.on('connect', () => {
@@ -198,7 +198,7 @@ function wsConnect(){
 
 function wsClosed(){
   console.log('close')
-  socket.close()
+  socket.onclose()
   app.globalData.wsConnect = false;
   
 }
