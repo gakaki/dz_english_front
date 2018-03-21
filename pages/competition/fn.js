@@ -87,6 +87,25 @@ function getRoundName(v) {
   return title
 }
 
+//每回合的中文名字
+function getRoundType(v) {
+  console.log(v)
+  let typeName = null;
+  switch (v) {
+    case 1:
+    case 2:
+      typeName = '翻译';
+      break;
+    case 3:
+      typeName = '翻牌';
+      break;
+    case 4:
+      typeName = '拼写';
+      break;
+  }
+  return typeName
+}
+
 //生成指定长度全部是false的数组
 function hideLettersArr(length){  
   let arr = [];
@@ -138,7 +157,12 @@ function getOptions(question, type){
 }
 
 function getChineneOptions(question) {
-  return getOptions(question, 'chinese')
+  let arr = getOptions(question, 'chinese');
+  // arr = ['向上；上升；在……上面', '为；代替；因为；为得到', '面具；遮蔽物；口罩；面具；遮蔽物；口罩','面具；遮蔽物；口罩']
+  arr = arr.map((v)=>{
+    return v.split('；')
+  })
+  return arr
 }
 
 function getEnglishOptions(question) {
@@ -175,5 +199,6 @@ module.exports = {
   quanpinKeyboard,
   getChineneOptions,
   getEnglishOptions,
-  calculateScore
+  calculateScore,
+  getRoundType
 }

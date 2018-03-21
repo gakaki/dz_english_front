@@ -1,7 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose, checkoutIsRoom } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose, checkoutIsRoom, wsConnect } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
@@ -100,6 +100,9 @@ Page({
     })
   },
   onShow() {
+    if (!app.globalData.wsConnect) {
+      wsConnect()
+    }
     if (this.data.rid) {
       checkoutIsRoom(this.data.rid, false)
     }

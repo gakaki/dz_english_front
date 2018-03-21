@@ -139,7 +139,7 @@
   font-weight: bold;
   font-size: 42rpx;
   color: #fff;
-  font-family: Microsoft YaHei;
+  font-family: 'Microsoft YaHei';
 }
 
 /* .head-box {

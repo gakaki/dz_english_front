@@ -1,4 +1,4 @@
-<view id="word" class="flex">
+<scroll-view id="word" class="flex" scroll-y>
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
       <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{knowInfo[index+1].canUp}}"></image>
@@ -37,7 +37,10 @@
           <text class="font">消耗的</text><image class="gold-icon" src="https://gengxin.odao.com/update/h5/yingyu/word/gold.png"></image><text class="font">{{knowInfo[point+1].levelUP.needG}}</text>
         </view>
         <view class="gold">
-          <text class="font">消耗的</text><image class="star-icon" src="{{knowledgePoint[point].small}}"></image><text class="font daoju">{{knowInfo[point+1].levelUP.haveI}}/{{knowInfo[point+1].levelUP.needI}}</text>
+          <text class="font">消耗的</text>
+          <image class="star-icon" src="{{knowledgePoint[point].small}}"></image>
+          <text class="font {{knowInfo[point+1].levelUP.haveI<knowInfo[point+1].levelUP.needI?'daoju':''}}">{{knowInfo[point+1].levelUP.haveI}}</text>
+          <text class="font">/{{knowInfo[point+1].levelUP.needI}}</text>
         </view>
       </view>
       <view class="cost max" wx:if="{{isMax}}">
@@ -103,4 +106,4 @@
     </view>
   </view>
   <view class="mask {{shopping ? 'order' : ''}}" bindtap='hideMask' wx:if="{{show}}"></view>  
-</view> 
+</scroll-view> 
