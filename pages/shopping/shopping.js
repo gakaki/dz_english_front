@@ -1,6 +1,6 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch, shareSuc, wsSend, wsReceive, wsClose } from '../../utils/rest.js';
+import { doFetch, shareSuc } from '../../utils/rest.js';
 // pages/shoping/shopping.js
 Page({
 
@@ -58,7 +58,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    wsClose('getItem')
+    
   },
 
   /**
@@ -111,9 +111,6 @@ Page({
             icon: 'success',
             duration: 2000,
             mask: true
-          })
-          wsReceive('getItem', res => {
-           
           })
         },
         fail(res) {
