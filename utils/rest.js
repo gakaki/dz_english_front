@@ -120,7 +120,7 @@ function userLogin(suc, err) {
           wx.setStorageSync('_sid', res.sid);
           sid = res.sid;
           suc(res)
-          wsInit();
+          // wsInit();
           app.globalData.logined = true;
           doFetch('english.showpersonal', {}, (res) => {
             app.globalData.personalInfo = res.data;
@@ -166,15 +166,59 @@ function wsClose(actions) {
 
 }
 
+function wsConnect(){
+  sid = wx.getStorageSync('_sid');
+  uid = wx.getStorageSync('uid');
+  let url = wss + '?_sid=' + sid + '&appName=english' + '&uid=' + uid;
+  if(!socket){
+    console.log("init")
+    socket = io(url);
+  }else{
+    console.log("again")
+    socket.onconnect();
+  }
+ 
+  socket.on('connect', () => {
+    console.log('connect')
+    console.log(socket)
+    app.globalData.wsConnect = true;
+
+    socket.on('disconnect', msg => {
+      console.log('disconnect')
+      app.globalData.wsConnect = false;
+    });
+
+    socket.on('error', msg => {
+      console.log('error')
+      // app.globalData.wsConnect = false;
+    });
+  })
+
+}
+
+function wsClosed(){
+  console.log('close')
+  socket.onclose()
+  app.globalData.wsConnect = false;
+  
+}
+
+
 function wsInit() {
   let url = wss + '?_sid=' + sid + '&appName=' + APPNAME + '&uid=' + uid;
   socket = io(url);
   socket.on('connect', () => {
+    console.log('connect')
     app.globalData.wsConnect = true;
+
+   
+  //  socket.close()
+
     socket.on('disconnect', msg => {
+      console.log('disconnect')
       app.globalData.wsConnect = false;
     });
-
+    
     socket.on('disconnecting', () => {
     });
 
@@ -357,5 +401,7 @@ module.exports = {
   shareSuc,
   firstStart,
   checkoutIsRoom,
-  networkChange
+  networkChange,
+  wsConnect,
+  wsClosed
 }

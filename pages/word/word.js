@@ -1,7 +1,7 @@
 // pages/word/word.js
 const app = getApp()
 const sheet = require('../../sheets.js')
-import { doFetch, wsSend, wsReceive, shareSuc } from '../../utils/rest.js';
+import { doFetch,  shareSuc } from '../../utils/rest.js';
 
 Page({
 

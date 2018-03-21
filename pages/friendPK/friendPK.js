@@ -1,6 +1,6 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
-import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom} from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, wsConnect} from '../../utils/rest.js';
 import { getRankFrame } from '../../utils/util.js';
 
 Page({
@@ -24,6 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!app.globalData.wsConnect) {
+      wsConnect()
+    }
     this.canJoinRoom(options)
 
       wsReceive('roomInfo', res => {
