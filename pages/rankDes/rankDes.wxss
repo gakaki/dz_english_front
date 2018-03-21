@@ -2,6 +2,9 @@
   width: 100vw;
   height: 100vh;
 }
+.scroll {
+  height: 1066rpx;
+}
 .sc-box {
   margin-top: 28rpx;
 }
@@ -46,4 +49,20 @@
 
 .num {
   margin-left: 4rpx;
+}
+.bot-bg {
+  width: 100%;
+  height: 140rpx;
+  background-color: #2890f1;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.pre-season {
+  font: bold 30rpx/140rpx 'Microsoft YaHei';
+  color: #fff;
 }
