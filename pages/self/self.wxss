@@ -13,7 +13,7 @@
 
 .bg-big {
   width: 690rpx;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   background-color: #fff;
   border-top-left-radius: 30rpx;
   border-top-right-radius: 30rpx;
