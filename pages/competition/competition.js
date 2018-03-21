@@ -79,6 +79,7 @@ Page({
     }
 
     getRoomInfo(rid, res => {
+      console.log(res)
       if (res.code) {
         wx.showToast({
           title: '出错了',
