@@ -320,6 +320,5 @@ Page({
     if (app.globalData.wsConnect){
       wsClosed() 
     }
-
   }
 })
