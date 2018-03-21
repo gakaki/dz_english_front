@@ -39,13 +39,11 @@
 }
 
 .lan-touxiang{
-  position: relative;
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
   margin-left: 42rpx;
-  z-index: 2;
 }
 
 .lan-nicheng{
@@ -284,13 +282,11 @@
 }
 
 .hong-touxiang{
-  position: relative;
   width: 145rpx;
   height: 145rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
   margin-left: 45rpx;
-  z-index: 2;
 }
 
 .hong-nicheng{
