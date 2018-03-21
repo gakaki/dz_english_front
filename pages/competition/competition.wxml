@@ -38,7 +38,7 @@
     <view class='multi-words'> 
 
       <!-- 九宫格翻转  -->
-      <!-- <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
+       <view wx:if='{{word.type === 3}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}">
             <view class='flip-wrap transition' style='transform:rotateY({{rotateList[index]? "0": "180deg"}})'> 
             <view class='front flip transition poal'>
@@ -49,10 +49,10 @@
             </view>
           </view>
         </view>
-      </view>   -->
+      </view>   
 
       <!--九宫格键盘  -->
-      <!-- <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
+       <view wx:if='{{word.type === 4}}' class='selectBtn {{nineLetters ? "show" : "none"}}'>
         <view class='one-word' wx:for='{{nineLetters}}' wx:key='{{index}}' data-index="{{index}}" bindtap='chooseLetter'  >
           <view class='flip-wrap'>
             <view class='front flip poal' style='background:{{bgIndex[index]?"#19b1ff":""}};color:{{bgIndex[index]?"#fff":""}}'>
@@ -60,7 +60,7 @@
             </view>  
           </view>
         </view>
-      </view>   -->
+      </view>   
 
       <!-- 列表 英译中 1  -->
       <view wx:if='{{word.type === 1}}' class='selectBtn selectLists}}'>
@@ -72,14 +72,14 @@
         </view>
       </view>   
 
-      <view class='selectBtn selectLists}}'>
+      <!-- <view class='selectBtn selectLists}}'>
         <view class='one-select one-select-chinese {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
           <text class='list-content'>
             <text wx:for='{{item}}' wx:key='{{index}}' wx:for-item="content"> {{content}} <text wx:if='{{item.length-1 != index}}'>;</text></text>  
           </text> 
           <text class='circle' wx:if='{{selectAnswer[index] == 1}}'></text> 
         </view>
-      </view>  
+      </view>   -->
 
       <!-- 列表 中译英 2 -->
        <view wx:if='{{word.type === 2}}' class='selectBtn selectLists}}'>
