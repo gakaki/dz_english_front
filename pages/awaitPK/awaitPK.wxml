@@ -13,9 +13,10 @@
   <image class="xingqiu-zhi" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-zhi.png"></image>
   <image class="xingqiu-huang" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/xingqiu-huang.png"></image>
   <view class="diqiu">
-    <view>
-      <image class="feichuan" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/feichuan.png"></image>
-    </view>
+     <view>
+       <image class="feichuan" src="https://gengxin.odao.com/update/h5/yingyu/awaitPK/feichuan.png"></image> 
+    </view> 
+  
     <view class="touxiangkuang">
       <image class="touxiangkuang-tu" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frame}}" wx:if="{{frame}}"></image>
       <image class="touxiang" src="{{userInfo.avatarUrl}}"></image>
