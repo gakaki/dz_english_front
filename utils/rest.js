@@ -172,10 +172,7 @@ function wsConnect(){
   let url = wss + '?_sid=' + sid + '&appName=english' + '&uid=' + uid;
   if(!socket){
     console.log("init")
-    socket = io(url);
-  }else{
-    console.log("again")
-    socket.onconnect();
+    socket = io(url, { forceNew:true});
   }
  
   socket.on('connect', () => {
@@ -186,6 +183,7 @@ function wsConnect(){
     socket.on('disconnect', msg => {
       console.log('disconnect')
       app.globalData.wsConnect = false;
+      //socket.destroy()
     });
 
     socket.on('error', msg => {
@@ -198,7 +196,9 @@ function wsConnect(){
 
 function wsClosed(){
   console.log('close')
-  socket.onclose()
+  socket.close()
+  wx.closeSocket()
+  socket = null;
   app.globalData.wsConnect = false;
   
 }
