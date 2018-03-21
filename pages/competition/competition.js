@@ -286,7 +286,7 @@ Page({
         let [u1, u2] = ulist;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }
@@ -302,6 +302,7 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
+      console.log(res,'nextRound')
       if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
@@ -333,7 +334,7 @@ Page({
         let [u1, u2] = data.userList;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }
@@ -537,7 +538,7 @@ Page({
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
-          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
+          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem)
           totalScore = totalScore + myScore;
           this.playResultAudio(isRight)
         } 
@@ -618,7 +619,7 @@ Page({
         answer = 1;
         isRight = true;
         finished = true;
-        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem);
         totalScore = totalScore + myScore;
 
         this.playResultAudio(isRight)
@@ -682,7 +683,7 @@ Page({
       if (obj.answer == rightAnswer) {
         isRight = true;
         answer = 1;
-        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem);
         totalScore = totalScore + myScore;
         this.setData({
           myScore,

@@ -157,12 +157,11 @@ function getOptions(question, type){
 }
 
 function getChineneOptions(question) {
-  let arr = getOptions(question, 'chinese');
   // arr = ['向上；上升；在……上面', '为；代替；因为；为得到', '面具；遮蔽物；口罩；面具；遮蔽物；口罩','面具；遮蔽物；口罩']
-  arr = arr.map((v)=>{
-    return v.split('；')
-  })
-  return arr
+  // arr = arr.map((v)=>{
+  //   return v.split('；')
+  // })
+  return getOptions(question, 'chinese')
 }
 
 function getEnglishOptions(question) {
