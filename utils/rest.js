@@ -1,8 +1,8 @@
 const io = require('./index.js');
-const srv = "https://h5t.ddz2018.com/";
-const wss = "wss://h5t.ddz2018.com/english";
-// const srv = "https://local.ddz2018.com/";
-// const wss = "wss://local.ddz2018.com/english";
+// const srv = "https://h5t.ddz2018.com/";
+// const wss = "wss://h5t.ddz2018.com/english";
+const srv = "https://local.ddz2018.com/";
+const wss = "wss://local.ddz2018.com/english";
 const care = require('./util.js');
 const CODE_SUC = 0;
 const APPNAME = 'english';
@@ -166,7 +166,7 @@ function wsClose(actions) {
 
 }
 
-function wsConnect(suc){
+function wsConnect(){
   sid = wx.getStorageSync('_sid');
   uid = wx.getStorageSync('uid');
   let url = wss + '?_sid=' + sid + '&appName=english' + '&uid=' + uid;
@@ -179,7 +179,7 @@ function wsConnect(suc){
     console.log('connect')
     console.log(socket)
     app.globalData.wsConnect = true;
-    suc && suc()
+
     socket.on('disconnect', msg => {
       console.log('disconnect')
       app.globalData.wsConnect = false;

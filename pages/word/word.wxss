@@ -1,4 +1,4 @@
-.word{
+#word{
   width: 100vw;
   height: 100vh;
   background: url('https://gengxin.odao.com/update/h5/yingyu/common/bg.jpg') 0 0 no-repeat;
@@ -9,7 +9,7 @@
 
 .wrap{
   width: 710rpx;
-  margin: 34rpx auto 0; 
+  margin-top: 34rpx; 
   flex-wrap: wrap;
   align-content: flex-start;
 }
