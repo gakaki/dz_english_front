@@ -223,6 +223,7 @@ function getPersonFrame(rank) {
 }
 
 function getRankImg(rank){
+  console.log(rank)
   if (rank < 7) {
     return sheet.Stage.Get(1).frame + '.png'
   } else {

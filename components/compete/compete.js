@@ -21,7 +21,8 @@ Component({
       type:Object,
       value:null,
       observer: function (v) {
-        if (v) {
+        console.log(v)
+        if (v && v.lastRank) {
           this.setData({
             userLeftImg: getRankImg(v.lastRank)
           })
@@ -32,7 +33,7 @@ Component({
       type:Object,
       value: null,
       observer: function (v) {
-        if (v) {
+        if (v && v.lastRank) {
           this.setData({
             userRightImg: getRankImg(v.lastRank)
           })

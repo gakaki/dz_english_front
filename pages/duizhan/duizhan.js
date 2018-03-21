@@ -47,20 +47,21 @@ Page({
   getInfo(res) {
     let userList = res.data.userList
     this.data.rid = res.data.rid
+    console.log(res,'resssssssssssssssss')
     if (userList[0].uid == getUid()) {
       this.setData({
         isSelf: userList[0],
         notSelf: userList[1],
-        frameSelf: getRankImg(userList[0].rank),
-        frameOther: getRankImg(userList[1].rank)
+        frameSelf: getRankImg(userList[0].lastRank),
+        frameOther: getRankImg(userList[1].lastRank)
       })
     }
     else {
       this.setData({
         isSelf: userList[1],
         notSelf: userList[0],
-        frameSelf: getRankImg(userList[1].rank),
-        frameOther: getRankImg(userList[0].rank)
+        frameSelf: getRankImg(userList[1].lastRank),
+        frameOther: getRankImg(userList[0].lastRank)
       })
     }
     console.log(this.data.isSelf)
