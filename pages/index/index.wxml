@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<scroll-view scroll-y class="container">
   <image class='bg' src="https://gengxin.odao.com/update/h5/yingyu/index/bg.png"></image>
   <view class="userInfo f-r-fs">
     <view wx:if="{{rankFrame.length>0}}" class="frame" bindtap='toSelf'>
@@ -65,4 +65,4 @@
   <set id="set" wx:if="{{showSet}}" bind:cancelEvent="_cancelEvent"></set>
   <qiandao id="qiandao-bor" tian="{{landingDay}}" wx:if="{{landing}}" bind:hide="_hide"></qiandao>
    <!-- <view class="test"></view>  -->
-</view>
+</scroll-view>
