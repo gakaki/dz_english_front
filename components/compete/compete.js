@@ -23,7 +23,7 @@ Component({
       observer: function (v) {
         if (v) {
           this.setData({
-            userLeftImg: getRankImg(v.rank)
+            userLeftImg: getRankImg(v.lastRank)
           })
         }
       }
@@ -34,7 +34,7 @@ Component({
       observer: function (v) {
         if (v) {
           this.setData({
-            userRightImg: getRankImg(v.rank)
+            userRightImg: getRankImg(v.lastRank)
           })
         }
         
