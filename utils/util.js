@@ -221,10 +221,20 @@ function getPersonFrame(rank) {
       return ''
     } else return sheet.Stage.Get(parseInt(rank)).frame+'.png'
 }
+
+function getRankImg(rank){
+  if (rank < 7) {
+    return sheet.Stage.Get(1).frame + '.png'
+  } else {
+    return sheet.Stage.Get(rank).frame + '.png'
+  }
+
+}
 module.exports = {
   getRankFrame: getRankFrame,
   formatTime: formatTime,
   care : care,
   Timeline:Timeline,
-  getPersonFrame: getPersonFrame
+  getPersonFrame: getPersonFrame,
+  getRankImg
 }

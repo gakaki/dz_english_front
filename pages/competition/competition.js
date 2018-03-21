@@ -79,7 +79,7 @@ Page({
     }
 
     getRoomInfo(rid, res => {
-      console.log(res)
+      console.log(res,'pkinfo')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -89,18 +89,18 @@ Page({
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
         //进这个页面时，自己是对战方之一
-        if (u1.info.uid == getUid()) {
-          userLeft = u1.info;
-          if(u2 && u2.info) {
-            userRight = u2.info;
+        if (u1.uid == getUid()) {
+          userLeft = u1;
+          if(u2) {
+            userRight = u2;
           }
           
         }
         else {
-          if (u2 && u2.info) {
-            userLeft = u2.info;
+          if (u2) {
+            userLeft = u2;
           }
-          userRight = u1.info;
+          userRight = u1;
         }
         app.globalData.userInfo = userLeft;
         
@@ -271,6 +271,7 @@ Page({
 
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
+      console.log(res,'roundEndSettlement')
       if(pkEnd) {return}
       if (res.code) {
         wx.showToast({

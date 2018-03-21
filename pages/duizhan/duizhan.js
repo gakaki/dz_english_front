@@ -3,7 +3,7 @@
 const app = getApp()
 let time = null, timer = null
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom } from '../../utils/rest.js';
-import { getRankFrame } from '../../utils/util.js'
+import {  getRankImg } from '../../utils/util.js'
 
 Page({
   data: {
@@ -51,18 +51,20 @@ Page({
       this.setData({
         isSelf: userList[0],
         notSelf: userList[1],
-        frameSelf: getRankFrame(userList[0].info.character.season),
-        frameOther: getRankFrame(userList[1].info.character.season)
+        frameSelf: getRankImg(userList[0].rank),
+        frameOther: getRankImg(userList[1].rank)
       })
     }
     else {
       this.setData({
         isSelf: userList[1],
         notSelf: userList[0],
-        frameSelf: getRankFrame(userList[1].info.character.season),
-        frameOther: getRankFrame(userList[0].info.character.season)
+        frameSelf: getRankImg(userList[1].rank),
+        frameOther: getRankImg(userList[0].rank)
       })
     }
+    console.log(this.data.isSelf)
+    console.log(this.data.notSelf)
   },
 
   onPkEndInfo() {
@@ -121,11 +123,11 @@ Page({
    */
   onShow: function () {
     if(!this.data.pkEnd){
-      // timer = setTimeout(() => {
-      //   wx.redirectTo({
-      //     url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
-      //   })
-      // }, 3000)
+      timer = setTimeout(() => {
+        wx.redirectTo({
+          url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
+        })
+      }, 3000)
     }
     
   },

@@ -3,21 +3,21 @@
     <view class="lan-shouji">
       <view class="lan-ziliao">
         <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}" wx:if="{{frameSelf}}"></image>
-        <image class="lan-touxiang" src="{{isSelf.info.avatarUrl}}"></image>
-        <text class="lan-nicheng font">{{isSelf.info.nickName}}</text>
+        <image class="lan-touxiang" src="{{isSelf.avatarUrl}}"></image>
+        <text class="lan-nicheng font">{{isSelf.nickName}}</text>
       </view>
     </view>
     <image class="zhejiao" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="lan-tankuang font">
-      <view class="lan-liansheng" wx:if="{{isSelf.info.character.winningStreak}}">
-        <text class="lan-liansheng-wenzi lan-xinxi">{{isSelf.info.character.winningStreak}}</text>
+      <view class="lan-liansheng" wx:if="{{isSelf.winningStreak}}">
+        <text class="lan-liansheng-wenzi lan-xinxi">{{isSelf.winningStreak}}</text>
         <text class="lan-liansheng-wenzi">连胜</text>
       </view>
-      <view class="lan-dizhi lan-xinxi" wx:if="{{isSelf.info.city}}">
+      <view class="lan-dizhi lan-xinxi" wx:if="{{isSelf.city}}">
         <image class="lan-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
-        <text class="lan-dizhi-wenzi">{{isSelf.info.city}}</text>
+        <text class="lan-dizhi-wenzi">{{isSelf.city}}</text>
       </view>
-      <text class="lan-dengji lan-xinxi">LV.{{isSelf.info.character.level}}</text>
+      <text class="lan-dengji lan-xinxi">LV.{{isSelf.level}}</text>
     </view>
   </view>
   <view class="pk">
@@ -40,22 +40,22 @@
   </view>
   <view class="hong">
     <view class="hong-tankuang font">
-      <view class="hong-liansheng" wx:if="{{notSelf.info.character.winningStreak}}">
-        <text class="hong-liansheng-wenzi hong-xinxi">{{notSelf.info.character.winningStreak}}</text>
+      <view class="hong-liansheng" wx:if="{{notSelf.winningStreak}}">
+        <text class="hong-liansheng-wenzi hong-xinxi">{{notSelf.winningStreak}}</text>
         <text class="hong-liansheng-wenzi">连胜</text>
       </view>
-      <view class="hong-dizhi hong-xinxi" wx:if="{{notSelf.info.city}}">
+      <view class="hong-dizhi hong-xinxi" wx:if="{{notSelf.city}}">
         <image class="hong-dizhi-tu" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/dizhi.png"></image>
-        <text class="hong-dizhi-wenzi">{{notSelf.info.city}}</text>
+        <text class="hong-dizhi-wenzi">{{notSelf.city}}</text>
       </view>
-      <text class="hong-dengji hong-xinxi">LV.{{notSelf.info.character.level}}</text>
+      <text class="hong-dengji hong-xinxi">LV.{{notSelf.level}}</text>
     </view>
     <image class="zhejiao-2" src="https://gengxin.odao.com/update/h5/yingyu/duizhan/zhejiao.png"></image>
     <view class="hong-shouji">
       <view class="hong-ziliao">
         <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}" wx:if="{{frameOther}}"></image>
-        <image class="hong-touxiang" src="{{notSelf.info.avatarUrl}}"></image>
-        <text class="hong-nicheng font">{{notSelf.info.nickName}}</text>
+        <image class="hong-touxiang" src="{{notSelf.avatarUrl}}"></image>
+        <text class="hong-nicheng font">{{notSelf.nickName}}</text>
       </view>
     </view>
   </view>
