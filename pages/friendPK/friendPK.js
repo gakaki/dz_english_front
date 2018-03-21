@@ -25,47 +25,50 @@ Page({
    */
   onLoad: function (options) {
     if (!app.globalData.wsConnect) {
-      wsConnect()
+      console.log('wsConnectttttttttttttt')
+      wsConnect(()=>{
+        this.canJoinRoom(options)
+        wsReceive('roomInfo', res => {
+          if (res.data.roomStatus == 2) {
+            wx.navigateTo({
+              url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
+            })
+          }
+
+
+          if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
+            this.setData({
+              isOwner: true
+            })
+          }
+
+          if (res.data.userList.length == 1) {
+            // 显示段位框
+            this.setData({
+              frameSelf: getRankFrame(res.data.userList[0].info.character.season),
+            })
+          }
+          else if (res.data.userList.length == 2) {
+            this.setData({
+              frameSelf: getRankFrame(res.data.userList[0].info.character.season),
+              frameOther: getRankFrame(res.data.userList[1].info.character.season),
+            })
+          }
+          this.setData({
+            bystander: res.data.roomInfo.bystanderCount,
+            list: res.data.userList
+          })
+        })
+
+        wsReceive('dissolve', res => {  //房主离开
+          wx.reLaunch({
+            url: '../index/index?ownerLeave=true',
+          })
+        })
+      })
     }
-    this.canJoinRoom(options)
 
-      wsReceive('roomInfo', res => {
-        if (res.data.roomStatus == 2) {
-          wx.navigateTo({
-            url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
-          })
-        }
-
-
-        if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
-          this.setData({
-            isOwner: true
-          })
-        }
-        
-        if (res.data.userList.length == 1) {
-          // 显示段位框
-          this.setData({
-            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
-          })
-        }
-        else if (res.data.userList.length == 2) {
-          this.setData({
-            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
-            frameOther: getRankFrame(res.data.userList[1].info.character.season),
-          })
-        }
-        this.setData({
-          bystander: res.data.roomInfo.bystanderCount,
-          list: res.data.userList
-        })
-      })
-
-      wsReceive('dissolve', res => {  //房主离开
-        wx.reLaunch({
-          url: '../index/index?ownerLeave=true',
-        })
-      })
+    
    
   },
   canJoinRoom(options){

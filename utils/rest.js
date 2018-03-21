@@ -166,7 +166,7 @@ function wsClose(actions) {
 
 }
 
-function wsConnect(){
+function wsConnect(suc){
   sid = wx.getStorageSync('_sid');
   uid = wx.getStorageSync('uid');
   let url = wss + '?_sid=' + sid + '&appName=english' + '&uid=' + uid;
@@ -179,7 +179,7 @@ function wsConnect(){
     console.log('connect')
     console.log(socket)
     app.globalData.wsConnect = true;
-
+    suc && suc()
     socket.on('disconnect', msg => {
       console.log('disconnect')
       app.globalData.wsConnect = false;

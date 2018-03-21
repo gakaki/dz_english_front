@@ -79,6 +79,7 @@ Page({
     }
 
     getRoomInfo(rid, res => {
+      console.log(res)
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -167,10 +168,10 @@ Page({
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createInnerAudioContext('myAudio')
-    this.audioTrue = wx.createInnerAudioContext('true')
-    this.audioFalse = wx.createInnerAudioContext('false')
-    this.audioSelect = wx.createInnerAudioContext('select')
+    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioTrue = wx.createAudioContext('true')
+    this.audioFalse = wx.createAudioContext('false')
+    this.audioSelect = wx.createAudioContext('select')
     
   },
   roundInit(){
@@ -300,6 +301,7 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
+      console.log('nextRound')
       if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
