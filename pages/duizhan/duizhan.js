@@ -36,6 +36,7 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
+      console.log(res)
       this.getInfo(res)
     })
 
@@ -46,7 +47,7 @@ Page({
   getInfo(res) {
     let userList = res.data.userList
     this.data.rid = res.data.rid
-    if (userList[0].info.uid == getUid()) {
+    if (userList[0].uid == getUid()) {
       this.setData({
         isSelf: userList[0],
         notSelf: userList[1],
@@ -120,11 +121,11 @@ Page({
    */
   onShow: function () {
     if(!this.data.pkEnd){
-      timer = setTimeout(() => {
-        wx.redirectTo({
-          url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
-        })
-      }, 3000)
+      // timer = setTimeout(() => {
+      //   wx.redirectTo({
+      //     url: '../competition/competition?rid=' + this.data.rid + '&isFriend=' + this.data.isFriend,
+      //   })
+      // }, 3000)
     }
     
   },

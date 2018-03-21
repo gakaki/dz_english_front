@@ -84,11 +84,11 @@ Page({
       this.setData({
         matchSuc: true
       })
-      // setTimeout(() => {
-      //   wx.redirectTo({
-      //     url: '../duizhan/duizhan?rid=' + res.data.rid,
-      //   })
-      // }, 500)
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '../duizhan/duizhan?rid=' + res.data.rid,
+        })
+      }, 500)
     })
     wsSend('ranking', {
       rankType: option.type
