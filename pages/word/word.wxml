@@ -1,4 +1,4 @@
-<view id="word" class="flex">
+<scroll-view id="word" class="flex" scroll-y>
   <view class="wrap f-r-sb">
     <view class="item" wx:for="{{knowledgePoint}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
       <image class="red-point" src="https://gengxin.odao.com/update/h5/yingyu/word/red-point.png" wx:if="{{knowInfo[index+1].canUp}}"></image>
@@ -106,4 +106,4 @@
     </view>
   </view>
   <view class="mask {{shopping ? 'order' : ''}}" bindtap='hideMask' wx:if="{{show}}"></view>  
-</view> 
+</scroll-view> 

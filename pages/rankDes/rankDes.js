@@ -32,9 +32,11 @@ Page({
     let awardItem = sheet.stages.map(o => {
       return new sheet.Stage(o).award['k']
     })
-
+    stage = stage.reverse();
+    let awardIcon = this.data.awardIcon.reverse();
     this.setData({
-      stage: stage
+      stage,
+      awardIcon
     })
   },
   onShareAppMessage: function (res) {
