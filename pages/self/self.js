@@ -118,7 +118,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str2,
-      path: '/pages/index/index?self=true',
+      path: '/pages/index/index',
       success: function () {
         shareSuc()
       },

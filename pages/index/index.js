@@ -132,7 +132,8 @@ Page({
   onLoad: function (options) {
     if(options.ownerLeave) {
       wx.showToast({
-        title: '房主已离开'
+        title: '房主已离开',
+        icon:"none"
       })
     }
     
@@ -208,7 +209,6 @@ Page({
       doFetch('english.roomisexist', {
         rid: options.rid
       }, (res) => {
-        console.log(res,'好友PK')
         let rid = options.rid;
         if (res.code == 0) {
           if (res.data && res.data.roomStatus == 1) {
@@ -256,6 +256,14 @@ Page({
       }
       else {
         app.globalData.toRank = true
+      }
+    }
+    else if (options && options.choosePk) {
+      this.data.shareIn = true
+      if (app.globalData.logined) {
+        wx.navigateTo({
+          url: '../choosePk/choosePk?fromIndex=true',
+        })
       }
     }
     else if (options && options.self) {

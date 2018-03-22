@@ -112,13 +112,13 @@ Page({
   },
   toMatch() {
     wx.reLaunch({
-      url: '../choosePk/choosePk'
+      url: '../index/index?choosePk=true'
     })
   },
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str5,
-      path: '/pages/index/index?share=true',
+      path: '/pages/index/index',
       success: function () {
         shareSuc()
       },

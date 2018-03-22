@@ -36,7 +36,6 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
-      console.log(res)
       this.getInfo(res)
     })
 
@@ -47,7 +46,6 @@ Page({
   getInfo(res) {
     let userList = res.data.userList
     this.data.rid = res.data.rid
-    console.log(res,'resssssssssssssssss')
     if (userList[0].uid == getUid()) {
       this.setData({
         isSelf: userList[0],
@@ -64,13 +62,10 @@ Page({
         frameOther: getRankImg(userList[0].lastRank)
       })
     }
-    console.log(this.data.isSelf)
-    console.log(this.data.notSelf)
   },
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
-      console.log(res,"pkend")
       this.data.pkEnd = true
       if (res.code) {
         wx.showToast({
@@ -144,12 +139,12 @@ Page({
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
 
-    if (this.data.rid) {
+    if (prevPage && prevPage.setData && this.data.rid) {
       prevPage.setData({
         rid: this.data.rid
       })
     }
-    if (prevPage.data.starAnimation){
+    if (prevPage && prevPage.setData && prevPage.data.starAnimation){
       prevPage.setData({
         fromIndex: true,
         starAnimation: ''

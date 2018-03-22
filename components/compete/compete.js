@@ -84,6 +84,10 @@ Component({
         }
       })
     }
+
+    setTimeout(()=>{
+      this.triggerEvent('mcStopped');
+    },1000)
   },
   /**
    * 组件的方法列表

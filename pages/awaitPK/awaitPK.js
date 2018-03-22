@@ -80,7 +80,6 @@ Page({
       }, 2100)
     })
     wsReceive('matchSuccess', res => {
-      console.log(res,'matchSuccess')
       this.setData({
         matchSuc: true
       })
@@ -109,11 +108,13 @@ Page({
     if (!this.data.matchSuc && !this.data.awaiting){
       wsSend('cancelmatch')
       let pages = getCurrentPages()
-      let prevPage = pages[pages.length - 2]
-      prevPage.setData({
-        fromIndex: true,
-        starAnimation: ''
-      })
+      let prevPage = pages[pages.length - 2];
+      if (prevPage && prevPage.setData) {
+        prevPage.setData({
+          fromIndex: true,
+          starAnimation: ''
+        })
+      }
     }
     clearTimeout(time)
     wsClose(['matchSuccess', 'matchFailed','needGold'])

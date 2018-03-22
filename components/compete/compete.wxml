@@ -24,13 +24,14 @@
     </view>
     <view class='blackboard'>
       <slot name='word'></slot>
+      <slot name='mcs'></slot>
     </view>
     </view>
     <view class='main-select'>
       <slot name='select'></slot>
     </view>
     <view class='start-mcs'>
-      <slot name='mcs'></slot>
+      
     </view>
   </view>
   

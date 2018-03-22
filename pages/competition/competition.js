@@ -51,23 +51,14 @@ Page({
     roundIsRight:false,
     roundAnswer:{},
     //mc
-    startMcResPrefix: 'dz_bg_',
-    startMcResStartIdx: 1,
-    startMcResEndIdx: 7,
-    startMcResPrefix2: 'dz_word_',
-    startMcResStartIdx2: 1,
-    startMcResEndIdx2: 7,
     startMc1:true,
-    startMc2:true,
-    starMcWd1: 704,
-    starMcHt1: 73,
-    starMcWd2: 749,
-    starMcHt2: 275,
+    startMc2:'100%',  
     showMask: false,
     maskPos:0,
     isFriend:false,
   },
   onLoad(options) {
+    
     pkEnd = false;
     rid = options.rid;
     round = 1;
@@ -77,9 +68,7 @@ Page({
         isFriend: options.isFriend
       })
     }
-    console.log(222222222222222222222222)
     getRoomInfo(rid, res => {
-      console.log(res,'pkinfo')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -117,18 +106,25 @@ Page({
         //监听全局结束
         this.onPkEndInfo();
 
+       
+
       }
     });
 
   },
+  onReady(){
 
-  mcStopped(){
+    setTimeout(() => {
+      this.setData({
+        startMc2: '0'
+      });
+    }, 500)
 
-    tm = Timeline.add(1000, ()=>{
+    Timeline.add(1500, () => {
       //移除开始动画
       this.setData({
-        startMc1:false,
-        startMc2:false
+        startMc1: false,
+        startMc2: '-100%'
       });
 
       //开始对战
@@ -140,7 +136,7 @@ Page({
   onUnload() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    if (prevPage.data.starAnimation) {
+    if (prevPage && prevPage.setData && prevPage.data.starAnimation) {
       prevPage.setData({
         fromIndex: true,
         starAnimation: ''
@@ -271,7 +267,6 @@ Page({
 
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
-      console.log(res,'roundEndSettlement')
       if(pkEnd) {return}
       if (res.code) {
         wx.showToast({
@@ -302,7 +297,6 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
-      console.log(res,'nextRound')
       if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
@@ -428,7 +422,6 @@ Page({
   showChineseOptions(){
     options = getChineneOptions(question);
     this.setData({options})
-    console.log(options)
   },
   showEnglishOptions(){
     options = getEnglishOptions(question);
@@ -473,7 +466,7 @@ Page({
     .add(0, this.keyboard, this)//渲染九宫格键盘
     .add(1000, this.audioPlay, this)//1秒后，播放音频
     .add(1000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
-    .add(1500, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    .add(2000, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
     .add(0, this.countClockTime, this)//开始时钟倒计时
     .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
     .start();//timeline开始运行
@@ -698,9 +691,6 @@ Page({
         answer = 2;
         selectAnswer[obj.id] = 2;
         this.failSelect();
-        console.log(this.data.rightAnswer)
-
-        //ff4263
       }
 
       this.playResultAudio(isRight)

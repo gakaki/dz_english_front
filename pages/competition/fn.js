@@ -29,8 +29,7 @@ function getRoomInfo(rid, cb) {
 
 //设置九宫格键盘
 
-function keyboard(letterPos, english){  
-  console.log(letterPos, english)
+function keyboard(letterPos, english){
   if (!letterPos) {
     return
   }
@@ -91,7 +90,6 @@ function getRoundName(v) {
 
 //每回合的中文名字
 function getRoundType(v) {
-  console.log(v)
   let typeName = null;
   switch (v) {
     case 1:

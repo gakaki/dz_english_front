@@ -71,7 +71,6 @@ function _fetchIntercept(action, _app) {
 }
 
 function sdkAuth(code, suc) {
-  console.log('sdkAuthhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
   doFetch("weChat.auth", {
     payload: { code },
     appName: APPNAME
@@ -183,7 +182,6 @@ function wsConnect(){
     socket.on('disconnect', msg => {
       console.log('disconnect')
       app.globalData.wsConnect = false;
-      //socket.destroy()
     });
 
     socket.on('error', msg => {

@@ -91,7 +91,6 @@ Page({
       payCount: 1,
       good: this.data.point+1
     }, (r) => {
-      console.log(r.data.payload)
       this.hide()
       wx.requestPayment({
         timeStamp: r.data.payload.timeStamp,
@@ -102,10 +101,8 @@ Page({
         success(res) {
           app.globalData.personalInfo.userInfo.items = res.data
           let title = '获得'
-          console.log(_that.data.itemInfo[_that.data.point],'购买成功,获得')
           let name = _that.data.itemInfo[_that.data.point].cfg.name
           title += name + '×' + _that.data.shopNum[_that.data.point] + ' ';
-          console.log(title)
           wx.showToast({
             title: title,
             icon: 'success',

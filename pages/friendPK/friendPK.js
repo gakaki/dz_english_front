@@ -30,7 +30,6 @@ Page({
     this.canJoinRoom(options)
 
       wsReceive('room', res => {
-        console.log(res,'room')
         if (res.data.roomStatus == 2) {
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
@@ -81,7 +80,6 @@ Page({
   joinRoom(options){
       wsSend('joinroom', { rid: options.rid })
       wsReceive('joinSuccess', (res) => {
-        console.log(res)
         this.setData({
           rid: res.data.rid
         })

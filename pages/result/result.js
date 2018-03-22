@@ -60,7 +60,6 @@ Page({
       rid: e.rid
     })
     let pkResult = app.globalData.pkResult;
-    console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{
       if(res.data.canShare){
         this.setData({
@@ -98,11 +97,13 @@ Page({
   },
   setPageInfo() {
     let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2]
-    prevPage.setData({
-      fromIndex: false,
-      starAnimation: ''
-    })
+    let prevPage = pages[pages.length - 2];
+    if (prevPage && prevPage.setData) {
+      prevPage.setData({
+        fromIndex: false,
+        starAnimation: ''
+      })
+    }
   },
   toMatch() {
     //是否为好友局

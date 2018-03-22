@@ -27,9 +27,9 @@
         </view>
     </view> 
   </view>
-  <view slot='mcs'>
-    <movieclip wx:if='{{startMc1}}' class='start-mc' resWidth='{{starMcWd1}}' resHeight='{{starMcHt1}}' resPrefix='{{startMcResPrefix}}' resStartIdx='{{startMcResStartIdx}}' resEndIdx="{{startMcResEndIdx}}" ></movieclip>
-    <movieclip wx:if='{{startMc2}}' class='start-mc' bind:mcStopped='mcStopped' autoPlayCount='{{"1"}}' resWidth='{{starMcWd2}}' resHeight='{{starMcHt2}}' resPrefix='{{startMcResPrefix2}}' resStartIdx='{{startMcResStartIdx2}}' resEndIdx="{{startMcResEndIdx2}}" ></movieclip>
+  <view class='dz-start' style='left:{{startMc2}};'  slot='mcs'>
+    <image class='dz-bg' src='https://gengxin.odao.com/update/h5/yingyu/xuliezhen/dz_bg_07.png'></image>
+    <image class='dz-word' src='https://gengxin.odao.com/update/h5/yingyu/xuliezhen/dz_word_07.png'></image>
   </view>
 
   <view class='multi-wrap' slot='select'>
