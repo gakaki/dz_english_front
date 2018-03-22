@@ -2,7 +2,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start, wsConnect  } from '../../utils/rest.js';
 let time=null
 
 Page({
@@ -17,7 +17,7 @@ Page({
     type:0,
     matchSuc:false,
     awaiting:false,
-    frame:'',
+    frame:''
   },
   onLoad: function (option) {
     if (app.globalData.userInfo) {
@@ -51,6 +51,15 @@ Page({
       gold: option.gold
     }) 
     
+  },
+  onShow() {
+    if (!app.globalData.wsConnect) {
+      wsConnect()
+    }
+    this.setData({
+      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+    })
+
     //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
     wsReceive('needGold', res => {
       wx.showToast({
@@ -87,17 +96,12 @@ Page({
         wx.redirectTo({
           url: '../duizhan/duizhan?rid=' + res.data.rid,
         })
-      }, 500)
+      }, 1000)
     })
     wsSend('ranking', {
       rankType: option.type
     })
-    
-  },
-  onShow() {
-    this.setData({
-      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
-    })
+
   },
 
   /**

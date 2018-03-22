@@ -1,7 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js'
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose, checkoutIsRoom, wsConnect } from '../../utils/rest.js';
+import { doFetch, shareSuc, wsClose, checkoutIsRoom, wsClosed } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
@@ -88,22 +88,13 @@ Page({
     }
   
   },
-  onReady() {
-    wsReceive('cancelSuccess', res => {
-      wsReceive('matchSuccess', res => {
-        wx.showToast({
-          title: '您已放弃对战',
-          icon: 'none',
-          duration: 2000
-        })
-      })
-    })
-  },
+  
   onShow() {
-    app.globalData.globalLastTapTime = 0
-    if (!app.globalData.wsConnect) {
-      wsConnect()
+    if (app.globalData.wsConnect) {
+      wsClosed()
     }
+    app.globalData.globalLastTapTime = 0
+    
     if (this.data.rid) {
       checkoutIsRoom(this.data.rid, false)
     }

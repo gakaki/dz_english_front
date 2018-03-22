@@ -28,6 +28,8 @@
 }
 
 .des {
+  display: inline-block;
+  width: 200rpx;
   font-weight: bold;
   font-size: 40rpx;
   color: #b07145;
@@ -44,7 +46,7 @@
 }
 
 .jl {
-  margin-left: 126rpx;
+  margin-left: 40rpx;
 }
 
 .num {
