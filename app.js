@@ -32,6 +32,7 @@ App({
     str2: sheet.Share.Get(2).desc,
     str3: sheet.Share.Get(3).desc,
     str4: sheet.Share.Get(4).desc,
+    str5: sheet.Share.Get(5).desc,
     toFriend: false,
     friendRid: '',
     toRank: false,

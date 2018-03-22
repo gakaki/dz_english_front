@@ -1,0 +1,47 @@
+<!--pages/share/share.wxml-->
+<view class="con-bg">
+    <view class='wrap'>
+      <view class="top-con">
+        <view class='avatar'>
+          <view wx:if="{{rankFrame.length>0}}" class="frame flex">
+            <image class="frame-icon" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{rankFrame}}"></image>
+            <view class="header">
+              <image class="userinfo-avatar" src="{{ava}}"></image>
+            </view>
+          </view>
+          <view wx:if="{{rankFrame.length == 0}}" class="header1 flex">
+            <image class="userinfo-avatar1" src="{{ava}}"></image>
+          </view>
+        </view>
+
+        <view class="tj-box">
+          <view class="tuijian">每日精句</view>
+          <view class="eng">
+            <view>{{info.beautifulWord.english}}</view>
+            <view>{{info.beautifulWord.chinese}}</view>
+          </view>
+        </view>
+
+        <view class="record-box f-r-sb">
+          <view class="left f-c-fs">
+            <text class="num">{{info.newWord.totalWordCount}}</text>
+            <text class="des">累计斩获单词</text>
+          </view>
+          <view class="right f-c-fs">
+            <text class="num">{{info.userInfo.character.cumulativeDays}}</text>
+            <text class="des">累计打卡天数</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='flex share-wrap'>
+        <view class='img-wrap'>
+          <image class='img share' src='https://gengxin.odao.com/update/h5/yingyu/self/share-big.png'></image>
+          <button class='img btn' open-type='share'></button>
+        </view>
+      </view>
+      <view class="anniu-tiaozhan anniu-wenzi" bindtap='toMatch'>
+        <text class="tiaozhan">继续挑战</text>
+      </view>
+    </view>
+</view>

@@ -110,6 +110,11 @@ Page({
       hasUserInfo: true
     })
   },
+  toShare(){
+    wx.navigateTo({
+      url: '../share/share',
+    })
+  },
   onShareAppMessage: function (res) {
     return {
       title: app.globalData.str2,
