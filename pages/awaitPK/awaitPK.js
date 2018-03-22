@@ -98,7 +98,7 @@ Page({
       wsSend('ranking', {
         rankType: option.type
       })
-    },2000)
+    },1000)
     
 
   },

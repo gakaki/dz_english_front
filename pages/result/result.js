@@ -4,6 +4,7 @@ import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.
 import { Item } from '../../sheets.js'
 import { getRankImg } from '../../utils/util.js'
 let map = [];
+let first = true;
 
 Page({
   data: {
@@ -28,17 +29,18 @@ Page({
     frameOther: '',//对战玩家的段位头像框
   },
   onLoad: function (e) {
-    let hasMap = map.every(v=>{
-      return v != 'matchSuccess';
-    })
-    if(hasMap) {
-      wsReceive('matchSuccess', res => {
-        wx.redirectTo({
-          url: '../duizhan/duizhan?rid=' + res.data.rid,
-        })
-      })
-      map.push('matchSuccess')
-    }
+    console.log(e)
+    // let hasMap = map.every(v=>{
+    //   return v != 'matchSuccess';
+    // })
+    // if(hasMap) {
+    //   wsReceive('matchSuccess', res => {
+    //     wx.redirectTo({
+    //       url: '../duizhan/duizhan?rid=' + res.data.rid,
+    //     })
+    //   })
+    //   map.push('matchSuccess')
+    // }
     if(e.otherLeave == "true") {
       wx.showToast({
         title: '对方逃跑',
@@ -96,9 +98,10 @@ Page({
     }
   },
   setPageInfo() {
+    if (!first) {return};
+    first = false;
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
-    console.log(prevPage)
     if (prevPage && prevPage.setData) {
       prevPage.setData({
         fromIndex: false,

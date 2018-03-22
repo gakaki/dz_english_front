@@ -106,7 +106,6 @@ Page({
         } else {
           url = '&show=' + show + '&rid=' + this.data.rid + '&otherLeave=' + res.data.isLeave
         }
-       
         wx.redirectTo({
           url: '../result/result?' + url
         })

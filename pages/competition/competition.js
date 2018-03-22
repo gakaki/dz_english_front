@@ -19,7 +19,7 @@ let isRight;//当前题是否答对了
 let rid;//房间id
 let round, totalScore; //round第几回合，从1开始 //本人总分
 let canClick = false; //9宫格是否可以点击
-let pkEnd = false
+let pkEnd = false;
 
 Page({
   /**
@@ -244,6 +244,7 @@ Page({
 
     if (!answerSend) {
       //通知后端，一题完成
+      if (pkEnd) { return }
       canClick = false;
       if(round > 5) {return}
       if(!this.data.word) {return}
@@ -310,13 +311,14 @@ Page({
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
+      if (pkEnd) { return }
+      pkEnd = true;
       if (res.code) {
         wx.showToast({
           title: '结算出错了'
         })
       }
       else {
-        pkEnd = true;
         let data = res.data;
         let isFriend = data.isFriend;
         let final = data.final;
