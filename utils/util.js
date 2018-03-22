@@ -223,7 +223,6 @@ function getPersonFrame(rank) {
 }
 
 function getRankImg(rank){
-  console.log(rank)
   if (rank < 7) {
     return ""
   } else {

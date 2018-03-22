@@ -4,6 +4,7 @@ const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
 import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start, wsConnect  } from '../../utils/rest.js';
 let time=null
+let tm=null
 
 Page({
   data: {
@@ -93,9 +94,12 @@ Page({
         })
       }, 1000)
     })
-    wsSend('ranking', {
-      rankType: option.type
-    })
+    tm = setTimeout(()=>{
+      wsSend('ranking', {
+        rankType: option.type
+      })
+    },2000)
+    
 
   },
   onShow() {
@@ -125,6 +129,7 @@ Page({
       }
     }
     clearTimeout(time)
+    clearTimeout(tm)
     wsClose(['matchSuccess', 'matchFailed','needGold'])
   },
   onShareAppMessage: function (res) {

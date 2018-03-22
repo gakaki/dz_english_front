@@ -1,7 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js'
-import { doFetch, shareSuc, wsClose, checkoutIsRoom, wsClosed } from '../../utils/rest.js';
+import { doFetch, shareSuc, checkoutIsRoom, wsClosed } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
@@ -201,7 +201,6 @@ Page({
   
   onUnload() {
     clearTimeout(time)
-    wsClose(['cancelSuccess', 'matchSuccess'])
     this.setData({
       isFirstClick: true
     })
