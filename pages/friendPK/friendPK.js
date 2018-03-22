@@ -36,8 +36,7 @@ Page({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
           })
         }
-
-
+        
         if (res.data.userList && res.data.userList[0].uid == getUid()) {
           this.setData({
             isOwner: true
