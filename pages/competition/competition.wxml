@@ -11,7 +11,7 @@
       <view class='zhongwen' wx:if='{{word.type === 1}}'>{{word.english}}</view>
       <view class='zhongwen' wx:else=''>
         <text class='speech-type' wx:if='{{word.speech}}'>{{word.speech}}. </text>
-        <text wx:for='{{chinese}}' wx:for-item='one' wx:key='{{index}}'>{{one}}<text wx:if='{{item.length-1 != index}}'>;</text></text> 
+        <text wx:for='{{chinese}}' wx:for-item='one' wx:key='{{index}}'>{{one}}<text wx:if='{{item.length-1 != index}}'>;{{item.legnth-1}} {{index}}</text></text> 
       </view> 
       <view class='yinbiao'>
         <text>{{word.symbol}}</text>
@@ -69,16 +69,6 @@
           <text class='circle' wx:if='{{selectAnswer[index] == 1}}'></text> 
         </view>
       </view>   
-
-      <!-- <view wx:if='{{word.type === 1}}' class='selectBtn selectLists}}'>
-        <view class='one-select one-select-chinese {{selectAnswer[index] == 1 ? "true":"" }} {{selectAnswer[index] == 2 ? "false":"" }}' wx:for='{{options}}' wx:key='{{index}}' bindtap='chooseOption' data-answer='{{item}}' data-id='{{index}}'>
-          <text class='list-content'> 
-             <text wx:for='{{item}}' wx:key='{{index}}' wx:for-item="content">{{content}}<text wx:if='{{item.length-1 != index}}'>;</text></text>     
-          </text> 
-          <text class='circle' wx:if='{{selectAnswer[index] == 1}}'></text> 
-        </view>
-      </view>    -->
-
 
       <!-- 列表 中译英 2 -->
        <view wx:if='{{word.type === 2}}' class='selectBtn selectLists}}'>
