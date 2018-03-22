@@ -436,6 +436,11 @@ Page({
   },
   playtoQuestion(answerKey){
     rightAnswer = question[answerKey];//设置正确答案内容
+    if (question.eliminate) {
+      this.setData({
+
+      })
+    }
     tm = Timeline.add(200, this.showQuestionIdx, this)//显示第几题
     .add(2000, this.showQuestion, this)//显示题目单词
     return tm;
@@ -464,14 +469,36 @@ Page({
   //翻牌
   playThree() {
     //new ----------
+    // this.playtoQuestion('english')
+    // .add(0, this.keyboard, this)//渲染九宫格键盘
+    // .add(1000, this.audioPlay, this)//1秒后，播放音频
+    // .add(3000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
+    // .add(0, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    // .add(0, this.countClockTime, this)//开始时钟倒计时
+    // .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
+    // .start();//timeline开始运行
+    ///-------------
+
+    // //new ----------
+    // this.playtoQuestion('english')
+    //   .add(0, this.keyboard, this)//渲染九宫格键盘
+    //   .add(1000, this.audioPlay, this)//1秒后，播放音频
+    //   .add(3000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
+    //   .add(3000, this.flipNineCard, this)//3秒后翻转九宫格键盘至字母不可见
+    //   .add(0, this.countClockTime, this)//开始时钟倒计时
+    //   .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
+    //   .start();//timeline开始运行
+    // ///-------------
+
+    //new ----------
     this.playtoQuestion('english')
-    .add(0, this.keyboard, this)//渲染九宫格键盘
-    .add(1000, this.audioPlay, this)//1秒后，播放音频
-    .add(3000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
-    .add(0, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
-    .add(0, this.countClockTime, this)//开始时钟倒计时
-    .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
-    .start();//timeline开始运行
+      .add(1000, this.audioPlay, this)//1秒后，播放音频
+      .add(2000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
+      .add(0, this.keyboard, this)//渲染九宫格键盘
+      .add(2000, this.flipNineCard, this)//3秒后翻转九宫格键盘至字母不可见
+      .add(0, this.countClockTime, this)//开始时钟倒计时
+      .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
+      .start();//timeline开始运行
     ///-------------
   },
   //单词拼写
@@ -744,7 +771,7 @@ Page({
   },
   //设置九宫格
   keyboard() {
-    let letterPos = this.data.letterPos;
+    let letterPos = question.eliminate;
     let english = rightAnswer;
     this.setData({
       nineLetters: keyboard(letterPos, english)

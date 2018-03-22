@@ -30,6 +30,7 @@ Page({
     this.canJoinRoom(options)
 
       wsReceive('roomInfo', res => {
+        console.log(res,'roomInfo')
         if (res.data.roomStatus == 2) {
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',

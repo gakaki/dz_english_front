@@ -10,7 +10,6 @@ function loadEnglishWords(words) {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
-      // cloneObj.type = 4;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -29,7 +28,9 @@ function getRoomInfo(rid, cb) {
 }
 
 //设置九宫格键盘
+
 function keyboard(letterPos, english){  
+  console.log(letterPos, english)
   if (!letterPos) {
     return
   }
@@ -52,6 +53,7 @@ function keyboard(letterPos, english){
   return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
 
 }
+
 
 function quanpinKeyboard(english) {
   if (!english) {

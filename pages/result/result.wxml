@@ -3,13 +3,13 @@
     <image class="shu-ying" src="{{isVictory[final]}}"></image>
     <view class="fenshu-lan font">
       <view class="fenshu-juzhong">
-        <text class="shu-lan">{{isSelf.score}}</text>
+        <text class="shu-lan">{{isSelf.score}}</text> 
         <text class="fen-lan fen">分</text>
       </view>
     </view>
     <view class="fenshu-hong font">
       <view class="fenshu-juzhong">
-        <text class="shu-hong">{{notSelf.score}}</text>
+       <text class="shu-hong">{{notSelf.score}}</text> 
        <text class="fen-hong fen">分</text>
       </view>
     </view>
