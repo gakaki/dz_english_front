@@ -29,8 +29,8 @@ Page({
     }
     this.canJoinRoom(options)
 
-      wsReceive('roomInfo', res => {
-        console.log(res,'roomInfo')
+      wsReceive('room', res => {
+        console.log(res,'room')
         if (res.data.roomStatus == 2) {
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
@@ -109,7 +109,7 @@ Page({
     this.setData({
       cancelJoin: true
     })
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo','joinSuccess'])
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'room','joinSuccess'])
   },
   /**
    * 生命周期函数--监听页面隐藏
