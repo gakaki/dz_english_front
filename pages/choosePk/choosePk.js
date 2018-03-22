@@ -1,7 +1,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js'
-import { doFetch, shareSuc, checkoutIsRoom, wsClosed } from '../../utils/rest.js';
+import { doFetch, shareSuc, checkoutIsRoom, wsConnect } from '../../utils/rest.js';
 let time = null
 Page({
   data: {
@@ -90,8 +90,8 @@ Page({
   },
   
   onShow() {
-    if (app.globalData.wsConnect) {
-      wsClosed()
+    if (!app.globalData.wsConnect) {
+      wsConnect()
     }
     app.globalData.globalLastTapTime = 0
     

@@ -36,7 +36,17 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
-      this.getInfo(res)
+      if(res.code == 0) {
+        this.getInfo(res)
+      } else {
+        wx.showToast({
+          title: '对方已逃跑',
+          icon:"none"
+        })
+        wx.redirectTo({
+          url: '../choosePk/choosePk?fromIndex=true',
+        })
+      }
     })
 
     this.onPkEndInfo()

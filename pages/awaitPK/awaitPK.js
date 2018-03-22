@@ -2,7 +2,7 @@
 const app = getApp()
 const sheet = require('../../sheets.js')
 import { getRankFrame } from '../../utils/util.js';
-import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start, wsConnect  } from '../../utils/rest.js';
+import { doFetch, wsSend, wsReceive, shareSuc, wsClose, start  } from '../../utils/rest.js';
 let time=null
 let tm=null
 
@@ -51,10 +51,6 @@ Page({
     this.setData({
       gold: option.gold
     }) 
-    
-    if (!app.globalData.wsConnect) {
-      wsConnect()
-    }
 
     //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
     wsReceive('needGold', res => {
@@ -94,21 +90,17 @@ Page({
         })
       }, 1000)
     })
-    tm = setTimeout(()=>{
+    tm = setTimeout(() => {
       wsSend('ranking', {
         rankType: option.type
       })
-    },1000)
+    }, 2000)
     
-
   },
   onShow() {
-    
     this.setData({
       frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
     })
-
-   
 
   },
 
