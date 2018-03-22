@@ -269,6 +269,14 @@ Page({
         app.globalData.toSelf = true
       }
     }
+    else if (options && options.share) {
+      this.data.shareIn = true
+      if (app.globalData.logined) {
+        wx.navigateTo({
+          url: '../share/share',
+        })
+      }
+    }
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo

@@ -1,0 +1,188 @@
+/* pages/share/share.wxss */
+
+.wrap {
+  height: 100%;
+  margin-top: 30rpx;
+  background: #fff;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+}
+.top-con {
+  position: relative;
+  width: 100%;
+  height: 775rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/self/bg-big.png') 0 0 no-repeat;
+  background-size: 750rpx 775rpx;
+}
+.avatar {
+   height: 192rpx;
+   width: 100%;
+}
+
+.frame {
+  width: 227rpx;
+  height: 179rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 227rpx;
+  height: 181rpx;
+  z-index: 6;
+  transform: scale(0.9, 0.9);
+}
+
+.header {
+  width: 137rpx;
+  height: 137rpx;
+  box-sizing: content-box;
+  background-color: #fff;
+  box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+
+.userinfo-avatar {
+  width: 137rpx;
+  height: 137rpx;
+  border-radius: 50%;
+}
+
+.header1 {
+  width: 153rpx;
+  height: 153rpx;
+  box-sizing: content-box; 
+  background-color: #fff;
+  box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: 12rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.userinfo-avatar1 {
+  width: 137rpx;
+  height: 137rpx;
+  border-radius: 50%;
+}
+
+
+.tj-box {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 30rpx;
+  width: 685rpx;
+  height: 322rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/self/board-half.png') center center no-repeat;
+  background-size: contain;
+}
+ .tuijian {
+  position: absolute;
+  left: 217rpx;
+  top: 0;
+  width: 249rpx;
+  height: 66rpx;
+  text-align: center;
+  font: bold 40rpx/57rpx 'Microsoft YaHei';
+  color: #fff;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/self/dress-big.png') 0 0 no-repeat;
+  background-size: cover;
+} 
+
+
+.eng {
+  padding-top: 64rpx;
+  height: 260rpx;
+  overflow: hidden;
+  text-align: center;
+  font: bold 34rpx/48rpx 'Microsoft YaHei';
+  color: #474747;
+}
+
+
+.record-box {
+  margin-top: 52rpx;
+  height: 112rpx;
+  text-align: center;
+  overflow: hidden;
+  justify-content: space-around;
+  color: #fff;
+}
+.left {
+  border-right: 3rpx solid #6c8ce0; 
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+}
+
+
+.right {
+  border-left: 3rpx solid #224ca9;
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+} 
+
+.num {
+  font: bold 72rpx/1 'Microsoft YaHei';
+  font-weight: 900;
+  transform: skewX(-8deg);
+  /* text-shadow: #224ca9 4rpx 0 0,#224ca9 0 4rpx 0,#224ca9 -4rpx 0 0,#224ca9 0 -4rpx 0; */
+  -webkit-text-stroke: 4rpx #224ca9;
+}
+
+.des {
+  padding-top: 12rpx;
+  font: bold 28rpx/1 'Microsoft YaHei';
+}
+
+.share-wrap {
+  margin: 60rpx 0;
+  justify-content: space-around;
+}
+.img-wrap {
+  position: relative;
+  width: 280rpx;
+  height: 90rpx;
+}
+.img {
+  width: 280rpx;
+  height: 90rpx;
+}
+.btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.anniu-tiaozhan{
+  margin: 0 auto;
+  width: 448rpx;
+  height: 129rpx;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/result/anniucheng.png') 0 0 no-repeat;
+  background-size: cover;
+}
+.anniu-wenzi{
+  font: 50rpx/115rpx 'Microsoft YaHei';
+  color: #fff;
+  letter-spacing: 5rpx;
+  text-align: center;
+}
+.canvas {
+  position: fixed;
+  left: 0;
+  top: 50rpx;
+  box-sizing: border-box;
+  width: 750rpx;
+  height: 808rpx; 
+}
