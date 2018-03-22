@@ -70,6 +70,7 @@ Page({
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
+      console.log(res,"pkend")
       this.data.pkEnd = true
       if (res.code) {
         wx.showToast({
@@ -88,7 +89,7 @@ Page({
         let [u1, u2] = data.userList;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }
