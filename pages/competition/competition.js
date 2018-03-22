@@ -77,7 +77,7 @@ Page({
         isFriend: options.isFriend
       })
     }
-
+    console.log(222222222222222222222222)
     getRoomInfo(rid, res => {
       console.log(res,'pkinfo')
       if (res.code) {
