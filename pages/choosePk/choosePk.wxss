@@ -65,6 +65,7 @@
 
 .userinfo-avatar {
   /* background-color: #335bb8; */
+  margin-top: -5rpx;
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;

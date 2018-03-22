@@ -51,14 +51,9 @@ Page({
       gold: option.gold
     }) 
     
-  },
-  onShow() {
     if (!app.globalData.wsConnect) {
       wsConnect()
     }
-    this.setData({
-      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
-    })
 
     //为防止客户端数据被篡改再此处再通过后台判断金币是否足够
     wsReceive('needGold', res => {
@@ -101,6 +96,15 @@ Page({
     wsSend('ranking', {
       rankType: option.type
     })
+
+  },
+  onShow() {
+    
+    this.setData({
+      frame:getRankFrame(app.globalData.personalInfo.userInfo.character.season)
+    })
+
+   
 
   },
 

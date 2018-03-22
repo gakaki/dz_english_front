@@ -21,7 +21,6 @@ Component({
       type:Object,
       value:null,
       observer: function (v) {
-        console.log(v)
         if (v && v.lastRank) {
           this.setData({
             userLeftImg: getRankImg(v.lastRank)
