@@ -469,37 +469,16 @@ Page({
   //翻牌
   playThree() {
     //new ----------
-    // this.playtoQuestion('english')
-    // .add(0, this.keyboard, this)//渲染九宫格键盘
-    // .add(1000, this.audioPlay, this)//1秒后，播放音频
-    // .add(3000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
-    // .add(0, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
-    // .add(0, this.countClockTime, this)//开始时钟倒计时
-    // .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
-    // .start();//timeline开始运行
-    ///-------------
-
-    // //new ----------
-    // this.playtoQuestion('english')
-    //   .add(0, this.keyboard, this)//渲染九宫格键盘
-    //   .add(1000, this.audioPlay, this)//1秒后，播放音频
-    //   .add(3000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
-    //   .add(3000, this.flipNineCard, this)//3秒后翻转九宫格键盘至字母不可见
-    //   .add(0, this.countClockTime, this)//开始时钟倒计时
-    //   .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
-    //   .start();//timeline开始运行
-    // ///-------------
-
-    //new ----------
     this.playtoQuestion('english')
-      .add(1000, this.audioPlay, this)//1秒后，播放音频
-      .add(2000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
-      .add(0, this.keyboard, this)//渲染九宫格键盘
-      .add(2000, this.flipNineCard, this)//3秒后翻转九宫格键盘至字母不可见
-      .add(0, this.countClockTime, this)//开始时钟倒计时
-      .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
-      .start();//timeline开始运行
+    .add(0, this.keyboard, this)//渲染九宫格键盘
+    .add(1000, this.audioPlay, this)//1秒后，播放音频
+    .add(1000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
+    .add(1500, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    .add(0, this.countClockTime, this)//开始时钟倒计时
+    .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
+    .start();//timeline开始运行
     ///-------------
+    
   },
   //单词拼写
   playFour() { 
