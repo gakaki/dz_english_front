@@ -77,8 +77,9 @@ Page({
         isFriend: options.isFriend
       })
     }
-
+    console.log(222222222222222222222222)
     getRoomInfo(rid, res => {
+      console.log(res,'pkinfo')
       if (res.code) {
         wx.showToast({
           title: '出错了',
@@ -88,18 +89,18 @@ Page({
         let userLeft, userRight;
         let [u1,u2] = res.data.userList;
         //进这个页面时，自己是对战方之一
-        if (u1.info.uid == getUid()) {
-          userLeft = u1.info;
-          if(u2 && u2.info) {
-            userRight = u2.info;
+        if (u1.uid == getUid()) {
+          userLeft = u1;
+          if(u2) {
+            userRight = u2;
           }
           
         }
         else {
-          if (u2 && u2.info) {
-            userLeft = u2.info;
+          if (u2) {
+            userLeft = u2;
           }
-          userRight = u1.info;
+          userRight = u1;
         }
         app.globalData.userInfo = userLeft;
         
@@ -167,10 +168,10 @@ Page({
   },
   onShow: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createInnerAudioContext('myAudio')
-    this.audioTrue = wx.createInnerAudioContext('true')
-    this.audioFalse = wx.createInnerAudioContext('false')
-    this.audioSelect = wx.createInnerAudioContext('select')
+    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioTrue = wx.createAudioContext('true')
+    this.audioFalse = wx.createAudioContext('false')
+    this.audioSelect = wx.createAudioContext('select')
     
   },
   roundInit(){
@@ -270,6 +271,7 @@ Page({
 
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
+      console.log(res,'roundEndSettlement')
       if(pkEnd) {return}
       if (res.code) {
         wx.showToast({
@@ -284,7 +286,7 @@ Page({
         let [u1, u2] = ulist;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }
@@ -300,6 +302,7 @@ Page({
     })
     //开始下一题
     wsReceive('nextRound', res => {
+      console.log(res,'nextRound')
       if(pkEnd) {return}
       if(res.data.round - round != 1) {
         return
@@ -331,7 +334,7 @@ Page({
         let [u1, u2] = data.userList;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }
@@ -433,6 +436,11 @@ Page({
   },
   playtoQuestion(answerKey){
     rightAnswer = question[answerKey];//设置正确答案内容
+    if (question.eliminate) {
+      this.setData({
+
+      })
+    }
     tm = Timeline.add(200, this.showQuestionIdx, this)//显示第几题
     .add(2000, this.showQuestion, this)//显示题目单词
     return tm;
@@ -462,14 +470,15 @@ Page({
   playThree() {
     //new ----------
     this.playtoQuestion('english')
-    .add(1000, this.audioPlay, this)//3秒后，播放音频
-    .add(3000, this.hideQuestionLetter, this)//1秒后，擦去部分字母
-    .add(1000, this.keyboard, this)//渲染九宫格键盘
-    .add(3000, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
+    .add(0, this.keyboard, this)//渲染九宫格键盘
+    .add(1000, this.audioPlay, this)//1秒后，播放音频
+    .add(1000, this.hideQuestionLetter, this)//3秒后，擦去部分字母
+    .add(1500, this.flipNineCard, this)//翻转九宫格键盘至字母不可见
     .add(0, this.countClockTime, this)//开始时钟倒计时
     .add(10000, this.tagRoundEnd, this)//10秒后，客户端认为此局结束（通常在此之前服务器已经通知客户端真正结束)
     .start();//timeline开始运行
     ///-------------
+    
   },
   //单词拼写
   playFour() { 
@@ -480,7 +489,6 @@ Page({
     .add(0, this.countClockTime, this)
     .add(10000, this.tagRoundEnd, this)
     .start();
-
   },
 
   //擦去全部字母
@@ -535,7 +543,7 @@ Page({
         if(word == rightAnswer) {
           answer = 1;
           isRight = true;
-          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem)
+          myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem)
           totalScore = totalScore + myScore;
           this.playResultAudio(isRight)
         } 
@@ -616,7 +624,7 @@ Page({
         answer = 1;
         isRight = true;
         finished = true;
-        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem);
         totalScore = totalScore + myScore;
 
         this.playResultAudio(isRight)
@@ -680,7 +688,7 @@ Page({
       if (obj.answer == rightAnswer) {
         isRight = true;
         answer = 1;
-        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.character.developSystem);
+        myScore = calculateScore(this.data.clockTime, round, this.data.word.speech, this.data.userLeft.developSystem);
         totalScore = totalScore + myScore;
         this.setData({
           myScore,
@@ -742,7 +750,7 @@ Page({
   },
   //设置九宫格
   keyboard() {
-    let letterPos = this.data.letterPos;
+    let letterPos = question.eliminate;
     let english = rightAnswer;
     this.setData({
       nineLetters: keyboard(letterPos, english)

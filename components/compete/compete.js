@@ -1,5 +1,5 @@
 // components/compete/compete.js
-import { getRankFrame } from '../../utils/util.js'
+import { getRankImg } from '../../utils/util.js'
 const app = getApp()
 Component({
   /**
@@ -21,9 +21,10 @@ Component({
       type:Object,
       value:null,
       observer: function (v) {
-        if (v && v.character) {
+        console.log(v)
+        if (v && v.lastRank) {
           this.setData({
-            userLeftImg: getRankFrame(v.character.season)
+            userLeftImg: getRankImg(v.lastRank)
           })
         }
       }
@@ -32,9 +33,9 @@ Component({
       type:Object,
       value: null,
       observer: function (v) {
-        if (v && v.character) {
+        if (v && v.lastRank) {
           this.setData({
-            userRightImg: getRankFrame(v.character.season)
+            userRightImg: getRankImg(v.lastRank)
           })
         }
         

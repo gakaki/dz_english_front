@@ -3,13 +3,13 @@
     <image class="shu-ying" src="{{isVictory[final]}}"></image>
     <view class="fenshu-lan font">
       <view class="fenshu-juzhong">
-        <text class="shu-lan">{{isSelf.score}}</text>
+        <text class="shu-lan">{{isSelf.score}}</text> 
         <text class="fen-lan fen">分</text>
       </view>
     </view>
     <view class="fenshu-hong font">
       <view class="fenshu-juzhong">
-        <text class="shu-hong">{{notSelf.score}}</text>
+       <text class="shu-hong">{{notSelf.score}}</text> 
        <text class="fen-hong fen">分</text>
       </view>
     </view>
@@ -18,11 +18,11 @@
     <view class="xinxi-lan">
       <view class="wanjia-lan">
         <view class="nicheng-lan font">
-          <text class="wenzi-lan">{{isSelf.info.nickName}}</text>
+          <text class="wenzi-lan">{{isSelf.nickName}}</text>
         </view>
         <view>
           <image class="touxiangkuang touxiangkuang-lan" wx:if='{{frameSelf}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}"></image>
-          <image class="touxiang-lan" src="{{isSelf.info.avatarUrl}}"></image>
+          <image class="touxiang-lan" src="{{isSelf.avatarUrl}}"></image>
         </view>
         
       </view>
@@ -36,11 +36,11 @@
     <view class="xinxi-hong">
       <view class="wanjia-hong">
         <view class="nicheng-hong font">
-          <text class="wenzi-hong">{{notSelf.info.nickName}}</text>
+          <text class="wenzi-hong">{{notSelf.nickName}}</text>
         </view>
         <view>
           <image class="touxiangkuang touxiangkuang-hong" wx:if='{{frameOther}}' src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}"></image>
-          <image class="touxiang-hong" src="{{notSelf.info.avatarUrl}}"></image>
+          <image class="touxiang-hong" src="{{notSelf.avatarUrl}}"></image>
         </view>
         
       </view>

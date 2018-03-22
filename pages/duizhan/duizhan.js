@@ -3,7 +3,7 @@
 const app = getApp()
 let time = null, timer = null
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom } from '../../utils/rest.js';
-import { getRankFrame } from '../../utils/util.js'
+import {  getRankImg } from '../../utils/util.js'
 
 Page({
   data: {
@@ -36,6 +36,7 @@ Page({
     })
 
     wsReceive('matchInfo', res => {
+      console.log(res)
       this.getInfo(res)
     })
 
@@ -46,26 +47,30 @@ Page({
   getInfo(res) {
     let userList = res.data.userList
     this.data.rid = res.data.rid
-    if (userList[0].info.uid == getUid()) {
+    console.log(res,'resssssssssssssssss')
+    if (userList[0].uid == getUid()) {
       this.setData({
         isSelf: userList[0],
         notSelf: userList[1],
-        frameSelf: getRankFrame(userList[0].info.character.season),
-        frameOther: getRankFrame(userList[1].info.character.season)
+        frameSelf: getRankImg(userList[0].lastRank),
+        frameOther: getRankImg(userList[1].lastRank)
       })
     }
     else {
       this.setData({
         isSelf: userList[1],
         notSelf: userList[0],
-        frameSelf: getRankFrame(userList[1].info.character.season),
-        frameOther: getRankFrame(userList[0].info.character.season)
+        frameSelf: getRankImg(userList[1].lastRank),
+        frameOther: getRankImg(userList[0].lastRank)
       })
     }
+    console.log(this.data.isSelf)
+    console.log(this.data.notSelf)
   },
 
   onPkEndInfo() {
     wsReceive('pkEndSettlement', res => {
+      console.log(res,"pkend")
       this.data.pkEnd = true
       if (res.code) {
         wx.showToast({
@@ -84,7 +89,7 @@ Page({
         let [u1, u2] = data.userList;
         let resultLeft, resultRight;
 
-        if (userLeft.uid == u1.info.uid) {
+        if (userLeft.uid == u1.uid) {
           resultLeft = u1;
           resultRight = u2;
         }

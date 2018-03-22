@@ -7,10 +7,10 @@
       <view class="inviter bg">
         <image class="touxiangkuang" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameSelf}}" wx:if="{{frameSelf}}"></image>
         <view class="avatar">
-          <image class="touxiang" src="{{list[0].info.avatarUrl}}"></image>
+          <image class="touxiang" src="{{list[0].avatarUrl}}"></image>
         </view>
         <view class="name">
-          <text>{{list[0].info.nickName}}</text>
+          <text>{{list[0].nickName}}</text>
         </view>
         <view class="qipao">
           <text>发起者</text>
@@ -25,10 +25,10 @@
       <view class="invitee bg">
         <image class="touxiangkuang-2" src="https://gengxin.odao.com/update/h5/yingyu/headframe/{{frameOther}}" wx:if="{{frameOther}}"></image>
         <view class="avatar rotate">
-          <image class="touxiang" src="{{list[1].info.avatarUrl}}"></image>
+          <image class="touxiang" src="{{list[1].avatarUrl}}"></image>
         </view>
         <view class="name name-invitee">
-          <text>{{list[1].info.nickName}}</text>
+          <text>{{list[1].nickName}}</text>
         </view>
       </view>
     </view>

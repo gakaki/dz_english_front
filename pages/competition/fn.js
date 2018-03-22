@@ -10,7 +10,6 @@ function loadEnglishWords(words) {
       let obj = Word.Get(v.id);
       let cloneObj = Object.assign({}, obj.cfg);
       cloneObj.type = v.type;
-      // cloneObj.type = 4;
       cloneObj.english = cloneObj.english.trim();
       cloneObj.China = cloneObj.China.trim();
       return cloneObj
@@ -20,7 +19,7 @@ function loadEnglishWords(words) {
 }
 
 function getRoomInfo(rid, cb) {
-  wsReceive('roomInfo',cb);//好友战的房间信息
+  // wsReceive('room',cb);//好友战的房间信息
   wsReceive('pkInfo',cb);//匹配战的房间信息
 
   wsSend('getpkinfo', {
@@ -29,7 +28,9 @@ function getRoomInfo(rid, cb) {
 }
 
 //设置九宫格键盘
+
 function keyboard(letterPos, english){  
+  console.log(letterPos, english)
   if (!letterPos) {
     return
   }
@@ -52,6 +53,7 @@ function keyboard(letterPos, english){
   return Array.from(st).concat(posStrs).sort(() => { return Math.random() - 0.5 });
 
 }
+
 
 function quanpinKeyboard(english) {
   if (!english) {
@@ -157,12 +159,11 @@ function getOptions(question, type){
 }
 
 function getChineneOptions(question) {
-  let arr = getOptions(question, 'chinese');
   // arr = ['向上；上升；在……上面', '为；代替；因为；为得到', '面具；遮蔽物；口罩；面具；遮蔽物；口罩','面具；遮蔽物；口罩']
-  arr = arr.map((v)=>{
-    return v.split('；')
-  })
-  return arr
+  // arr = arr.map((v)=>{
+  //   return v.split('；')
+  // })
+  return getOptions(question, 'chinese')
 }
 
 function getEnglishOptions(question) {

@@ -1,7 +1,7 @@
 // pages/friendPK/friendPK.js
 const app = getApp()
 import { doFetch, wsSend, wsReceive, getUid, wsClose, shareSuc, checkoutIsRoom, wsConnect} from '../../utils/rest.js';
-import { getRankFrame } from '../../utils/util.js';
+import { getRankImg} from '../../utils/util.js';
 
 Page({
 
@@ -29,15 +29,15 @@ Page({
     }
     this.canJoinRoom(options)
 
-      wsReceive('roomInfo', res => {
+      wsReceive('room', res => {
+        console.log(res,'room')
         if (res.data.roomStatus == 2) {
           wx.navigateTo({
             url: '../competition/competition?rid=' + this.data.rid + '&isFriend=true',
           })
         }
-
-
-        if (res.data.userList && res.data.userList[0].info.uid == getUid()) {
+        
+        if (res.data.userList && res.data.userList[0].uid == getUid()) {
           this.setData({
             isOwner: true
           })
@@ -46,13 +46,13 @@ Page({
         if (res.data.userList.length == 1) {
           // 显示段位框
           this.setData({
-            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
+            frameSelf: getRankImg(res.data.userList[0].lastRank),
           })
         }
         else if (res.data.userList.length == 2) {
           this.setData({
-            frameSelf: getRankFrame(res.data.userList[0].info.character.season),
-            frameOther: getRankFrame(res.data.userList[1].info.character.season),
+            frameSelf: getRankImg(res.data.userList[0].lastRank),
+            frameOther: getRankImg(res.data.userList[1].lastRank),
           })
         }
         this.setData({
@@ -81,6 +81,7 @@ Page({
   joinRoom(options){
       wsSend('joinroom', { rid: options.rid })
       wsReceive('joinSuccess', (res) => {
+        console.log(res)
         this.setData({
           rid: res.data.rid
         })
@@ -107,7 +108,7 @@ Page({
     this.setData({
       cancelJoin: true
     })
-    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'roomInfo','joinSuccess'])
+    wsClose(['dissolve', 'createSuccess', 'matchSuccess', 'room','joinSuccess'])
   },
   /**
    * 生命周期函数--监听页面隐藏

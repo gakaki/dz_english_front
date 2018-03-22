@@ -2,7 +2,7 @@
 const app = getApp()
 import { doFetch, getUid, shareSuc, wsReceive, wsClose } from '../../utils/rest.js';
 import { Item } from '../../sheets.js'
-import { getRankFrame } from '../../utils/util.js'
+import { getRankImg } from '../../utils/util.js'
 let map = [];
 
 Page({
@@ -59,7 +59,8 @@ Page({
       show: e.show == "true"?true:false,
       rid: e.rid
     })
-    let pkResult = app.globalData.pkResult
+    let pkResult = app.globalData.pkResult;
+    console.log(pkResult,'pkResult')
     doFetch('english.canshare',{},res=>{
       if(res.data.canShare){
         this.setData({
@@ -67,15 +68,15 @@ Page({
         })
       }
     }, () => { }, app)
-    if(pkResult.resultLeft.info.uid == getUid()){
+    if(pkResult.resultLeft.uid == getUid()){
       this.setData({
         final: pkResult.final,
         gold: pkResult.gold,
         exp: pkResult.exp,
         isSelf: pkResult.resultLeft,
         notSelf: pkResult.resultRight,
-        frameSelf: getRankFrame(pkResult.resultLeft.info.character.season),
-        frameOther: getRankFrame(pkResult.resultRight.info.character.season)
+        frameSelf: getRankImg(pkResult.resultLeft.lastRank),
+        frameOther: getRankImg(pkResult.resultRight.lastRank)
       })
     }
     else{
@@ -85,8 +86,8 @@ Page({
         exp: pkResult.exp,
         isSelf: pkResult.resultRight,
         notSelf: pkResult.resultLeft,
-        frameSelf: getRankFrame(pkResult.resultRight.info.character.season),
-        frameOther: getRankFrame(pkResult.resultLeft.info.character.season)
+        frameSelf: getRankImg(pkResult.resultRight.lastRank),
+        frameOther: getRankImg(pkResult.resultLeft.lastRank)
       })
     }
    },

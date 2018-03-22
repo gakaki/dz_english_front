@@ -29,6 +29,8 @@
 }
 
 .fenshu-lan{
+  padding-left: 3rpx;
+  letter-spacing: -2rpx;
   width: 220rpx;
   height: 77rpx;
   position: absolute; 
@@ -37,7 +39,12 @@
   justify-content: center;
   align-items: flex-end;
   animation: left 0.4s ease-in forwards;
-  color: #007be3;
+  color: #007be3; 
+  transform: skewX(-8deg);
+}
+.shu-lan {
+  color: #fff;
+  -webkit-text-stroke: 4rpx #007be3;
 }
 
 .fen-lan{
@@ -45,6 +52,7 @@
 }
 
 .fenshu-hong{
+  letter-spacing: -2rpx;
   width: 220rpx;
   height: 77rpx;
   position: absolute;
@@ -55,8 +63,12 @@
   align-items: flex-end;
   animation: right 0.4s ease-in forwards;
   color: #dd1034;
+  transform: skewX(-8deg);
 }
-
+.shu-hong {
+  color: #fff;
+  -webkit-text-stroke: 4rpx #dd1034;
+}
 .fen-hong{
   margin-left: 5rpx;
 }

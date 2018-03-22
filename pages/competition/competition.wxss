@@ -208,7 +208,7 @@
   width: 364rpx;
   height: 124rpx;
   overflow: hidden;
-  color: #000;
+  /* color: #000; */
 }
 .circle {
   position: absolute;

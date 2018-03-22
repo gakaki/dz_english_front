@@ -80,6 +80,7 @@ Page({
       }, 2100)
     })
     wsReceive('matchSuccess', res => {
+      console.log(res,'matchSuccess')
       this.setData({
         matchSuc: true
       })
