@@ -11,6 +11,9 @@ Page({
     rankFrame: '',
     tebSeason: '查看上赛季排行榜'
   },
+  onShow() {
+    app.globalData.globalLastTapTime = 0
+  },
   onLoad() {
     doFetch('english.getfriendrankinglist', {}, (res) => {
       if (res.data.length > 0) {
@@ -24,7 +27,7 @@ Page({
           rankData: res.data.map(this.getSegment)
         })
 
-       
+
       } else {
         wx.showToast({
           title: '暂无数据',
@@ -38,7 +41,7 @@ Page({
   getSegment: function (item) {
     item.lRank = sheet.Stage.Get(item.rank).stage
     if (item.hasOwnProperty('city') == false || item.city == ' ') {
-      item.city = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)] 
+      item.city = sheet.Constant.Get(3).value.split(",")[Math.floor(Math.random() * 4)]
     }
     return item
   },
@@ -111,35 +114,35 @@ Page({
   },
   preSeason() {
     if (this.data.tebSeason == '查看上赛季排行榜') {
-        doFetch('english.getworldrankinglist', { "season": 1 }, (res) => {
+      doFetch('english.getworldrankinglist', { "season": 1 }, (res) => {
+        this.setData({
+          tebSeason: '查看本赛季排行榜'
+        })
+        if (typeof (res.data) != 'undefined' && res.data.length > 0) {
           this.setData({
-            tebSeason: '查看本赛季排行榜'
+            rankFrame: res.data.map(o => {
+              return getPersonFrame(o.lastRank)
+            })
           })
-          if (typeof (res.data) != 'undefined' && res.data.length > 0) {
-            this.setData({
-              rankFrame: res.data.map(o => {
-                return getPersonFrame(o.lastRank)
-              })
-            })
-            this.setData({
-              rankData: res.data.map(this.getSegment)
-            })
-          } else {
-            this.setData({
-              rankData: []
-            })
-            wx.showToast({
-              title: '暂无数据',
-              icon: 'none',
-              duration: 500,
-              mask: true
-            })
-          }
-        }, () => { }, app)
-    }else {
+          this.setData({
+            rankData: res.data.map(this.getSegment)
+          })
+        } else {
+          this.setData({
+            rankData: []
+          })
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 500,
+            mask: true
+          })
+        }
+      }, () => { }, app)
+    } else {
       this.getWordData()
     }
-    
+
 
   },
   onShareAppMessage: function (res) {

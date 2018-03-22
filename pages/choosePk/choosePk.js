@@ -100,6 +100,7 @@ Page({
     })
   },
   onShow() {
+    app.globalData.globalLastTapTime = 0
     if (!app.globalData.wsConnect) {
       wsConnect()
     }

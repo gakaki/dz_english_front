@@ -316,6 +316,7 @@ Page({
     }, () => { }, app)
   },
   onShow: function () {
+    app.globalData.globalLastTapTime = 0
     if (app.globalData.logined) {
       doFetch('english.showpersonal', {}, (res) => {
         app.globalData.personalInfo = res.data;
