@@ -137,7 +137,7 @@
 .looker{
   width: 277rpx;
   height: 149rpx;
-  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/socket.png') 0 0 no-repeat;
+  background: url('https://gengxin.odao.com/update/h5/yingyu/friendPK/socket1.png') 0 0 no-repeat;
   background-size: cover;
   position: absolute;
   top: 502rpx;

@@ -18,8 +18,8 @@
       </view>
       <view class="looker">
         <view class="person">
-          <image class="icon" src='https://gengxin.odao.com/update/h5/yingyu/friendPK/person.png'></image>
-          <text>围观群众{{bystander}}人</text>
+          <!-- <image class="icon" src='https://gengxin.odao.com/update/h5/yingyu/friendPK/person.png'></image> -->
+          <!-- <text>围观群众{{bystander}}人</text> -->
         </view>
       </view>
       <view class="invitee bg">
