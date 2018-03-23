@@ -43,8 +43,11 @@ Page({
           title: '对方已逃跑',
           icon:"none"
         })
-        wx.redirectTo({
-          url: '../choosePk/choosePk?fromIndex=true',
+        // wx.redirectTo({
+        //   url: '../choosePk/choosePk?fromIndex=true',
+        // })
+        wx.navigateBack({
+          delta: 1
         })
       }
     })

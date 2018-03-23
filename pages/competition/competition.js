@@ -73,8 +73,11 @@ Page({
         wx.showToast({
           title: '出错了',
         })
-        wx.redirectTo({
-          url: '../choosePk/choosePk?fromIndex=true',
+        // wx.redirectTo({
+        //   url: '../choosePk/choosePk?fromIndex=true',
+        // })
+        wx.navigateBack({
+          delta: 1
         })
       }
       else {
@@ -271,10 +274,13 @@ Page({
 
   onRoundEndInfo() {
     wsReceive('roundEndSettlement', res => {
-      if (pkEnd) { return }
       if (res.code) {
         wx.showToast({
-          title: '本题结算出错'
+          title: '本题结算出错',
+          icon:'none'
+        })
+        wx.navigateBack({
+          delta: 1
         })
       }
       else {
@@ -318,7 +324,8 @@ Page({
       pkEnd = true;
       if (res.code) {
         wx.showToast({
-          title: '结算出错了'
+          title: '结算出错了',
+          icon:"none"
         })
       }
       else {
