@@ -1,0 +1,37 @@
+<view id="shop" class="flex">
+  <view class="wrap f-r-sb">
+    <view class="item" wx:for="{{itemInfo}}" wx:key="{{index}}" data-ind="{{index}}" bindtap='check'>
+      <view class="top flex">
+        <text class=" {{item.cfg.name.length==2 ? 'gold' : 'box'}}">{{item.cfg.name}}</text>
+        <image class="icon" src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{itemIcon[index]}}"></image>
+      </view>
+      <view class="bottom">
+        <text class="font">￥{{shopData[index]}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="goods" wx:if="{{show}}">
+    <view class="goods-info flex">
+      <view class="goods-icon flex">
+        <image src="https://gengxin.odao.com/update/h5/yingyu/shopping/{{itemIcon[point]}}"></image>
+      </view>
+      <view class="content">
+        <view class="main-text">
+          <text class="font">{{itemInfo[point].cfg.name}}X{{shopNum[point]}}</text>
+        </view>
+        <view class="buy ziti">
+          <text class="font">{{itemInfo[point].cfg.description}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="button f-r-sb">
+      <view class="cancel btn" bindtap='hide'>
+        <text class="font">取消</text>
+      </view>
+      <view class="confirm btn" bindtap='buy'>
+        <text class="font">￥{{shopData[point]}}购买</text>
+      </view>
+    </view>
+  </view>
+  <view class="mask" bindtap='hide' wx:if="{{show}}"></view>
+</view>
